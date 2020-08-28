@@ -21,15 +21,27 @@
         <div class="content" align="center">
             <div class="container-fluid">
                 <!-- CONTENIDO PAGINA -->
-                <h1>FERIA DE OPORTUNIDADES</h1>
 
-                <img class="img" width="50%" src="./images/banner.jpg" />
+                <div class="card">
+                    <div class="card card-header ">
+                        <h2 class="card-title card-header-primary">FERIA DE OPORTUNIDADES</h2>
+                    </div>
 
-                <div>
-                    <br>
-                    <button>INICIAR SESIÓN</button>
-                    <button>CREAR CUENTA</button>
+                    <div class="card-body">
+
+                        <br>
+                        <img class="img" width="50%" src="./images/banner.jpg" />
+
+                        <div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">INICIAR SESIÓN</button>
+                            <button type="submit" class="btn btn-primary">CREAR CUENTA</button>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
         </div>
 
