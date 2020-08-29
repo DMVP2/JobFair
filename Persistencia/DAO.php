@@ -45,4 +45,3 @@ interface DAO
      */
     public function listar();
 }
-?>

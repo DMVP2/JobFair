@@ -140,7 +140,7 @@ class Empresa
 	 * 
 	 * @return String
 	 */
-    public function getDescripció¿on()
+    public function getDescripcion()
     {
 		return $this->descripcion;
     }

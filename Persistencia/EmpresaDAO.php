@@ -10,7 +10,7 @@ class EmpresaDAO implements DAO
 
 	//------------------------------------------
 	// Atributos
-	//----------------------------------------
+	//------------------------------------------
 
 	/**
 	 * Referencia a la conexion con la base de datos
