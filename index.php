@@ -19,6 +19,7 @@
 
         <div class="content" align="center">
             <div class="container-fluid">
+            
                 <!-- CONTENIDO PAGINA -->
 
                 <div class="card">
