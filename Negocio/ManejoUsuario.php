@@ -49,7 +49,7 @@
          */
         public function crearUsuario($pUsuario) 
         {
-            $usuarioDAO = usuarioDAO::obtenerUsuarioDAO($this->conexion);
+            $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
             $usuarioDAO->crear($pUsuario);
         }
 
@@ -96,8 +96,8 @@
         public function listarUsuario() 
         {
             $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
-            $usuario = $usuarioDAO->listar();
-            return $usuario;
+            $usuarios = $usuarioDAO->listar();
+            return $usuarios;
         }
     } 
 ?>

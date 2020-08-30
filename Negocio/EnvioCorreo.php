@@ -41,14 +41,14 @@ class EnvioCorreo
 
         try {
             //Server settings
-            $this->mail->SMTPDebug = 0;                      // Enable verbose debug output
-            $this->mail->isSMTP();                                            // Send using SMTP
-            $this->mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-            $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $this->mail->Username   = self::CORREO_FERIA;                     // SMTP username
-            $this->mail->Password   = self::CONTRASEÑA_FERIA;                 // SMTP password
-            $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-            $this->mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+            $this->mail->SMTPDebug = 0; // Enable verbose debug output
+            $this->mail->isSMTP(); // Send using SMTP
+            $this->mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
+            $this->mail->SMTPAuth = true; // Enable SMTP authentication
+            $this->mail->Username = self::CORREO_FERIA; // SMTP username
+            $this->mail->Password = self::CONTRASEÑA_FERIA; // SMTP password
+            $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $this->mail->Port = 587; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
             //Recipients
             $this->mail->setFrom(self::CORREO_FERIA, self::NOMBRE_FERIA);
@@ -74,12 +74,13 @@ class EnvioCorreo
     {
         try {
 
-            $this->mail->addAddress($this->correoDestinatario);     // Add a recipient
+            $this->mail->addAddress($this->correoDestinatario); // Add a recipient
 
-            // Content
-            $this->mail->isHTML(true);                                  // Set email format to HTML
-            $this->mail->Subject = $this->asunto;   // ASUNTO
-            $this->mail->Body    = $this->mensaje;  // MENSAJE
+            // Contenido
+
+            $this->mail->isHTML(true); // Set email format to HTML
+            $this->mail->Subject = $this->asunto; // ASUNTO
+            $this->mail->Body    = $this->mensaje; // MENSAJE
 
             $this->mail->send();
         } catch (Exception $e) {
@@ -101,7 +102,7 @@ class EnvioCorreo
     /**
      * Método para establecer el correo del destinatario
      * 
-     * @return String
+     * @param String
      */
     public function setCorreoDestinatario(String $pCorreoDestinatario)
     {
@@ -121,7 +122,7 @@ class EnvioCorreo
     /**
      * Método para establecer el asunto del correo
      * 
-     * @return String
+     * @param String
      */
     public function setAsunto(String $pAsunto)
     {
@@ -141,7 +142,7 @@ class EnvioCorreo
     /**
      * Método para establecer el correo del destinatario
      * 
-     * @return String
+     * @param String
      */
     public function setDestinatario(String $pDestinatario)
     {
@@ -161,7 +162,7 @@ class EnvioCorreo
     /**
      * Método para establecer el mensaje del correo
      * 
-     * @return String
+     * @param String
      */
     public function setMensaje(String $pMensaje)
     {
