@@ -235,5 +235,3 @@ class Empresa
 		$this->logoEmpresa = $pLogoEmpresa;
     }
 }
-
-?>
