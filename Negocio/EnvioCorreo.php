@@ -23,11 +23,39 @@ class EnvioCorreo
     const CORREO_FERIA = "feriaoportunidadtestmail@gmail.com";
     const CONTRASEÑA_FERIA = "123456789Abc";
 
+    /**
+     * Correo del destinatario
+     * 
+     * @var String
+     */
     private $correoDestinatario;
+
+    /**
+     * Asunto del correo
+     * 
+     * @var String
+     */
     private $asunto;
+
+    /**
+     * Nombre del destinatario
+     * 
+     * @var String
+     */
     private $destinatario;
+
+    /**
+     * Mensaje que contendra el cuerpo del correo
+     * 
+     * @var String
+     */
     private $mensaje;
 
+    /**
+     * Instancia de la libreria PHPMailer
+     * 
+     * @var PHPMailer
+     */
     private $mail;
 
 
@@ -63,6 +91,11 @@ class EnvioCorreo
     //----------------------------------
 
 
+    /**
+     * Método para preparar el correo a enviar con destinatario, asunto y cuerpo
+     * 
+     * @return String
+     */
     public function prepararCorreo(String $pCorreoDestinatario, String $pAsunto, String $pMensaje)
     {
         $this->setCorreoDestinatario($pCorreoDestinatario);
