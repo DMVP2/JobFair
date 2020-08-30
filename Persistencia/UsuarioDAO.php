@@ -75,9 +75,8 @@ class UsuarioDAO implements DAO
         $usuario->setEstado($row[2]);
         $usuario->setPassword($row[3]);
         $usuario->setRolUsuario($row[4]);
-        $usuario->setId($row[5]);
-
-
+		$usuario->setId($row[5]);
+		
 		return $usuario;
 
 	}
@@ -122,8 +121,12 @@ class UsuarioDAO implements DAO
         while ($row = mysqli_fetch_array($result)) 
         {
 			$usuario = new Usuario();
-			$usuario->setcodigo($row[0]);
-			$usuario->setnombre($row[1]);
+			$usuario->setId($row[0]);
+			$usuario->setUsuario($row[1]);
+			$usuario->setEstado($row[2]);
+			$usuario->setPassword($row[3]);
+			$usuario->setRolUsuario($row[4]);
+			$usuario->setId($row[5]);
 			$usuarioArray[] = $usuario;
 		}
 

@@ -88,7 +88,7 @@ class Empresa
     /**
 	 * Método para establecer el NIT de la empresa
 	 * 
-	 * @return int
+	 * @param int
 	 */
     public function setNit(int $pNit)
     {
@@ -106,9 +106,9 @@ class Empresa
     }
     
     /**
-	 * Método para establecer el NIT de la empresa
+	 * Método para establecer la razón comercial de la empresa
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setRazonComercial(String $pRazonComercial)
     {
@@ -128,7 +128,7 @@ class Empresa
     /**
 	 * Método para establecer la razón social de la empresa
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setRazonSocial(String $pRazonSocial)
     {
@@ -148,7 +148,7 @@ class Empresa
     /**
 	 * Método para establecer la razón social de la empresa
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setDescripcion(String $pDescripcion)
     {
@@ -168,7 +168,7 @@ class Empresa
     /**
 	 * Método para establecer la razón social de la empresa
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setDescripción(String $pDescripcion)
     {
@@ -188,7 +188,7 @@ class Empresa
     /**
 	 * Método para establecer los otros beneficios de la empresa
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setOtrosBeneficios(String $pOtrosBeneficios)
     {
@@ -208,7 +208,7 @@ class Empresa
     /**
 	 * Método para establecer el estado de la empresa
 	 * 
-	 * @return Char
+	 * @param Char
 	 */
     public function setEstadoEmpresa(String $pEstadoEmpresa)
     {
@@ -228,7 +228,7 @@ class Empresa
     /**
 	 * Método para establecer la ruta del archivo del logo de la empresa
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setLogoEmpresa(String $pLogoEmpresa)
     {

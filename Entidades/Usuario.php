@@ -75,7 +75,7 @@ class Usuario
     /**
 	 * Método para establecer el Id del usuario
 	 * 
-	 * @return int
+	 * @param int
 	 */
     public function setId(int $pId)
     {
@@ -95,7 +95,7 @@ class Usuario
     /**
 	 * Método para establecer el usuario
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setUsuario(String $pUsuario)
     {
@@ -115,7 +115,7 @@ class Usuario
     /**
 	 * Método para establecer el estado del usuario
 	 * 
-	 * @return Char
+	 * @param Char
 	 */
     public function setEstado(String $pEstado)
     {
@@ -135,7 +135,7 @@ class Usuario
     /**
 	 * Método para establecer la contraseña del usuario
 	 * 
-	 * @return String
+	 * @param String
 	 */
     public function setPassword(String $pPassword)
     {
@@ -156,7 +156,7 @@ class Usuario
     /**
 	 * Método para establecer el rol del usuario
 	 * 
-	 * @return int
+	 * @param int
 	 */
     public function setRolUsuario(int $pRolUsuario)
     {
