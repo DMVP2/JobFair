@@ -78,7 +78,7 @@
         }
 
         /**
-         * Elimina un parqueadero
+         * Elimina una empresa
          *
          * @param int $pNit
          */
@@ -89,7 +89,7 @@
         }
 
         /**
-         * Obtiene la lista de parqueaderos
+         * Obtiene la lista de empresas
          *
          * @return Empresa[]
          */
@@ -99,5 +99,4 @@
             $empresas = $empresaDAO->listar();
             return $empresas;
         }
-    } 
-?>
+    }

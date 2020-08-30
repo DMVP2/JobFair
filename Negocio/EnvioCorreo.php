@@ -94,7 +94,9 @@ class EnvioCorreo
     /**
      * Método para preparar el correo a enviar con destinatario, asunto y cuerpo
      * 
-     * @return String
+     * @param String $pCorreoDestinatario
+     * @param String $pAsunto
+     * @param String $pMensaje
      */
     public function prepararCorreo(String $pCorreoDestinatario, String $pAsunto, String $pMensaje)
     {
@@ -103,6 +105,11 @@ class EnvioCorreo
         $this->setMensaje($pMensaje);
     }
 
+
+    /**
+     * Método para enviar el correo con los atributos destinatario, asunto y mensaje
+     * 
+     */
     public function enviarCorreo()
     {
         try {
