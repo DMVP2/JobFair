@@ -15,49 +15,49 @@ class Empresa
 	 * 
 	 * @var int
 	 */
-	private  $nit;
+	private $nit;
 
 	/**
 	 * Razón comercial de la empresa
 	 * 
 	 * @var String
 	 */
-    private  $razonComercial;
+    private $razonComercial;
     
     /**
 	 * Razón social de la empresa
 	 * 
 	 * @var String
 	 */
-    private  $razonSocial;
+    private $razonSocial;
     
     /**
 	 * Descripción de la empresa
 	 * 
 	 * @var String
 	 */
-	private  $descripcion;
+	private $descripcion;
 
     /**
 	 * Otros beneficios ofrecidos por la empresa
 	 * 
 	 * @var String
 	 */
-    private  $otrosBeneficios;
+    private $otrosBeneficios;
     
     /**
 	 * Estado de la empresa
 	 * 
 	 * @var Char
 	 */
-	private  $estadoEmpresa;
+	private $estadoEmpresa;
 	
 	/**
 	 * Ruta del archivo con el logo de la empresa
 	 * 
 	 * @var String
 	 */
-    private  $logoEmpresa;
+    private $logoEmpresa;
 
     //---------------------
 	// Constructor

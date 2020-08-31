@@ -38,7 +38,6 @@ class HojaDeVidaDAO implements DAO
         mysqli_set_charset($this->conexion, "utf8");
     }
 
-
     //------------------------------------------
     // Métodos
     //------------------------------------------
@@ -111,6 +110,7 @@ class HojaDeVidaDAO implements DAO
      */
     public function listar()
     {
+
     }
 
     /**
@@ -138,7 +138,6 @@ class HojaDeVidaDAO implements DAO
 
         return $referenciaArray;
     }
-
 
     /**
      * Método para obtener los estudios de una hoja de vida
@@ -174,8 +173,6 @@ class HojaDeVidaDAO implements DAO
         return $estudiosArray;
     }
 
-
-
     /**
      * Método para obtener la lista de niveles de estudio
      *
@@ -199,7 +196,6 @@ class HojaDeVidaDAO implements DAO
         return $estudiosArray;
     }
 
-
     /**
      * Método para obtener un objeto HojaDeVidaDAO
      *
@@ -209,7 +205,8 @@ class HojaDeVidaDAO implements DAO
 
     public static function obtenerHojaDeVidaDAO($conexion)
     {
-        if (self::$hojaDeVidaDAO == null) {
+        if (self::$hojaDeVidaDAO == null) 
+        {
             self::$hojaDeVidaDAO = new HojaDeVidaDAO($conexion);
         }
 
