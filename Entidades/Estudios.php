@@ -16,12 +16,7 @@
         private $institucion;
 
         private $nivelEstudio;
-        /**
-         * Representa la conexión con la base de datos
-         *
-         * @var Object
-         */
-        private $conexion;
+
 
         /**
          * Representa el objeto de esta clase
@@ -37,11 +32,10 @@
         /**
          * Método constructor de la clase Estudios
          *
-         * @param Object $conexion
          */
-        private function __construct($conexion) 
+        private function __construct() 
         {
-            $this->conexion = $conexion;
+
         }
 
         //---------------------------------

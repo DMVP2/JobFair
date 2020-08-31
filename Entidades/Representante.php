@@ -24,19 +24,20 @@
         //----------------------------------
         // Constructor
         //----------------------------------
-        public function Representante($pCon)
+        public function __construct()
         {
-            $this->conexion=$pCon;
+            
         }
+
         /**
-         * Método que obtiene el ID
+         * Método que obtiene el ID del representante
          * @return id
          */
         public function getId(){
             return $this->id;
         }
         /** 
-         * Método que modifica el ID
+         * Método que establece el ID del representante
          * 
          * @param $id
          *           
@@ -44,22 +45,9 @@
         public function setId($id){
             $this->id = $id;
         }
+        
         /**
-         * Método que obtiene la conexion
-         * @return conexion
-         */
-        public function getConexion(){
-            return $this->conexion;
-        }
-        /**
-         * Método que cambia la conexion
-         * @param $conexion
-         */
-        public function setConexion($conexion){
-            $this->conexion = $conexion;
-        }
-        /**
-         * Método que obtiene el nombre
+         * Método que obtiene el nombre del representante
          * @return nombre
          * 
          */
@@ -67,35 +55,35 @@
             return $this->nombre;
         }
         /**
-         * Método que cambia el nombre
+         * Método que establece el nombre del representante
          * @param $nombre 
          */
         public function setNombre($nombre){
             $this->nombre = $nombre;
         }
         /**
-         * Método que obtiene el correo
+         * Método que obtiene el correo del representante
          * @return correo
          */
         public function getCorreo(){
             return $this->correo;
         }
         /**
-         * Método que cambia el correo
+         * Método que establece el correo del representante
          * @param $correo
          */
         public function setCorreo($correo){
             $this->correo = $correo;
         }
         /**
-         * Método que obtiene el cargo
+         * Método que obtiene el cargo del representante
          * @return cargo
          */
         public function getCargo(){
             return $this->cargo;
         }
         /**
-         * Método que cambia el cargo
+         * Método que establece el cargo
          * @param $cargo
          */
         public function setCargo($cargo){
@@ -110,7 +98,7 @@
             return $this->telefono;
         }
         /**
-         * Método que cambia el telefono
+         * Método que establece el telefono
          * 
          * @param $telefono
          */
