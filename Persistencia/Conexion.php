@@ -24,11 +24,11 @@
 		public function conectarBD()
 		{
 
-			$server = "localhost";
-			$user = "root";
-			$pass = "";
-			$bd = "parkea";
-			$port = "3308";
+			$server = "feriadeoportunidades.mysql.database.azure.com";
+			$user = "ueb@feriadeoportunidades";
+			$pass = "Uelbosque1234";
+			$bd = "feriadeoportunidades";
+			$port = "3306";
 
 			$conexion = mysqli_connect($server, $user, $pass, $bd, $port) 
             or die("Ha sucedido un error inexperado en la conexion de la base de datos");
