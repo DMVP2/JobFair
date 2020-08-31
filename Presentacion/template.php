@@ -169,8 +169,8 @@
                 }
             }
 
-            $(".fixed-plugin a").click(function(event) {
-                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+            $(".fixed-plugin a").click(function(event) 
+            {
                 if ($(this).hasClass("switch-trigger")) {
                     if (event.stopPropagation) {
                         event.stopPropagation();
@@ -330,12 +330,12 @@
                     }, 300);
                 }
 
-                // we simulate the window Resize so the charts will get updated in realtime.
+                // We simulate the window Resize so the charts will get updated in realtime.
                 var simulateWindowResize = setInterval(function() {
                     window.dispatchEvent(new Event("resize"));
                 }, 180);
 
-                // we stop the simulation of Window Resize after the animations are completed
+                // We stop the simulation of Window Resize after the animations are completed
                 setTimeout(function() {
                     clearInterval(simulateWindowResize);
                 }, 1000);
