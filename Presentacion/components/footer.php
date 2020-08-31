@@ -1,10 +1,12 @@
 <footer class="footer">
+
     <div class="container-fluid">
         <nav class="float-right">
             <ul>
                 <li>
                     <a title="Universidad El Bosque" href="https://www.unbosque.edu.co/"><img class="img" width="18%"
-                            height="8%" align="center" src="/Softlutions/Presentacion/images/logoueb1.png" /></a>
+                            height="8%" align="center"
+                            src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "logoueb1.png" ?>" /></a>
                     <p align="center">
                         Universidad El Bosque <br>
                         Instalaciones Bogotá: Av. Cra. 9 No. 131 A - 02 <br>

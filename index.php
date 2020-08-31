@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 
+<?php include_once('./rutas.php') ?>
+
 <head>
     <title>Feria de oportunidades</title>
     <!-- Required meta tags -->
@@ -8,7 +10,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Fonts and icons -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
     <link href="Presentacion/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
@@ -31,7 +34,7 @@
 
                         <br>
 
-                        <img class="img" width="50%" src="Presentacion/images/banner.jpg"/>
+                        <img class="img" width="50%" src="Presentacion/images/banner.jpg" />
 
                         <div>
                             <br>
