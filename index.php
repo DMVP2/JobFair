@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>Hello, world!</title>
+    <title>Feria de oportunidades</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
+    <!-- Fonts and icons -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
@@ -19,7 +19,7 @@
 
         <div class="content" align="center">
             <div class="container-fluid">
-            
+
                 <!-- CONTENIDO PAGINA -->
 
                 <div class="card">
@@ -30,12 +30,14 @@
                     <div class="card-body">
 
                         <br>
-                        <img class="img" width="50%" src="Presentacion//images/banner.jpg" />
+
+                        <img class="img" width="50%" src="Presentacion/images/banner.jpg"/>
 
                         <div>
                             <br>
-                            <button type="submit" class="btn btn-primary">INICIAR SESIÓN</button>
-                            <button type="submit" class="btn btn-primary">CREAR CUENTA</button>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
                         </div>
 
                     </div>

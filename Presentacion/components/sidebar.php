@@ -5,19 +5,19 @@
       Tip 2: you can also add an image using data-image tag
   -->
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-            CT
+        <a href="" class="simple-text logo-mini">
+            Modulo de ...
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            Creative Tim
+        <a href="" class="simple-text logo-normal">
+            Usuario (Admin, estudiante, empresa)
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item active">
                 <a class="nav-link" href="#0">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
+                    <i class="material-icons">home</i>
+                    <p>Inicio</p>
                 </a>
             </li>
             <!-- your sidebar here -->

@@ -1,26 +1,20 @@
 <footer class="footer">
     <div class="container-fluid">
-        <nav class="float-left">
+        <nav class="float-right">
             <ul>
                 <li>
-                    <a href="https://www.unbosque.edu.co/">
-                        Universidad El Bosque
-                    </a>
-                    <p align="left">
-                        Instalaciones Bogotá <br>
-                        Av. Cra. 9 No. 131 A - 02 <br>
-                        Línea gratuita: <br>
-                        018000 113033 <br>
+                <a title="Universidad El Bosque" href="https://www.unbosque.edu.co/"><img class="img" width="18%" height="8%" align="center" src="Presentacion/images/logoueb1.png" /></a>
+                    <p align="center">
+                        Universidad El Bosque <br>
+                        Instalaciones Bogotá: Av. Cra. 9 No. 131 A - 02 <br>
+                        Línea gratuita: 018000 113033 <br> 
                         PBX: (571) 648 9000 <br>
                     </p>
                 </li>
             </ul>
-
-
         </nav>
         <div class="float-right">
 
         </div>
-        <!-- your footer here -->
     </div>
 </footer>

@@ -9515,8 +9515,8 @@ a.text-dark:focus {
   color: #fff;
   background-color: #009c9a;
   border-color: #005e6e;
-  box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14),
-    0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  box-shadow: 0 2px 2px 0 rgb(0, 94, 110),
+    0 3px 1px -2px rgb(0, 94, 110), 0 1px 5px 0 rgb(0, 94, 110);
 }
 
 .btn.btn-primary:hover {
@@ -9540,8 +9540,8 @@ a.text-dark:focus {
   color: #fff;
   background-color: #00b8a5;
   border-color: #009c9a;
-  box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14),
-    0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  box-shadow: 0 2px 2px 0 rgb(0, 184, 165),
+    0 3px 1px -2px rgb(0, 184, 165), 0 1px 5px 0 rgb(0, 184, 165);
 }
 
 .btn.btn-primary:active:hover,
@@ -9587,8 +9587,8 @@ a.text-dark:focus {
 .btn.btn-primary:focus,
 .btn.btn-primary:active,
 .btn.btn-primary:hover {
-  box-shadow: 0 14px 26px -12px rgba(156, 39, 176, 0.42),
-    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2);
+  box-shadow: 0 14px 26px -12px rgb(0, 184, 165),
+    0 4px 23px 0px rgb(0, 184, 165), 0 8px 10px -5px rgb(0, 184, 165);
 }
 
 .btn.btn-primary.btn-link {
@@ -15988,7 +15988,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .wrapper {
   position: relative;
   top: 0;
-  height: 100vh;
+  height: vh;
 }
 
 .sidebar {
@@ -16863,8 +16863,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #fff;
   background-color: #9c27b0;
   border-color: #9c27b0;
-  box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14),
-    0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  box-shadow: 0 2px 2px 0 rgb(0, 184, 165),
+    0 3px 1px -2px rgb(0, 184, 165), 0 1px 5px 0 rgb(0, 184, 165);
 }
 
 .fixed-plugin .btn.btn-primary:hover {
