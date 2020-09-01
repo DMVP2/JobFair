@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once 'DAO.php';
 
@@ -33,9 +33,9 @@ class EmpresaDAO implements DAO
 	 *
 	 * @param Object $conexion
 	 */
-    private function __construct($conexion)
-    {
-		$this->conexion=$conexion;
+	private function __construct($conexion)
+	{
+		$this->conexion = $conexion;
 		mysqli_set_charset($this->conexion, "utf8");
 	}
 
@@ -49,11 +49,11 @@ class EmpresaDAO implements DAO
 	 * @param Empresa $empresa
 	 * @return void
 	 */
-    public function crear($empresa)
-    {
-		$sql = "INSERT INTO EMPRESA VALUES(".$empresa->getNit().",'".$empresa->getRazonSocial()."','".$empresa->getRazonComercial()."','".$empresa->getDescripcion()."','".$empresa->getOtrosBeneficios()."','".$empresa->getEstadoEmpresa()."','".$empresa->getLogoEmpresa()."');";
+	public function crear($empresa)
+	{
+		$sql = "INSERT INTO EMPRESA VALUES(" . $empresa->getNit() . ",'" . $empresa->getRazonSocial() . "','" . $empresa->getRazonComercial() . "','" . $empresa->getDescripcion() . "','" . $empresa->getOtrosBeneficios() . "','" . $empresa->getEstadoEmpresa() . "','" . $empresa->getLogoEmpresa() . "');";
 
-		mysqli_query($this->conexion,$sql);
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -62,25 +62,24 @@ class EmpresaDAO implements DAO
 	 * @param int $codigo
 	 * @return Empresa
 	 */
-    public function consultar($codigo)
-    {
+	public function consultar($codigo)
+	{
 		$sql = "SELECT * FROM EMPRESA WHERE nit_empresa = $codigo";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
-		$row=mysqli_fetch_array($result);
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
 
 		$empresa = new Empresa();
 		$empresa->setNit($row[0]);
-        $empresa->setRazonSocial($row[1]);
-        $empresa->setRazonComercial($row[2]);
-        $empresa->setDescripcion($row[3]);
-        $empresa->setOtrosBeneficios($row[4]);
-        $empresa->setEstadoEmpresa($row[5]);
-        $empresa->setNit($row[6]);
-        $empresa->setLogoEmpresa($row[7]);
+		$empresa->setRazonSocial($row[1]);
+		$empresa->setRazonComercial($row[2]);
+		$empresa->setDescripcion($row[3]);
+		$empresa->setOtrosBeneficios($row[4]);
+		$empresa->setEstadoEmpresa($row[5]);
+		$empresa->setNit($row[6]);
+		$empresa->setLogoEmpresa($row[7]);
 
 		return $empresa;
-
 	}
 
 	/**
@@ -89,22 +88,22 @@ class EmpresaDAO implements DAO
 	 * @param Empresa $empresa
 	 * @return void
 	 */
-    public function actualizar($empresa)
-    {
-		$sql = "UPDATE EMPRESA SET razon_social = '".$empresa->getRazonSocial()."', razon_comercial = '".$empresa->getRazonComercial()."', descripcion_empresa = '".$empresa->getDescripcion()."', otros_beneficios = '".$empresa->getOtrosBenficios()."', estado_empresa = '".$empresa->getLogoEmpresa()."' WHERE nit_empresa = ".$empresa->getNit();
-		mysqli_query($this->conexion,$sql);
-    }
-    
-    /**
+	public function actualizar($empresa)
+	{
+		$sql = "UPDATE EMPRESA SET razon_social = '" . $empresa->getRazonSocial() . "', razon_comercial = '" . $empresa->getRazonComercial() . "', descripcion_empresa = '" . $empresa->getDescripcion() . "', otros_beneficios = '" . $empresa->getOtrosBenficios() . "', estado_empresa = '" . $empresa->getLogoEmpresa() . "' WHERE nit_empresa = " . $empresa->getNit();
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
 	 * Método que elimina una empresa
-     * 
+	 * 
 	 * @param int $codigo
 	 * @return void
 	 */
-    public function eliminar($codigo)
-    {
-		$sql = "UPDATE EMPRESA SET estado_empresa = 'I' WHERE nit_empresa = ".$codigo;
-		mysqli_query($this->conexion,$sql);
+	public function eliminar($codigo)
+	{
+		$sql = "UPDATE EMPRESA SET estado_empresa = 'I' WHERE nit_empresa = " . $codigo;
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -112,16 +111,15 @@ class EmpresaDAO implements DAO
 	 *
 	 * @return Empresa[]
 	 */
-    public function listar()
-    {
+	public function listar()
+	{
 		$sql = "SELECT * FROM EMPRESA";
 
-		if(!$result = mysqli_query($this->conexion, $sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$empresaArray = array();
 
-        while ($row = mysqli_fetch_array($result)) 
-        {
+		while ($row = mysqli_fetch_array($result)) {
 			$empresa = new Empresa();
 			$empresa->setcodigo($row[0]);
 			$empresa->setnombre($row[1]);
@@ -131,6 +129,19 @@ class EmpresaDAO implements DAO
 		return $empresaArray;
 	}
 
+	/**
+	 * Obtiene la cantidad de empresas registradas en la base de datos
+	 *
+	 * @return int $cantidadEmpresas
+	 */
+	public function cantidadEmpresas()
+	{
+		$sql = "SELECT COUNT(*) FROM EMPRESA";
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
 
 	/**
 	 * Método para obtener un objeto CiudadDAO
@@ -138,17 +149,12 @@ class EmpresaDAO implements DAO
 	 * @param Object $conexion
 	 * @return EmpresaDAO
 	 */
-
-    public static function obtenerEmpresaDAO($conexion)
-    {
-        if(self::$empresaDAO==null)
-        {
+	public static function obtenerEmpresaDAO($conexion)
+	{
+		if (self::$empresaDAO == null) {
 			self::$empresaDAO = new EmpresaDAO($conexion);
-        }
-        
+		}
+
 		return self::$empresaDAO;
 	}
-
 }
-
-?>

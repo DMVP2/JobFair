@@ -10,7 +10,7 @@
 		// Atributos
 		//------------------------------------------
 		
-		private $instancia
+		private static $instancia;
 
 		//------------------------------------------
 		// Métodos
@@ -50,13 +50,13 @@
             return $cerrar;
 		}
 
-		public static function getInstancia($conexion)
+		public static function getInstancia()
 		{
 			if (self::$instancia == null) 
 			{
-				self::$instancia = new Conexion($conexion);
+				self::$instancia = new Conexion();
 			}
-	
+
 			return self::$instancia;
 		}
 	}

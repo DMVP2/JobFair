@@ -1,5 +1,7 @@
 <?php
 
+include_once('../Persistencia/EmpresaDAO.php');
+
     /**
      * Clase que representa la clase "ManejoEmpresa"
      */
@@ -33,7 +35,7 @@
          *
          * @param Object $conexion
          */
-        private function __construct($conexion) 
+        public function __construct($conexion) 
         {
             $this->conexion = $conexion;
         }
@@ -98,5 +100,17 @@
             $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
             $empresas = $empresaDAO->listar();
             return $empresas;
+        }
+
+        /**
+         * Obtiene la cantidad de empresas registradas en la base de datos
+         *
+         * @return int $cantidadEmpresas
+         */
+        public function cantidadEmpresas()
+        {
+            $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+            $cantidadEmpresas = $empresaDAO->cantidadEmpresas();
+            return $cantidadEmpresas;
         }
     }
