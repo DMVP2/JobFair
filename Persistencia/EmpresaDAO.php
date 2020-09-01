@@ -129,6 +129,20 @@ class EmpresaDAO implements DAO
 
 		return $empresaArray;
 	}
+	
+	/**
+     * Obtiene la cantidad de empresas registradas en la base de datos
+     *
+     * @return int $cantidadEmpresas
+     */
+    public function cantidadEmpresas()
+    {
+        $sql = "SELECT COUNT() FROM EMPRESA";
+        $consulta = mysqli_query($this->conexion, $sql);
+        $resultado = mysqli_fetch_array($consulta)[0];
+
+        return $resultado;
+    }
 
 
 	/**
@@ -137,7 +151,6 @@ class EmpresaDAO implements DAO
 	 * @param Object $conexion
 	 * @return EmpresaDAO
 	 */
-
     public static function obtenerEmpresaDAO($conexion)
     {
         if(self::$empresaDAO==null)
