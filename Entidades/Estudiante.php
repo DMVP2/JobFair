@@ -72,7 +72,7 @@
         //constructor
         //--------------------------
 
-        public function _construct()
+        public function __construct()
         {
 
         }
