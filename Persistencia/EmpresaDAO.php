@@ -130,6 +130,36 @@ class EmpresaDAO implements DAO
 	}
 
 	/**
+	 * Método para obtener la lista de todas las empresa pero permite la paginación
+	 *
+	 * @return Empresa[]
+	 */
+	public function listarEmpresasPaginacion($filter, $offset, $no_of_records_per_page)
+	{
+		if ($filter) 
+		{
+			$sql = "SELECT * FROM EMPRESA WHERE nombre_empresa LIKE '%$filter%' ORDER BY nombre_empresa ASC LIMIT $offset, $no_of_records_per_page";
+		} 
+		else 
+		{
+			$sql = "SELECT * FROM EMPRESA ORDER BY nombre_empresa ASC LIMIT $offset, $no_of_records_per_page";
+		}
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$empresaArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+			$empresa = new Empresa();
+			$empresa->setcodigo($row[0]);
+			$empresa->setnombre($row[1]);
+			$empresaArray[] = $empresa;
+		}
+
+		return $empresaArray;
+	}
+
+	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos
 	 *
 	 * @return int $cantidadEmpresas

@@ -103,6 +103,18 @@ class ManejoEmpresa
     }
 
     /**
+     * Obtiene la lista de empresas pero permite la paginacion
+     *
+     * @return Empresa[]
+     */
+    public function listarEmpresasPaginacion($filter, $offset, $no_of_records_per_page)
+    {
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        $empresas = $empresaDAO->listarEmpresasPaginacion();
+        return $empresas;
+    }
+
+    /**
      * Obtiene la cantidad de empresas registradas en la base de datos
      *
      * @return int $cantidadEmpresas
