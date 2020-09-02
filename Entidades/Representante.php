@@ -9,101 +9,134 @@
         //-----------------------------------
         // Atributos
         //-----------------------------------
+
+        /**
+	    * ID del representante
+	    * 
+	    * @var int
+	    */
         private $id;
 
-        private $conexion;
-
+        /**
+	    * Nombre del representante
+	    * 
+	    * @var String
+	    */
         private $nombre;
 
+        /**
+	    * Correo electrónico del representante
+	    * 
+	    * @var String
+	    */
         private $correo;
 
+        /**
+	    * Cargo del representante
+	    * 
+	    * @var String
+	    */
         private $cargo;
 
+        /**
+	    * Teléfono del representante
+	    * 
+	    * @var int
+	    */
         private $telefono;
 
         //----------------------------------
-        // Constructor
+        // Métodos
         //----------------------------------
-        public function __construct()
-        {
-            
-        }
 
         /**
          * Método que obtiene el ID del representante
-         * @return id
+         * 
+         * @return int
          */
         public function getId(){
             return $this->id;
         }
-        /** 
+
+        /**
          * Método que establece el ID del representante
          * 
-         * @param $id
-         *           
-         * */
-        public function setId($id){
-            $this->id = $id;
+         * @param int
+         */
+        public function setId($pId){
+            $this->id = $pId;
         }
         
         /**
          * Método que obtiene el nombre del representante
-         * @return nombre
+         * @return String
          * 
          */
         public function getNombre(){
             return $this->nombre;
         }
+
         /**
          * Método que establece el nombre del representante
-         * @param $nombre 
+         * 
+         * @param String 
          */
-        public function setNombre($nombre){
-            $this->nombre = $nombre;
+        public function setNombre($pNombre){
+            $this->nombre = $pNombre;
         }
+
         /**
          * Método que obtiene el correo del representante
-         * @return correo
+         * 
+         * @return String
          */
         public function getCorreo(){
             return $this->correo;
         }
+
         /**
          * Método que establece el correo del representante
-         * @param $correo
+         * 
+         * @param String
          */
-        public function setCorreo($correo){
-            $this->correo = $correo;
+        public function setCorreo($pCorreo){
+            $this->correo = $pCorreo;
         }
+
         /**
          * Método que obtiene el cargo del representante
-         * @return cargo
+         * 
+         * @return String
          */
         public function getCargo(){
             return $this->cargo;
         }
+
         /**
-         * Método que establece el cargo
-         * @param $cargo
-         */
-        public function setCargo($cargo){
-            $this->cargo = $cargo;
-        }
-        /**
-         * Método que obtiene el telefono
+         * Método que establece el cargo del representante
          * 
-         * @return telefono
+         * @param String
+         */
+        public function setCargo($pCargo){
+            $this->cargo = $pCargo;
+        }
+
+        /**
+         * Método que obtiene el telefono representante
+         * 
+         * @return int
          */
         public function getTelefono(){
             return $this->telefono;
         }
+
         /**
-         * Método que establece el telefono
+         * Método que establece el telefono representante
          * 
-         * @param $telefono
+         * @param int
          */
-        public function setTelefono($telefono){
-            $this->telefono = $telefono;
+        public function setTelefono($pTelefono){
+            $this->telefono = $pTelefono;
         }
     }
 ?>

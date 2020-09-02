@@ -11,9 +11,9 @@ class Vacante
 	//----------------------------
 
 	/**
-	 * Id de la vacante
+	 * ID de la vacante
 	 * 
-	 * @var Int
+	 * @var int
 	 */
 	private  $id;
 
@@ -25,44 +25,44 @@ class Vacante
     private  $nombre;
     
    /**
-	 * Descripcion de la vacante
+	 * Descripción de la vacante
 	 * 
 	 * @var String
 	 */
     private  $descripcion;
     
     /**
-	 * Programa academico
+	 * Programa acadámico de la vacante
 	 * 
 	 * @var String
 	 */
-    private  $programa_academico;
+    private  $programaAcademico;
 
     /**
 	 * Horario de la vacante
 	 * 
 	 * @var String
 	 */
-    private  $horario_vacante;
+    private  $horarioVacante;
 
     /**
 	 * Posibilidad de viaje
 	 * 
-	 * @var Boolean
+	 * @var String
 	 */
-    private  $posibilidad_viaje;
+    private  $posibilidadViaje;
 
     /**
 	 * Salario de la vacante
 	 * 
-	 * @var Int
+	 * @var String
 	 */
-    private  $salario_vacante;
+    private  $salarioVacante;
 
     /**
 	 * Experiencia requerida por la vacante
 	 * 
-	 * @var Boolean
+	 * @var String
 	 */
     private  $experiencia;
 
@@ -80,25 +80,12 @@ class Vacante
 	 */
     private  $ciudad;
     
-
-    //---------------------
-	// Constructor
-    //---------------------
-	
-	/**
-    * Método constructor de la clase Usuario
-    */
-    public function __construct()
-    {
-
-    }
-    
 	//---------------------
 	// Métodos
 	//---------------------
 
 	/**
-	 * Método para obtener el Id del usuario
+	 * Método para obtener el ID del usuario
 	 * 
 	 * @return int
 	 */
@@ -108,7 +95,7 @@ class Vacante
     }
     
     /**
-	 * Método para establecer el Id del usuario
+	 * Método para establecer el ID del usuario
 	 * 
 	 * @param int
 	 */
@@ -129,7 +116,7 @@ class Vacante
     }
     
     /**
-	 * Método para establecer el Nombre de la vacante
+	 * Método para establecer el nombre de la vacante
 	 * 
 	 * @param String
 	 */
@@ -140,7 +127,7 @@ class Vacante
 
 
     /**
-	 * Método para obtener la descripcion de la vacante
+	 * Método para obtener la descripción de la vacante
 	 * 
 	 * @return String
 	 */
@@ -150,7 +137,7 @@ class Vacante
     }
     
     /**
-	 * Método para establecer la descripcion de la vacante
+	 * Método para establecer la descripción de la vacante
 	 * 
 	 * @param int
 	 */
@@ -160,7 +147,7 @@ class Vacante
     }
 
     /**
-	 * Método para obtener el programa academico de la vacante
+	 * Método para obtener el programa académico de la vacante
 	 * 
 	 * @return String
 	 */
@@ -170,7 +157,7 @@ class Vacante
     }
     
     /**
-	 * Método para establecer el programa academico de la vacante
+	 * Método para establecer el programa académico de la vacante
 	 * 
 	 * @param String
 	 */
@@ -203,48 +190,47 @@ class Vacante
     /**
 	 * Método para obtener la posibilidad de viaje
 	 * 
-	 * @return Boolean
+	 * @return String
 	 */
     public function getPosibilidadViaje()
     {
-		return $this->posibilidad_viaje;
+		return $this->posibilidadViaje;
     }
     
     /**
 	 * Método para establecer la posibilidad de viaje
 	 * 
-	 * @param Boolean
+	 * @param String
 	 */
-    public function setPosibilidadViaje(Boolean $pPosibilidadViaje)
+    public function setPosibilidadViaje(String $pPosibilidadViaje)
     {
-		$this->posibilidad_viaje = $pPosibilidadViaje;
+		$this->posibilidadViaje = $pPosibilidadViaje;
     }
 
     /**
 	 * Método para obtener el Salario de la vacante
 	 * 
-	 * @return int
+	 * @return String
 	 */
     public function getSalarioVacante()
     {
-		return $this->salario_vacante;
+		return $this->salarioVacante;
     }
     
     /**
 	 * Método para establecer el Salario de la vacante
 	 * 
-	 * @param int
+	 * @param String
 	 */
-    public function setSalarioVacante(Boolean $pSalarioVacante)
+    public function setSalarioVacante(String $pSalarioVacante)
     {
-		$this->salario_vacante = $pSalarioVacante;
+		$this->salarioVacante = $pSalarioVacante;
     }
-
 
     /**
 	 * Método para obtener la experiencia de la vacante
 	 * 
-	 * @return Boolean
+	 * @return String
 	 */
     public function getExperiencia()
     {
@@ -254,9 +240,9 @@ class Vacante
     /**
 	 * Método para establecer la experiencia de la vacante
 	 * 
-	 * @param Boolean
+	 * @param String
 	 */
-    public function setExperiencia(Boolean $pExperiencia)
+    public function setExperiencia(String $pExperiencia)
     {
 		$this->experiencia = $pExperiencia;
     }
@@ -276,7 +262,7 @@ class Vacante
 	 * 
 	 * @param int[]
 	 */
-    public function setId(int $pCategorias)
+    public function setCategorias(int $pCategorias)
     {
 		$this->categorias = $pCategorias;
     }

@@ -6,7 +6,7 @@
 	    //----------------------------
 
 	    /**
-	    * Número documento estudiante
+	    * Número de documento estudiante
 	    * 
 	    * @var int
 	    */
@@ -20,7 +20,7 @@
         private $nombreEstudiante;
 
         /**
-	    * Correo del estudiante
+	    * Correo electrónico del estudiante
 	    * 
 	    * @var String
         */
@@ -73,7 +73,7 @@
         //--------------------------
 
         /**
-         * Método para obtener el número del documento
+         * Método para obtener el número de documento
          * 
          * @return int
          */
@@ -83,7 +83,7 @@
         }
 
         /**
-         * Método para establecer el número del documento del estudiante
+         * Método para establecer el número de documento del estudiante
          * 
          * @param int
          */

@@ -11,14 +11,14 @@ class Usuario
 	//----------------------------
 
 	/**
-	 * Id del usuario
+	 * ID del usuario
 	 * 
 	 * @var Int
 	 */
 	private  $Id;
 
 	/**
-	 * Usuario
+	 * Nickname (Nombre) de usuario
 	 * 
 	 * @var String
 	 */
@@ -45,25 +45,12 @@ class Usuario
 	 */
     private  $rolUsuario;
     
-
-    //---------------------
-	// Constructor
-    //---------------------
-	
-	/**
-    * Método constructor de la clase Usuario
-    */
-    public function __construct()
-    {
-
-    }
-    
 	//---------------------
 	// Métodos
 	//---------------------
 
 	/**
-	 * Método para obtener el Id del usuario
+	 * Método para obtener el ID del usuario
 	 * 
 	 * @return int
 	 */
@@ -73,7 +60,7 @@ class Usuario
     }
     
     /**
-	 * Método para establecer el Id del usuario
+	 * Método para establecer el ID del usuario
 	 * 
 	 * @param int
 	 */
@@ -83,7 +70,7 @@ class Usuario
     }
     
     /**
-	 * Método para obtener el usuario
+	 * Método para obtener nickname (Nombre) el usuario
 	 * 
 	 * @return String
 	 */
@@ -93,7 +80,7 @@ class Usuario
     }
     
     /**
-	 * Método para establecer el usuario
+	 * Método para establecer nickname (Nombre) el usuario
 	 * 
 	 * @param String
 	 */

@@ -9,82 +9,135 @@
         //-----------------------------------
         // Atributos
         //-----------------------------------
+
+        /**
+	    * ID de la hoja de vida
+	    * 
+	    * @var int
+	    */
         private $id;
 
+        /**
+	    * Descripción de la hoja de vida
+	    * 
+	    * @var String
+	    */
         private $perfilProfesional;
 
-        private $parentesco;
-
+        /**
+	    * Disponibilidad de viaje por parte del estudiante
+	    * 
+	    * @var String
+	    */
+        private $disponibilidadViaje;
 
         /**
-         * Representa el objeto de esta clase
-         *
-         * @var HojaDeVida
-         */
-        private static $HojaDeVida;
-
-        //----------------------------------
-        // Constructor
-        //----------------------------------
+	    * Certificaciones realizadas por el estudiante
+	    * 
+	    * @var String
+	    */
+        private $certificaciones;
 
         /**
-         * Método constructor de la clase HojaDeVida
-         *
-         */
-        private function __construct() 
-        {
-            
-        }
+	    * Idiomas que habla el estudiante
+	    * 
+	    * @var String[]
+	    */
+        private $idiomas;
 
         //---------------------------------
         // Métodos
         //---------------------------------
+
         /**
-         * Método que obtiene el ID
+         * Método que obtiene el ID de la hoja de vida
          * 
-         * @return id
+         * @return int
          *
          */
         public function getId(){
             return $this->id;
         }
+
         /**
-         * Método que cambia el ID
+         * Método que establece el ID de la hoja de vida
          * 
-         * @param $id
+         * @param int
          */
-        public function setId($id){
-            $this->id = $id;
+        public function setId($pId){
+            $this->id = $pId;
         }
+
         /**
-         * Método que obtiene el perfil profesional
+         * Método que obtiene la descripción de la hoja de vidas
          * 
-         * @return perfilProfesional
+         * @return String
          */
         public function getPerfilProfesional(){
             return $this->perfilProfesional;
         }
+
         /**
-         * Método que cambia el perfil profesional
+         * Método que establece la descripción de la hoja de vida
          * 
-         * @param $perfilProfesional
+         * @param String
          */
-        public function setPerfilProfesional($perfilProfesional){
-            $this->perfilProfesional = $perfilProfesional;
+        public function setPerfilProfesional($pPerfilProfesional){
+            $this->perfilProfesional = $pPerfilProfesional;
         }
+
         /**
-         * Método que obtiene el parentesco
-         * @return parentesco
+         * Método que obtiene la disponibilida de viaje del estudiante
+         * 
+         * @return String
          */
-        public function getParentesco(){
-            return $this->parentesco;
+        public function getDisponibilidadViaje(){
+            return $this->disponibilidadViaje;
         }
+
         /**
-         * Método que cambia el parentesco
-         * @param $parentesco
+         * Método que establece la disponibilidad de viaje del estudiante
+         * 
+         * @param String
          */
-        public function setParentesco($parentesco){
-            $this->parentesco = $parentesco;
+        public function setDisponibilidadViaje($pDisponibilidadViaje){
+            $this->parentesco = $pDisponibilidadViaje;
+        }
+
+        /**
+         * Método que obtiene las certificaciones realizadas por el estudiante
+         * 
+         * @return String
+         */
+        public function getCertificaciones(){
+            return $this->certificaciones;
+        }
+
+        /**
+         * Método que establece las certificaciones realizadas por el estudiante
+         * 
+         * @param String
+         */
+        public function setCertificaciones($pCertificaciones){
+            $this->certificaciones = $pCertificaciones;
+        }
+
+        /**
+         * Método que obtiene los idiomas que habla el estudiante
+         * 
+         * @return String[]
+         */
+        public function getIdiomas(){
+            return $this->idiomas;
+        }
+
+        /**
+         * Método que establece los idiomas que habla el estudiante
+         * 
+         * @param String[]
+         */
+        public function setIdiomas($pIdiomas){
+            $this->idiomas = $pIdiomas;
         }
     } 
 ?>

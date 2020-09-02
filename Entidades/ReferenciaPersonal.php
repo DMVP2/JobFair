@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Clase que representa la clase "referenciaPersonal"
+ * Clase que representa la clase "ReferenciaPersonal"
  */
-class referenciaPersonal
+class ReferenciaPersonal
 {
 
 	//----------------------------
@@ -11,7 +11,7 @@ class referenciaPersonal
 	//----------------------------
 
 	/**
-	 * Id de la referencia personal
+	 * ID de la referencia personal
 	 * 
 	 * @var Int
 	 */
@@ -25,7 +25,7 @@ class referenciaPersonal
     private  $nombre;
     
    /**
-	 * Telefono de la referencia personal
+	 * Teléfono de la referencia personal
 	 * 
 	 * @var int
 	 */
@@ -37,26 +37,13 @@ class referenciaPersonal
 	 * @var String
 	 */
     private  $parentesco;
-
-    
-    //---------------------
-	// Constructor
-    //---------------------
-	
-	/**
-    * Método constructor de la clase Usuario
-    */
-    public function __construct()
-    {
-
-    }
     
 	//---------------------
 	// Métodos
 	//---------------------
 
 	/**
-	 * Método para obtener el Id del usuario
+	 * Método para obtener el ID del usuario
 	 * 
 	 * @return int
 	 */
@@ -66,7 +53,7 @@ class referenciaPersonal
     }
     
     /**
-	 * Método para establecer el Id del usuario
+	 * Método para establecer el ID del usuario
 	 * 
 	 * @param int
 	 */
@@ -75,7 +62,6 @@ class referenciaPersonal
 		$this->id = $pId;
     }
     
-
     /**
 	 * Método para obtener el nombre de la vacante
 	 * 
@@ -96,9 +82,8 @@ class referenciaPersonal
 		$this->nombre = $pNombre;
     }
 
-
     /**
-	 * Método para obtener el telefono de la referencia personal
+	 * Método para obtener el teléfono de la referencia personal
 	 * 
 	 * @return String
 	 */
@@ -108,7 +93,7 @@ class referenciaPersonal
     }
     
     /**
-	 * Método para establecer el telefono de la referencia personal
+	 * Método para establecer el teléfono de la referencia personal
 	 * 
 	 * @param int
 	 */
@@ -137,8 +122,6 @@ class referenciaPersonal
 		$this->parentesco = $pParentesco;
     }
    
-   
-
 }
 
 ?>

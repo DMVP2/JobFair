@@ -9,103 +9,110 @@
         //-----------------------------------
         // Atributos
         //-----------------------------------
+
+        /**
+	    * ID de los estudios
+	    * 
+	    * @var int
+	    */
         private $id;
 
+        /**
+	    * Área de los estudios
+	    * 
+	    * @var String
+	    */
         private $area;
 
+        /**
+	    * Insitución de los estudios
+	    * 
+	    * @var String
+	    */
         private $institucion;
 
+        /**
+	    * Nivel de los estudios
+	    * 
+	    * @var String
+	    */
         private $nivelEstudio;
-
-
-        /**
-         * Representa el objeto de esta clase
-         *
-         * @var Estudios
-         */
-        private static $Estudios;
-
-        //----------------------------------
-        // Constructor
-        //----------------------------------
-
-        /**
-         * Método constructor de la clase Estudios
-         *
-         */
-        private function __construct() 
-        {
-
-        }
 
         //---------------------------------
         // Métodos
         //---------------------------------
+
         /**
-         * Método que obtiene el id
+         * Método que obtiene el ID de los estudios
          * 
-         * @return id
+         * @return int
          *
          */
         public function getId(){
             return $this->id;
         }
+
         /**
-         * Método que cambia el id
+         * Método que cambia el ID de los estudios
          * 
-         * @param $id
+         * @param $int
          */
-        public function setId($id){
-            $this->id = $id;
+        public function setId($pId){
+            $this->id = $pId;
         }
+
         /**
-         * Método que retorna el area
+         * Método que retorna el área de los estudios
          * 
-         * @return area
+         * @return String
          */
         public function getArea(){
             return $this->area;
         }
+
         /**
-         * Método que cambia el area
+         * Método que cambia el área de los estudios
          * 
-         * @param $area
+         * @param String
          */
-        public function setArea($area){
-            $this->area = $area;
+        public function setArea($pArea){
+            $this->area = $pArea;
         }
+
         /**
-         * Método que retorna la institucion
+         * Método que retorna la institución de los estudios
          * 
-         * @return institucion
+         * @return String
          */
         public function getInstitucion(){
             return $this->institucion;
         }
+
         /**
-         * Método que cambia la institución
+         * Método que cambia la institución de los estudios
          * 
-         * @param $institucion
+         * @param String
          */
-        public function setInstitucion($institucion){
-            $this->institucion = $institucion;
+        public function setInstitucion($pInstitucion){
+            $this->institucion = $pInstitucion;
         }
+
         /**
          * Método que obtiene el nivel de estudio
          * 
-         * @return nivelEstudio
+         * @return String
          */
         public function getNivelEstudio(){
             return $this->nivelEstudio;
         }
+
         /**
          * Método que cambia el nivel de estudio
          * 
-         * @param $nivelEstudio
+         * @param String
          */
-        public function setNivelEstudio($nivelEstudio){
-            $this->nivelEstudio = $nivelEstudio;
-        }
-        
+        public function setNivelEstudio($pNivelEstudio){
+            $this->nivelEstudio = $pNivelEstudio;
+        } 
     } 
 ?>
