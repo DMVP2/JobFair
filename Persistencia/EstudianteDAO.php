@@ -2,6 +2,8 @@
 
 require_once 'DAO.php';
 
+include_once('../Entidades/Estudiante.php');
+
 /**
  * Representa el DAO de la entidad "Estudiante"
  */
@@ -122,10 +124,31 @@ require_once 'DAO.php';
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
             $estudiante->setNombreEstudiante($row[1]);
+            $estudiante->setCorreoEstudiante($row[2]);
+            $estudiante->setTipoDeDocumento($row[3]);
+            $estudiante->setSemestreActual($row[4]);
+            $estudiante->setProgramaAcademico($row[5]);
+            $estudiante->setExperienciaEstudiante($row[6]);
+            $estudiante->setEstadoEstudiante($row[7]);
             $estudianteArray[] = $estudiante;
         }
+
         return $estudianteArray;
     }
+
+    /**
+	 * Obtiene la cantidad de estudiantes registradas en la base de datos
+	 *
+	 * @return int $cantidadEstudiantes
+	 */
+	public function cantidadEstudiantes()
+	{
+		$sql = "SELECT COUNT(*) FROM ESTUDIANTE";
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
 
     /**
      * Método para obtener un objeto EstudianteDAO
@@ -135,7 +158,7 @@ require_once 'DAO.php';
      */
     public static function obtenerEstudianteDAO($conexion)
     {
-        if(self::$empresaDAO==null)
+        if(self::$estudianteDAO==null)
         {
             self::$estudianteDAO = new EstudianteDAO($conexion);
         }

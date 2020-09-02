@@ -1,7 +1,26 @@
+<?php
+
+// Importación de clases
+
+include_once('../rutas.php');
+include_once('../Persistencia/conexion.php');
+include_once('../Negocio/manejoEmpresa.php');
+include_once('../Negocio/manejoEstudiante.php');
+include_once('../Negocio/manejoVacante.php');
+
+// Conexión con la base de datos
+
+$c = Conexion::getInstancia();
+$conexion = $c->conectarBD();
+
+// Ejecución de métodos (Manejos)
+
+$manejoEmpresas = new ManejoEmpresa($conexion);
+$cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
+?>
+
 <!doctype html>
 <html lang="en">
-
-<?php include_once('../rutas.php') ?>
 
 <head>
 
@@ -15,8 +34,7 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css?v=2.1.2"  ?>"
-        rel="stylesheet" />
+    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
 </head>
 
 <body>
@@ -37,70 +55,64 @@
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-warning card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">content_copy</i>
-                                    </div>
-                                    <p class="card-category">Número de empresas</p>
-                                    <h3 class="card-title">49/50
+                    <div class="card">
+                        <div class="card-header">
+                            <center>Ingeniero de sistemas</center>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img class="img" width="40%"
+                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "colsubsidio.jpg" ?>" />
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="card-title"><strong>Se requiere ingeniero de sistemas para desarrollo de
+                                            software
+                                        </strong></h5>
 
-                                    </h3>
+                                    <p class="card-text"> Requerimos ingeniero de software con conocimiento en
+                                        metodologías
+                                        tradicionales y ágiles. A sí mismo requerimos de su habilidad para
+                                        documentación.
+                                        Preferiblemente que cuente con conocimiento de Java, PHP, Javascript, css y
+                                        entre otras
+                                        estructuras web.
+                                    </p>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Total de empresas
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-success card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">store</i>
-                                    </div>
-                                    <p class="card-category">Número de estudiantes</p>
-                                    <h3 class="card-title">$34,245</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Total de estudiantes
-                                    </div>
+                                <div class="col-sm-2">
+                                    <br>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-danger card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">info_outline</i>
-                                    </div>
-                                    <p class="card-category">Número de vacantes</p>
-                                    <h3 class="card-title">75</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Total de vacantes
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <center>Ingeniero de sistemas</center>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-info card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <p class="card-category">Programas académicos</p>
-                                    <h3 class="card-title">5</h3>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img class="img" width="40%"
+                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "alpina.png" ?>" />
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Programas de la facultad
-                                    </div>
+                                <div class="col-md-8">
+                                    <h5 class="card-title"><strong>Se requiere ingeniero de sistemas para desarrollo de
+                                            software
+                                        </strong></h5>
+
+                                    <p class="card-text"> Requerimos ingeniero de software con conocimiento en
+                                        metodologías
+                                        tradicionales y ágiles. A sí mismo requerimos de su habilidad para
+                                        documentación.
+                                        Preferiblemente que cuente con conocimiento de Java, PHP, Javascript, css y
+                                        entre otras
+                                        estructuras web.
+                                    </p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <br>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
                                 </div>
                             </div>
                         </div>
@@ -122,8 +134,6 @@
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>"></script>
-
-    <?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
     </script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
@@ -169,8 +179,7 @@
                 }
             }
 
-            $(".fixed-plugin a").click(function(event) 
-            {
+            $(".fixed-plugin a").click(function(event) {
                 if ($(this).hasClass("switch-trigger")) {
                     if (event.stopPropagation) {
                         event.stopPropagation();

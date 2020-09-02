@@ -69,15 +69,6 @@
         private $rutaFotoEstudiante;
 
         //--------------------------
-        //constructor
-        //--------------------------
-
-        public function __construct()
-        {
-
-        }
-
-        //--------------------------
         //Métodos
         //--------------------------
 
@@ -136,7 +127,7 @@
          * 
          * @param String
          */
-        public function setCorreoEstudiante(int $pCorreoEstudiante)
+        public function setCorreoEstudiante(String $pCorreoEstudiante)
         {
             $this->correoEstudiante = $pCorreoEstudiante;
         }
@@ -216,7 +207,7 @@
          * 
          * @param Boolean
          */
-        public function setExperienciaEstudiante(Boolean $pExperienciaEstudiante)
+        public function setExperienciaEstudiante(String $pExperienciaEstudiante)
         {
             $this->experienciaEstudiante = $pExperienciaEstudiante;
         }
@@ -224,7 +215,7 @@
         /**
          * Método para obtener el estado del estudiante
          * 
-         * @return char
+         * @return Char
          */
         public function getEstadoEstudiante()
         {
@@ -234,9 +225,9 @@
         /**
          * Método para establecer el estado del estudiante
          * 
-         * @param char
+         * @param Char
          */
-        public function setEstadoEstudiante(char $pEstadoEstudiante)
+        public function setEstadoEstudiante(String $pEstadoEstudiante)
         {
             $this->estadoEstudiante = $pEstadoEstudiante;
         }
