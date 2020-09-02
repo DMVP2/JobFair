@@ -57,7 +57,7 @@ $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
                     <!-- CONTENIDO PAGINA -->
                     <div class="card">
                         <div class="card-header">
-                            Ingeniero de sistemas
+                            <center>Ingeniero de sistemas</center>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -88,7 +88,7 @@ $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            Ingeniero de sistemas
+                            <center>Ingeniero de sistemas</center>
                         </div>
                         <div class="card-body">
                             <div class="row">
