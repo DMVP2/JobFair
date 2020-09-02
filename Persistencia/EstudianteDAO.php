@@ -2,46 +2,46 @@
 
 require_once 'DAO.php';
 
-include_once('../Entidades/Estudiante.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Estudiante.php");
 
 /**
  * Representa el DAO de la entidad "Estudiante"
  */
 
- class EstudianteDAO implements DAO
- {
-     //--------------------
-     //Atributos
-     //--------------------
+class EstudianteDAO implements DAO
+{
+    //--------------------
+    //Atributos
+    //--------------------
 
-     /**
-      * Referencia a la conexión con la base de datos
-      * @var Object
-      */
-      private $conexion;
+    /**
+     * Referencia a la conexión con la base de datos
+     * @var Object
+     */
+    private $conexion;
 
-      /**
-       * Referencia a un objeto EstudianteDAO
-       * @var EstudianteDAO
-       */
-      private static $estudianteDAO;
+    /**
+     * Referencia a un objeto EstudianteDAO
+     * @var EstudianteDAO
+     */
+    private static $estudianteDAO;
 
-      //-------------------
-      //Constructor
-      //-------------------
+    //-------------------
+    //Constructor
+    //-------------------
 
-      /**
-       * Constructor de la clase
-       * 
-       * @param Object $conexion
-       */
+    /**
+     * Constructor de la clase
+     * 
+     * @param Object $conexion
+     */
 
-      private function __construct($conexion)
+    private function __construct($conexion)
     {
-		$this->conexion=$conexion;
-		mysqli_set_charset($this->conexion, "utf8");
+        $this->conexion = $conexion;
+        mysqli_set_charset($this->conexion, "utf8");
     }
-    
+
     //--------------------
     //Métodos
     //--------------------
@@ -54,8 +54,8 @@ include_once('../Entidades/Estudiante.php');
      */
     public function crear($estudiante)
     {
-        $sql = "INSERT INTO ESTUDIANTE VALUES(".$estudiante->getNumeroDocumento()."','".$estudiante->getNombreEstudiante()."','".$estudiante->getCorreoEstudiante()."','".$estudiante->getTipoDeDocumento()."','".$estudiante->getSemestreActual()."','".$estudiante->getProgramaAcademico()."','".$estudiante->getExperienciaEstudiante()."','".$estudiante->getEstadoEstudiante()."','".$estudiante->getRutaFotoEstudiante()."');";
-        mysqli_query($this->conexion,$sql);
+        $sql = "INSERT INTO ESTUDIANTE VALUES(" . $estudiante->getNumeroDocumento() . "','" . $estudiante->getNombreEstudiante() . "','" . $estudiante->getCorreoEstudiante() . "','" . $estudiante->getTipoDeDocumento() . "','" . $estudiante->getSemestreActual() . "','" . $estudiante->getProgramaAcademico() . "','" . $estudiante->getExperienciaEstudiante() . "','" . $estudiante->getEstadoEstudiante() . "','" . $estudiante->getRutaFotoEstudiante() . "');";
+        mysqli_query($this->conexion, $sql);
     }
 
     /**
@@ -67,8 +67,8 @@ include_once('../Entidades/Estudiante.php');
     {
         $sql = "SELECT * FROM ESTUDIANTE WHERE numero_documento = $codigo";
 
-        if(!$result=mysqli_query($this->conexion,$sql))die();
-        $row=mysqli_fetch_array($result);
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+        $row = mysqli_fetch_array($result);
 
         $estudiante = new Estudiante();
         $estudiante->setNumeroDocumento($row[0]);
@@ -81,7 +81,6 @@ include_once('../Entidades/Estudiante.php');
         $estudiante->setEstadoEstudiante($row[7]);
         $estudiante->setRutaFotoEstudiante($row[8]);
         return $estudiante;
-
     }
 
     /**
@@ -92,8 +91,8 @@ include_once('../Entidades/Estudiante.php');
      */
     public function actualizar($estudiante)
     {
-        $sql = "UPDATE ESTUDIANTE SET nombre_estudiante = '".$estudiante->getNombreEstudiante()."', correo_estudiante = '".$estudiante->getCorreoEstudiante()."', tipo_de_documento = '".$estudiante->getTipoDeDocumento()."', semestre_actual = '".$estudiante->getSemestreActual()."', programa_academico = '".$estudiante->getProgramaAcademico()."', experiencia_estudiante = '".$estudiante->getExperienciaEstudiante()."', estado_estudiante = '".$estudiante->getEstadoEstudiante()."', ruta_foto_estudiante = '".$estudiante->getRutaFotoEstudiante()."' WHERE numero_documento = ".$estudiante->getNumeroDocumento(); 
-        mysqli_query($this->conexion,$sql);
+        $sql = "UPDATE ESTUDIANTE SET nombre_estudiante = '" . $estudiante->getNombreEstudiante() . "', correo_estudiante = '" . $estudiante->getCorreoEstudiante() . "', tipo_de_documento = '" . $estudiante->getTipoDeDocumento() . "', semestre_actual = '" . $estudiante->getSemestreActual() . "', programa_academico = '" . $estudiante->getProgramaAcademico() . "', experiencia_estudiante = '" . $estudiante->getExperienciaEstudiante() . "', estado_estudiante = '" . $estudiante->getEstadoEstudiante() . "', ruta_foto_estudiante = '" . $estudiante->getRutaFotoEstudiante() . "' WHERE numero_documento = " . $estudiante->getNumeroDocumento();
+        mysqli_query($this->conexion, $sql);
     }
 
     /**
@@ -103,8 +102,8 @@ include_once('../Entidades/Estudiante.php');
      */
     public function eliminar($codigo)
     {
-        $sql = "UPDATE ESTUDIANTE SET estado_estudiante = 'I' WHERE numero_documento = ".$codigo;
-        mysqli_query($this->conexion,$sql);
+        $sql = "UPDATE ESTUDIANTE SET estado_estudiante = 'I' WHERE numero_documento = " . $codigo;
+        mysqli_query($this->conexion, $sql);
     }
 
     /**
@@ -115,12 +114,40 @@ include_once('../Entidades/Estudiante.php');
     public function listar()
     {
         $sql = "SELECT * FROM ESTUDIANTE";
-        if(!$result = mysqli_query($this->conexion,$sql))die();
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
 
         $estudianteArray = array();
 
-        while($row = mysqli_fetch_array($result))
-        {
+        while ($row = mysqli_fetch_array($result)) {
+            $estudiante = new Estudiante();
+            $estudiante->setNumeroDocumento($row[0]);
+            $estudiante->setNombreEstudiante($row[1]);
+            $estudiante->setCorreoEstudiante($row[2]);
+            $estudiante->setTipoDeDocumento($row[3]);
+            $estudiante->setSemestreActual($row[4]);
+            $estudiante->setProgramaAcademico($row[5]);
+            $estudiante->setExperienciaEstudiante($row[6]);
+            $estudiante->setEstadoEstudiante($row[7]);
+            $estudianteArray[] = $estudiante;
+        }
+
+        return $estudianteArray;
+    }
+
+
+    /**
+     * Método para obtener la lista para usarla en la paginación
+     * 
+     * @return Estudiante[]
+     */
+    public function listaPaginacion($pagInicio, $limit)
+    {
+        $sql = "SELECT * FROM ESTUDIANTE LIMIT " . $pagInicio . " , " . $limit;
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $estudianteArray = array();
+
+        while ($row = mysqli_fetch_array($result)) {
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
             $estudiante->setNombreEstudiante($row[1]);
@@ -137,18 +164,18 @@ include_once('../Entidades/Estudiante.php');
     }
 
     /**
-	 * Obtiene la cantidad de estudiantes registradas en la base de datos
-	 *
-	 * @return int $cantidadEstudiantes
-	 */
-	public function cantidadEstudiantes()
-	{
-		$sql = "SELECT COUNT(*) FROM ESTUDIANTE";
-		$consulta = mysqli_query($this->conexion, $sql);
-		$resultado = mysqli_fetch_array($consulta)[0];
+     * Obtiene la cantidad de estudiantes registradas en la base de datos
+     *
+     * @return int $cantidadEstudiantes
+     */
+    public function cantidadEstudiantes()
+    {
+        $sql = "SELECT COUNT(*) FROM ESTUDIANTE";
+        $consulta = mysqli_query($this->conexion, $sql);
+        $resultado = mysqli_fetch_array($consulta)[0];
 
-		return $resultado;
-	}
+        return $resultado;
+    }
 
     /**
      * Método para obtener un objeto EstudianteDAO
@@ -158,10 +185,9 @@ include_once('../Entidades/Estudiante.php');
      */
     public static function obtenerEstudianteDAO($conexion)
     {
-        if(self::$estudianteDAO==null)
-        {
+        if (self::$estudianteDAO == null) {
             self::$estudianteDAO = new EstudianteDAO($conexion);
         }
         return self::$estudianteDAO;
     }
- }
+}

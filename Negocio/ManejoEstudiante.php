@@ -1,6 +1,6 @@
 <?php
 
-include_once('../Persistencia/EstudianteDAO.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_PERSISTENCIA . "EstudianteDAO.php");
 
 /**
  * Clase que representa la clase "ManejoEstudiante"
@@ -101,6 +101,23 @@ class ManejoEstudiante
         $estudiante = $estudianteDAO->listar();
         return $estudiante;
     }
+
+    /**
+     * Obtiene la lista de estudiantes
+     *
+     * @return Estudiante[]
+     */
+    public function listarEstudiantesPaginacion($pagInicio, $limit)
+    {
+        $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $estudiante = $estudianteDAO->listaPaginacion($pagInicio, $limit);
+        return $estudiante;
+    }
+
+
+
+
+
 
     /**
      * Obtiene la cantidad de estudiantes registradas en la base de datos
