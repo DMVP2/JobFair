@@ -55,70 +55,64 @@ $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-warning card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">content_copy</i>
-                                    </div>
-                                    <p class="card-category">Número de empresas</p>
-                                    <h3 class="card-title"><?php echo $cantidadEmpresas ?>
+                    <div class="card">
+                        <div class="card-header">
+                            Ingeniero de sistemas
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img class="img" width="40%"
+                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "colsubsidio.jpg" ?>" />
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="card-title"><strong>Se requiere ingeniero de sistemas para desarrollo de
+                                            software
+                                        </strong></h5>
 
-                                    </h3>
+                                    <p class="card-text"> Requerimos ingeniero de software con conocimiento en
+                                        metodologías
+                                        tradicionales y ágiles. A sí mismo requerimos de su habilidad para
+                                        documentación.
+                                        Preferiblemente que cuente con conocimiento de Java, PHP, Javascript, css y
+                                        entre otras
+                                        estructuras web.
+                                    </p>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Total de empresas
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-success card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">store</i>
-                                    </div>
-                                    <p class="card-category">Número de estudiantes</p>
-                                    <h3 class="card-title">$34,245</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Total de estudiantes
-                                    </div>
+                                <div class="col-sm-2">
+                                    <br>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-danger card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">info_outline</i>
-                                    </div>
-                                    <p class="card-category">Número de vacantes</p>
-                                    <h3 class="card-title">75</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Total de vacantes
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            Ingeniero de sistemas
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header card-header-info card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <p class="card-category">Programas académicos</p>
-                                    <h3 class="card-title">5</h3>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img class="img" width="40%"
+                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "alpina.png" ?>" />
                                 </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        Programas de la facultad
-                                    </div>
+                                <div class="col-md-8">
+                                    <h5 class="card-title"><strong>Se requiere ingeniero de sistemas para desarrollo de
+                                            software
+                                        </strong></h5>
+
+                                    <p class="card-text"> Requerimos ingeniero de software con conocimiento en
+                                        metodologías
+                                        tradicionales y ágiles. A sí mismo requerimos de su habilidad para
+                                        documentación.
+                                        Preferiblemente que cuente con conocimiento de Java, PHP, Javascript, css y
+                                        entre otras
+                                        estructuras web.
+                                    </p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <br>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
                                 </div>
                             </div>
                         </div>

@@ -1322,6 +1322,12 @@ pre code {
   .col-sm-2 {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
+    
+  }
+
+  .col-sm-2 .img {
+
+    width: 125px;
   }
 
   .col-sm-3 {
@@ -4880,6 +4886,7 @@ tbody.collapse.show {
 
 .card-text:last-child {
   margin-bottom: 0;
+  text-align: justify;
 }
 
 .card-link:hover {
@@ -9515,8 +9522,8 @@ a.text-dark:focus {
   color: #fff;
   background-color: #009c9a;
   border-color: #005e6e;
-  box-shadow: 0 2px 2px 0 rgb(0, 94, 110),
-    0 3px 1px -2px rgb(0, 94, 110), 0 1px 5px 0 rgb(0, 94, 110);
+  box-shadow: 0 2px 2px 0 rgb(0, 94, 110), 0 3px 1px -2px rgb(0, 94, 110),
+    0 1px 5px 0 rgb(0, 94, 110);
 }
 
 .btn.btn-primary:hover {
@@ -9540,8 +9547,8 @@ a.text-dark:focus {
   color: #fff;
   background-color: #00b8a5;
   border-color: #009c9a;
-  box-shadow: 0 2px 2px 0 rgb(0, 184, 165),
-    0 3px 1px -2px rgb(0, 184, 165), 0 1px 5px 0 rgb(0, 184, 165);
+  box-shadow: 0 2px 2px 0 rgb(0, 184, 165), 0 3px 1px -2px rgb(0, 184, 165),
+    0 1px 5px 0 rgb(0, 184, 165);
 }
 
 .btn.btn-primary:active:hover,
@@ -16863,8 +16870,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #fff;
   background-color: #9c27b0;
   border-color: #9c27b0;
-  box-shadow: 0 2px 2px 0 rgb(0, 184, 165),
-    0 3px 1px -2px rgb(0, 184, 165), 0 1px 5px 0 rgb(0, 184, 165);
+  box-shadow: 0 2px 2px 0 rgb(0, 184, 165), 0 3px 1px -2px rgb(0, 184, 165),
+    0 1px 5px 0 rgb(0, 184, 165);
 }
 
 .fixed-plugin .btn.btn-primary:hover {
@@ -18486,8 +18493,13 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 
 .card .card-header {
   border-bottom: none;
-  background: transparent;
+  background: #b0b0b033;
+  font-weight: 450;
+  font-size: 18px;
+  text-align: right;
 }
+
+
 
 .card .card-header .title {
   color: #fff;
