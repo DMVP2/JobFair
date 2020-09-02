@@ -34,7 +34,7 @@
 
                         <br>
 
-                        <img class="img" width="50%" src="Presentacion/images/banner.jpg" />
+                        <img class="img" width="50%" src="Presentacion/images/banner2.jpg" />
 
                         <div>
                             <br>
