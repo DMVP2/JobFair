@@ -32,8 +32,7 @@
 
                     <div class="card-body">
 
-                        <br>
-                        <img class="img" width="50%" src="Presentacion/images/banner3.png" />
+                        <img class="img" width="60%" src="Presentacion/images/banner3.png" />
 
                         <div>
                             <br>
