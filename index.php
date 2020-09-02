@@ -1,4 +1,8 @@
-<?php include_once('./rutas.php') ?>
+<?php 
+
+include_once('./rutas.php') 
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -32,7 +36,7 @@
 
                     <div class="card-body">
 
-                        <img class="img" src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "banner3.png" ?>" />
+                        <img class="img" width="60%" src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "banner3.png" ?>" />
 
                         <div>
                             <br>

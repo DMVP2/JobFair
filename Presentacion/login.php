@@ -3,7 +3,7 @@
 // Importación de clases
 
 include_once('../rutas.php');
-include_once('../Persistencia/conexion.php');
+include_once('../Persistencia/Conexion.php');
 
 // Conexión con la base de datos
 
