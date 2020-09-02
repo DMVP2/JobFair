@@ -1,7 +1,7 @@
+<?php include_once('./rutas.php') ?>
+
 <!doctype html>
 <html lang="en">
-
-<?php include_once('./rutas.php') ?>
 
 <head>
     <title>Feria de oportunidades</title>
@@ -14,7 +14,7 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
-    <link href="Presentacion/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <link href="Presentacion/assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -33,14 +33,17 @@
                     <div class="card-body">
 
                         <br>
-
-                        <img class="img" width="50%" src="Presentacion/images/banner2.jpg" />
+                        <img class="img" width="50%" src="Presentacion/images/banner2.png" />
 
                         <div>
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-primary"
+                                onclick="window.location.href='Presentacion/login.php'">Iniciar Sesión</button>
                             <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                            <br>
+                            <br>
+                            <br>
                         </div>
 
                     </div>

@@ -1,7 +1,26 @@
+<?php
+
+// Importación de clases
+
+include_once('../rutas.php');
+include_once('../Persistencia/conexion.php');
+include_once('../Negocio/manejoEmpresa.php');
+include_once('../Negocio/manejoEstudiante.php');
+include_once('../Negocio/manejoVacante.php');
+
+// Conexión con la base de datos
+
+$c = Conexion::getInstancia();
+$conexion = $c->conectarBD();
+
+// Ejecución de métodos (Manejos)
+
+$manejoEmpresas = new ManejoEmpresa($conexion);
+$cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
+?>
+
 <!doctype html>
 <html lang="en">
-
-<?php include_once('../rutas.php') ?>
 
 <head>
 
@@ -15,8 +34,7 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css?v=2.1.2"  ?>"
-        rel="stylesheet" />
+    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
 </head>
 
 <body>
@@ -45,7 +63,7 @@
                                         <i class="material-icons">content_copy</i>
                                     </div>
                                     <p class="card-category">Número de empresas</p>
-                                    <h3 class="card-title">49/50
+                                    <h3 class="card-title"><?php echo $cantidadEmpresas ?>
 
                                     </h3>
                                 </div>
@@ -122,8 +140,6 @@
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>"></script>
-
-    <?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
     </script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
@@ -169,8 +185,7 @@
                 }
             }
 
-            $(".fixed-plugin a").click(function(event) 
-            {
+            $(".fixed-plugin a").click(function(event) {
                 if ($(this).hasClass("switch-trigger")) {
                     if (event.stopPropagation) {
                         event.stopPropagation();
