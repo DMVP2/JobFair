@@ -41,8 +41,7 @@ include_once('./rutas.php')
                         <div>
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-primary"
-                                onclick="window.location.href='Presentacion/login.php'">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-primary" onclick="window.location.href='Presentacion/login.php'">Iniciar Sesión</button>
                             <button type="submit" class="btn btn-primary">Crear Cuenta</button>
                             <br>
                             <br>

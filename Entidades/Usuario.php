@@ -41,7 +41,7 @@ class Usuario
     /**
 	 * Rol del usuario
 	 * 
-	 * @var Int
+	 * @var String
 	 */
     private  $rolUsuario;
     
@@ -133,7 +133,7 @@ class Usuario
     /**
 	 * Método para obtener el rol del usuario
 	 * 
-	 * @return int
+	 * @return String
 	 */
     public function getRolUsuario()
     {
@@ -143,9 +143,9 @@ class Usuario
     /**
 	 * Método para establecer el rol del usuario
 	 * 
-	 * @param int
+	 * @param String
 	 */
-    public function setRolUsuario(int $pRolUsuario)
+    public function setRolUsuario(String $pRolUsuario)
     {
 		$this->rolUsuario = $pRolUsuario;
     }

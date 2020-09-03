@@ -44,6 +44,7 @@ $conexion = $c->conectarBD();
             <h2 class="card-title card-header-primary">FERIA DE OPORTUNIDADES</h2>
           </div>
 
+          <form action="../Sesion/iniciarSesion.php" method="POST">
           <div class="card-body">
 
             <section class="form-login">
@@ -58,6 +59,7 @@ $conexion = $c->conectarBD();
             </section>
 
           </div>
+</form>
 
         </div>
 

@@ -2,6 +2,8 @@
 
 require_once 'DAO.php';
 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Usuario.php");
+
 /**
  * Representa el DAO de la entidad "Usuario"
  */
@@ -57,7 +59,7 @@ class UsuarioDAO implements DAO
 	}
 
 	/**
-	 * Método para consultar un usuario por su Id 
+	 * Método para consultar un usuario por su ID
 	 *
 	 * @param int $codigo
 	 * @return Usuario
@@ -120,19 +122,62 @@ class UsuarioDAO implements DAO
 
         while ($row = mysqli_fetch_array($result)) 
         {
+
 			$usuario = new Usuario();
 			$usuario->setId($row[0]);
 			$usuario->setUsuario($row[1]);
-			$usuario->setEstado($row[2]);
-			$usuario->setPassword($row[3]);
-			$usuario->setRolUsuario($row[4]);
-			$usuario->setId($row[5]);
+			$usuario->setPassword($row[2]);
+			$usuario->setEstado($row[3]);
+			$rolUsuario = $this->consultarRol($row[4]);
+			$usuario->setRolUsuario($rolUsuario);
 			$usuarioArray[] = $usuario;
 		}
 
 		return $usuarioArray;
 	}
 
+	/**
+	 * Método para consultar un rol por su ID
+	 *
+	 * @param int $codigo
+	 * @return String
+	 */
+    public function consultarRol($codigo)
+    {
+		$sql = "SELECT * FROM ROLES WHERE id_rol = $codigo";
+
+		if(!$result=mysqli_query($this->conexion,$sql))die();
+		$row=mysqli_fetch_array($result);
+
+		$rol = $row[1];
+		
+		return $rol;
+	}
+
+	/**
+	 * Método para consultar un usuario por su Nickname (Nombre de usuario)
+	 *
+	 * @param String $nickname
+	 * @return Usuario
+	 */
+    public function consultarUsuarioPorNickname($nickname)
+    {
+		$sql = "SELECT * FROM USUARIO WHERE nickname_usuario = '$nickname'";
+
+		if(!$result=mysqli_query($this->conexion,$sql))die();
+		$row=mysqli_fetch_array($result);
+
+		$usuario = new Usuario();
+		$usuario->setId($row[0]);
+        $usuario->setUsuario($row[1]);
+		$usuario->setPassword($row[2]);
+		$usuario->setEstado($row[3]);
+		$rolUsuario = $this->consultarRol($row[4]);
+		$usuario->setRolUsuario($rolUsuario);
+
+		return $usuario;
+
+	}
 
 	/**
 	 * Método para obtener un objeto UsuarioDAO
@@ -140,7 +185,6 @@ class UsuarioDAO implements DAO
 	 * @param Object $conexion
 	 * @return UsuarioDAO
 	 */
-
     public static function obtenerUsuarioDAO($conexion)
     {
         if(self::$usuarioDAO==null)

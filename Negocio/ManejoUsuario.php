@@ -1,5 +1,7 @@
 <?php
 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_PERSISTENCIA . "UsuarioDAO.php");
+
     /**
      * Clase que representa la clase "ManejoUsuario"
      */
@@ -33,7 +35,7 @@
          *
          * @param Object $conexion
          */
-        private function __construct($conexion) 
+        public function __construct($conexion) 
         {
             $this->conexion = $conexion;
         }
@@ -89,11 +91,24 @@
         }
 
         /**
+         * Busca un usuario en la base de datos
+         *
+         * @param String $pNickname
+         * @return Usuario
+         */
+        public function buscarUsuarioPorNickname($pNickname) 
+        {
+            $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
+            $usuario = $usuarioDAO->consultarUsuarioPorNickname($pNickname);
+            return $usuario;
+        }
+
+        /**
          * Obtiene la lista de usuarios
          *
          * @return Usuario[]
          */
-        public function listarUsuario() 
+        public function listarUsuarios() 
         {
             $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
             $usuarios = $usuarioDAO->listar();
