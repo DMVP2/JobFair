@@ -114,11 +114,6 @@ class ManejoEstudiante
         return $estudiante;
     }
 
-
-
-
-
-
     /**
      * Obtiene la cantidad de estudiantes registradas en la base de datos
      *

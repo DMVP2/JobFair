@@ -9,6 +9,7 @@ include_once('../Persistencia/Conexion.php');
 include_once('../Negocio/ManejoEstudiante.php');
 
 // Nombre de la pagina
+
 $nombrePagina = "tablaEstudiante.php";
 
 // Conexión con la base de datos
@@ -17,6 +18,7 @@ $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
+// CAMBIO
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
@@ -31,15 +33,21 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
+// CAMBIO
+
 $estudiantes = $manejoEstudiantes->listarEstudiantesPaginacion($paginationStart, $limit);
 
-// CANTIDAD TOTAL A CARGAR - COUN BD
-$allRecrods = $manejoEstudiantes->cantidadEstudiantes();
+// CANTIDAD TOTAL A CARGAR - COUNT BD
+// CAMBIO
+
+$allRecords = $manejoEstudiantes->cantidadEstudiantes();
 
 // Total de las paginas
-$totoalPages = ceil($allRecrods / $limit);
+
+$totoalPages = ceil($allRecords / $limit);
 
 // Prev + Next
+
 $prev = $page - 1;
 $next = $page + 1;
 
@@ -105,8 +113,8 @@ $next = $page + 1;
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Empresas</h4>
-                                    <p class="card-category">Listado de las empresas registradas en el sistema</p>
+                                    <h4 class="card-title ">Estudiantes</h4>
+                                    <p class="card-category">Listado de los estudiantes registradas en el sistema</p>
                                 </div>
                                 <div class="card-body">
 
@@ -134,7 +142,8 @@ $next = $page + 1;
                                             <tbody>
                                                 <?php
 
-                                                foreach ($estudiantes as $estudiante) {
+                                                foreach ($estudiantes as $estudiante) 
+                                                {
                                                 ?>
                                                 <thead class=" text-primary">
                                                     <th>
@@ -432,11 +441,13 @@ $next = $page + 1;
                 }
 
                 // We simulate the window Resize so the charts will get updated in realtime.
+
                 var simulateWindowResize = setInterval(function() {
                     window.dispatchEvent(new Event("resize"));
                 }, 180);
 
                 // We stop the simulation of Window Resize after the animations are completed
+
                 setTimeout(function() {
                     clearInterval(simulateWindowResize);
                 }, 1000);
@@ -446,7 +457,9 @@ $next = $page + 1;
     </script>
     <script>
     $(document).ready(function() {
+
         // Javascript method's body can be found in assets/js/demos.js
+
         md.initDashboardPageCharts();
     });
     </script>
