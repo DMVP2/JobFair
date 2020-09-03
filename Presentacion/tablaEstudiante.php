@@ -20,6 +20,8 @@ $conexion = $c->conectarBD();
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
+// Paginación
+
 if (isset($_POST['records-limit'])) {
     $_SESSION['records-limit'] = $_POST['records-limit'];
 }
@@ -34,7 +36,7 @@ $estudiantes = $manejoEstudiantes->listarEstudiantesPaginacion($paginationStart,
 // CANTIDAD TOTAL A CARGAR - COUN BD
 $allRecrods = $manejoEstudiantes->cantidadEstudiantes();
 
-//total de las paginas
+// Total de las paginas
 $totoalPages = ceil($allRecrods / $limit);
 
 // Prev + Next
