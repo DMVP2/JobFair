@@ -64,7 +64,14 @@ class Vacante
 	 * 
 	 * @var String
 	 */
-    private  $experiencia;
+	private  $experiencia;
+	
+	   /**
+	 * Estado de la vacante
+	 * 
+	 * @var String
+	 */
+    private  $estado;
 
     /**
 	 * Categorias de la vacante
@@ -78,7 +85,9 @@ class Vacante
 	 * 
 	 * @var String
 	 */
-    private  $ciudad;
+	private  $ciudad;
+	
+
     
 	//---------------------
 	// Métodos
@@ -245,6 +254,26 @@ class Vacante
     public function setExperiencia(String $pExperiencia)
     {
 		$this->experiencia = $pExperiencia;
+	}
+	
+	 /**
+	 * Método para obtener el estado de la vacante
+	 * 
+	 * @return String
+	 */
+    public function getEstado()
+    {
+		return $this->estado;
+    }
+    
+    /**
+	 * Método para establecer el estado de la vacante
+	 * 
+	 * @param String
+	 */
+    public function setEstado(String $pEstado)
+    {
+		$this->estado = $pEstado;
     }
 
     /**
@@ -289,5 +318,3 @@ class Vacante
     }
 
 }
-
-?>
