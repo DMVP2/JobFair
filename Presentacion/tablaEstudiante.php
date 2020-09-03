@@ -269,6 +269,7 @@ $next = $page + 1;
 
             window_width = $(window).width();
 
+
             fixed_plugin_open = $(
                 ".sidebar .sidebar-wrapper .nav li.active a p"
             ).html();
