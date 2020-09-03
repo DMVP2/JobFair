@@ -1,6 +1,8 @@
-<?php 
+<?php
 
 require_once 'DAO.php';
+
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Vacante.php");
 
 /**
  * Representa el DAO de la entidad "Vacante"
@@ -33,9 +35,9 @@ class VacanteDAO implements DAO
 	 *
 	 * @param Object $conexion
 	 */
-    private function __construct($conexion)
-    {
-		$this->conexion=$conexion;
+	private function __construct($conexion)
+	{
+		$this->conexion = $conexion;
 		mysqli_set_charset($this->conexion, "utf8");
 	}
 
@@ -49,11 +51,11 @@ class VacanteDAO implements DAO
 	 * @param Vacante $vacante
 	 * @return void
 	 */
-    public function crear($vacante)
-    {
-		$sql = "INSERT INTO VACANTE VALUES(".$vacante->getId().",'".$vacante->getNombre()."','".$vacante->getDescripcion()."','".$vacante->getProgramaAcademico()."','".$vacante->getHorarioVacante()."','".$vacante->getPosibilidadViaje()."','".$vacante->getSalarioVacante()"','".$vacante->getExperiencia()");";
+	public function crear($vacante)
+	{
+		$sql = "INSERT INTO VACANTE VALUES(" . $vacante->getId() . ",'" . $vacante->getNombre() . "','" . $vacante->getDescripcion() . "','" . $vacante->getProgramaAcademico() . "','" . $vacante->getHorarioVacante() . "','" . $vacante->getPosibilidadViaje() . "','" . $vacante->getSalarioVacante() . "','" . $vacante->getExperiencia() . ");";
 
-		mysqli_query($this->conexion,$sql);
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -62,26 +64,25 @@ class VacanteDAO implements DAO
 	 * @param int $codigo
 	 * @return vacante
 	 */
-    public function consultar($codigo)
-    {
+	public function consultar($codigo)
+	{
 		$sql = "SELECT * FROM VACANTE WHERE id_vacante = $codigo";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
-		$row=mysqli_fetch_array($result);
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
 
 		$vacante = new vacante();
 		$vacante->setId($row[0]);
-        $vacante->setNombre($row[1]);
-        $vacante->setDescripcion($row[2]);
-        $vacante->setProgramaAcademico($row[3]);
-        $vacante->setHorariovacante($row[4]);
+		$vacante->setNombre($row[1]);
+		$vacante->setDescripcion($row[2]);
+		$vacante->setProgramaAcademico($row[3]);
+		$vacante->setHorariovacante($row[4]);
 		$vacante->setPosibilidadViaje($row[5]);
 		$vacante->setSalarioVacante($row[6]);
 		$vacante->setExperiencia($row[7]);
 
 
 		return $vacante;
-
 	}
 
 	/**
@@ -90,22 +91,22 @@ class VacanteDAO implements DAO
 	 * @param vacante $vacante
 	 * @return void
 	 */
-    public function actualizar($vacante)
-    {
-		$sql = "UPDATE vacante SET obtener_nombre = '".$vacante->getNombre()."', descripcion_vacante = '".$vacante->getDescripcion()."', programa_academico = '".$vacante->getProgramaAcademico()."', horario_vacante = '".$vacante->getHorarioVacante()."', posibilidad_viaje = '".$vacante->getPosibilidadViaje()."', salario_vacante = '".$vacante->getSalarioVacante()."', experiencia_vacante = '".$vacante->getExperiencia().   "' WHERE id_vacante = ".$vacante->getId();
+	public function actualizar($vacante)
+	{
+		$sql = "UPDATE vacante SET obtener_nombre = '" . $vacante->getNombre() . "', descripcion_vacante = '" . $vacante->getDescripcion() . "', programa_academico = '" . $vacante->getProgramaAcademico() . "', horario_vacante = '" . $vacante->getHorarioVacante() . "', posibilidad_viaje = '" . $vacante->getPosibilidadViaje() . "', salario_vacante = '" . $vacante->getSalarioVacante() . "', experiencia_vacante = '" . $vacante->getExperiencia() .   "' WHERE id_vacante = " . $vacante->getId();
+	}
 
-		
-    
-    /**
+	/**
 	 * Método que elimina un vacante
-     * 
+	 * 
 	 * @param int $codigo
 	 * @return void
 	 */
-    public function eliminar($codigo)
-    {
-		$sql = "UPDATE vacante SET salario_vacante = '0' WHERE id_vacante = ".$codigo;
-		mysqli_query($this->conexion,$sql);
+
+	public function eliminar($codigo)
+	{
+		$sql = "UPDATE vacante SET salario_vacante = '0' WHERE id_vacante = " . $codigo;
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -113,25 +114,25 @@ class VacanteDAO implements DAO
 	 *
 	 * @return vacante[]
 	 */
-    public function listar()
-    {
+	public function listar()
+	{
 		$sql = "SELECT * FROM vacante";
 
-		if(!$result = mysqli_query($this->conexion, $sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$vacanteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) 
-        {
-		$vacante = new vacante();
-		$vacante->setId($row[0]);
-        $vacante->setNombre($row[1]);
-        $vacante->setDescripcion($row[2]);
-        $vacante->setProgramaAcademico($row[3]);
-        $vacante->setHorariovacante($row[4]);
-		$vacante->setPosibilidadViaje($row[5]);
-		$vacante->setSalarioVacante($row[6]);
-		$vacante->setExperiencia($row[7]);
+		while ($row = mysqli_fetch_array($result)) {
+			$vacante = new vacante();
+			$vacante->setId($row[0]);
+			$vacante->setNombre($row[1]);
+			$vacante->setDescripcion($row[2]);
+			$vacante->setProgramaAcademico($row[3]);
+			$vacante->setHorariovacante($row[4]);
+			$vacante->setPosibilidadViaje($row[5]);
+			$vacante->setSalarioVacante($row[6]);
+			$vacante->setExperiencia($row[7]);
+			$vacante->setEstado($row[8]);
 
 
 			$vacanteArray[] = $vacante;
@@ -140,6 +141,67 @@ class VacanteDAO implements DAO
 		return $vacanteArray;
 	}
 
+
+	/**
+	 * Método para obtener la lista de vacantes activas para usarla en la paginación
+	 * 
+	 * @return Vacante[]
+	 */
+	public function listaPaginacionActiva($pagInicio, $limit)
+	{
+		$sql = "SELECT * FROM vacante WHERE estado_vacante='Activo' ORDER BY id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$vacanteArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+			$vacante = new vacante();
+			$vacante->setId($row[0]);
+			$vacante->setNombre($row[1]);
+			$vacante->setDescripcion($row[2]);
+			$vacante->setProgramaAcademico($row[3]);
+			$vacante->setHorariovacante($row[4]);
+			$vacante->setPosibilidadViaje($row[5]);
+			$vacante->setSalarioVacante($row[6]);
+			$vacante->setExperiencia($row[7]);
+			$vacante->setEstado($row[8]);
+
+
+			$vacanteArray[] = $vacante;
+		}
+
+		return $vacanteArray;
+	}
+
+	/**
+	 * Obtiene la cantidad de vacantes activas registradas en la base de datos
+	 *
+	 * @return int $cantidadVacantesActivasEstudiantes
+	 */
+	public function cantidadVacantesActivas()
+	{
+		$sql = "SELECT COUNT(*) FROM VACANTE WHERE estado_vacante='Activo'";
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
+
+
+	/**
+	 * Obtiene el nit de la empresa que postulo una vacante
+	 *
+	 * @param $pCodVacante
+	 * @return int $nitEmpresa
+	 */
+	public function consultarNitEmpresa($pCodVacante)
+	{
+		$sql = "SELECT id_empresa FROM empresa_vacante, VACANTE WHERE vacante.id_vacante = empresa_vacante.id_vacante AND vacante.id_vacante = " . $pCodVacante;
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
 
 
 	/**
@@ -152,11 +214,9 @@ class VacanteDAO implements DAO
 	{
 		$sql = "SELECT * FROM CIUDAD WHERE VACANTE_CIUDAD.id_VACANTE = $codigo AND VACANTE_CIUDAD.id_ciudad = CIUDAD.id_ciudad";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		return $result;
-
-
 	}
 
 	/**
@@ -169,13 +229,11 @@ class VacanteDAO implements DAO
 	{
 		$sql = "SELECT * FROM CATEGORIA WHERE CATEGORIA_VACANTE.id_vacante = $codigo AND CATEGORIA_VACANTE.id_categoria = CATEGORIA.id_categoria";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		return $result;
-
-
 	}
-	
+
 
 	/**
 	 * Método para listar ciudades
@@ -183,15 +241,15 @@ class VacanteDAO implements DAO
 	 * @param Object $conexion
 	 * @return ciudadArray
 	 */
-	public static function listarCiudades(){
+	public static function listarCiudades()
+	{
 
 		$sql = "SELECT * FROM CIUDAD";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 		$ciudadArray = array();
 		$contador = 0;
-		while($row=mysqli_fetch_array($result))
-		{
+		while ($row = mysqli_fetch_array($result)) {
 			$contador = $contador + 1;
 			$ciudadArray[] = $contador;
 		}
@@ -204,15 +262,15 @@ class VacanteDAO implements DAO
 	 * @param Object $conexion
 	 * @return categoriaArray
 	 */
-	public static function listarCategorias(){
+	public static function listarCategorias()
+	{
 
 		$sql = "SELECT * FROM CATEGORIA";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 		$categoriaArray = array();
 		$contador = 0;
-		while($row=mysqli_fetch_array($result))
-		{
+		while ($row = mysqli_fetch_array($result)) {
 			$contador = $contador + 1;
 			$categoriaArray[] = $contador;
 		}
@@ -225,16 +283,12 @@ class VacanteDAO implements DAO
 	 * @return vacanteDAO
 	 */
 
-    public static function obtenerVacanteDAO($conexion)
-    {
-        if(self::$vacanteDAO==null)
-        {
+	public static function obtenerVacanteDAO($conexion)
+	{
+		if (self::$vacanteDAO == null) {
 			self::$vacanteDAO = new vacanteDAO($conexion);
-        }
-        
+		}
+
 		return self::$vacanteDAO;
 	}
-
 }
-
-?>

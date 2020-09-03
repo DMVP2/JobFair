@@ -22,55 +22,54 @@ class Empresa
 	 * 
 	 * @var String
 	 */
-    private $razonComercial;
-    
-    /**
+	private $razonComercial;
+
+	/**
 	 * Razón social de la empresa
 	 * 
 	 * @var String
 	 */
-    private $razonSocial;
-    
-    /**
+	private $razonSocial;
+
+	/**
 	 * Descripción de la empresa
 	 * 
 	 * @var String
 	 */
 	private $descripcion;
 
-    /**
+	/**
 	 * Otros beneficios ofrecidos por la empresa
 	 * 
 	 * @var String
 	 */
-    private $otrosBeneficios;
-    
-    /**
+	private $otrosBeneficios;
+
+	/**
 	 * Estado de la empresa
 	 * 
 	 * @var Char
 	 */
 	private $estadoEmpresa;
-	
+
 	/**
 	 * Ruta del archivo con el logo de la empresa
 	 * 
 	 * @var String
 	 */
-    private $logoEmpresa;
+	private $logoEmpresa;
 
-    //---------------------
+	//---------------------
 	// Constructor
-    //---------------------
-	
-	/**
-    * Método constructor de la clase Empresa
-    */
-    public function __construct()
-    {
+	//---------------------
 
-    }
-    
+	/**
+	 * Método constructor de la clase Empresa
+	 */
+	public function __construct()
+	{
+	}
+
 	//---------------------
 	// Métodos
 	//---------------------
@@ -78,160 +77,160 @@ class Empresa
 	/**
 	 * Método para obtener el NIT de la empresa
 	 * 
-	 * @return int
+	 * @return string
 	 */
-    public function getNit()
-    {
+	public function getNit()
+	{
 		return $this->nit;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer el NIT de la empresa
 	 * 
 	 * @param int
 	 */
-    public function setNit(int $pNit)
-    {
+	public function setNit(string $pNit)
+	{
 		$this->nit = $pNit;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para obtener la razón comercial de la empresa
 	 * 
 	 * @return String
 	 */
-    public function getRazonComercial()
-    {
+	public function getRazonComercial()
+	{
 		return $this->razonComercial;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer la razón comercial de la empresa
 	 * 
 	 * @param String
 	 */
-    public function setRazonComercial(String $pRazonComercial)
-    {
+	public function setRazonComercial(String $pRazonComercial)
+	{
 		$this->razonComercial = $pRazonComercial;
-    }
+	}
 
-    /**
+	/**
 	 * Método para obtener la razón social de la empresa
 	 * 
 	 * @return String
 	 */
-    public function getRazonSocial()
-    {
+	public function getRazonSocial()
+	{
 		return $this->razonSocial;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer la razón social de la empresa
 	 * 
 	 * @param String
 	 */
-    public function setRazonSocial(String $pRazonSocial)
-    {
+	public function setRazonSocial(String $pRazonSocial)
+	{
 		$this->razonSocial = $pRazonSocial;
-    }
+	}
 
-    /**
+	/**
 	 * Método para obtener la descripción de la empresa
 	 * 
 	 * @return String
 	 */
-    public function getDescripcion()
-    {
+	public function getDescripcion()
+	{
 		return $this->descripcion;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer la razón social de la empresa
 	 * 
 	 * @param String
 	 */
-    public function setDescripcion(String $pDescripcion)
-    {
+	public function setDescripcion(String $pDescripcion)
+	{
 		$this->descripcion = $pDescripcion;
-    }
+	}
 
-    /**
+	/**
 	 * Método para obtener la descripción de la empresa
 	 * 
 	 * @return String
 	 */
-    public function getDescrición()
-    {
+	public function getDescrición()
+	{
 		return $this->descripcion;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer la razón social de la empresa
 	 * 
 	 * @param String
 	 */
-    public function setDescripción(String $pDescripcion)
-    {
+	public function setDescripción(String $pDescripcion)
+	{
 		$this->descripcion = $pDescripcion;
-    }
+	}
 
-    /**
+	/**
 	 * Método para obtener los otros beneficios de la empresa
 	 * 
 	 * @return String
 	 */
-    public function getOtrosBeneficios()
-    {
+	public function getOtrosBeneficios()
+	{
 		return $this->otrosBeneficios;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer los otros beneficios de la empresa
 	 * 
 	 * @param String
 	 */
-    public function setOtrosBeneficios(String $pOtrosBeneficios)
-    {
+	public function setOtrosBeneficios(String $pOtrosBeneficios)
+	{
 		$this->otrosBeneficios = $pOtrosBeneficios;
-    }
+	}
 
-    /**
+	/**
 	 * Método para obtener el estado de la empresa
 	 * 
 	 * @return Char
 	 */
-    public function getEstadoEmpresa()
-    {
+	public function getEstadoEmpresa()
+	{
 		return $this->estadoEmpresa;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer el estado de la empresa
 	 * 
 	 * @param Char
 	 */
-    public function setEstadoEmpresa(String $pEstadoEmpresa)
-    {
+	public function setEstadoEmpresa(String $pEstadoEmpresa)
+	{
 		$this->estadoEmpresa = $pEstadoEmpresa;
 	}
-	
+
 	/**
 	 * Método para obtener la ruta del archivo del logo de la empresa
 	 * 
 	 * @return String
 	 */
-    public function getLogoEmpresa()
-    {
+	public function getLogoEmpresa()
+	{
 		return $this->logoEmpresa;
-    }
-    
-    /**
+	}
+
+	/**
 	 * Método para establecer la ruta del archivo del logo de la empresa
 	 * 
 	 * @param String
 	 */
-    public function setLogoEmpresa(String $pLogoEmpresa)
-    {
+	public function setLogoEmpresa(String $pLogoEmpresa)
+	{
 		$this->logoEmpresa = $pLogoEmpresa;
-    }
+	}
 }

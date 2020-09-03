@@ -2,6 +2,9 @@
 
 require_once 'DAO.php';
 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Empresa.php");
+
+
 /**
  * Representa el DAO de la entidad "Empresa"
  */
@@ -64,7 +67,7 @@ class EmpresaDAO implements DAO
 	 */
 	public function consultar($codigo)
 	{
-		$sql = "SELECT * FROM EMPRESA WHERE nit_empresa = $codigo";
+		$sql = "SELECT * FROM EMPRESA WHERE nit_empresa = '" . $codigo . "'";
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 		$row = mysqli_fetch_array($result);
@@ -76,8 +79,7 @@ class EmpresaDAO implements DAO
 		$empresa->setDescripcion($row[3]);
 		$empresa->setOtrosBeneficios($row[4]);
 		$empresa->setEstadoEmpresa($row[5]);
-		$empresa->setNit($row[6]);
-		$empresa->setLogoEmpresa($row[7]);
+		$empresa->setLogoEmpresa($row[6]);
 
 		return $empresa;
 	}
@@ -136,12 +138,9 @@ class EmpresaDAO implements DAO
 	 */
 	public function listarEmpresasPaginacion($filter, $offset, $no_of_records_per_page)
 	{
-		if ($filter) 
-		{
+		if ($filter) {
 			$sql = "SELECT * FROM EMPRESA WHERE nombre_empresa LIKE '%$filter%' ORDER BY nombre_empresa ASC LIMIT $offset, $no_of_records_per_page";
-		} 
-		else 
-		{
+		} else {
 			$sql = "SELECT * FROM EMPRESA ORDER BY nombre_empresa ASC LIMIT $offset, $no_of_records_per_page";
 		}
 
