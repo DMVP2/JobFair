@@ -10,7 +10,7 @@ include_once('../Negocio/ManejoEstudiante.php');
 
 // Nombre de la pagina
 
-$nombrePagina = "tablaEstudiante.php";
+$nombrePagina = basename(__FILE__);
 
 // Conexión con la base de datos
 
@@ -142,8 +142,7 @@ $next = $page + 1;
                                             <tbody>
                                                 <?php
 
-                                                foreach ($estudiantes as $estudiante) 
-                                                {
+                                                foreach ($estudiantes as $estudiante) {
                                                 ?>
                                                 <thead class=" text-primary">
                                                     <th>
