@@ -11,9 +11,8 @@ if (!isset($_SESSION['usuario']))
 // Importación de clases
 
 include_once('../rutas.php');
-include_once('../Persistencia/conexion.php');
+include_once('../Persistencia/Conexion.php');
 include_once('../Negocio/ManejoEstudiante.php');
-include_once('../Negocio/ManejoVacante.php');
 
 // Conexión con la base de datos
 

@@ -11,9 +11,9 @@ if (!isset($_SESSION['usuario']))
 // Importación de clases
 
 include_once('../rutas.php');
-include_once('../Persistencia/conexion.php');
+include_once('../Persistencia/Conexion.php');
 include_once('../Negocio/ManejoEstudiante.php');
-include_once('../Negocio/ManejoVacante.php');
+include_once('../Negocio/ManejoHojaVida.php');
 
 // Conexión con la base de datos
 
@@ -30,10 +30,10 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+    <title>Hoja de vida</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hoja de vida</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href= <?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "css/aos.css" ?> rel="stylesheet">
@@ -50,8 +50,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
       <div class="container">
         <div class="content-center">
           <div class="cc-profile-image"><a href="#"><img src= <?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "images/anthony.jpg" ?> alt="Image"/></a></div>
-          <div class="h2 title">Anthony Barnett</div>
-          <p class="category text-white">Web Developer, Graphic Designer,  Photographer</p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
+          <div class="h2 title"> <?php echo $estudiante->getNombreEstudiante() ?> </div>
+          <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
         </div>
       </div>
     </div>
@@ -64,10 +64,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
         <div class="col-lg-6 col-md-12">
           <div class="card-body">
             <div class="h4 mt-0 title">Perfil profesional</div>
-            <p>Hello! I am Anthony Barnett. Web Developer, Graphic Designer and Photographer.</p>
-            <p>Creative CV is a HTML resume template for professionals. Built with Bootstrap 4, 
-              Now UI Kit and FontAwesome, this modern and responsive design template is perfect to showcase your 
-              portfolio, skills and experience.</p>
+            <p>Hola. Yo soy <?php echo $estudiante->getNombreEstudiante() ?></p>
+            <p>  </p>
           </div>
         </div>
         <div class="col-lg-6 col-md-12">

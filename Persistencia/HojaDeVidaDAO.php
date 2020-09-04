@@ -2,6 +2,8 @@
 
 require_once 'DAO.php';
 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "HojaVida.php");
+
 /**
  * Representa el DAO de la entidad HojaDeVida
  */
@@ -62,13 +64,13 @@ class HojaDeVidaDAO implements DAO
      */
     public function consultar($codigo)
     {
-        $sql = "SELECT * FROM HOJA_VIDA WHERE id_hoja_vida = $codigo";
+        $sql = "SELECT * FROM HOJA_VIDA WHERE numero_documento = $codigo";
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
         $row = mysqli_fetch_array($result);
 
-        /* $hojaDeVida = new HojaDeVida();
-        $hojaDeVida->setNit($row[0]);
+        $hojaDeVida = new HojaDeVida();
+        $hojaDeVida->setId($row[0]);
         $hojaDeVida->setRazonSocial($row[1]);
         $hojaDeVida->setRazonComercial($row[2]);
         $hojaDeVida->setDescripcion($row[3]);
@@ -77,7 +79,7 @@ class HojaDeVidaDAO implements DAO
         $hojaDeVida->setNit($row[6]);
         $hojaDeVida->setLogoEmpresa($row[7]);`
 
-        return $hojaDeVida; */
+        return $hojaDeVida;
     }
 
     /**
