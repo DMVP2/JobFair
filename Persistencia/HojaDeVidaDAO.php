@@ -71,13 +71,11 @@ class HojaDeVidaDAO implements DAO
 
         $hojaDeVida = new HojaDeVida();
         $hojaDeVida->setId($row[0]);
-        $hojaDeVida->setRazonSocial($row[1]);
-        $hojaDeVida->setRazonComercial($row[2]);
-        $hojaDeVida->setDescripcion($row[3]);
-        $hojaDeVida->setOtrosBeneficios($row[4]);
-        $hojaDeVida->setEstadoEmpresa($row[5]);
-        $hojaDeVida->setNit($row[6]);
-        $hojaDeVida->setLogoEmpresa($row[7]);
+        $hojaDeVida->setPerfilProfesional($row[1]);
+        $hojaDeVida->setDisponibilidadViaje($row[2]);
+        $hojaDeVida->setCertificaciones($row[3]);
+        $idiomas = $this->consultarIdiomas($row[0]);
+        $hojaDeVida->setIdiomas($idiomas);
 
         return $hojaDeVida;
     }
@@ -196,6 +194,36 @@ class HojaDeVidaDAO implements DAO
         }
 
         return $estudiosArray;
+    }
+
+    /**
+     * Método que consulta los idiomas que habla una persona
+     * 
+     * @param int $codigo
+     * @return ArregloDeDosDimensiones
+     */
+    public function consultarIdiomas($codigo)
+    {
+        $sql = "SELECT * FROM IDIOMA, HOJA_VIDA WHERE id_idioma = id_hoja_vida AND id_hoja_vida = $codigo";
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $idiomasArray = array();
+
+        $cantidadIdiomas = 0;
+
+        while ($row = mysqli_fetch_array($result)) 
+        {
+            $idioma = $row[1];
+            $nivel = $row[2];
+
+            $idiomasArray[$cantidadIdiomas][0] = $idioma;
+            $idiomasArray[$cantidadIdiomas][1] = $nivel;
+
+        $cantidadIdiomas++;
+        }
+
+        return $idiomasArray;
     }
 
     /**

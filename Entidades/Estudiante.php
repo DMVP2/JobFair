@@ -27,6 +27,13 @@
         private $correoEstudiante;
 
         /**
+	    * Correo electrónico del estudiante
+	    * 
+	    * @var int
+        */
+        private $telefono;
+
+        /**
 	    * Tipo de documento del estudiante
 	    * 
 	    * @var String
@@ -68,6 +75,13 @@
 	    */
         private $rutaFotoEstudiante;
 
+        /**
+	    * Edad del estudiante
+	    * 
+	    * @var int
+	    */
+        private $edad;
+
         //--------------------------
         //Métodos
         //--------------------------
@@ -97,7 +111,7 @@
          * 
          * @return String
          */
-        public function getNombreEstudiante()
+        public function getNombre()
         {
             return $this->nombreEstudiante;
         }
@@ -107,7 +121,7 @@
          * 
          * @param String
          */
-        public function setNombreEstudiante(String $pNombreEstudiante)
+        public function setNombre(String $pNombreEstudiante)
         {
             $this->nombreEstudiante = $pNombreEstudiante;
         }
@@ -117,19 +131,41 @@
          * 
          * @return String
          */
-        public function getCorreoEstudiante()
+        public function getCorreo()
         {
             return $this->correoEstudiante;
         }
 
+        
         /**
          * Método para establecer el correo del estudiante
          * 
-         * @param String
+         * @param int
          */
-        public function setCorreoEstudiante(String $pCorreoEstudiante)
+        public function setCorreo(String $pCorreoEstudiante)
         {
             $this->correoEstudiante = $pCorreoEstudiante;
+        }
+
+        /**
+         * Método para obtener el teléfono del estudiante
+         * 
+         * @return int
+         */
+        public function getTelefono()
+        {
+            return $this->telefono;
+        }
+
+        
+        /**
+         * Método para establecer el teléfono del estudiante
+         * 
+         * @param String
+         */
+        public function setTelefono(String $pTelefono)
+        {
+            $this->telefono = $pTelefono;
         }
 
         /**
@@ -197,7 +233,7 @@
          * 
          * @return Boolean
          */
-        public function getExperienciaEstudiante()
+        public function getExperiencia()
         {
             return $this->experienciaEstudiante;
         }
@@ -207,7 +243,7 @@
          * 
          * @param Boolean
          */
-        public function setExperienciaEstudiante(String $pExperienciaEstudiante)
+        public function setExperiencia(String $pExperienciaEstudiante)
         {
             $this->experienciaEstudiante = $pExperienciaEstudiante;
         }
@@ -217,7 +253,7 @@
          * 
          * @return Char
          */
-        public function getEstadoEstudiante()
+        public function getEstado()
         {
             return $this->estadoEstudiante;
         }
@@ -227,7 +263,7 @@
          * 
          * @param Char
          */
-        public function setEstadoEstudiante(String $pEstadoEstudiante)
+        public function setEstado(String $pEstadoEstudiante)
         {
             $this->estadoEstudiante = $pEstadoEstudiante;
         }
@@ -237,7 +273,7 @@
          * 
          * @return String
          */
-        public function getRutaFotoEstudiante()
+        public function getRutaFoto()
         {
             return $this->rutaFotoEstudiante;
         }
@@ -247,9 +283,47 @@
          * 
          * @param String
          */
-        public function setRutaFotoEstudiante(String $pRutaFotoEstudiante)
+        public function setRutaFoto(String $pRutaFotoEstudiante)
         {
             $this->rutaFotoEstudiante = $pRutaFotoEstudiante;
         }
+
+        /**
+         * Método para obtener la ruta de la foto del estudiante
+         * 
+         * @return String
+         */
+        public function getEdad()
+        {
+            return $this->rutaFotoEstudiante;
+        }
+
+        /**
+         * Método para establecer la ruta de la foto del estudiante
+         * 
+         * @param String
+         */
+        public function setEdad(String $pRutaFotoEstudiante)
+        {
+            $this->rutaFotoEstudiante = $pRutaFotoEstudiante;
+        }        
+
+        /**
+         * Método para calcular la edad del estudiante a partir de la fecha de nacimiento
+         * 
+         * @param Date
+         */
+        public function calcularEdad($pFechaNacimiento)
+        {
+
+            $fch = explode("-",$pFechaNacimiento);
+            $tfecha = $fch[2]."-".$fch[1]."-".$fch[0];
+
+            $dias = explode("-", $tfecha, 3);
+            $dias = mktime(0,0,0,$dias[1],$dias[0],$dias[2]);
+            $edad = (int)((time() - $dias) / 31556926 );
+
+            return $edad;
+        }        
     }
 

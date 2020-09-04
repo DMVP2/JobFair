@@ -109,7 +109,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                         <div class="col-md-10">
                                                             <div class="form-group">
                                                                 <label
-                                                                    class="bmd-label-floating"><?php echo $estudiante->getNombreEstudiante() ?></label>
+                                                                    class="bmd-label-floating"><?php echo $estudiante->getNombre() ?></label>
                                                                 <input type="text" class="form-control" disabled>
                                                             </div>
                                                         </div>
@@ -119,7 +119,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                         <div class="col-md-10">
                                                             <div class="form-group">
                                                                 <label
-                                                                    class="bmd-label-floating"><?php echo $estudiante->getCorreoEstudiante() ?></label>
+                                                                    class="bmd-label-floating"><?php echo $estudiante->getCorreo() ?></label>
                                                                 <input type="text" class="form-control" disabled>
                                                             </div>
                                                         </div>

@@ -149,10 +149,10 @@ $next = $page + 1;
                                                         <?php echo $estudiante->getNumeroDocumento() ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo $estudiante->getNombreEstudiante() ?>
+                                                        <?php echo $estudiante->getNombre() ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo $estudiante->getCorreoEstudiante() ?>
+                                                        <?php echo $estudiante->getCorreo() ?>
                                                     </th>
                                                     <th>
                                                         <?php echo $estudiante->getProgramaAcademico() ?>

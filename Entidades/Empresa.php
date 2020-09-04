@@ -155,26 +155,6 @@ class Empresa
 	}
 
 	/**
-	 * Método para obtener la descripción de la empresa
-	 * 
-	 * @return String
-	 */
-	public function getDescrición()
-	{
-		return $this->descripcion;
-	}
-
-	/**
-	 * Método para establecer la razón social de la empresa
-	 * 
-	 * @param String
-	 */
-	public function setDescripción(String $pDescripcion)
-	{
-		$this->descripcion = $pDescripcion;
-	}
-
-	/**
 	 * Método para obtener los otros beneficios de la empresa
 	 * 
 	 * @return String

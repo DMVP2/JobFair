@@ -41,7 +41,7 @@
         /**
 	    * Idiomas que habla el estudiante
 	    * 
-	    * @var String[]
+	    * @var ArregloDeDosDimensiones
 	    */
         private $idiomas;
 
@@ -134,7 +134,7 @@
         /**
          * Método que establece los idiomas que habla el estudiante
          * 
-         * @param String[]
+         * @param ArregloDeDosDimensiones
          */
         public function setIdiomas($pIdiomas){
             $this->idiomas = $pIdiomas;

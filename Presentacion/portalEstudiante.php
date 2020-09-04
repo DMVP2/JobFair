@@ -77,10 +77,10 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
                 </div>
                 <div class="card-body">
                   <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico()?> </h6>
-                  <h3 class="card-title"><?php echo $estudiante->getNombreEstudiante()?></h4>
+                  <h3 class="card-title"><?php echo $estudiante->getNombre()?></h4>
                   <br>
                   <h5> Documento: <?php echo $estudiante->getTipoDeDocumento() . $estudiante->getNumeroDocumento() ?></h2>
-                  <h5> Correo electrónico: <?php echo $estudiante->getCorreoEstudiante() ?></h2>
+                  <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h2>
                   <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h2>
                   <br>
                   <button type="submit" class="btn btn-primary">Gestionar información</button>

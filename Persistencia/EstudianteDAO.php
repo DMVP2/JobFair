@@ -72,14 +72,18 @@ class EstudianteDAO implements DAO
 
         $estudiante = new Estudiante();
         $estudiante->setNumeroDocumento($row[0]);
-        $estudiante->setNombreEstudiante($row[1]);
-        $estudiante->setCorreoEstudiante($row[2]);
-        $estudiante->setTipoDeDocumento($row[3]);
-        $estudiante->setSemestreActual($row[4]);
-        $estudiante->setProgramaAcademico($row[5]);
-        $estudiante->setExperienciaEstudiante($row[6]);
-        $estudiante->setEstadoEstudiante($row[7]);
-        $estudiante->setRutaFotoEstudiante($row[8]);
+        $estudiante->setNombre($row[1]);
+        $estudiante->setCorreo($row[2]);
+        $estudiante->setTelefono($row[3]);
+        $estudiante->setTipoDeDocumento($row[4]);
+        $estudiante->setSemestreActual($row[5]);
+        $estudiante->setProgramaAcademico($row[6]);
+        $estudiante->setExperiencia($row[7]);
+        $estudiante->setEstado($row[8]);
+        $estudiante->setRutaFoto($row[9]);
+        $edad = $estudiante->calcularEdad($row[11]);
+        $estudiante->setEdad($edad);
+
         return $estudiante;
     }
 
@@ -118,16 +122,23 @@ class EstudianteDAO implements DAO
 
         $estudianteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) 
+        {
+
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
-            $estudiante->setNombreEstudiante($row[1]);
-            $estudiante->setCorreoEstudiante($row[2]);
-            $estudiante->setTipoDeDocumento($row[3]);
-            $estudiante->setSemestreActual($row[4]);
-            $estudiante->setProgramaAcademico($row[5]);
-            $estudiante->setExperienciaEstudiante($row[6]);
-            $estudiante->setEstadoEstudiante($row[7]);
+            $estudiante->setNombre($row[1]);
+            $estudiante->setCorreo($row[2]);
+            $estudiante->setTelefono($row[3]);
+            $estudiante->setTipoDeDocumento($row[4]);
+            $estudiante->setSemestreActual($row[5]);
+            $estudiante->setProgramaAcademico($row[6]);
+            $estudiante->setExperiencia($row[7]);
+            $estudiante->setEstado($row[8]);
+            $estudiante->setRutaFoto($row[9]);
+            $edad = $estudiante->calcularEdad($row[11]);
+            $estudiante->setEdad($edad);
+
             $estudianteArray[] = $estudiante;
         }
 
@@ -147,16 +158,22 @@ class EstudianteDAO implements DAO
 
         $estudianteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) 
+        {
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
-            $estudiante->setNombreEstudiante($row[1]);
-            $estudiante->setCorreoEstudiante($row[2]);
-            $estudiante->setTipoDeDocumento($row[3]);
-            $estudiante->setSemestreActual($row[4]);
-            $estudiante->setProgramaAcademico($row[5]);
-            $estudiante->setExperienciaEstudiante($row[6]);
-            $estudiante->setEstadoEstudiante($row[7]);
+            $estudiante->setNombre($row[1]);
+            $estudiante->setCorreo($row[2]);
+            $estudiante->setTelefono($row[3]);
+            $estudiante->setTipoDeDocumento($row[4]);
+            $estudiante->setSemestreActual($row[5]);
+            $estudiante->setProgramaAcademico($row[6]);
+            $estudiante->setExperiencia($row[7]);
+            $estudiante->setEstado($row[8]);
+            $estudiante->setRutaFoto($row[9]);
+            $edad = $estudiante->calcularEdad($row[11]);
+            $estudiante->setEdad($edad);
+
             $estudianteArray[] = $estudiante;
         }
 
