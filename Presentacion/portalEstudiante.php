@@ -23,7 +23,6 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 $idUsuario = $_SESSION['usuario'];
-echo $idUsuario;
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
 ?>
