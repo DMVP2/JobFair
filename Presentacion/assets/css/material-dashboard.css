@@ -661,6 +661,8 @@ button:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
+
+
 input,
 button,
 select,
@@ -1322,11 +1324,9 @@ pre code {
   .col-sm-2 {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
-    
   }
 
   .col-sm-2 .img {
-
     width: 125px;
   }
 
@@ -4199,7 +4199,7 @@ tbody.collapse.show {
   border: 1px solid #d2d2d2;
   border-radius: 0.25rem;
   appearance: none;
-  align-content:flex-end ;
+  align-content: flex-end;
 }
 
 .custom-select:focus {
@@ -14394,7 +14394,7 @@ label {
 select,
 select.form-control {
   -moz-appearance: none;
-  -webkit-appearance: none;
+
 }
 
 @media (min-width: 576px) {
@@ -18497,10 +18497,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   background: #b0b0b033;
   font-weight: 450;
   font-size: 18px;
-  
 }
-
-
 
 .card .card-header .title {
   color: #fff;
