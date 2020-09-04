@@ -78,12 +78,17 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
                   </a>
                 </div>
                 <div class="card-body">
-                  <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                  <h4 class="card-title">Alec Thompson</h4>
-                  <p class="card-description">
-                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                  </p>
-                  <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
+                  <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico()?> </h6>
+                  <h3 class="card-title"><?php echo $estudiante->getNombreEstudiante()?></h4>
+                  <br>
+                  <h5> Documento: <?php echo $estudiante->getTipoDeDocumento() . $estudiante->getNumeroDocumento() ?></h2>
+                  <h5> Correo electrónico: <?php echo $estudiante->getCorreoEstudiante() ?></h2>
+                  <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h2>
+                  <br>
+                  <button type="submit" class="btn btn-primary">Gestionar información</button>
+                  <button type="submit" class="btn btn-primary">Hoja de Vida</button>
+                  <br>
+                  <br>
                 </div>
               </div>
 
