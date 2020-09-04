@@ -178,6 +178,57 @@ class EstudianteDAO implements DAO
     }
 
     /**
+     * Obtiene la cantidad de estudiantes por programa académico registrados en la facultad
+     *
+     * @return int $cantidadEstudiantes
+     */
+    public function cantidadEstudiantesPorPrograma()
+    {
+        $estudiantes = $this->listar();
+
+        $ingenieriaSistemas = 0;
+        $ingenieriaElectronica = 0;
+        $ingenieriaIndustrial = 0;
+        $ingenieriaAmbiental = 0;
+        $bioingenieria = 0;
+
+        foreach($estudiantes as $estudiante)
+        {
+
+            $programaAcademico = $estudiante->getProgramaAcademico();
+
+            if(strcasecmp($programaAcademico, "Ingeniería de Sistemas") == 0)
+            {
+                $ingenieriaSistemas++;
+            }
+            if(strcasecmp($programaAcademico, "Ingeniería Electrónica") == 0)
+            {
+                $ingenieriaElectronica++;
+            }
+            if(strcasecmp($programaAcademico, "Ingeniería Industrial") == 0)
+            {
+                $ingenieriaIndustrial++;
+            }
+            if(strcasecmp($programaAcademico, "Ingeniería Ambiental") == 0)
+            {
+                $ingenieriaAmbiental++;
+            }
+            if(strcasecmp($programaAcademico, "Bioingeniería") == 0)
+            {
+                $bioingenieria++;
+            }
+        }
+
+        $dataPoints[] = array("y" => $ingenieriaSistemas, "label" => "Ingeniería de Sistemas");
+        $dataPoints[] = array("y" => $ingenieriaElectronica, "label" => "Ingeniería Electrónica");
+        $dataPoints[] = array("y" => $ingenieriaIndustrial, "label" => "Ingeniería Industrial");
+        $dataPoints[] = array("y" => $ingenieriaAmbiental, "label" => "Ingeniería Ambiental");
+        $dataPoints[] = array("y" => $bioingenieria, "label" => "Bioíngeniería");
+
+        return $dataPoints;
+    }
+
+    /**
      * Método para obtener un objeto EstudianteDAO
      * 
      * @param Object $conexion

@@ -115,6 +115,18 @@ class ManejoEstudiante
     }
 
     /**
+     * Obtiene la cantidad de estudiantes por programa académico registrados en la facultad
+     *
+     * @return int $cantidadEstudiantes
+     */
+    public function cantidadEstudiantesPorPrograma()
+    {
+        $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $estudiante = $estudianteDAO->cantidadEstudiantesPorPrograma();
+        return $estudiante;
+    }
+
+    /**
      * Obtiene la cantidad de estudiantes registradas en la base de datos
      *
      * @return int $cantidadEstudiantes

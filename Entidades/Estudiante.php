@@ -57,7 +57,7 @@
         /**
 	    * Estado del estudiante
 	    * 
-	    * @var char
+	    * @var Char
 	    */
         private $estadoEstudiante;
 

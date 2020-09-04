@@ -15,7 +15,7 @@ class Usuario
 	 * 
 	 * @var Int
 	 */
-	private  $Id;
+	private  $id;
 
 	/**
 	 * Nickname (Nombre) de usuario
@@ -66,7 +66,7 @@ class Usuario
 	 */
     public function setId(int $pId)
     {
-		$this->nit = $pId;
+		$this->id = $pId;
     }
     
     /**

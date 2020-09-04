@@ -77,7 +77,6 @@ class UsuarioDAO implements DAO
         $usuario->setEstado($row[2]);
         $usuario->setPassword($row[3]);
         $usuario->setRolUsuario($row[4]);
-		$usuario->setId($row[5]);
 		
 		return $usuario;
 

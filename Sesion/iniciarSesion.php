@@ -25,9 +25,6 @@ $manejoUsario = new ManejoUsuario($conexion);
     $nickname = $usuarioActual->getUsuario();
     $passwordCifrado = $usuarioActual->getPassword();
 
-    echo $nickname;
-    echo $passwordCifrado;
-
     if(strnatcasecmp($nickname, $usuario) == 0 AND strnatcasecmp($passwordCifrado, md5($password)) == 0)
     {
 
@@ -38,29 +35,35 @@ $manejoUsario = new ManejoUsuario($conexion);
         {
             session_start();
  
-            $_SESSION['administrador'] = "$usuario";
+            $idUsuario = $usuarioActual->getID();
+
+            $_SESSION['usuario'] = "$usuarioActual->getID()";
     
             header("Location: ../Presentacion/tablaEstudiante.php");
     
             exit();
         }
-        if(strnatcasecmp($rol,"Empresa") == 0)
+        else if(strnatcasecmp($rol,"Empresa") == 0)
         {
             session_start();
  
-            $_SESSION['Empresa'] = "$usuario";
+            $idUsuario = $usuarioActual->getID();
+
+            $_SESSION['usuario'] = "$usuarioActual->getID()";
     
             header("Location: ../Presentacion/template.php");
     
             exit();
         }
-        if(strnatcasecmp($rol,"Estudiante") == 0)
+        else if(strnatcasecmp($rol,"Estudiante") == 0)
         {
             session_start();
  
-            $_SESSION['Estudiante'] = "$usuario";
+            $idUsuario = $usuarioActual->getID();
+
+            $_SESSION['usuario'] = "$idUsuario";
     
-            header("Location: ../Presentacion/tablaEstudiante.php");
+            header("Location: ../Presentacion/portalEstudiante.php");
     
             exit();
         }
