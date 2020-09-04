@@ -2,7 +2,7 @@
 
 require_once 'DAO.php';
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "HojaVida.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "HojaDeVida.php");
 
 /**
  * Representa el DAO de la entidad HojaDeVida
@@ -77,7 +77,7 @@ class HojaDeVidaDAO implements DAO
         $hojaDeVida->setOtrosBeneficios($row[4]);
         $hojaDeVida->setEstadoEmpresa($row[5]);
         $hojaDeVida->setNit($row[6]);
-        $hojaDeVida->setLogoEmpresa($row[7]);`
+        $hojaDeVida->setLogoEmpresa($row[7]);
 
         return $hojaDeVida;
     }

@@ -1,5 +1,7 @@
 <?php
 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_PERSISTENCIA . "HojaDeVidaDAO.php");
+
 /**
  * Clase que representa la clase "ManejoHojaDeVida"
  */
@@ -33,7 +35,7 @@ class ManejoHojaDeVida
      *
      * @param Object $conexion
      */
-    private function __construct($conexion)
+    public function __construct($conexion)
     {
         $this->conexion = $conexion;
     }
@@ -56,13 +58,13 @@ class ManejoHojaDeVida
     /**
      * Busca una hoja de vida en la base de datos
      *
-     * @param int $pIdHojaVida
+     * @param int $pIdEstudiante
      * @return HojaDeVida
      */
-    public function buscarHojaVidaEmpresa($pIdHojaVida)
+    public function buscarHojaVida($pIdEstudiante)
     {
         $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
-        $hojaDeVida = $hojaDeVidaDAO->consultar($pIdHojaVida);
+        $hojaDeVida = $hojaDeVidaDAO->consultar($pIdEstudiante);
         return $hojaDeVida;
     }
 

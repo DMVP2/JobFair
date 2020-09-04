@@ -13,7 +13,7 @@ if (!isset($_SESSION['usuario']))
 include_once('../rutas.php');
 include_once('../Persistencia/Conexion.php');
 include_once('../Negocio/ManejoEstudiante.php');
-include_once('../Negocio/ManejoHojaVida.php');
+include_once('../Negocio/ManejoHojaDeVida.php');
 
 // Conexión con la base de datos
 
@@ -25,6 +25,9 @@ $conexion = $c->conectarBD();
 $idUsuario = $_SESSION['usuario'];
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
+
+$manejoHojaVida = new ManejoHojaDeVida($conexion);
+$hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +68,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
           <div class="card-body">
             <div class="h4 mt-0 title">Perfil profesional</div>
             <p>Hola. Yo soy <?php echo $estudiante->getNombreEstudiante() ?></p>
-            <p>  </p>
+            <p> <?php echo $hojaVida->getDescripcion() ?> </p>
           </div>
         </div>
         <div class="col-lg-6 col-md-12">
