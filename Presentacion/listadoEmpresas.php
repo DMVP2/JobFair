@@ -1,37 +1,61 @@
 <?php
 
 session_start();
-
-if (!isset($_SESSION['usuario'])) {
-
-    header("location:../index.php");
+ 
+if (!isset($_SESSION['usuario'])) 
+{
+   
+   header("location:../index.php"); 
 }
+
 
 // Importación de clases
 
 include_once('../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoEmpresa.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoVacante.php');
+
+// Nombre de la pagina
+
+$nombrePagina = basename(__FILE__);
 
 // Conexión con la base de datos
 
 $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
+
 // Ejecución de métodos (Manejos)
 
-$manejoEmpresas = new ManejoEmpresa($conexion);
-$cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
-
 $idUsuario = $_SESSION['usuario'];
-$idVacante = $_POST['idVacante'];
-$manejoVacantes = new ManejoVacante($conexion);
-$vacante = $manejoVacantes->buscarVacante($idVacante);
+$manejoEmpresas = new ManejoEmpresa($conexion);
 
-$nitEmpresa = $manejoVacantes->consultarNitEmpresa($idVacante);
+// Paginación
 
-$empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
+if (isset($_POST['records-limit'])) {
+    $_SESSION['records-limit'] = $_POST['records-limit'];
+}
+
+$limit = isset($_SESSION['records-limit']) ? $_SESSION['records-limit'] : 10;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+$paginationStart = ($page - 1) * $limit;
+
+// RETORNA EL ARREGLO DE LA BD
+
+$empresas = $manejoEmpresas->listarEmpresasPaginacion($paginationStart, $limit);
+
+// CANTIDAD TOTAL A CARGAR - COUNT BD
+
+$allRecords = $manejoEmpresas->cantidadEmpresas();
+
+// Total de las paginas
+
+$totalPages = ceil($allRecords / $limit);
+
+// Prev + Next
+
+$prev = $page - 1;
+$next = $page + 1;
 ?>
 
 <!doctype html>
@@ -70,65 +94,107 @@ $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
-                    <div class="row">
-
-
+                    <!-- Select dropdown -->
+                    <div class="d-flex flex-row-reverse bd-highlight mb-3">
+                        <form action="<?php echo $nombrePagina ?>" method="post">
+                            <select name="records-limit" id="records-limit" class="custom-select">
+                                <option disabled selected>Límite</option>
+                                <?php foreach ([5, 10, 15, 20] as $limit) : ?>
+                                    <option <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?> value="<?= $limit; ?>">
+                                        <?= $limit; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </form>
                     </div>
+                    <!-- Select dropdown -->
 
-                    <div class="col-md-12">
-                        <div class="card card-profile">
-                            <div class="card-avatar">
-                                <img class="img" src=<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Empresa/" . $empresa->getLogoEmpresa() ?>>
+
+                    <?php
+                    foreach ($empresas as $empresa) 
+                    {
+
+                    ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <center><?php echo $empresa->getRazonSocial() ?></center>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial() ?> </h5>
-                                <h3 class="card-title"><?php echo $vacante->getNombre() ?></h3>
-                                <br>
-                                <h5 style="text-align: justify"> <strong> Descripción de la empresa: </strong> <?php echo $empresa->getDescripcion() ?> </h5>
-                                <h5 style="text-align: justify"> <strong> Descripción de la vacante: </strong> <?php echo $vacante->getDescripcion() ?> </h5>
-                                <br>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-success" style="text-align: left"><strong> Programa académico: </strong> <?php echo $vacante->getProgramaAcademico() ?> </div>
-                                        <div class="alert alert-success" style="text-align: left"><strong> Horario de la vacante: </strong> <?php echo $vacante->getHorarioVacante() ?> </div>
-                                        <div class="alert alert-success" style="text-align: left"><strong> Salario de la vacante: </strong> <?php echo $vacante->getSalarioVacante() ?> </div>
+                                    <div class="col-sm-2">
+                                        <img class="img" width="40%" src="<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Empresa/" . $empresa->getLogoEmpresa() ?>" />
+                                        <br><br>
+                                        <h6 class="card-title"><?php echo $empresa->getRazonComercial() ?>
+                                        </h6>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
 
-                                        <?php
-                                        if (strcasecmp($vacante->getExperiencia(), "Si") == 0) {
-                                        ?>
-                                            <div class="alert alert-warning" style="text-align: left"><strong> Experiencia de la vacante: </strong> <?php echo $vacante->getExperiencia() ?> </div>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <div class="alert alert-danger" style="text-align: left"><strong> Experiencia de la vacante: </strong> <?php echo $vacante->getExperiencia() ?> </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if (strcasecmp($vacante->getPosibilidadViaje(), "Si") == 0) {
-                                        ?>
-                                            <div class="alert alert-warning" style="text-align: left"><strong> Disponibilidad de viaje: </strong> <?php echo $vacante->getPosibilidadViaje() ?> </div>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <div class="alert alert-danger" style="text-align: left"><strong> Disponibilidad de viaje: </strong> <?php echo $vacante->getPosibilidadViaje() ?> </div>
-                                        <?php
-                                        }
-                                        ?>
+                                        <p class="card-text">
+                                            <?php
+                                            if (strlen($empresa->getDescripcion()) > 290) {
+                                                echo substr($empresa->getDescripcion(), 0, 290) . "....";
+                                            } else {
+                                                echo $empresa->getDescripcion();
+                                            }
+
+                                            ?>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <br><br>
+                                        <form action="informacionEmpresa.php" method="post">
+                                            <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                            <input class="btn btn-primary" type="submit" id="submit" name="empresa" value="Ver mas">
+                                        </form>
+
                                     </div>
                                 </div>
-                                <br>
-                                <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Aplicar a la vacante</button>
-                                <br>
                             </div>
-                            <br>
                         </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item <?php if ($page <= 1) {
+                                                        echo 'disabled';
+                                                    } ?>">
+                                <a class="page-link" href="<?php if ($page <= 1) {
+                                                                echo '#';
+                                                            } else {
+                                                                echo "?page=" . $prev;
+                                                            } ?>"><span aria-hidden="true">&laquo;</span></a>
+
+                            </li>
+
+                            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                                <li class="page-item <?php if ($page == $i) {
+                                                            echo 'active';
+                                                        } ?>">
+                                    <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+                                </li>
+                            <?php endfor; ?>
+
+                            <li class="page-item <?php if ($page >= $totalPages) {
+                                                        echo 'disabled';
+                                                    } ?>">
+                                <a class="page-link" href="<?php if ($page >= $totalPages) {
+                                                                echo '#';
+                                                            } else {
+                                                                echo "?page=" . $next;
+                                                            } ?>"><span aria-hidden="true">&raquo;</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Pagination -->
+
+
+
+
 
                     <!-- CONTENIDO PAGINA -->
-
                 </div>
             </div>
 
@@ -366,6 +432,13 @@ $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
         $(document).ready(function() {
             // Javascript method's body can be found in assets/js/demos.js
             md.initDashboardPageCharts();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#records-limit').change(function() {
+                $('form').submit();
+            })
         });
     </script>
 </body>

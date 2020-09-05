@@ -38,6 +38,7 @@ $manejoUsario = new ManejoUsuario($conexion);
             $idUsuario = $usuarioActual->getID();
 
             $_SESSION['usuario'] = "$idUsuario";
+            $_SESSION['rol'] = "Administrador";
     
             header("Location: ../Presentacion/portalAdministrador.php");
     
@@ -50,6 +51,7 @@ $manejoUsario = new ManejoUsuario($conexion);
             $idUsuario = $usuarioActual->getID();
 
             $_SESSION['usuario'] = "$idUsuario";
+            $_SESSION['rol'] = "Empresa";
     
             header("Location: ../Presentacion/portalEmpresa.php");
     
@@ -62,6 +64,7 @@ $manejoUsario = new ManejoUsuario($conexion);
             $idUsuario = $usuarioActual->getID();
 
             $_SESSION['usuario'] = "$idUsuario";
+            $_SESSION['rol'] = "Estudiante";
     
             header("Location: ../Presentacion/portalEstudiante.php");
     

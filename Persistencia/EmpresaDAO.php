@@ -67,7 +67,7 @@ class EmpresaDAO implements DAO
 	 */
 	public function consultar($codigo)
 	{
-		$sql = "SELECT * FROM EMPRESA WHERE nit_empresa = '" . $codigo . "'";
+		$sql = "SELECT * FROM EMPRESA WHERE nit_empresa = $codigo";
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 		$row = mysqli_fetch_array($result);
@@ -144,13 +144,16 @@ class EmpresaDAO implements DAO
         $estudianteArray = array();
 
         while ($row = mysqli_fetch_array($result)) {
-            $empresa = new Empresa();
-            $empresa->setNit($row[0]);
-            $empresa->setRazonSocial($row[1]);
-            $empresa->setRazonComercial($row[2]);
-            $empresa->setDescripcion($row[3]);
-            $empresa->setOtrosBeneficios($row[4]);
-            $empresa->setEstadoEmpresa($row[5]);
+			
+			$empresa = new Empresa();
+			$empresa->setNit($row[0]);
+			$empresa->setRazonSocial($row[1]);
+			$empresa->setRazonComercial($row[2]);
+			$empresa->setDescripcion($row[3]);
+			$empresa->setOtrosBeneficios($row[4]);
+			$empresa->setEstadoEmpresa($row[5]);
+			$empresa->setLogoEmpresa($row[6]);
+	
 			$empresaArray[] = $empresa;
         }
 

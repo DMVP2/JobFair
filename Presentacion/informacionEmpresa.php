@@ -12,7 +12,6 @@ if (!isset($_SESSION['usuario'])) {
 include_once('../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoEmpresa.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoVacante.php');
 
 // Conexión con la base de datos
 
@@ -25,13 +24,9 @@ $manejoEmpresas = new ManejoEmpresa($conexion);
 $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
 
 $idUsuario = $_SESSION['usuario'];
-$idVacante = $_POST['idVacante'];
-$manejoVacantes = new ManejoVacante($conexion);
-$vacante = $manejoVacantes->buscarVacante($idVacante);
+$idEmpresa = $_POST['idEmpresa'];
 
-$nitEmpresa = $manejoVacantes->consultarNitEmpresa($idVacante);
-
-$empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
+$empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
 ?>
 
 <!doctype html>
@@ -82,46 +77,10 @@ $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
                             </div>
                             <div class="card-body">
                                 <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial() ?> </h5>
-                                <h3 class="card-title"><?php echo $vacante->getNombre() ?></h3>
+                                <h3 class="card-title"><?php echo $empresa->getRazonComercial() ?></h3>
                                 <br>
                                 <h5 style="text-align: justify"> <strong> Descripción de la empresa: </strong> <?php echo $empresa->getDescripcion() ?> </h5>
-                                <h5 style="text-align: justify"> <strong> Descripción de la vacante: </strong> <?php echo $vacante->getDescripcion() ?> </h5>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="alert alert-success" style="text-align: left"><strong> Programa académico: </strong> <?php echo $vacante->getProgramaAcademico() ?> </div>
-                                        <div class="alert alert-success" style="text-align: left"><strong> Horario de la vacante: </strong> <?php echo $vacante->getHorarioVacante() ?> </div>
-                                        <div class="alert alert-success" style="text-align: left"><strong> Salario de la vacante: </strong> <?php echo $vacante->getSalarioVacante() ?> </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <?php
-                                        if (strcasecmp($vacante->getExperiencia(), "Si") == 0) {
-                                        ?>
-                                            <div class="alert alert-warning" style="text-align: left"><strong> Experiencia de la vacante: </strong> <?php echo $vacante->getExperiencia() ?> </div>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <div class="alert alert-danger" style="text-align: left"><strong> Experiencia de la vacante: </strong> <?php echo $vacante->getExperiencia() ?> </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if (strcasecmp($vacante->getPosibilidadViaje(), "Si") == 0) {
-                                        ?>
-                                            <div class="alert alert-warning" style="text-align: left"><strong> Disponibilidad de viaje: </strong> <?php echo $vacante->getPosibilidadViaje() ?> </div>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <div class="alert alert-danger" style="text-align: left"><strong> Disponibilidad de viaje: </strong> <?php echo $vacante->getPosibilidadViaje() ?> </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                                <br>
-                                <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Aplicar a la vacante</button>
-                                <br>
+                                <h5 style="text-align: justify"> <strong> Otros beneficios ofertados por la empresa: </strong> <?php echo $empresa->getOtrosBeneficios() ?> </h5>
                             </div>
                             <br>
                         </div>
