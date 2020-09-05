@@ -65,11 +65,7 @@ body {
   outline: 0 !important;
 }
 
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
+
 
 h1,
 h2,
@@ -485,12 +481,6 @@ body {
   outline: 0 !important;
 }
 
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
 h1,
 h2,
 h3,
@@ -660,8 +650,6 @@ button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
 }
-
-
 
 input,
 button,
@@ -3593,6 +3581,13 @@ tbody.collapse.show {
   height: 0;
   overflow: hidden;
   transition: height 0.35s ease;
+}
+
+.hr-separator {
+  box-sizing: content-box;
+  overflow: visible;
+  border-top: 7px solid #00b8a5;
+  border-radius: 5px;
 }
 
 .dropup,
@@ -14394,7 +14389,6 @@ label {
 select,
 select.form-control {
   -moz-appearance: none;
-
 }
 
 @media (min-width: 576px) {
@@ -14938,7 +14932,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-info {
-  background-color: #00cae3;
+  background-color: #007983;
   color: #ffffff;
 }
 
