@@ -114,5 +114,29 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_PERSISTENCIA 
             $usuarios = $usuarioDAO->listar();
             return $usuarios;
         }
+
+            /**
+     * Obtiene la lista de usuarios
+     *
+     * @return Usuario[]
+     */
+    public function listarUsuariosPaginacion($pagInicio, $limit)
+    {
+        $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
+        $usuario = $usuarioDAO->listaPaginacion($pagInicio, $limit);
+        return $usuario;
+    }
+
+    /**
+     * Obtiene la cantidad de usuarios registrados en la base de datos
+     *
+     * @return int $cantidadUsuarios
+     */
+    public function cantidadUsuarios()
+    {
+        $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
+        $cantidadUsuarios = $usuarioDAO->cantidadUsuarios();
+        return $cantidadUsuarios;
+    }
     } 
 ?>

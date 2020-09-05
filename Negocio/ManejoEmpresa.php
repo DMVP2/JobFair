@@ -107,11 +107,11 @@ class ManejoEmpresa
      *
      * @return Empresa[]
      */
-    public function listarEmpresasPaginacion($filter, $offset, $no_of_records_per_page)
+    public function listarEmpresasPaginacion($pagInicio, $limit)
     {
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
-        $empresas = $empresaDAO->listarEmpresasPaginacion($filter, $offset, $no_of_records_per_page);
-        return $empresas;
+        $empresa = $empresaDAO->listaPaginacion($pagInicio, $limit);
+        return $empresa;
     }
 
     /**

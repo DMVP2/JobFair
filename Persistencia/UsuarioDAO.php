@@ -178,6 +178,47 @@ class UsuarioDAO implements DAO
 
 	}
 
+    /**
+     * Método para obtener la lista para usarla en la paginación
+     * 
+     * @return Usuario[]
+     */
+    public function listaPaginacion($pagInicio, $limit)
+    {
+        $sql = "SELECT * FROM USUARIO LIMIT " . $pagInicio . " , " . $limit;
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $usuarioArray = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $usuario = new Usuario();
+			$usuario->setId($row[0]);
+			$usuario->setUsuario($row[1]);
+			$usuario->setPassword($row[2]);
+			$usuario->setEstado($row[3]);
+			$rolUsuario = $this->consultarRol($row[4]);
+			$usuario->setRolUsuario($rolUsuario);
+			$usuarioArray[] = $usuario;
+        }
+
+        return $usuarioArray;
+	}
+	
+	
+	/**
+	 * Obtiene la cantidad de empresas registradas en la base de datos
+	 *
+	 * @return int $cantidadEmpresas
+	 */
+	public function cantidadUsuarios()
+	{
+		$sql = "SELECT COUNT(*) FROM Usuario";
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
+
 	/**
 	 * Método para obtener un objeto UsuarioDAO
 	 *

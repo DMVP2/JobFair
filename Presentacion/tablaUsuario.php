@@ -6,7 +6,7 @@ session_start();
 
 include_once('../rutas.php');
 include_once('../Persistencia/conexion.php');
-include_once('../Negocio/manejoEmpresa.php');
+include_once('../Negocio/manejoUsuario.php');
 
 // Nombre de la pagina
 
@@ -20,7 +20,7 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 
-$manejoEmpresas = new ManejoEmpresa($conexion);
+$manejoUsuarios = new manejoUsuario($conexion);
 
 // Paginación
 
@@ -35,12 +35,12 @@ $paginationStart = ($page - 1) * $limit;
 // RETORNA EL ARREGLO DE LA BD
 // CAMBIO
 
-$empresas = $manejoEmpresas->listarEmpresasPaginacion($paginationStart, $limit);
+$usuarios = $manejoUsuarios->listarUsuariosPaginacion($paginationStart, $limit);
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 // CAMBIO
 
-$allRecords = $manejoEmpresas->cantidadEmpresas();
+$allRecords = $manejoUsuarios->cantidadUsuarios();
 
 // Total de las paginas
 
@@ -111,8 +111,8 @@ $next = $page + 1;
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Empresas</h4>
-                                    <p class="card-category">Listado de las empresas registradas en el sistema</p>
+                                    <h4 class="card-title ">Usuarios</h4>
+                                    <p class="card-category">Listado de los usuarios registrados en el sistema</p>
                                 </div>
                                 <div class="card-body">
 
@@ -125,33 +125,33 @@ $next = $page + 1;
                                                         ID
                                                     </th>
                                                     <th>
-                                                        Razón Social
-                                                    </th>
-                                                    <th>
-                                                        Razón Comercial
+                                                        Nickname (Usuario)
                                                     </th>
                                                     <th>
                                                         Estado
+                                                    </th>
+                                                    <th>
+                                                        Rol
                                                     </th>
                                                 </thead>
                                                 <tbody>
                                                 <?php
 
-                                                foreach ($empresas as $empresa) {
+                                                foreach ($usuarios as $usuario) {
                                                 ?>
                                                     
                                                <thead class=" text-primary">
                                                     <th>
-                                                        <?php echo $empresa->getNit() ?>
+                                                        <?php echo $usuario->getId() ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo $empresa->getRazonSocial() ?>
+                                                        <?php echo $usuario->getUsuario() ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo $empresa->getRazonComercial() ?>
+                                                        <?php echo $usuario->getEstado() ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo $empresa->getEstadoEmpresa() ?>
+                                                        <?php echo $usuario->getRolUsuario() ?>
                                                     </th>
                                                 </thead>
 

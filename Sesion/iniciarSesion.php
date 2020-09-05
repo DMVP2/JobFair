@@ -39,7 +39,7 @@ $manejoUsario = new ManejoUsuario($conexion);
 
             $_SESSION['usuario'] = "$usuarioActual->getID()";
     
-            header("Location: ../Presentacion/tablaEstudiante.php");
+            header("Location: ../Presentacion/portalAdministrador.php");
     
             exit();
         }
@@ -51,7 +51,7 @@ $manejoUsario = new ManejoUsuario($conexion);
 
             $_SESSION['usuario'] = "$usuarioActual->getID()";
     
-            header("Location: ../Presentacion/template.php");
+            header("Location: ../Presentacion/portalEmpresa.php");
     
             exit();
         }

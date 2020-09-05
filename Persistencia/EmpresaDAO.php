@@ -132,31 +132,30 @@ class EmpresaDAO implements DAO
 	}
 
 	/**
-	 * Método para obtener la lista de todas las empresa pero permite la paginación
+	 * Método para obtener la lista de todas las empresas pero permite la paginación
 	 *
-	 * @return Empresa[]
-	 */
-	public function listarEmpresasPaginacion($filter, $offset, $no_of_records_per_page)
-	{
-		if ($filter) {
-			$sql = "SELECT * FROM EMPRESA WHERE nombre_empresa LIKE '%$filter%' ORDER BY nombre_empresa ASC LIMIT $offset, $no_of_records_per_page";
-		} else {
-			$sql = "SELECT * FROM EMPRESA ORDER BY nombre_empresa ASC LIMIT $offset, $no_of_records_per_page";
-		}
+     * @return Empresa[]
+     */
+    public function listaPaginacion($pagInicio, $limit)
+    {
+        $sql = "SELECT * FROM EMPRESA LIMIT " . $pagInicio . " , " . $limit;
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-		if (!$result = mysqli_query($this->conexion, $sql)) die();
+        $estudianteArray = array();
 
-		$empresaArray = array();
-
-		while ($row = mysqli_fetch_array($result)) {
-			$empresa = new Empresa();
-			$empresa->setcodigo($row[0]);
-			$empresa->setnombre($row[1]);
+        while ($row = mysqli_fetch_array($result)) {
+            $empresa = new Empresa();
+            $empresa->setNit($row[0]);
+            $empresa->setRazonSocial($row[1]);
+            $empresa->setRazonComercial($row[2]);
+            $empresa->setDescripcion($row[3]);
+            $empresa->setOtrosBeneficios($row[4]);
+            $empresa->setEstadoEmpresa($row[5]);
 			$empresaArray[] = $empresa;
-		}
+        }
 
-		return $empresaArray;
-	}
+        return $empresaArray;
+    }
 
 	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos

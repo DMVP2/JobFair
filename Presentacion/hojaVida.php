@@ -65,20 +65,9 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
         <div class="container">
           <div class="card" data-aos="fade-up" data-aos-offset="10">
             <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <div class="card-body">
-                  <div class="h4 mt-0 title">Perfil profesional</div>
-                  <p> <strong> Perfil profesional: </strong> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
-                  <p> <strong> Certificaciones: </strong> <?php echo $hojaVida->getCertificaciones() ?> </p>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-12">
                 <div class="card-body">
                   <div class="h4 mt-0 title">Información básica</div>
-                  <div class="row mt-3">
-                    <div class="col-sm-4"><strong class="text-uppercase">Edad:</strong></div>
-                    <div class="col-sm-8"><?php echo $estudiante->getEdad() ?></div>
-                  </div>
                   <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Documento:</strong></div>
                     <div class="col-sm-8"><?php echo $estudiante->getTipoDeDocumento() . " " . $estudiante->getNumeroDocumento() ?></div>
@@ -88,13 +77,24 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
                     <div class="col-sm-8"><?php echo $estudiante->getCorreo() ?></div>
                   </div>
                   <div class="row mt-3">
+                    <div class="col-sm-4"><strong class="text-uppercase">Edad:</strong></div>
+                    <div class="col-sm-8"><?php echo $estudiante->getEdad() ?></div>
+                  </div>
+                  <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Teléfono:</strong></div>
                     <div class="col-sm-8"><?php echo $estudiante->getTelefono() ?></div>
                   </div>
                   <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Programa Académico:</strong></div>
-                    <div class="col-sm-8"><?php echo $estudiante->getNombre() ?></div>
+                    <div class="col-sm-8"><?php echo $estudiante->getProgramaAcademico() ?></div>
                   </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="card-body">
+                  <div class="h4 mt-0 title">Perfil profesional</div>
+                  <p> <strong> Perfil profesional: </strong> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
+                  <p> <strong> Certificaciones: </strong> <?php echo $hojaVida->getCertificaciones() ?> </p>
                 </div>
               </div>
             </div>
