@@ -24,7 +24,7 @@ if (isset($_GET['op'])) {
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                <select class="form-control" name="idiomas[]" onchange="imprimir(this)">
+                <select class="form-control" name="idiomas[]" onchange="verificarOtroIdioma(this)">
                     <option value="Español">Español</option>
                     <option value="Inglés">Inglés</option>
                     <option value="Francés">Francés</option>

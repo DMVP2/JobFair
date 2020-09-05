@@ -18,8 +18,9 @@ $conexion = $c->conectarBD();
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
-
-$documentoEstudiante = 1000047820;
+// 1010044745
+// 1000047820
+$documentoEstudiante = 1010044745;
 
 $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
@@ -165,6 +166,22 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     <br>
 
                                                     <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">
+                                                                        Certificaciones</label>
+                                                                    <textarea class="form-control" maxlength="950"
+                                                                        rows="6"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <br><br>
+
+                                                    <div class="row">
                                                         <div class="col-md-6">
                                                             <label class="bmd-label-floating"
                                                                 style="padding-top: 15px;">
@@ -181,23 +198,55 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                         </div>
                                                     </div>
 
-                                                    <br>
+                                                    <br><br>
 
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">
-                                                                        Certificaciones</label>
-                                                                    <textarea class="form-control" maxlength="950"
-                                                                        rows="6"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Estudios</h6>
                                                     </div>
 
-                                                    <br>
+                                                    <div id="divListaEstudios">
 
+                                                        <?php require_once('./campos/listaEstudio.php'); ?>
+
+                                                    </div>
+
+                                                    <br><br>
+
+                                                    <input class="btn btn-warning" type="button"
+                                                        value="Agregar  &#x00A; estudio"
+                                                        onclick="agregarCampoListaEstudio()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar estudio"
+                                                        onclick="eliminarCampoListaEstudio()">
+
+
+                                                    <br><br><br>
+
+
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Experiencia laboral</h6>
+                                                    </div>
+
+
+                                                    <div id="divListaExperiencia">
+
+
+
+                                                    </div>
+
+                                                    <br><br>
+
+                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
+                                                        onclick="agregarCampoExperiencia()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
+                                                        onclick="eliminarCampoExperiencia()">
+
+
+
+                                                    <br><br><br>
+
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Idiomas</h6>
+                                                    </div>
 
                                                     <div class="row">
                                                         <div class="col-md-5">
@@ -226,33 +275,34 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <input class="btn btn-warning" type="button" value="Agregar idioma"
                                                         onclick="agregarCampoListaIdioma()">
-                                                    <input class="btn btn-warning" type="button" value="Eliminar idioma"
+                                                    <input class="btn btn-warning" type="button" value="Borrar idioma"
                                                         onclick="eliminarCampoListaIdioma()">
+
 
 
                                                     <br><br><br>
 
 
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Referencias personales</h6>
+                                                    </div>
 
-                                                    <div id="divListaEstudios">
 
-                                                        <?php require_once('./campos/listaEstudio.php'); ?>
+                                                    <div id="divListaReferencias">
+
+                                                        <?php require_once('./campos/listaReferencias.php'); ?>
 
                                                     </div>
 
                                                     <br><br>
 
-                                                    <input class="btn btn-warning" type="button" value="Agregar estudio"
-                                                        onclick="agregarCampoListaEstudio()">
-                                                    <input class="btn btn-warning" type="button"
-                                                        value="Eliminar estudio" onclick="eliminarCampoListaEstudio()">
-
+                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
+                                                        onclick="agregarCampoReferencia()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
+                                                        onclick="eliminarCampoReferencia()">
 
 
                                                     <br><br><br>
-
-
-
 
                                                     <div class="row">
                                                         <div class="col-md-2"></div>
@@ -355,8 +405,51 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
         if ($('#divListaEstudios div.divListId').length > 1) {
             $('#divListaEstudios div.divListId:last').remove();
+        } else {
+            $('#divListaEstudios div.divListId:last').remove();
+            agregarCampoListaEstudio();
         }
+
     }
+
+    function agregarCampoExperiencia() {
+
+        $("<div>").load("./campos/listaExperiencia.php",
+            function() {
+                $("#divListaExperiencia").append($(this).html());
+            });
+    }
+
+    function eliminarCampoExperiencia() {
+
+        if ($('#divListaExperiencia div.divListId').length > 0) {
+            $('#divListaExperiencia div.divListId:last').remove();
+        }
+
+    }
+
+
+    function agregarCampoReferencia() {
+
+        $("<div>").load("./campos/listaReferencias.php",
+            function() {
+                $("#divListaReferencias").append($(this).html());
+            });
+    }
+
+    function eliminarCampoReferencia() {
+
+        if ($('#divListaReferencias div.divListId').length > 1) {
+            $('#divListaReferencias div.divListId:last').remove();
+        } else {
+            $('#divListaReferencias div.divListId:last').remove();
+            agregarCampoReferencia();
+        }
+
+    }
+
+
+
 
     function maximoAño(elementoCambio) {
 
@@ -370,7 +463,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
     // AGREGAR CAMPO NUEVO EN IDIOMAS (OTRO)
 
-    function imprimir(object) {
+    function verificarOtroIdioma(object) {
 
         if (object.value == "Otro") {
 
@@ -379,8 +472,23 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
             $("<div>").load("./campos/listaIdioma.php?op=a",
                 function() {
                     comp = object.parentNode.parentNode.parentNode.parentNode;
-                    console.log("2");
-                    console.log(comp);
+                    var jComp = $(comp);
+                    jComp.append($(this).html());
+                });
+
+        }
+    }
+
+    function verificarNivelEstudio(object) {
+
+        if (object.value != "Bachiller") {
+
+            object.disabled = true;
+
+
+            $("<div>").load("./campos/listaEstudio.php?op=a",
+                function() {
+                    comp = object.parentNode.parentNode.parentNode.parentNode;
                     var jComp = $(comp);
                     jComp.append($(this).html());
                 });
