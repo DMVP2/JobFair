@@ -77,7 +77,7 @@ class Empresa
 	/**
 	 * Método para obtener el NIT de la empresa
 	 * 
-	 * @return string
+	 * @return int
 	 */
 	public function getNit()
 	{
@@ -89,7 +89,7 @@ class Empresa
 	 * 
 	 * @param int
 	 */
-	public function setNit(string $pNit)
+	public function setNit(int $pNit)
 	{
 		$this->nit = $pNit;
 	}

@@ -73,12 +73,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
                     <img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico()?> </h6>
-                  <h3 class="card-title"><?php echo $estudiante->getNombre()?></h4>
+                  <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico()?> </h5>
+                  <h3 class="card-title"><?php echo $estudiante->getNombre()?></h3>
                   <br>
                   <h5> Documento: <?php echo $estudiante->getTipoDeDocumento() . " " . $estudiante->getNumeroDocumento() ?></h2>
-                  <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h2>
-                  <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h2>
+                  <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h5>
+                  <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h5>
                   <br>
                   <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Gestionar información</button>
                   <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Hoja de Vida</button>

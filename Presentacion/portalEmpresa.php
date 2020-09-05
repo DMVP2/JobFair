@@ -70,16 +70,16 @@ $empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
 <div class="col-md-12">
               <div class="card card-profile">
                 <div class="card-avatar">
-                    <img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaLogo() ?>>
+                    <img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Empresa/" . $empresa->getLogoEmpresa() ?>>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial()?> </h6>
-                  <h3 class="card-title"><?php echo $empresa->getRazonComercial()?></h4>
+                  <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial()?> </h5>
+                  <h3 class="card-title"><?php echo $empresa->getRazonComercial()?></h3>
                   <br>
-                  <h5> Documento: <?php echo $estudiante->getDescripcion() ?></h2>
+                  <h5> NIT: <?php echo $empresa->getNit() ?></h5>
+                  <h5 style="text-align: justify"> <?php echo $empresa->getDescripcion() ?></h5>
                   <br>
                   <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Gestionar información</button>
-                  <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Hoja de Vida</button>
                   <br>
                   <br>
                 </div>
