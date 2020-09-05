@@ -61,13 +61,13 @@ class manejoVacante
     /**
      * Busca una Vacante en la base de datos
      *
-     * @param int $pNit
+     * @param int $pIdVacante
      * @return Vacante
      */
-    public function buscarVacante($pNit)
+    public function buscarVacante($pIdVacante)
     {
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
-        $Vacante = $VacanteDAO->consultar($pNit);
+        $Vacante = $VacanteDAO->consultar($pIdVacante);
         return $Vacante;
     }
 
@@ -85,12 +85,12 @@ class manejoVacante
     /**
      * Elimina una Vacante
      *
-     * @param int $pNit
+     * @param int $pIdVacante
      */
-    public function eliminarVacante($pNit)
+    public function eliminarVacante($pIdVacante)
     {
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
-        $VacanteDAO->eliminar($pNit);
+        $VacanteDAO->eliminar($pIdVacante);
     }
 
     /**
@@ -142,8 +142,6 @@ class manejoVacante
         return $nitEmpresa;
     }
 
-
-
     /**
      * Obtiene las categorias de la vacante
      * @param int $pCodigo
@@ -156,7 +154,6 @@ class manejoVacante
         return $Vacantes;
     }
 
-
     /**
      * Obtiene las categorias de la vacante
      * @param int $pCodigo
@@ -168,9 +165,6 @@ class manejoVacante
         $Vacantes = $VacanteDAO->obtenerCiudadVacante($pCodigo);
         return $Vacantes;
     }
-
-
-
 
     /**
      * Obtiene la lista de ciudades

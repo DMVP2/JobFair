@@ -1,18 +1,3 @@
-/*!
-
- =========================================================
- * Material Dashboard - v2.1.0
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-dashboard
- * Copyright 2020 Creative Tim (http://www.creative-tim.com)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-/*     brand Colors              */
 .card {
   font-size: 0.875rem;
 }
@@ -14991,38 +14976,38 @@ fieldset[disabled] .form-group .form-control {
 
 .alert.alert-danger {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px rgba(244, 67, 54, 0.4);
+    0 7px 10px -5px rgb(191, 46, 37);
 }
 
 .alert.alert-danger i {
-  color: #f44336;
+  color: #bf2e25;
 }
 
 .alert.alert-warning {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px rgba(255, 152, 0, 0.4);
+    0 7px 10px -5px rgb(245, 132, 31);
 }
 
 .alert.alert-warning i {
-  color: #ff9800;
+  color: #f5841f;
 }
 
 .alert.alert-success {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px rgba(76, 175, 80, 0.4);
+    0 7px 10px -5px rgb(132, 174, 64);
 }
 
 .alert.alert-success i {
-  color: #4caf50;
+  color: #84ae40;
 }
 
 .alert.alert-info {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px rgba(0, 188, 212, 0.4);
+    0 7px 10px -5px rgb(0, 184, 165);
 }
 
 .alert.alert-info i {
-  color: #00bcd4;
+  color: #00b8a5;
 }
 
 .alert.alert-primary {
