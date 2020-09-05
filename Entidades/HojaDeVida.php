@@ -45,6 +45,27 @@
 	    */
         private $idiomas;
 
+        /**
+	    * Estudios que posee el estudiante
+	    * 
+	    * @var ArregloDeDosDimensiones
+	    */
+        private $estudios;
+
+        /**
+	    * Referencias personales del estudiante
+	    * 
+	    * @var ArregloDeDosDimensiones
+	    */
+        private $referencias;
+
+        /**
+	    * Referencias personales del estudiante
+	    * 
+	    * @var ArregloDeDosDimensiones
+	    */
+        private $experiencia;
+
         //---------------------------------
         // Métodos
         //---------------------------------
@@ -125,7 +146,7 @@
         /**
          * Método que obtiene los idiomas que habla el estudiante
          * 
-         * @return String[]
+         * @return ArregloDeDosDimensiones
          */
         public function getIdiomas(){
             return $this->idiomas;
@@ -138,6 +159,60 @@
          */
         public function setIdiomas($pIdiomas){
             $this->idiomas = $pIdiomas;
+        }
+
+        /**
+         * Método que obtiene los estudios que ha realizado el estudiante
+         * 
+         * @return ArregloDeDosDimensiones
+         */
+        public function getEstudios(){
+            return $this->estudios;
+        }
+
+        /**
+         * Método que establece los estudios que ha realizado el estudiante
+         * 
+         * @param ArregloDeDosDimensiones
+         */
+        public function setEstudios($pEstudios){
+            $this->estudios = $pEstudios;
+        }
+
+        /**
+         * Método que obtiene las referencias personales del estudiante
+         * 
+         * @return ArregloDeDosDimensiones
+         */
+        public function getReferenciasPersonales(){
+            return $this->referencias;
+        }
+
+        /**
+         * Método que establece las referencias personales del estudiante
+         * 
+         * @param ArregloDeDosDimensiones
+         */
+        public function setReferenciasPersonales($pReferencias){
+            $this->referencias = $pReferencias;
+        }
+
+            /**
+         * Método que obtiene la experiencia laboral del estudiante
+         * 
+         * @return ArregloDeDosDimensiones
+         */
+        public function getExperienciaLaboral(){
+            return $this->experiencia;
+        }
+
+        /**
+         * Método que establece la experiencia laboral del estudiante
+         * 
+         * @param ArregloDeDosDimensiones
+         */
+        public function setExperienciaLaboral($pExperiencia){
+            $this->experiencia = $pExperiencia;
         }
     } 
 ?>

@@ -76,6 +76,12 @@ class HojaDeVidaDAO implements DAO
         $hojaDeVida->setCertificaciones($row[3]);
         $idiomas = $this->consultarIdiomas($row[0]);
         $hojaDeVida->setIdiomas($idiomas);
+        $estudios = $this->consultarEstudios($row[0]);
+        $hojaDeVida->setEstudios($estudios);
+        $referencias = $this->consultarReferenciasPersonales($row[0]);
+        $hojaDeVida->setReferenciasPersonales($referencias);
+        $experiencias = $this->consultarExperienciaLaboral($row[0]);
+        $hojaDeVida->setExperienciaLaboral($experiencias);
 
         return $hojaDeVida;
     }
@@ -114,97 +120,14 @@ class HojaDeVidaDAO implements DAO
     }
 
     /**
-     * Método para obtener la lista de referencias personales
-     *
-     * @param int $pHojaVida
-     * @return ReferenciaPersonal[]
-     */
-    public function consultarReferenciasPersonales($pHojaVida)
-    {
-        $sql = "SELECT * FROM REFERENCIA_PERSONAL WHERE REFERENCIA_PERSONAL_HOJA_VIDA.id_referencia_personal = " . $pHojaVida . " AND REFERENCIA_PERSONAL_HOJA_VIDA.id_referencia_personal = REFERENCIA_PERSONAL.id_referencia ";
-
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
-
-        $referenciasArray = array();
-
-        while ($row = mysqli_fetch_array($result)) {
-            $referencia = new ReferenciaPersonal();
-            $referencia->setIdReferencia($row[0]);
-            $referencia->setNombreReferencia($row[1]);
-            $referencia->setTelefonoReferencia($row[2]);
-            $referencia->setParentescoReferencia($row[3]);
-            $referenciaArray[] = $referencia;
-        }
-
-        return $referenciaArray;
-    }
-
-    /**
-     * Método para obtener los estudios de una hoja de vida
-     *
-     * @param int $pHojaVida
-     * @return Estudio[]
-     */
-    public function consultarEstudios($pHojaVida)
-    {
-        $sql = "SELECT * FROM ESTUDIO WHERE HOJA_VIDA_ESTUDIOS.id_hoja_vida = " . $pHojaVida . " AND HOJA_VIDA_ESTUDIOS.id_Estudio = ESTUDIO.id_estudio";
-
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
-
-        $estudiosArray = array();
-
-        while ($row = mysqli_fetch_array($result)) {
-            $estudio = new Estudio();
-            $estudio->setId($row[0]);
-            $estudio->setArea($row[1]);
-            $estudio->setInstitucion($row[2]);
-
-
-            $sql = "SELECT nombre_nivel_estudio FROM NIVEL_ESTUDIO WHERE id_nivel_estudio=" . $row[3];
-
-            if (!$result2 = mysqli_query($this->conexion, $sql)) die();
-            $nivelEstudio = mysqli_fetch_array($result2);
-
-            $estudio->setNivelEstudio($nivelEstudio);
-
-            $estudiosArray[] = $estudio;
-        }
-
-        return $estudiosArray;
-    }
-
-    /**
-     * Método para obtener la lista de niveles de estudio
-     *
-     * @return Estudio[]
-     */
-    public function consultarNivelesEstudio()
-    {
-        $sql = "SELECT * FROM NIVEL_ESTUDIO";
-
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
-
-        $estudiosArray = array();
-
-        while ($row = mysqli_fetch_array($result)) {
-            $estudio = new Estudio();
-            $estudio->setIdNivelEstudio($row[0]);
-            $estudio->setNombreNivelEstudio($row[1]);
-            $estudiosArray[] = $estudio;
-        }
-
-        return $estudiosArray;
-    }
-
-    /**
-     * Método que consulta los idiomas que habla una persona
+     * Método que consulta los idiomas que habla el estudiante
      * 
-     * @param int $codigo
+     * @param int $pHojaVida
      * @return ArregloDeDosDimensiones
      */
-    public function consultarIdiomas($codigo)
+    public function consultarIdiomas($pHojaVida)
     {
-        $sql = "SELECT * FROM IDIOMA, HOJA_VIDA WHERE id_idioma = id_hoja_vida AND id_hoja_vida = $codigo";
+        $sql = "SELECT * FROM IDIOMA_HOJA_VIDA WHERE id_hoja_vida = $pHojaVida";
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
@@ -214,10 +137,17 @@ class HojaDeVidaDAO implements DAO
 
         while ($row = mysqli_fetch_array($result)) 
         {
-            $idioma = $row[1];
+
+            $consulta = "SELECT * FROM IDIOMA WHERE  id_idioma = " . $row[1];
+
+            if (!$resultado = mysqli_query($this->conexion, $consulta)) die();
+
+            $idioma = mysqli_fetch_array($resultado);
+
+            $nombreIdioma = $idioma[1];
             $nivel = $row[2];
 
-            $idiomasArray[$cantidadIdiomas][0] = $idioma;
+            $idiomasArray[$cantidadIdiomas][0] = $nombreIdioma;
             $idiomasArray[$cantidadIdiomas][1] = $nivel;
 
         $cantidadIdiomas++;
@@ -227,12 +157,117 @@ class HojaDeVidaDAO implements DAO
     }
 
     /**
+     * Método que consulta los estudios que posee el estudiante
+     * 
+     * @param int $pHojaVida
+     * @return ArregloDeDosDimensiones
+     */
+    public function consultarEstudios($pHojaVida)
+    {
+        $sql = "SELECT * FROM ESTUDIO, HOJA_VIDA WHERE id_hoja_vida = $pHojaVida AND id_estudio = id_estudio";
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $estudiosArray = array();
+
+        $cantidadEstudios = 0;
+
+        while ($row = mysqli_fetch_array($result)) 
+        {
+            $nombre = $row[1];
+            $area = $row[2];
+            $institucion = $row[3];
+            $nivel = $row[4];
+            $fecha = $row[5];
+
+            $estudiosArray[$cantidadEstudios][0] = $nombre;
+            $estudiosArray[$cantidadEstudios][1] = $area;
+            $estudiosArray[$cantidadEstudios][2] = $institucion;
+            $estudiosArray[$cantidadEstudios][3] = $nivel;
+            $estudiosArray[$cantidadEstudios][4] = $fecha;
+
+        $cantidadEstudios++;
+
+        }
+
+        return $estudiosArray;
+    }
+
+    /**
+     * Método que consulta las referencias personales del estudiante
+     * 
+     * @param int $pHojaVida
+     * @return ArregloDeDosDimensiones
+     */
+    public function consultarReferenciasPersonales($pHojaVida)
+    {
+        $sql = "SELECT * FROM REFERENCIA_PERSONAL, HOJA_VIDA WHERE id_hoja_vida = $pHojaVida AND id_referencia = id_referencia";
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $referenciasArray = array();
+
+        $cantidadReferencias = 0;
+
+        while ($row = mysqli_fetch_array($result)) 
+        {
+            $nombre = $row[1];
+            $telefono = $row[2];
+            $parentesco = $row[3];
+
+            $referenciasArray[$cantidadReferencias][0] = $nombre;
+            $referenciasArray[$cantidadReferencias][1] = $telefono;
+            $referenciasArray[$cantidadReferencias][2] = $parentesco;
+
+        $cantidadReferencias++;
+
+        }
+
+        return $referenciasArray;
+    }
+
+    /**
+     * Método que consulta la experiencia laboral del estudiante
+     * 
+     * @param int $pHojaVida
+     * @return ArregloDeDosDimensiones
+     */
+    public function consultarExperienciaLaboral($pHojaVida)
+    {
+        $sql = "SELECT * FROM EXPERIENCIA_LABORAL, HOJA_VIDA WHERE id_hoja_vida = $pHojaVida AND id_experiencia = id_experiencia";
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $experienciaArray = array();
+
+        $cantidadExperiencias = 0;
+
+        while ($row = mysqli_fetch_array($result)) 
+        {
+            $cargo = $row[1];
+            $descripcion = $row[2];
+            $empresa = $row[3];
+            $fecha = $row[4];
+
+            $experienciaArray[$cantidadExperiencias][0] = $cargo;
+            $experienciaArray[$cantidadExperiencias][1] = $descripcion;
+            $experienciaArray[$cantidadExperiencias][2] = $empresa;
+            $experienciaArray[$cantidadExperiencias][3] = $fecha;
+
+
+        $cantidadExperiencias++;
+
+        }
+
+        return $experienciaArray;
+    }
+
+    /**
      * Método para obtener un objeto HojaDeVidaDAO
      *
      * @param Object $conexion
      * @return HojaDeVidaDAO
      */
-
     public static function obtenerHojaDeVidaDAO($conexion)
     {
         if (self::$hojaDeVidaDAO == null) 

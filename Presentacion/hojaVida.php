@@ -53,9 +53,9 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
             <div class="page-header-image" data-parallax="true" style="background: rgb(62, 71, 41);"></div>
             <div class="container">
               <div class="content-center">
-                <div class="cc-profile-image"><a href="#"><img src=<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "images/anthony.jpg" ?> alt="Image" /></a></div>
+                <div class="cc-profile-image"><a href="#"><img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>></a></div>
                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
-                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
+                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
             </div>
           </div>
@@ -68,16 +68,20 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
               <div class="col-lg-6 col-md-12">
                 <div class="card-body">
                   <div class="h4 mt-0 title">Perfil profesional</div>
-                  <p>Hola. Yo soy <?php echo $estudiante->getNombre() ?> </p>
-                  <p> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
+                  <p> <strong> Perfil profesional: </strong> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
+                  <p> <strong> Certificaciones: </strong> <?php echo $hojaVida->getCertificaciones() ?> </p>
                 </div>
               </div>
               <div class="col-lg-6 col-md-12">
                 <div class="card-body">
                   <div class="h4 mt-0 title">Información básica</div>
-                  <div class="row">
+                  <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Edad:</strong></div>
                     <div class="col-sm-8"><?php echo $estudiante->getEdad() ?></div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-sm-4"><strong class="text-uppercase">Documento:</strong></div>
+                    <div class="col-sm-8"><?php echo $estudiante->getTipoDeDocumento() . " " . $estudiante->getNumeroDocumento() ?></div>
                   </div>
                   <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Correo electrónico:</strong></div>
@@ -105,27 +109,34 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
 
               <?php
 
-              foreach ($hojaVida->getIdiomas() as $idioma) 
-              {
+              foreach ($hojaVida->getIdiomas() as $idioma) {
 
                 $nivel = "0";
 
-                if(strcasecmp($idioma[1], "Intermedio") == 0)
-                {
+                if (strcasecmp($idioma[1], "Básico") == 0) {
+                  $nivel = "30";
+                }
+                if (strcasecmp($idioma[1], "Intermedio") == 0) {
                   $nivel = "50";
                 }
+                if (strcasecmp($idioma[1], "Avanzado") == 0) {
+                  $nivel = "70";
+                }
+                if (strcasecmp($idioma[1], "Nativo") == 0) {
+                  $nivel = "100";
+                }
 
-                ?>
+              ?>
 
                 <div class="row">
-                <div class="col-md-12">
-                  <div class="progress-container progress-primary"><span class="progress-badge"> <?php echo $idioma[0] ?> </span>
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $nivel . "%" ?>;"></div><span class="progress-value"> <?php echo $idioma[1] ?> </span>
+                  <div class="col-md-12">
+                    <div class="progress-container progress-primary"><span class="progress-badge"> <?php echo $idioma[0] ?> </span>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $nivel . "%" ?>;"></div><span class="progress-value"> <?php echo $idioma[1] ?> <?php echo "(" . $nivel . "%)" ?> </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
               <?php
               }
@@ -138,70 +149,98 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
       <div class="section" id="experience">
         <div class="container cc-experience">
           <div class="h4 text-center mb-4 title">Experiencia laboral</div>
-          <div class="card">
-            <div class="row">
-              <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-                <div class="card-body cc-experience-header">
-                  <p>March 2016 - Present</p>
-                  <div class="h5">CreativeM</div>
+
+          <?php
+
+          foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
+
+          ?>
+
+            <div class="card">
+              <div class="row">
+                <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body cc-experience-header">
+                    <p>  <?php echo $experiencia[3] ?> </p>
+                    <div class="h5"> <?php echo $experiencia[2] ?> </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                <div class="card-body">
-                  <div class="h5">Front End Developer</div>
-                  <p>Euismod massa scelerisque suspendisse fermentum habitant vitae ullamcorper magna quam iaculis, tristique sapien taciti mollis interdum sagittis libero nunc inceptos tellus, hendrerit vel eleifend primis lectus quisque cubilia sed mauris. Lacinia porta vestibulum diam integer quisque eros pulvinar curae, curabitur feugiat arcu vivamus parturient aliquet laoreet at, eu etiam pretium molestie ultricies sollicitudin dui.</p>
+                <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body">
+                    <div class="h5"> <?php echo $experiencia[0] ?> </div>
+                    <p> <?php echo $experiencia[1] ?> </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
+          <?php
+          }
+          ?>
+
         </div>
       </div>
       <div class="section">
         <div class="container cc-education">
           <div class="h4 text-center mb-4 title">Educación</div>
-          <div class="card">
-            <div class="row">
-              <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-                <div class="card-body cc-education-header">
-                  <p>2013 - 2015</p>
-                  <div class="h5">Master's Degree</div>
+
+          <?php
+
+          foreach ($hojaVida->getEstudios() as $estudio) {
+
+          ?>
+            <div class="card">
+              <div class="row">
+                <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body cc-education-header">
+                    <p> <?php echo $estudio[4] ?> </p>
+                    <div class="h5"><?php echo $estudio[3] ?> </div>
+                  </div>
+                </div>
+                <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body">
+                    <div class="h5"> <?php echo $estudio[0] ?> </div>
+                    <p class="category"> <?php echo $estudio[2] ?> </p>
+                    <p> Area de estudio: <?php echo $estudio[1] ?></p>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                <div class="card-body">
-                  <div class="h5">Master of Information Technology</div>
-                  <p class="category">University of Computer Science</p>
-                  <p>Euismod massa scelerisque suspendisse fermentum habitant vitae ullamcorper magna quam iaculis, tristique sapien taciti mollis interdum sagittis libero nunc inceptos tellus, hendrerit vel eleifend primis lectus quisque cubilia sed mauris. Lacinia porta vestibulum diam integer quisque eros pulvinar curae, curabitur feugiat arcu vivamus parturient aliquet laoreet at, eu etiam pretium molestie ultricies sollicitudin dui.</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="section" id="reference">
-        <div class="container cc-reference">
-          <div class="h4 mb-4 text-center title">Referencias personales</div>
-          <div class="row">
-            <div class="col-lg-2 col-md-3 cc-reference-header">
-              <div class="h5 pt-2">Aiyana</div>
-              <p class="category">CEO / WEBM</p>
-            </div>
-            <div class="col-lg-10 col-md-9">
-              <p> Habitasse venenatis commodo tempor eleifend arcu sociis sollicitudin ante pulvinar ad, est porta cras erat ullamcorper volutpat metus duis platea convallis, tortor primis ac quisque etiam luctus nisl nullam fames. Ligula purus suscipit tempus nascetur curabitur donec nam ullamcorper, laoreet nullam mauris dui aptent facilisis neque elementum ac, risus semper felis parturient fringilla rhoncus eleifend.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-2 col-md-3 cc-reference-header">
-              <div class="h5 pt-2">Aiyana</div>
-              <p class="category">CEO / WEBM</p>
-            </div>
-            <div class="col-lg-10 col-md-9">
-              <p> Habitasse venenatis commodo tempor eleifend arcu sociis sollicitudin ante pulvinar ad, est porta cras erat ullamcorper volutpat metus duis platea convallis, tortor primis ac quisque etiam luctus nisl nullam fames. Ligula purus suscipit tempus nascetur curabitur donec nam ullamcorper, laoreet nullam mauris dui aptent facilisis neque elementum ac, risus semper felis parturient fringilla rhoncus eleifend.</p>
-            </div>
-          </div>
+
+          <?php
+          }
+          ?>
+
         </div>
       </div>
     </div>
+    <div class="section" id="reference">
+      <div class="container cc-reference">
+        <div class="h4 mb-4 text-center title">Referencias personales</div>
+
+        <?php
+
+        foreach ($hojaVida->getReferenciasPersonales() as $referencia) {
+
+        ?>
+<div class="card" data-aos="zoom-in">
+            <div class="row">
+              <div class="col-lg-2 col-md-3 cc-reference-header">
+                <div class="h5 pt-2"> <img src=<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "images/users.png" ?> alt="Image" /> </div>
+              </div>
+              <div class="col-lg-10 col-md-9">
+                <p> Nombre: <?php echo $referencia[0] ?> </p>
+                <p> Teléfono: <?php echo $referencia[1] ?> </p>
+                <p> Parentesco: <?php echo $referencia[2] ?> </p>
+              </div>
+            </div>
+</div>
+        <?php
+        }
+        ?>
+
+      </div>
+    </div>
+  </div>
   </div>
   <footer class="footer">
     <div class="h4 title text-center">Anthony Barnett</div>

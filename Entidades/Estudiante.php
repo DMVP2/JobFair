@@ -29,7 +29,7 @@
         /**
 	    * Correo electrónico del estudiante
 	    * 
-	    * @var int
+	    * @var String
         */
         private $telefono;
 
@@ -150,7 +150,7 @@
         /**
          * Método para obtener el teléfono del estudiante
          * 
-         * @return int
+         * @return String
          */
         public function getTelefono()
         {
@@ -171,7 +171,7 @@
         /**
          * Método para obtener el tipo de documento del estudiante
          * 
-         * @return String
+         * @return int
          */
         public function getTipoDeDocumento()
         {
@@ -295,7 +295,7 @@
          */
         public function getEdad()
         {
-            return $this->rutaFotoEstudiante;
+            return $this->edad;
         }
 
         /**
@@ -303,9 +303,9 @@
          * 
          * @param String
          */
-        public function setEdad(String $pRutaFotoEstudiante)
+        public function setEdad(String $pEdad)
         {
-            $this->rutaFotoEstudiante = $pRutaFotoEstudiante;
+            $this->edad = $pEdad;
         }        
 
         /**

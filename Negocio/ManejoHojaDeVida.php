@@ -90,38 +90,4 @@ class ManejoHojaDeVida
         $hojaDeVidaDAO->eliminar($pHojaDeVida);
     }
 
-    /**
-     * Consulta las referencia de la hoja de vida
-     *
-     * @param int $pHojaDeVida
-     * @return HojaDeVida[]
-     */
-    public function consultarReferenciaPersonalHojaVida($pCodigo)
-    {
-        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
-        return $hojaDeVidaDAO->consultarReferenciasPersonales($pCodigo);
-    }
-
-    /**
-     * Lista los estudios de una hoja de vida
-     *
-     * @param int $pHojaDeVida
-     * @return Estudio[]
-     */
-    public function consultarEstudiosHojaVida($pHojaDeVida)
-    {
-        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
-        return $hojaDeVidaDAO->consultarEstudios($pHojaDeVida);
-    }
-
-    /**
-     * Obtener listado de niveles educativos
-     *
-     * @return Estudio[]
-     */
-    public function obtenerNivelesEstudio()
-    {
-        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
-        return $hojaDeVidaDAO->consultarNivelesEstudio();
-    }
 }

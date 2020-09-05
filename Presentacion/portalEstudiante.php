@@ -25,7 +25,6 @@ $idUsuario = $_SESSION['usuario'];
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -71,20 +70,18 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
 <div class="col-md-12">
               <div class="card card-profile">
                 <div class="card-avatar">
-                  <a href="javascript:;">
-                    <img class="img" src="assets/img/faces/marc.jpg" />
-                  </a>
+                    <img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>>
                 </div>
                 <div class="card-body">
                   <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico()?> </h6>
                   <h3 class="card-title"><?php echo $estudiante->getNombre()?></h4>
                   <br>
-                  <h5> Documento: <?php echo $estudiante->getTipoDeDocumento() . $estudiante->getNumeroDocumento() ?></h2>
+                  <h5> Documento: <?php echo $estudiante->getTipoDeDocumento() . " " . $estudiante->getNumeroDocumento() ?></h2>
                   <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h2>
                   <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h2>
                   <br>
-                  <button type="submit" class="btn btn-primary">Gestionar información</button>
-                  <button type="submit" class="btn btn-primary">Hoja de Vida</button>
+                  <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Gestionar información</button>
+                  <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Hoja de Vida</button>
                   <br>
                   <br>
                 </div>
