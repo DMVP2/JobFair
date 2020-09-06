@@ -1,218 +1,266 @@
 <?php
 
+/**
+ * Clase que representa la clase "HojaDeVida"
+ */
+class HojaDeVida
+{
+
+    //-----------------------------------
+    // Atributos
+    //-----------------------------------
+
     /**
-     * Clase que representa la clase "HojaDeVida"
+     * ID de la hoja de vida
+     * 
+     * @var int
      */
-    class HojaDeVida 
+    private $id;
+
+    /**
+     * Descripción de la hoja de vida
+     * 
+     * @var String
+     */
+    private $perfilProfesional;
+
+    /**
+     * Disponibilidad de viaje por parte del estudiante
+     * 
+     * @var String
+     */
+    private $disponibilidadViaje;
+
+    /**
+     * Certificaciones realizadas por el estudiante
+     * 
+     * @var String
+     */
+    private $certificaciones;
+
+    /**
+     * Idiomas que habla el estudiante
+     * 
+     * @var ArregloDeDosDimensiones
+     */
+    private $idiomas;
+
+    /**
+     * Estudios que posee el estudiante
+     * 
+     * @var ArregloDeDosDimensiones
+     */
+    private $estudios;
+
+    /**
+     * Referencias personales del estudiante
+     * 
+     * @var ArregloDeDosDimensiones
+     */
+    private $referencias;
+
+    /**
+     * Referencias personales del estudiante
+     * 
+     * @var ArregloDeDosDimensiones
+     */
+    private $experiencia;
+
+    /**
+     * Referencias personales del estudiante
+     * 
+     * @var Documento
+     */
+    private $documento;
+
+
+
+    //---------------------------------
+    // Métodos
+    //---------------------------------
+
+    /**
+     * Método que obtiene el ID de la hoja de vida
+     * 
+     * @return int
+     *
+     */
+    public function getId()
     {
+        return $this->id;
+    }
 
-        //-----------------------------------
-        // Atributos
-        //-----------------------------------
+    /**
+     * Método que establece el ID de la hoja de vida
+     * 
+     * @param int
+     */
+    public function setId($pId)
+    {
+        $this->id = $pId;
+    }
 
-        /**
-	    * ID de la hoja de vida
-	    * 
-	    * @var int
-	    */
-        private $id;
+    /**
+     * Método que obtiene la descripción de la hoja de vidas
+     * 
+     * @return String
+     */
+    public function getPerfilProfesional()
+    {
+        return $this->perfilProfesional;
+    }
 
-        /**
-	    * Descripción de la hoja de vida
-	    * 
-	    * @var String
-	    */
-        private $perfilProfesional;
+    /**
+     * Método que establece la descripción de la hoja de vida
+     * 
+     * @param String
+     */
+    public function setPerfilProfesional($pPerfilProfesional)
+    {
+        $this->perfilProfesional = $pPerfilProfesional;
+    }
 
-        /**
-	    * Disponibilidad de viaje por parte del estudiante
-	    * 
-	    * @var String
-	    */
-        private $disponibilidadViaje;
+    /**
+     * Método que obtiene la disponibilida de viaje del estudiante
+     * 
+     * @return String
+     */
+    public function getDisponibilidadViaje()
+    {
+        return $this->disponibilidadViaje;
+    }
 
-        /**
-	    * Certificaciones realizadas por el estudiante
-	    * 
-	    * @var String
-	    */
-        private $certificaciones;
+    /**
+     * Método que establece la disponibilidad de viaje del estudiante
+     * 
+     * @param String
+     */
+    public function setDisponibilidadViaje($pDisponibilidadViaje)
+    {
+        $this->disponibilidadViaje = $pDisponibilidadViaje;
+    }
 
-        /**
-	    * Idiomas que habla el estudiante
-	    * 
-	    * @var ArregloDeDosDimensiones
-	    */
-        private $idiomas;
+    /**
+     * Método que obtiene las certificaciones realizadas por el estudiante
+     * 
+     * @return String
+     */
+    public function getCertificaciones()
+    {
+        return $this->certificaciones;
+    }
 
-        /**
-	    * Estudios que posee el estudiante
-	    * 
-	    * @var ArregloDeDosDimensiones
-	    */
-        private $estudios;
+    /**
+     * Método que establece las certificaciones realizadas por el estudiante
+     * 
+     * @param String
+     */
+    public function setCertificaciones($pCertificaciones)
+    {
+        $this->certificaciones = $pCertificaciones;
+    }
 
-        /**
-	    * Referencias personales del estudiante
-	    * 
-	    * @var ArregloDeDosDimensiones
-	    */
-        private $referencias;
 
-        /**
-	    * Referencias personales del estudiante
-	    * 
-	    * @var ArregloDeDosDimensiones
-	    */
-        private $experiencia;
+    /**
+     * Método que obtiene el documento
+     * 
+     * @return String
+     */
+    public function getDocumento()
+    {
+        return $this->documento;
+    }
 
-        //---------------------------------
-        // Métodos
-        //---------------------------------
+    /**
+     * Método que establece el documento
+     * 
+     * @param String
+     */
+    public function setDocumento($pDocumento)
+    {
+        $this->documento = $pDocumento;
+    }
 
-        /**
-         * Método que obtiene el ID de la hoja de vida
-         * 
-         * @return int
-         *
-         */
-        public function getId(){
-            return $this->id;
-        }
 
-        /**
-         * Método que establece el ID de la hoja de vida
-         * 
-         * @param int
-         */
-        public function setId($pId){
-            $this->id = $pId;
-        }
 
-        /**
-         * Método que obtiene la descripción de la hoja de vidas
-         * 
-         * @return String
-         */
-        public function getPerfilProfesional(){
-            return $this->perfilProfesional;
-        }
 
-        /**
-         * Método que establece la descripción de la hoja de vida
-         * 
-         * @param String
-         */
-        public function setPerfilProfesional($pPerfilProfesional){
-            $this->perfilProfesional = $pPerfilProfesional;
-        }
+    /**
+     * Método que obtiene los idiomas que habla el estudiante
+     * 
+     * @return ArregloDeDosDimensiones
+     */
+    public function getIdiomas()
+    {
+        return $this->idiomas;
+    }
 
-        /**
-         * Método que obtiene la disponibilida de viaje del estudiante
-         * 
-         * @return String
-         */
-        public function getDisponibilidadViaje(){
-            return $this->disponibilidadViaje;
-        }
+    /**
+     * Método que establece los idiomas que habla el estudiante
+     * 
+     * @param ArregloDeDosDimensiones
+     */
+    public function setIdiomas($pIdiomas)
+    {
+        $this->idiomas = $pIdiomas;
+    }
 
-        /**
-         * Método que establece la disponibilidad de viaje del estudiante
-         * 
-         * @param String
-         */
-        public function setDisponibilidadViaje($pDisponibilidadViaje){
-            $this->parentesco = $pDisponibilidadViaje;
-        }
+    /**
+     * Método que obtiene los estudios que ha realizado el estudiante
+     * 
+     * @return ArregloDeDosDimensiones
+     */
+    public function getEstudios()
+    {
+        return $this->estudios;
+    }
 
-        /**
-         * Método que obtiene las certificaciones realizadas por el estudiante
-         * 
-         * @return String
-         */
-        public function getCertificaciones(){
-            return $this->certificaciones;
-        }
+    /**
+     * Método que establece los estudios que ha realizado el estudiante
+     * 
+     * @param ArregloDeDosDimensiones
+     */
+    public function setEstudios($pEstudios)
+    {
+        $this->estudios = $pEstudios;
+    }
 
-        /**
-         * Método que establece las certificaciones realizadas por el estudiante
-         * 
-         * @param String
-         */
-        public function setCertificaciones($pCertificaciones){
-            $this->certificaciones = $pCertificaciones;
-        }
+    /**
+     * Método que obtiene las referencias personales del estudiante
+     * 
+     * @return ArregloDeDosDimensiones
+     */
+    public function getReferenciasPersonales()
+    {
+        return $this->referencias;
+    }
 
-        /**
-         * Método que obtiene los idiomas que habla el estudiante
-         * 
-         * @return ArregloDeDosDimensiones
-         */
-        public function getIdiomas(){
-            return $this->idiomas;
-        }
+    /**
+     * Método que establece las referencias personales del estudiante
+     * 
+     * @param ArregloDeDosDimensiones
+     */
+    public function setReferenciasPersonales($pReferencias)
+    {
+        $this->referencias = $pReferencias;
+    }
 
-        /**
-         * Método que establece los idiomas que habla el estudiante
-         * 
-         * @param ArregloDeDosDimensiones
-         */
-        public function setIdiomas($pIdiomas){
-            $this->idiomas = $pIdiomas;
-        }
+    /**
+     * Método que obtiene la experiencia laboral del estudiante
+     * 
+     * @return ArregloDeDosDimensiones
+     */
+    public function getExperienciaLaboral()
+    {
+        return $this->experiencia;
+    }
 
-        /**
-         * Método que obtiene los estudios que ha realizado el estudiante
-         * 
-         * @return ArregloDeDosDimensiones
-         */
-        public function getEstudios(){
-            return $this->estudios;
-        }
-
-        /**
-         * Método que establece los estudios que ha realizado el estudiante
-         * 
-         * @param ArregloDeDosDimensiones
-         */
-        public function setEstudios($pEstudios){
-            $this->estudios = $pEstudios;
-        }
-
-        /**
-         * Método que obtiene las referencias personales del estudiante
-         * 
-         * @return ArregloDeDosDimensiones
-         */
-        public function getReferenciasPersonales(){
-            return $this->referencias;
-        }
-
-        /**
-         * Método que establece las referencias personales del estudiante
-         * 
-         * @param ArregloDeDosDimensiones
-         */
-        public function setReferenciasPersonales($pReferencias){
-            $this->referencias = $pReferencias;
-        }
-
-            /**
-         * Método que obtiene la experiencia laboral del estudiante
-         * 
-         * @return ArregloDeDosDimensiones
-         */
-        public function getExperienciaLaboral(){
-            return $this->experiencia;
-        }
-
-        /**
-         * Método que establece la experiencia laboral del estudiante
-         * 
-         * @param ArregloDeDosDimensiones
-         */
-        public function setExperienciaLaboral($pExperiencia){
-            $this->experiencia = $pExperiencia;
-        }
-    } 
-?>
+    /**
+     * Método que establece la experiencia laboral del estudiante
+     * 
+     * @param ArregloDeDosDimensiones
+     */
+    public function setExperienciaLaboral($pExperiencia)
+    {
+        $this->experiencia = $pExperiencia;
+    }
+}

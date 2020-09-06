@@ -24,12 +24,12 @@ if (isset($_GET['op'])) {
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" id="areaEstudio[]" name="areaEstudio[]">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <select class="form-control ">
+            <select class="form-control" id="nombreEstudio[]" name="nombreEstudio[]">
                 <option value="Administración">Administración</option>
                 <option value="Bellas Artes">Bellas Artes</option>
                 <option value="Ciencias">Ciencias</option>
@@ -59,7 +59,8 @@ if (isset($_GET['op'])) {
     <div class="row">
         <div class="col-md-7">
             <div class="form-group">
-                <select class="form-control" onchange="verificarNivelEstudio(this)">
+                <select class="form-control" onchange="verificarNivelEstudio(this)" id="nivelEstudio[]"
+                    name="nivelEstudio[]">
                     <option value="Bachiller">Bachiller</option>
                     <option value="Técnico">Técnico</option>
                     <option value="Tecnólogo">Tecnólogo</option>
@@ -82,7 +83,7 @@ if (isset($_GET['op'])) {
                 <label class="bmd-label-floating">
                     Institución
                 </label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="institucion[]" name="institucion[]">
             </div>
         </div>
 
@@ -97,7 +98,7 @@ if (isset($_GET['op'])) {
                     Año de inicio
                 </label>
                 <input type="number" class="form-control" min="1970" max="3000" step="1" value="2016"
-                    onchange="maximoAño(this)" />
+                    onchange="maximoAño(this)" id="estudiosIngreso[]" name="estudiosIngreso[]" />
             </div>
         </div>
         <div class="col-md-5">
@@ -106,7 +107,7 @@ if (isset($_GET['op'])) {
                     Año final
                 </label>
                 <input type="number" class="form-control" min="1970" max="3000" step="1" value="2016"
-                    onchange="maximoAño(this)" />
+                    onchange="maximoAño(this)" id="estudiosSalida[]" name="estudiosSalida[]" />
             </div>
         </div>
     </div>

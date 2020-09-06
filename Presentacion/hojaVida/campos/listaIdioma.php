@@ -1,40 +1,34 @@
 <?php
-if (isset($_GET['op'])) {
-?>
 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/softlutions/Rutas.php');
 
-<div class="row">
-    <div class="col-md-5">
-        <div class="form-group">
-            <input type="text" class="form-control" name="otros[]" />
+include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 
-        </div>
-    </div>
+include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoHojaDeVida.php');
 
-</div>
+// Conexión con la base de datos
 
+$c = Conexion::getInstancia();
+$conexion = $c->conectarBD();
 
-<?php
-
-} else {
-
+$manejoHojaVida = new ManejoHojaDeVida($conexion);
 
 ?>
+
 <div class="divListId">
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                <select class="form-control" name="idiomas[]" onchange="verificarOtroIdioma(this)">
-                    <option value="Español">Español</option>
-                    <option value="Inglés">Inglés</option>
-                    <option value="Francés">Francés</option>
-                    <option value="Portugués">Portugués</option>
-                    <option value="Italiano">Italiano</option>
-                    <option value="Alemán">Alemán</option>
-                    <option value="Japonés">Japonés</option>
-                    <option value="Coreano">Coreano</option>
-                    <option value="Ruso">Ruso</option>
-                    <option value="Otro">Otro</option>
+                <select class="form-control" name="idiomas[]">
+                    <?php
+
+                    $listaIdiomas = $manejoHojaVida->listarIdiomas();
+
+                    foreach ($listaIdiomas as $idiomaActual) {
+                        echo "<option value=" . $idiomaActual[0] . ">" . $idiomaActual[1] . "</option>";
+                    }
+
+                    ?>
                 </select>
             </div>
         </div>
@@ -52,8 +46,3 @@ if (isset($_GET['op'])) {
         </div>
     </div>
 </div>
-
-
-<?php
-}
-?>

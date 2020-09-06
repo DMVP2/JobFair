@@ -10,7 +10,7 @@
                 <label class="bmd-label-floating">
                     Nombre
                 </label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="nombreReferencia[]" name="nombreReferencia[]">
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                 <label class="bmd-label-floating">
                     Teléfono
                 </label>
-                <input type="number" class="form-control" />
+                <input type="number" class="form-control" id="telefonoReferencia[]" name="telefonoReferencia[]" />
             </div>
         </div>
         <div class="col-md-5">
@@ -32,7 +32,7 @@
                 <label class="bmd-label-floating">
                     Parentesco
                 </label>
-                <input type="number" class="form-control" />
+                <input type="text" class="form-control" id="parentescoReferencia[]" name="parentescoReferencia[]" />
             </div>
         </div>
     </div>

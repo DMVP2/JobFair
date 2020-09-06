@@ -18,9 +18,12 @@ $conexion = $c->conectarBD();
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
+//1107064047
+
 // 1010044745
 // 1000047820
-$documentoEstudiante = 1010044745;
+$documentoEstudiante = $_SESSION['usuario'];
+$documentoEstudiante = 1107064047;
 
 $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
@@ -89,7 +92,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                             <div class="col-lg-7">
 
 
-                                                <form>
+                                                <form id="formularioHojaVida" method="POST"
+                                                    action="/Softlutions/Presentacion/procedimientos/agregarHojaVida.php">
                                                     <br>
 
                                                     <div class="row">
@@ -157,7 +161,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                     <label class="bmd-label-floating">
                                                                         Perfil profesional</label>
                                                                     <textarea class="form-control" maxlength="950"
-                                                                        rows="6"></textarea>
+                                                                        name="perfilProfesionalArea"
+                                                                        id="perfilProfesionalArea" rows="6"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -172,7 +177,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                     <label class="bmd-label-floating">
                                                                         Certificaciones</label>
                                                                     <textarea class="form-control" maxlength="950"
-                                                                        rows="6"></textarea>
+                                                                        rows="6" name="certificacionesArea"
+                                                                        id="certificacionesArea"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -191,9 +197,10 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                         </div>
                                                         <div class="col-md-3">
 
-                                                            <select class="form-control ">
+                                                            <select class="form-control" id="disponibilidadViaje"
+                                                                name="disponibilidadViaje">
                                                                 <option value="No" selected>No</option>
-                                                                <option value="Si" selected>Si</option>
+                                                                <option value="Si">Si</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -212,8 +219,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <br><br>
 
-                                                    <input class="btn btn-warning" type="button"
-                                                        value="Agregar  &#x00A; estudio"
+                                                    <input class="btn btn-warning" type="button" value="Agregar estudio"
                                                         onclick="agregarCampoListaEstudio()">
                                                     <input class="btn btn-warning" type="button" value="Borrar estudio"
                                                         onclick="eliminarCampoListaEstudio()">
@@ -307,9 +313,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     <div class="row">
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-6">
-                                                            <button type="submit"
-                                                                class="btn btn-primary pull-center">Crear hoja de
-                                                                vida</button>
+                                                            <input type="button" class="btn btn-primary pull-center"
+                                                                value="Crear hoja de vida" onclick="enviarFormulario()">
                                                         </div>
 
                                                     </div>
@@ -448,9 +453,6 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
     }
 
-
-
-
     function maximoAño(elementoCambio) {
 
         var today = new Date();
@@ -461,39 +463,49 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
 
 
-    // AGREGAR CAMPO NUEVO EN IDIOMAS (OTRO)
-
-    function verificarOtroIdioma(object) {
-
-        if (object.value == "Otro") {
-
-            object.disabled = true;
-
-            $("<div>").load("./campos/listaIdioma.php?op=a",
-                function() {
-                    comp = object.parentNode.parentNode.parentNode.parentNode;
-                    var jComp = $(comp);
-                    jComp.append($(this).html());
-                });
-
-        }
-    }
-
     function verificarNivelEstudio(object) {
+
+
+
 
         if (object.value != "Bachiller") {
 
             object.disabled = true;
-
 
             $("<div>").load("./campos/listaEstudio.php?op=a",
                 function() {
                     comp = object.parentNode.parentNode.parentNode.parentNode;
                     var jComp = $(comp);
                     jComp.append($(this).html());
+
                 });
 
         }
+
+
+    }
+
+    function enviarFormulario() {
+        var formulario = document.getElementById("formularioHojaVida");
+
+        var selectsNivelEstudio = document.getElementsByName('nivelEstudio[]');
+        console.log(selectsNivelEstudio.length);
+        selectsNivelEstudio.forEach(function(elemento, indice, array) {
+            console.log(elemento, indice);
+            elemento.disabled = false;
+        })
+
+
+        var selectsIdiomas = document.getElementsByName('idiomas[]');
+        console.log(selectsIdiomas.length);
+        selectsIdiomas.forEach(function(elemento, indice, array) {
+            console.log(elemento, indice);
+            elemento.disabled = false;
+        })
+
+
+
+        formulario.submit();
     }
     </script>
 

@@ -2,6 +2,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_PERSISTENCIA . "HojaDeVidaDAO.php");
 
+
 /**
  * Clase que representa la clase "ManejoHojaDeVida"
  */
@@ -56,6 +57,55 @@ class ManejoHojaDeVida
     }
 
     /**
+     * Crea un estudio
+     *
+     * @param Estudio $pEstudio
+     */
+    public function crearEstudio($pEstudio, $pIdHojaVida)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $hojaDeVidaDAO->crearEstudio($pEstudio, $pIdHojaVida);
+    }
+
+    /**
+     * Crea una experiencia
+     *
+     * @param Experiencia $pExperiencia
+     * @param int $pIdHojaVida
+     */
+    public function crearExperiencia($experiencia, $pIdHojaVida)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $hojaDeVidaDAO->crearExperiencia($experiencia, $pIdHojaVida);
+    }
+
+
+    /**
+     * Crea un idioma hoja vida
+     *
+     * @param int $pIdHojaVida
+     * @param int $pIdIdioma 
+     * @param String $pNivel
+     */
+    public function crearHojaVidaIdioma($pIdHojaVida, $pIdioma, $pNivel)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $hojaDeVidaDAO->crearHojaVidaIdioma($pIdHojaVida, $pIdioma, $pNivel);
+    }
+
+    /**
+     * Crea una referencia personal
+     *
+     * @param int $pIdHojaVida
+     */
+    public function crearHojaVidaReferencia($pDatosReferencia, $pIdHojaVida)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $hojaDeVidaDAO->crearHojaVidaReferencia($pDatosReferencia, $pIdHojaVida);
+    }
+
+
+    /**
      * Busca una hoja de vida en la base de datos
      *
      * @param int $pIdEstudiante
@@ -66,6 +116,19 @@ class ManejoHojaDeVida
         $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
         $hojaDeVida = $hojaDeVidaDAO->consultar($pIdEstudiante);
         return $hojaDeVida;
+    }
+
+    /**
+     * Busca el id de una hoja de vida en la base de datos por el documento del estudiante
+     *
+     * @param int $pDocumentoEstudiante
+     * @return idHojaVida
+     */
+    public function consultarIdHojaVida($pDocumentoEstudiante)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $idHoja = $hojaDeVidaDAO->consultarIdHojaVida($pDocumentoEstudiante);
+        return $idHoja;
     }
 
     /**
@@ -80,6 +143,19 @@ class ManejoHojaDeVida
     }
 
     /**
+     * Listar idiomas
+     *
+     * @return String[][]
+     */
+    public function listarIdiomas()
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $listaIdiomas = $hojaDeVidaDAO->listarIdiomas();
+        return $listaIdiomas;
+    }
+
+
+    /**
      * Elimina una hoja de vida
      *
      * @param int $pHojaDeVida
@@ -89,5 +165,4 @@ class ManejoHojaDeVida
         $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
         $hojaDeVidaDAO->eliminar($pHojaDeVida);
     }
-
 }
