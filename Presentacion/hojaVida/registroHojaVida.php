@@ -18,12 +18,8 @@ $conexion = $c->conectarBD();
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
-//1107064047
 
-// 1010044745
-// 1000047820
 $documentoEstudiante = $_SESSION['usuario'];
-$documentoEstudiante = 1107064047;
 
 $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
