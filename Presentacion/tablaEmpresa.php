@@ -96,11 +96,9 @@ $next = $page + 1;
                             <select name="records-limit" id="records-limit" class="custom-select">
                                 <option disabled selected>Límite</option>
                                 <?php foreach ([5, 10, 15, 20] as $limit) : ?>
-                                <option
-                                    <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?>
-                                    value="<?= $limit; ?>">
-                                    <?= $limit; ?>
-                                </option>
+                                    <option <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?> value="<?= $limit; ?>">
+                                        <?= $limit; ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </form>
@@ -116,53 +114,76 @@ $next = $page + 1;
                                 </div>
                                 <div class="card-body">
 
-                                        <div class="table-responsive">
+                                    <div class="table-responsive">
 
-                                        
-                                            <table class="table">
-                                                <thead class=" text-primary">
-                                                    <th>
-                                                        ID
-                                                    </th>
-                                                    <th>
-                                                        Razón Social
-                                                    </th>
-                                                    <th>
-                                                        Razón Comercial
-                                                    </th>
-                                                    <th>
-                                                        Estado
-                                                    </th>
-                                                </thead>
-                                                <tbody>
+
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                                <th>
+                                                    ID
+                                                </th>
+                                                <th>
+                                                    Razón Social
+                                                </th>
+                                                <th>
+                                                    Razón Comercial
+                                                </th>
+                                                <th>
+                                                    Estado
+                                                </th>
+                                                <th>
+                                                    Perfil
+                                                </th>
+                                            </thead>
+                                            <tbody>
                                                 <?php
 
                                                 foreach ($empresas as $empresa) {
                                                 ?>
-                                                    
-                                               <thead class=" text-primary">
-                                                    <th>
-                                                        <?php echo $empresa->getNit() ?>
-                                                    </th>
-                                                    <th>
-                                                        <?php echo $empresa->getRazonSocial() ?>
-                                                    </th>
-                                                    <th>
-                                                        <?php echo $empresa->getRazonComercial() ?>
-                                                    </th>
-                                                    <th>
-                                                        <?php echo $empresa->getEstadoEmpresa() ?>
-                                                    </th>
-                                                </thead>
+
+                                                    <thead class=" text-primary">
+                                                        <th>
+                                                            <?php echo $empresa->getNit() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $empresa->getRazonSocial() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $empresa->getRazonComercial() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $empresa->getEstadoEmpresa() ?>
+                                                        </th>
+                                                        <th>
+                                                            <form action="informacionEmpresa.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                                                <button class="btn btn-success" type="submit" id="submit" name="empresa" value="" tooltip="Ver perfil">
+                                                                <i class="material-icons">visibility</i>
+                                                                </button>
+                                                            </form>
+                                                            <form action="informacionEmpresa.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                                                <button class="btn btn-warning" type="submit" id="submit" name="empresa" value="" >
+                                                                <i class="material-icons">edit</i>
+                                                                </button>
+                                                            </form>
+                                                            <form action="informacionEmpresa.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                                                <button class="btn btn-danger" type="submit" id="submit" name="empresa" value="" tooltip="Inhabilitar">
+                                                                    <i class="material-icons">delete</i>
+                                                                </button>
+                                                            </form>
+                                                        </th>
+                                                    </thead>
 
                                                 <?php
-                                                    }
+                                                }
 
-                                                    ?>
+                                                ?>
 
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -170,7 +191,7 @@ $next = $page + 1;
 
 
 
-                     </div>
+                    </div>
                     <!-- Pagination -->
                     <nav aria-label="Page navigation example mt-5">
                         <ul class="pagination justify-content-center">
@@ -186,11 +207,11 @@ $next = $page + 1;
                             </li>
 
                             <?php for ($i = 1; $i <= $totoalPages; $i++) : ?>
-                            <li class="page-item <?php if ($page == $i) {
+                                <li class="page-item <?php if ($page == $i) {
                                                             echo 'active';
                                                         } ?>">
-                                <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
-                            </li>
+                                    <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+                                </li>
                             <?php endfor; ?>
 
                             <li class="page-item <?php if ($page >= $totoalPages) {
@@ -448,11 +469,11 @@ $next = $page + 1;
         });
     </script>
     <script>
-    $(document).ready(function() {
-        $('#records-limit').change(function() {
-            $('form').submit();
-        })
-    });
+        $(document).ready(function() {
+            $('#records-limit').change(function() {
+                $('form').submit();
+            })
+        });
     </script>
 </body>
 

@@ -162,7 +162,21 @@ $next = $page + 1;
                                                         <th>
                                                             <form action="informacionEstudiante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <input class="btn btn-primary" type="submit" id="submit" name="estudiante" value="Ver perfil">
+                                                                <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="" tooltip="Ver perfil">
+                                                                    <i class="material-icons">visibility</i>
+                                                                </button>
+                                                            </form>
+                                                            <form action="informacionEstudiante.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                                                <button class="btn btn-warning" type="submit" id="submit" name="estudiante" value="">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>
+                                                            </form>
+                                                            <form action="informacionEstudiante.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                                                <button class="btn btn-danger" type="submit" id="submit" name="estudiante" value="" tooltip="Inhabilitar">
+                                                                    <i class="material-icons">delete</i>
+                                                                </button>
                                                             </form>
                                                         </th>
                                                     </thead>

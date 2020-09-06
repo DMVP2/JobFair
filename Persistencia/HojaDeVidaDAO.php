@@ -66,7 +66,14 @@ class HojaDeVidaDAO implements DAO
     {
         $sql = "SELECT * FROM HOJA_VIDA WHERE numero_documento = $codigo";
 
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
+        $result = mysqli_query($this->conexion, $sql);
+
+        if(mysqli_num_rows($result) == 0)
+        {
+            return null;
+        }
+        else
+        {
         $row = mysqli_fetch_array($result);
 
         $hojaDeVida = new HojaDeVida();
@@ -82,6 +89,7 @@ class HojaDeVidaDAO implements DAO
         $hojaDeVida->setReferenciasPersonales($referencias);
         $experiencias = $this->consultarExperienciaLaboral($row[0]);
         $hojaDeVida->setExperienciaLaboral($experiencias);
+        }
 
         return $hojaDeVida;
     }
@@ -164,7 +172,7 @@ class HojaDeVidaDAO implements DAO
      */
     public function consultarEstudios($pHojaVida)
     {
-        $sql = "SELECT * FROM ESTUDIO, HOJA_VIDA WHERE id_hoja_vida = $pHojaVida AND id_estudio = id_estudio";
+        $sql = "SELECT * FROM ESTUDIO, HOJA_VIDA, HOJA_VIDA_ESTUDIOS WHERE HOJA_VIDA.id_hoja_vida = $pHojaVida AND ESTUDIO.id_estudio = HOJA_VIDA_ESTUDIOS.id_estudio AND HOJA_VIDA.id_hoja_vida = HOJA_VIDA_ESTUDIOS.id_hoja_vida";
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
@@ -201,7 +209,7 @@ class HojaDeVidaDAO implements DAO
      */
     public function consultarReferenciasPersonales($pHojaVida)
     {
-        $sql = "SELECT * FROM REFERENCIA_PERSONAL, HOJA_VIDA WHERE id_hoja_vida = $pHojaVida AND id_referencia = id_referencia";
+        $sql = "SELECT * FROM REFERENCIA_PERSONAL, HOJA_VIDA, REFERENCIA_PERSONAL_HOJA_VIDA WHERE HOJA_VIDA.id_hoja_vida = $pHojaVida AND REFERENCIA_PERSONAL_HOJA_VIDA.id_referencia_personal = REFERENCIA_PERSONAL.id_referencia AND REFERENCIA_PERSONAL_HOJA_VIDA.id_hoja_vida = HOJA_VIDA.id_hoja_vida";
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
@@ -234,7 +242,7 @@ class HojaDeVidaDAO implements DAO
      */
     public function consultarExperienciaLaboral($pHojaVida)
     {
-        $sql = "SELECT * FROM EXPERIENCIA_LABORAL, HOJA_VIDA WHERE id_hoja_vida = $pHojaVida AND id_experiencia = id_experiencia";
+        $sql = "SELECT * FROM EXPERIENCIA_LABORAL, HOJA_VIDA, EXPERIENCIA_LABORAL_HOJA_VIDA WHERE HOJA_VIDA.id_hoja_vida = $pHojaVida AND EXPERIENCIA_LABORAL.id_experiencia = EXPERIENCIA_LABORAL_HOJA_VIDA.id_experiencia AND HOJA_VIDA.id_hoja_vida = EXPERIENCIA_LABORAL_HOJA_VIDA.id_hoja_vida";
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 

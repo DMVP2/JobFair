@@ -36,7 +36,26 @@ $manejoEstudiantes = new ManejoEstudiante($conexion);
 $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
+
+if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) 
+{
 $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
+}
+
+$ruta = "";
+
+if(strcasecmp($rolUsuario, "Estudiante") == 0)
+{
+$ruta = "portalEstudiante.php";
+}
+else if(strcasecmp($rolUsuario, "Administrador") == 0)
+{
+  $ruta = "tablaEstudiante.php";
+}
+else
+{
+  $ruta = "";
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +86,7 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
                 <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
                 <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
-                <a class="btn btn-primary" href="javascript:history.back()" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
+                <a class="btn btn-primary" href="tablaEstudiante.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
             </div>
           </div>
@@ -103,128 +122,165 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
                 </div>
               </div>
               <div class="col-lg-6 col-md-12">
-                <div class="card-body">
-                  <div class="h4 mt-0 title">Perfil profesional</div>
-                  <p> <strong> Perfil profesional: </strong> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
-                  <p> <strong> Certificaciones: </strong> <?php echo $hojaVida->getCertificaciones() ?> </p>
-                </div>
+
+                <?php
+                if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) 
+                {
+                if ($hojaVida->getPerfilProfesional() != null AND $hojaVida->getCertificaciones() != null) {
+                ?>
+                  <div class="card-body">
+                    <div class="h4 mt-0 title">Perfil profesional</div>
+                    <p> <strong> Perfil profesional: </strong> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
+                    <p> <strong> Certificaciones: </strong> <?php echo $hojaVida->getCertificaciones() ?> </p>
+                  </div>
+
+                <?php
+                }
+                ?>
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="section" id="skill">
-        <div class="container">
-          <div class="h4 text-center mb-4 title">Idiomas</div>
-          <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-            <div class="card-body">
 
-              <?php
+      <?php
+      if ($hojaVida->getIdiomas() != null) {
+      ?>
+        <div class="section" id="skill">
+          <div class="container">
+            <div class="h4 text-center mb-4 title">Idiomas</div>
+            <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+              <div class="card-body">
 
-              foreach ($hojaVida->getIdiomas() as $idioma) {
+                <?php
+                foreach ($hojaVida->getIdiomas() as $idioma) {
 
-                $nivel = "0";
+                  $nivel = "0";
 
-                if (strcasecmp($idioma[1], "Básico") == 0) {
-                  $nivel = "30";
-                }
-                if (strcasecmp($idioma[1], "Intermedio") == 0) {
-                  $nivel = "50";
-                }
-                if (strcasecmp($idioma[1], "Avanzado") == 0) {
-                  $nivel = "70";
-                }
-                if (strcasecmp($idioma[1], "Nativo") == 0) {
-                  $nivel = "100";
-                }
+                  if (strcasecmp($idioma[1], "Básico") == 0) {
+                    $nivel = "30";
+                  }
+                  if (strcasecmp($idioma[1], "Intermedio") == 0) {
+                    $nivel = "50";
+                  }
+                  if (strcasecmp($idioma[1], "Avanzado") == 0) {
+                    $nivel = "70";
+                  }
+                  if (strcasecmp($idioma[1], "Nativo") == 0) {
+                    $nivel = "100";
+                  }
 
-              ?>
+                ?>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="progress-container progress-primary"><span class="progress-badge"> <?php echo $idioma[0] ?> </span>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $nivel . "%" ?>;"></div><span class="progress-value"> <?php echo $idioma[1] ?> <?php echo "(" . $nivel . "%)" ?> </span>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="progress-container progress-primary"><span class="progress-badge"> <?php echo $idioma[0] ?> </span>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $nivel . "%" ?>;"></div><span class="progress-value"> <?php echo $idioma[1] ?> <?php echo "(" . $nivel . "%)" ?> </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-              <?php
-              }
-              ?>
+                <?php
+                }
+                ?>
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="section" id="experience">
-        <div class="container cc-experience">
-          <div class="h4 text-center mb-4 title">Experiencia laboral</div>
+      <?php
+      }
+      ?>
 
-          <?php
+      <?php
+      if ($hojaVida->getExperienciaLaboral() != null) {
+      ?>
+        <div class="section" id="experience">
+          <div class="container cc-experience">
+            <div class="h4 text-center mb-4 title">Experiencia laboral</div>
 
-          foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
+            <?php
 
-          ?>
+            foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
 
-            <div class="card">
-              <div class="row">
-                <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-                  <div class="card-body cc-experience-header">
-                    <p> <?php echo $experiencia[3] ?> </p>
-                    <div class="h5"> <?php echo $experiencia[2] ?> </div>
+            ?>
+
+              <div class="card">
+                <div class="row">
+                  <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                    <div class="card-body cc-experience-header">
+                      <p> <?php echo $experiencia[3] ?> </p>
+                      <div class="h5"> <?php echo $experiencia[2] ?> </div>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                  <div class="card-body">
-                    <div class="h5"> <?php echo $experiencia[0] ?> </div>
-                    <p> <?php echo $experiencia[1] ?> </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          <?php
-          }
-          ?>
-
-        </div>
-      </div>
-      <div class="section">
-        <div class="container cc-education">
-          <div class="h4 text-center mb-4 title">Educación</div>
-
-          <?php
-
-          foreach ($hojaVida->getEstudios() as $estudio) {
-
-          ?>
-            <div class="card">
-              <div class="row">
-                <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-                  <div class="card-body cc-education-header">
-                    <p> <?php echo $estudio[4] ?> </p>
-                    <div class="h5"><?php echo $estudio[3] ?> </div>
-                  </div>
-                </div>
-                <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                  <div class="card-body">
-                    <div class="h5"> <?php echo $estudio[0] ?> </div>
-                    <p class="category"> <?php echo $estudio[2] ?> </p>
-                    <p> Area de estudio: <?php echo $estudio[1] ?></p>
+                  <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                    <div class="card-body">
+                      <div class="h5"> <?php echo $experiencia[0] ?> </div>
+                      <p> <?php echo $experiencia[1] ?> </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-          <?php
-          }
-          ?>
+            <?php
+            }
+            ?>
 
+          </div>
         </div>
-      </div>
+
+      <?php
+      }
+      ?>
+
+      <?php
+      if ($hojaVida->getEstudios() != null) {
+      ?>
+        <div class="section">
+          <div class="container cc-education">
+            <div class="h4 text-center mb-4 title">Educación</div>
+
+            <?php
+
+            foreach ($hojaVida->getEstudios() as $estudio) {
+
+            ?>
+              <div class="card">
+                <div class="row">
+                  <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                    <div class="card-body cc-education-header">
+                      <p> <?php echo $estudio[4] ?> </p>
+                      <div class="h5"><?php echo $estudio[3] ?> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                    <div class="card-body">
+                      <div class="h5"> <?php echo $estudio[0] ?> </div>
+                      <p class="category"> <?php echo $estudio[2] ?> </p>
+                      <p> Area de estudio: <?php echo $estudio[1] ?></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <?php
+            }
+            ?>
+
+          </div>
+        </div>
     </div>
+
+  <?php
+      }
+  ?>
+
+  <?php
+  if ($hojaVida->getReferenciasPersonales() != null) {
+  ?>
     <div class="section" id="reference">
       <div class="container cc-reference">
         <div class="h4 mb-4 text-center title">Referencias personales</div>
@@ -252,12 +308,16 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
 
       </div>
     </div>
+
+  <?php
+  }
+}
+  ?>
   </div>
   </div>
   <footer class="footer">
-    <div class="h4 title text-center">Anthony Barnett</div>
     <div class="text-center text-muted">
-      <p>&copy; Creative CV. All rights reserved.<br>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p>
+      <p>Desing by: Anthony Barnett <br> &copy; Creative CV. All rights reserved.<br>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p>
     </div>
   </footer>
   <script src=<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "js/core/jquery.3.2.1.min.js" ?>></script>
