@@ -80,6 +80,9 @@ class VacanteDAO implements DAO
 		$vacante->setPosibilidadViaje($row[5]);
 		$vacante->setSalarioVacante($row[6]);
 		$vacante->setExperiencia($row[7]);
+		$vacante->setEstado($row[8]);
+		$ciudad = $this->obtenerCiudadVacante($row[0]);
+		$vacante->setCiudad($ciudad);
 
 		return $vacante;
 	}
@@ -132,6 +135,8 @@ class VacanteDAO implements DAO
 			$vacante->setSalarioVacante($row[6]);
 			$vacante->setExperiencia($row[7]);
 			$vacante->setEstado($row[8]);
+			$ciudad = $this->obtenerCiudadVacante($row[0]);
+			$vacante->setCiudad($ciudad);
 
 
 			$vacanteArray[] = $vacante;
@@ -149,6 +154,7 @@ class VacanteDAO implements DAO
 	public function listaPaginacionActiva($pagInicio, $limit)
 	{
 		$sql = "SELECT * FROM vacante WHERE estado_vacante='Activo' ORDER BY id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
+
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$vacanteArray = array();
@@ -164,6 +170,8 @@ class VacanteDAO implements DAO
 			$vacante->setSalarioVacante($row[6]);
 			$vacante->setExperiencia($row[7]);
 			$vacante->setEstado($row[8]);
+			$ciudad = $this->obtenerCiudadVacante($row[0]);
+			$vacante->setCiudad($ciudad);
 
 
 			$vacanteArray[] = $vacante;
@@ -188,34 +196,38 @@ class VacanteDAO implements DAO
 
 
 	/**
-	 * Obtiene el nit de la empresa que postulo una vacante
+	 * Obtiene el NIT de la empresa que postulo una vacante
 	 *
-	 * @param $pCodVacante
-	 * @return int $nitEmpresa
+	 * @param $codigo
+	 * @return int
 	 */
-	public function consultarNitEmpresa($pCodVacante)
+	public function consultarNitEmpresa($codigo)
 	{
-		$sql = "SELECT id_empresa FROM EMPRESA_VACANTE, VACANTE WHERE vacante.id_vacante = empresa_vacante.id_vacante AND vacante.id_vacante = " . $pCodVacante;
-		$consulta = mysqli_query($this->conexion, $sql);
-		$resultado = mysqli_fetch_array($consulta)[0];
+		$sql = "SELECT id_empresa FROM EMPRESA_VACANTE, VACANTE WHERE vacante.id_vacante = empresa_vacante.id_vacante AND vacante.id_vacante = " . $codigo;
+		
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
+		$resultado = mysqli_fetch_array($result)[0];
+		
 		return $resultado;
 	}
 
 
 	/**
-	 * Método para obtener una lista de las categorias de la vacantes
+	 * Método para obtener la ciudad (Ubicación) donde se oferta la vacante
 	 *
-	 * @param int codigo
+	 * @param int $codigo
 	 * @return String[]
 	 */
-	public static function obtenerCiudadVacante(int $codigo)
+	public function obtenerCiudadVacante(int $codigo)
 	{
-		$sql = "SELECT * FROM CIUDAD WHERE VACANTE_CIUDAD.id_VACANTE = $codigo AND VACANTE_CIUDAD.id_ciudad = CIUDAD.id_ciudad";
+		$sql = "SELECT * FROM VACANTE, CIUDAD WHERE id_vacante = $codigo AND id_ciudad = id_ciudad";
 
-		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		if(!$result = mysqli_query($this->conexion, $sql)) die();
 
-		return $result;
+		$resultado = mysqli_fetch_array($result);
+
+		return $resultado[1];
 	}
 
 	/**
@@ -224,7 +236,7 @@ class VacanteDAO implements DAO
 	 * @param int codigo
 	 * @return String
 	 */
-	public static function obtenerCategoriasvacante(int $codigo)
+	public function obtenerCategoriasVacante(int $codigo)
 	{
 		$sql = "SELECT * FROM CATEGORIA WHERE CATEGORIA_VACANTE.id_vacante = $codigo AND CATEGORIA_VACANTE.id_categoria = CATEGORIA.id_categoria";
 
@@ -233,13 +245,12 @@ class VacanteDAO implements DAO
 		return $result;
 	}
 
-
 	/**
 	 * Método para listar ciudades
 	 *
 	 * @return Arreglo
 	 */
-	public static function listarCiudades()
+	public function listarCiudades()
 	{
 
 		$sql = "SELECT * FROM CIUDAD";
@@ -259,7 +270,7 @@ class VacanteDAO implements DAO
 	 *
 	 * @return Arreglo
 	 */
-	public static function listarCategorias()
+	public function listarCategorias()
 	{
 
 		$sql = "SELECT * FROM CATEGORIA";

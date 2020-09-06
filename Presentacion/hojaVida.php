@@ -55,7 +55,7 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
               <div class="content-center">
                 <div class="cc-profile-image"><a href="#"><img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>></a></div>
                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
-                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
+                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p><a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
             </div>
           </div>

@@ -92,6 +92,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
                                         <div class="alert alert-success" style="text-align: left"><strong> Programa académico: </strong> <?php echo $vacante->getProgramaAcademico() ?> </div>
                                         <div class="alert alert-success" style="text-align: left"><strong> Horario de la vacante: </strong> <?php echo $vacante->getHorarioVacante() ?> </div>
                                         <div class="alert alert-success" style="text-align: left"><strong> Salario de la vacante: </strong> <?php echo $vacante->getSalarioVacante() ?> </div>
+                                        <div class="alert alert-success" style="text-align: left"><strong> Ubicación donde se realiza la vacante: </strong> <?php echo $vacante->getCiudad() ?> </div>
                                     </div>
                                     <div class="col-md-6">
 
