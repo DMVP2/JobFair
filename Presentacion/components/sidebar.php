@@ -30,16 +30,30 @@ $rolUsuario = $_SESSION['rol'];
                     </a>
                 </li>
                 <br>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">assessment</i>
                         <p>Gestión de información</p>
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                        <a class="dropdown-item" href="tablaEmpresa.php">
+                            <i class="material-icons">apartment</i>
+                            <p>Empresas</p>
+                        </a>
+                        <a class="dropdown-item" href="tablaEstudiante.php">
+                            <i class="material-icons">face</i>
+                            <p>Estudiantes</p>
+                        </a>
+                        <a class="dropdown-item" href="tablaVacante.php">
+                            <i class="material-icons">assessment</i>
+                            <p>Vacantes</p>
+                        </a>
+                    </div>
                 </li>
                 <br>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="material-icons">analytics</i>
+                        <i class="material-icons">groups</i>
                         <p>Reportes</p>
                     </a>
                 </li>
@@ -50,7 +64,7 @@ $rolUsuario = $_SESSION['rol'];
         }
         ?>
 
-       <!-- En caso de que el usuario se "Empresa" -->
+        <!-- En caso de que el usuario se "Empresa" -->
 
         <?php if (strcasecmp($rolUsuario, "Empresa") == 0) {
         ?>

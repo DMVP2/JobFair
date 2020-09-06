@@ -55,7 +55,7 @@ $conexion = $c->conectarBD();
               <br>
               <br>
               <p><a href="#">¿Olvidaste tu Contraseña?</a></p>
-              <p><a href="#">Volver</a></p>
+              <p><a href="javascript:history.back()">Volver</a></p>
             </section>
 
           </div>

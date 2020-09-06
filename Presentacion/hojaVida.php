@@ -22,11 +22,21 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 $idUsuario = $_SESSION['usuario'];
+
+$idEstudiante = "";
+
+$rolUsuario = $_SESSION['rol'];
+if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+  $idEstudiante = $idUsuario;
+} else {
+  $idEstudiante = $_POST['idEstudiante'];
+}
+
 $manejoEstudiantes = new ManejoEstudiante($conexion);
-$estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
+$estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
-$hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
+$hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
 ?>
 
 <!DOCTYPE html>
@@ -53,9 +63,11 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
             <div class="page-header-image" data-parallax="true" style="background: rgb(62, 71, 41);"></div>
             <div class="container">
               <div class="content-center">
-                <div class="cc-profile-image"><a href="#"><img class="img" src= <?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>></a></div>
+                <div class="cc-profile-image"><a href="#"><img class="img" src=<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>></a></div>
                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
-                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
+                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
+                <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
+                <a class="btn btn-primary" href="javascript:history.back()" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
             </div>
           </div>
@@ -65,7 +77,7 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
         <div class="container">
           <div class="card" data-aos="fade-up" data-aos-offset="10">
             <div class="row">
-            <div class="col-lg-6 col-md-12">
+              <div class="col-lg-6 col-md-12">
                 <div class="card-body">
                   <div class="h4 mt-0 title">Información básica</div>
                   <div class="row mt-3">
@@ -160,7 +172,7 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
               <div class="row">
                 <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
                   <div class="card-body cc-experience-header">
-                    <p>  <?php echo $experiencia[3] ?> </p>
+                    <p> <?php echo $experiencia[3] ?> </p>
                     <div class="h5"> <?php echo $experiencia[2] ?> </div>
                   </div>
                 </div>
@@ -222,7 +234,7 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
         foreach ($hojaVida->getReferenciasPersonales() as $referencia) {
 
         ?>
-<div class="card" data-aos="zoom-in">
+          <div class="card" data-aos="zoom-in">
             <div class="row">
               <div class="col-lg-2 col-md-3 cc-reference-header">
                 <div class="h5 pt-2"> <img src=<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "images/users.png" ?> alt="Image" /> </div>
@@ -233,7 +245,7 @@ $hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
                 <p> Parentesco: <?php echo $referencia[2] ?> </p>
               </div>
             </div>
-</div>
+          </div>
         <?php
         }
         ?>

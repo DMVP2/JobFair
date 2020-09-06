@@ -2,15 +2,16 @@
 
 session_start();
 
+if (!isset($_SESSION['usuario'])) {
+
+    header("location:../index.php");
+}
+
 // Importación de clases
 
 include_once('../rutas.php');
-include_once('../Persistencia/Conexion.php');
-include_once('../Negocio/ManejoEstudiante.php');
-
-// Nombre de la pagina
-
-$nombrePagina = basename(__FILE__);
+include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoEstudiante.php');
 
 // Conexión con la base de datos
 
@@ -18,38 +19,13 @@ $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
-// CAMBIO
+
+
+$idUsuario = $_SESSION['usuario'];
+$idEstudiante = $_POST['idEstudiante'];
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
-
-// Paginación
-
-if (isset($_POST['records-limit'])) {
-    $_SESSION['records-limit'] = $_POST['records-limit'];
-}
-
-$limit = isset($_SESSION['records-limit']) ? $_SESSION['records-limit'] : 10;
-$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
-$paginationStart = ($page - 1) * $limit;
-
-// RETORNA EL ARREGLO DE LA BD
-// CAMBIO
-
-$estudiantes = $manejoEstudiantes->listarEstudiantesPaginacion($paginationStart, $limit);
-
-// CANTIDAD TOTAL A CARGAR - COUNT BD
-// CAMBIO
-
-$allRecords = $manejoEstudiantes->cantidadEstudiantes();
-
-// Total de las paginas
-
-$totalPages = ceil($allRecords / $limit);
-
-// Prev + Next
-
-$prev = $page - 1;
-$next = $page + 1;
+$estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 
 ?>
 
@@ -66,9 +42,8 @@ $next = $page + 1;
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css?v=2.1.2"  ?>" rel="stylesheet" />
+    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
 </head>
 
 <body>
@@ -90,135 +65,53 @@ $next = $page + 1;
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
-                    <!-- Select dropdown -->
-                    <div class="d-flex flex-row-reverse bd-highlight mb-3">
-                        <form action="<?php echo $nombrePagina ?>" method="post">
-                            <select name="records-limit" id="records-limit" class="custom-select">
-                                <option disabled selected>Límite</option>
-                                <?php foreach ([5, 10, 15, 20] as $limit) : ?>
-                                    <option <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?> value="<?= $limit; ?>">
-                                        <?= $limit; ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </form>
-                    </div>
-                    <!-- Select dropdown -->
-
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Estudiantes</h4>
-                                    <p class="card-category">Listado de los estudiantes registradas en el sistema</p>
-                                </div>
-                                <div class="card-body">
 
-                                    <div class="table-responsive">
-
-
-                                        <table class="table">
-                                            <thead class=" text-primary">
-                                                <th>
-                                                    ID
-                                                </th>
-                                                <th>
-                                                    Nombre
-                                                </th>
-                                                <th>
-                                                    Correo
-                                                </th>
-                                                <th>
-                                                    Programa académico
-                                                </th>
-                                                <th>
-                                                    Semestre
-                                                </th>
-                                                <th>
-                                                    Perfil
-                                                </th>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-
-                                                foreach ($estudiantes as $estudiante) {
-                                                ?>
-                                                    <thead class=" text-primary">
-                                                        <th>
-                                                            <?php echo $estudiante->getNumeroDocumento() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getNombre() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getCorreo() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getProgramaAcademico() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getSemestreActual() ?>
-                                                        </th>
-                                                        <th>
-                                                            <form action="informacionEstudiante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <input class="btn btn-primary" type="submit" id="submit" name="estudiante" value="Ver perfil">
-                                                            </form>
-                                                        </th>
-                                                    </thead>
-
-                                                <?php
-                                                }
-
-                                                ?>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
-                    <!-- Pagination -->
-                    <nav aria-label="Page navigation example mt-5">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item <?php if ($page <= 1) {
-                                                        echo 'disabled';
-                                                    } ?>">
-                                <a class="page-link" href="<?php if ($page <= 1) {
-                                                                echo '#';
-                                                            } else {
-                                                                echo "?page=" . $prev;
-                                                            } ?>"><span aria-hidden="true">&laquo;</span></a>
+                    <div class="col-md-12">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <img class="img" src=<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico() ?> </h5>
+                                <h3 class="card-title"><?php echo $estudiante->getNombre() ?></h3>
+                                <br>
+                                <h5> Documento: <?php echo $estudiante->getTipoDeDocumento() . " " . $estudiante->getNumeroDocumento() ?></h2>
+                                    <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h5>
+                                    <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h5>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="alert alert-success" style="text-align: left"><strong> Programa académico: </strong> <?php echo $estudiante->getProgramaAcademico() ?> </div>
+                                        </div>
+                                        <div class="col-md-6">
 
-                            </li>
+                                            <?php
+                                            if (strcasecmp($estudiante->getExperiencia(), "Si") == 0) {
+                                            ?>
+                                                <div class="alert alert-warning" style="text-align: left"><strong> Experiencia de la vacante: </strong> <?php echo $estudiante->getExperiencia() ?> </div>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="alert alert-danger" style="text-align: left"><strong> Experiencia de la vacante: </strong> <?php echo $estudiante->getExperiencia() ?> </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <form action="hojaVida.php" method="post">
+                                        <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                        <input class="btn btn-primary" type="submit" id="submit" name="estudiante" value="Ver hoja de vida">
+                                    </form>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
 
-                            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                                <li class="page-item <?php if ($page == $i) {
-                                                            echo 'active';
-                                                        } ?>">
-                                    <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
-                                </li>
-                            <?php endfor; ?>
-
-                            <li class="page-item <?php if ($page >= $totalPages) {
-                                                        echo 'disabled';
-                                                    } ?>">
-                                <a class="page-link" href="<?php if ($page >= $totalPages) {
-                                                                echo '#';
-                                                            } else {
-                                                                echo "?page=" . $next;
-                                                            } ?>"><span aria-hidden="true">&raquo;</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- Pagination -->
-
-
-
+                    <!-- CONTENIDO PAGINA -->
 
                 </div>
             </div>
@@ -237,8 +130,6 @@ $next = $page + 1;
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>"></script>
-
-    <?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
     </script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
@@ -271,7 +162,6 @@ $next = $page + 1;
                 $sidebar_responsive = $("body > .navbar-collapse");
 
                 window_width = $(window).width();
-
 
                 fixed_plugin_open = $(
                     ".sidebar .sidebar-wrapper .nav li.active a p"
@@ -444,13 +334,11 @@ $next = $page + 1;
                     }
 
                     // We simulate the window Resize so the charts will get updated in realtime.
-
                     var simulateWindowResize = setInterval(function() {
                         window.dispatchEvent(new Event("resize"));
                     }, 180);
 
                     // We stop the simulation of Window Resize after the animations are completed
-
                     setTimeout(function() {
                         clearInterval(simulateWindowResize);
                     }, 1000);
@@ -460,17 +348,8 @@ $next = $page + 1;
     </script>
     <script>
         $(document).ready(function() {
-
             // Javascript method's body can be found in assets/js/demos.js
-
             md.initDashboardPageCharts();
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#records-limit').change(function() {
-                $('form').submit();
-            })
         });
     </script>
 </body>
