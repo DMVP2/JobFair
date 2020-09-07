@@ -255,7 +255,6 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                             <div class="form-group">
                                                                 <label class="bmd-label-floating">
                                                                     Idioma</label>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5">

@@ -19,4 +19,4 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
 
 
-$manejoHojaVida->limpiarDatosHojaVida($idUsuario);
+//$manejoHojaVida->limpiarDatosHojaVida($idUsuario);

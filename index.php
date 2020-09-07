@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-include_once('./rutas.php') 
+include_once('./rutas.php')
 
 ?>
 
@@ -36,13 +36,17 @@ include_once('./rutas.php')
 
                     <div class="card-body">
 
-                        <img class="img" width="60%" src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "banner3.png" ?>" />
+                        <img class="img" width="60%"
+                            src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "banner3.png" ?>" />
 
                         <div>
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-primary" onclick="window.location.href='Presentacion/login.php'">Iniciar Sesión</button>
-                            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                            <button type="submit" class="btn btn-primary"
+                                onclick="window.location.href='Presentacion/login.php'">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-primary"
+                                onclick="window.location.href='Presentacion/registroEstudiante.php'">Crear
+                                Cuenta</button>
                             <br>
                             <br>
                             <br>

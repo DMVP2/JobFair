@@ -63,233 +63,182 @@ $conexion = $c->conectarBD();
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
 
                                         </div>
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-9">
 
 
                                             <form id="formRegistroEstudiante" method="POST"
                                                 action="/Softlutions/Presentacion/procedimientos/registrarEstudiante.php">
                                                 <br>
 
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating">
 
-                                                            </label>
-                                                            <input type="text" class="form-control" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating"></label>
-                                                            <input type="text" class="form-control" disabled>
-                                                        </div>
-                                                    </div>
 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating"></label>
-                                                            <input type="text" class="form-control" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating"></label>
-                                                            <input type="text" class="form-control" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating">
-
-                                                            </label>
-                                                            <input type="text" class="form-control" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating">Semestre
-                                                            </label>
-                                                            <input type="text" class="form-control" disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                                 <br>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    Perfil profesional</label>
-                                                                <textarea class="form-control" maxlength="950"
-                                                                    name="perfilProfesionalArea"
-                                                                    id="perfilProfesionalArea" rows="6"></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    Certificaciones</label>
-                                                                <textarea class="form-control" maxlength="950" rows="6"
-                                                                    name="certificacionesArea"
-                                                                    id="certificacionesArea"></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <br><br>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label class="bmd-label-floating" style="padding-top: 15px;">
-                                                            Disponibilidad de viaje:
-                                                        </label>
-
-                                                    </div>
-                                                    <div class="col-md-3">
-
-                                                        <select class="form-control" id="disponibilidadViaje"
-                                                            name="disponibilidadViaje">
-                                                            <option value="No" selected>No</option>
-                                                            <option value="Si">Si</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <br><br>
-
-                                                <div class="alert alert-info" style="height: 50px;">
-                                                    <h6> Estudios</h6>
-                                                </div>
-
-                                                <div id="divListaEstudios">
-
-
-                                                </div>
-
-                                                <br><br>
-
-                                                <input class="btn btn-warning" type="button" value="Agregar estudio"
-                                                    onclick="agregarCampoListaEstudio()">
-                                                <input class="btn btn-warning" type="button" value="Borrar estudio"
-                                                    onclick="eliminarCampoListaEstudio()">
-
-
-                                                <br><br><br>
-
-
-                                                <div class="alert alert-info" style="height: 50px;">
-                                                    <h6> Experiencia laboral</h6>
-                                                </div>
-
-
-                                                <div id="divListaExperiencia">
-
-
-
-                                                </div>
-
-                                                <br><br>
-
-                                                <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                    onclick="agregarCampoExperiencia()">
-                                                <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                    onclick="eliminarCampoExperiencia()">
-
-
-
-                                                <br><br><br>
-
-                                                <div class="alert alert-info" style="height: 50px;">
-                                                    <h6> Idiomas</h6>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating">
-                                                                Idioma</label>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
-                                                            <label class="bmd-label-floating">
-                                                                Nivel</label>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div id="divListaIdiomas">
-
-
-                                                </div>
-
-                                                <br><br>
-
-                                                <input class="btn btn-warning" type="button" value="Agregar idioma"
-                                                    onclick="agregarCampoListaIdioma()">
-                                                <input class="btn btn-warning" type="button" value="Borrar idioma"
-                                                    onclick="eliminarCampoListaIdioma()">
-
-
-
-                                                <br><br><br>
-
-
-                                                <div class="alert alert-info" style="height: 50px;">
-                                                    <h6> Referencias personales</h6>
-                                                </div>
-
-
-                                                <div id="divListaReferencias">
-
-
-                                                </div>
-
-                                                <br><br>
-
-                                                <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                    onclick="agregarCampoReferencia()">
-                                                <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                    onclick="eliminarCampoReferencia()">
-
-
-                                                <br><br><br>
 
                                                 <div class="row">
                                                     <div class="col-md-2"></div>
-                                                    <div class="col-md-6">
-                                                        <input type="button" class="btn btn-primary pull-center"
-                                                            value="Crear hoja de vida" onclick="enviarFormulario()">
-                                                    </div>
 
-                                                </div>
-                                                <br><br>
-                                                <div class="clearfix"></div>
+                                                    <div class="col-md-7">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+
+                                                                <select class="form-group form-control"
+                                                                    style="margin-top: 4px;" id="tipoDocumento"
+                                                                    name="tipoDocumento">
+                                                                    <option value="C.C.">C.C</option>
+                                                                    <option value="T.I.">T.I.</option>
+                                                                    <option value="C.E.">C.E.</option>
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Documento</label>
+                                                                    <input type="number" min="0" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Correo</label>
+                                                                    <input type="text" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating"></label>
+                                                                    <input type="text" class="form-control"
+                                                                        value="@unbosque.edu.co" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Semestre</label>
+                                                                    <input type="number" min="5" max="10"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <select class="form-group form-control"
+                                                                    style="margin-top: 4px;" id="carrera"
+                                                                    name="carrera">
+                                                                    <option value="Ingeniería de Sistemas">Ingeniería de
+                                                                        Sistemas</option>
+                                                                    <option value="Ingeniería Electrónica">Ingeniería
+                                                                        Electrónica</option>
+                                                                    <option value="Ingeniería Ambiental">Ingeniería
+                                                                        Ambiental</option>
+                                                                    <option value="Ingeniería Industrial">Ingeniería
+                                                                        Industrial</option>
+                                                                    <option value="Bioingeniería">Bioingeniería</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Teléfono</label>
+                                                                    <input type="number" min="3000000000"
+                                                                        max="3999999999" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="bmd-label-floating"
+                                                                    style="padding-top: 15px;">
+                                                                    Experiencia laboral:
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                                <select class="form-control" id="experienciaLaboral"
+                                                                    name="experienciaLaboral">
+                                                                    <option value="No" selected>No tengo</option>
+                                                                    <option value="Si">Si tengo</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">
+                                                                        Fecha de nacimiento</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <input type="date" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <label class="bmd-label-floating">
+                                                                    Tu foto:</label>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <input type="file" style="width: 140px;">
+                                                            </div>
+                                                        </div>
+
+                                                        <br><br><br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="button" class="btn btn-primary pull-center"
+                                                                    value="Registrarme" onclick="enviarFormulario()">
+                                                                <br><br>
+
+
+                                                                <center><a href="../index.php">Volver</a></center>
+
+                                                                <br>
+
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <br>
+                                                    <div class="clearfix"></div>
                                             </form>
                                         </div>
                                     </div>
@@ -350,111 +299,6 @@ $conexion = $c->conectarBD();
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type="
         text/javascript"> </script>
     <script>
-    function agregarCampoListaIdioma() {
-
-        $("<div>").load("./campos/listaIdioma.php",
-            function() {
-                $("#divListaIdiomas").append($(this).html());
-            });
-    }
-
-    function eliminarCampoListaIdioma() {
-
-        if ($('#divListaIdiomas div.divListId').length > 1) {
-            $('#divListaIdiomas div.divListId:last').remove();
-        } else {
-            $('#divListaIdiomas div.divListId:last').remove();
-            agregarCampoListaIdioma();
-        }
-    }
-
-    function agregarCampoListaEstudio() {
-
-        $("<div>").load("./campos/listaEstudio.php",
-            function() {
-                $("#divListaEstudios").append($(this).html());
-            });
-    }
-
-    function eliminarCampoListaEstudio() {
-
-        if ($('#divListaEstudios div.divListId').length > 1) {
-            $('#divListaEstudios div.divListId:last').remove();
-        } else {
-            $('#divListaEstudios div.divListId:last').remove();
-            agregarCampoListaEstudio();
-        }
-
-    }
-
-    function agregarCampoExperiencia() {
-
-        $("<div>").load("./campos/listaExperiencia.php",
-            function() {
-                $("#divListaExperiencia").append($(this).html());
-            });
-    }
-
-    function eliminarCampoExperiencia() {
-
-        if ($('#divListaExperiencia div.divListId').length > 0) {
-            $('#divListaExperiencia div.divListId:last').remove();
-        }
-
-    }
-
-
-    function agregarCampoReferencia() {
-
-        $("<div>").load("./campos/listaReferencias.php",
-            function() {
-                $("#divListaReferencias").append($(this).html());
-            });
-    }
-
-    function eliminarCampoReferencia() {
-
-        if ($('#divListaReferencias div.divListId').length > 1) {
-            $('#divListaReferencias div.divListId:last').remove();
-        } else {
-            $('#divListaReferencias div.divListId:last').remove();
-            agregarCampoReferencia();
-        }
-
-    }
-
-    function maximoAño(elementoCambio) {
-
-        var today = new Date();
-        var yyyy = today.getFullYear();
-
-        elementoCambio.setAttribute("max", yyyy);
-    }
-
-
-
-    function verificarNivelEstudio(object) {
-
-
-
-
-        if (object.value != "Bachiller") {
-
-            object.disabled = true;
-
-            $("<div>").load("./campos/listaEstudio.php?op=a",
-                function() {
-                    comp = object.parentNode.parentNode.parentNode.parentNode;
-                    var jComp = $(comp);
-                    jComp.append($(this).html());
-
-                });
-
-        }
-
-
-    }
-
     function enviarFormulario() {
         var formulario = document.getElementById("formRegistroEstudiante");
 
