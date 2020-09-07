@@ -21,30 +21,24 @@ $rolUsuario = $_SESSION['rol'];
 
 $usuario = "";
 
-if (strcasecmp($rolUsuario, "Empresa") == 0) 
-{
+if (strcasecmp($rolUsuario, "Empresa") == 0) {
     $manejoEmpresas = new ManejoEmpresa($conexion);
     $usuario = $manejoEmpresas->buscarEmpresa($idUsuario);
-} 
-else if (strcasecmp($rolUsuario, "Estudiante") == 0) 
-{
+} else if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $manejoEstudiante = new ManejoEstudiante($conexion);
     $usuario = $manejoEstudiante->buscarEstudiante($idUsuario);
-} 
-else 
-{
+} else {
     $usuario = "Administrador";
 }
 
 $ruta = "";
 
-if (strcasecmp($rolUsuario, "Empresa") == 0) 
-{
+if (strcasecmp($rolUsuario, "Empresa") == 0) {
     $ruta = "portalEmpresa.php";
-} 
-else if (strcasecmp($rolUsuario, "Estudiante") == 0) 
-{
+} else if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $ruta = "portalEstudiante.php";
+} else if (strcasecmp($rolUsuario, "Administrador") == 0) {
+    $ruta = "portalAdministrador.php";
 }
 
 
@@ -75,7 +69,17 @@ else if (strcasecmp($rolUsuario, "Estudiante") == 0)
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="<?php echo $ruta ?>">Cuenta</a>
+                        <?php
+                        if (strcasecmp($rolUsuario, "Administrador") == 0) {
+                        ?>
+                            <a class="dropdown-item" href="<?php echo $ruta ?>">Inicio</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a class="dropdown-item" href="<?php echo $ruta ?>">Cuenta</a>
+                        <?php
+                        }
+                        ?>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href=" <?php echo "/" . CARPETA_RAIZ . "/Sesion/cerrarSesion.php" ?> ">Cerrar sesión</a>
                     </div>

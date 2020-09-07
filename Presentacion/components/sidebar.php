@@ -48,6 +48,10 @@ $rolUsuario = $_SESSION['rol'];
                             <i class="material-icons">assessment</i>
                             <p>Vacantes</p>
                         </a>
+                        <a class="dropdown-item" href="tablaUsuario.php">
+                            <i class="material-icons">person</i>
+                            <p>Usuarios del sistema</p>
+                        </a>
                     </div>
                 </li>
                 <br>
@@ -78,7 +82,7 @@ $rolUsuario = $_SESSION['rol'];
                 </li>
                 <br>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="misVacantes.php">
                         <i class="material-icons">assessment</i>
                         <p>Mis vacantes</p>
                     </a>

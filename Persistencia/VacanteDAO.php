@@ -194,7 +194,6 @@ class VacanteDAO implements DAO
 		return $resultado;
 	}
 
-
 	/**
 	 * Obtiene el NIT de la empresa que postulo una vacante
 	 *
@@ -203,8 +202,8 @@ class VacanteDAO implements DAO
 	 */
 	public function consultarNitEmpresa($codigo)
 	{
-		$sql = "SELECT id_empresa FROM EMPRESA_VACANTE, VACANTE WHERE vacante.id_vacante = empresa_vacante.id_vacante AND vacante.id_vacante = " . $codigo;
-		
+		$sql = "SELECT nit_empresa FROM EMPRESA_VACANTE, VACANTE WHERE vacante.id_vacante = empresa_vacante.id_vacante AND vacante.id_vacante = " . $codigo;
+
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$resultado = mysqli_fetch_array($result)[0];
@@ -220,7 +219,7 @@ class VacanteDAO implements DAO
 	 */
 	public function obtenerCiudadVacante(int $codigo)
 	{
-		$sql = "SELECT * FROM VACANTE, CIUDAD WHERE id_vacante = $codigo AND id_ciudad = id_ciudad";
+		$sql = "SELECT * FROM CIUDAD, VACANTE_CIUDAD WHERE VACANTE_CIUDAD.id_vacante = $codigo AND CIUDAD.id_ciudad = VACANTE_CIUDAD.id_ciudad";
 
 		if(!$result = mysqli_query($this->conexion, $sql)) die();
 
@@ -311,11 +310,13 @@ class VacanteDAO implements DAO
 		$sql = "SELECT * FROM CIUDAD";
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
 		$ciudadArray = array();
-		$contador = 0;
-		while ($row = mysqli_fetch_array($result)) {
-			$contador = $contador + 1;
-			$ciudadArray[] = $contador;
+
+		while ($row = mysqli_fetch_array($result)) 
+		{
+
+			$ciudadArray[] = $row;
 		}
 		return $ciudadArray;
 	}
@@ -331,21 +332,59 @@ class VacanteDAO implements DAO
 		$sql = "SELECT * FROM CATEGORIA";
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
 		$categoriaArray = array();
-		$contador = 0;
+
 		while ($row = mysqli_fetch_array($result)) {
-			$contador = $contador + 1;
-			$categoriaArray[] = $contador;
+
+
+			$categoriaArray[] = $row;
 		}
 		return $categoriaArray;
 	}
+
+	/**
+	 * Método para listar las vacantes que la empresa a postulado
+	 *
+	 * @param int $codigo
+	 * @return String
+	 */
+	public function listarVacantesEmpresa(int $codigo, $pagInicio, $limit)
+	{
+
+		$sql = "SELECT * FROM VACANTE, EMPRESA_VACANTE WHERE EMPRESA_VACANTE.nit_empresa = $codigo AND VACANTE.id_vacante = EMPRESA_VACANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' LIMIT " . $pagInicio . " , " . $limit;
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$vacanteArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+			$vacante = new Vacante();
+			$vacante->setId($row[0]);
+			$vacante->setNombre($row[1]);
+			$vacante->setDescripcion($row[2]);
+			$vacante->setProgramaAcademico($row[3]);
+			$vacante->setHorariovacante($row[4]);
+			$vacante->setPosibilidadViaje($row[5]);
+			$vacante->setSalarioVacante($row[6]);
+			$vacante->setExperiencia($row[7]);
+			$vacante->setEstado($row[8]);
+			$ciudad = $this->obtenerCiudadVacante($row[0]);
+			$vacante->setCiudad($ciudad);
+
+
+			$vacanteArray[] = $vacante;
+		}
+
+		return $vacanteArray;
+	}
+
 	/**
 	 * Método para obtener un objeto vacanteDAO
 	 *
 	 * @param Object $conexion
 	 * @return vacanteDAO
 	 */
-
 	public static function obtenerVacanteDAO($conexion)
 	{
 		if (self::$vacanteDAO == null) {

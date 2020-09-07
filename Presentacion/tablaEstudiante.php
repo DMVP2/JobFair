@@ -18,7 +18,6 @@ $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
-// CAMBIO
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
@@ -33,12 +32,10 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
-// CAMBIO
 
 $estudiantes = $manejoEstudiantes->listarEstudiantesPaginacion($paginationStart, $limit);
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
-// CAMBIO
 
 $allRecords = $manejoEstudiantes->cantidadEstudiantes();
 
@@ -110,7 +107,7 @@ $next = $page + 1;
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title ">Estudiantes</h4>
-                                    <p class="card-category">Listado de los estudiantes registradas en el sistema</p>
+                                    <p class="card-category">Listado de los estudiantes registrados en el sistema</p>
                                 </div>
                                 <div class="card-body">
 
@@ -135,7 +132,7 @@ $next = $page + 1;
                                                     Semestre
                                                 </th>
                                                 <th>
-                                                    Perfil
+                                                Acciones
                                                 </th>
                                             </thead>
                                             <tbody>
@@ -174,7 +171,7 @@ $next = $page + 1;
                                                             </form>
                                                             <form action="informacionEstudiante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <button class="btn btn-danger" type="submit" id="submit" name="estudiante" value="" tooltip="Inhabilitar">
+                                                                <button class="btn btn-danger" type="submit" id="submit" name="estudiante" value="">
                                                                     <i class="material-icons">delete</i>
                                                                 </button>
                                                             </form>

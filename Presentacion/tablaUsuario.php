@@ -19,7 +19,6 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-
 $manejoUsuarios = new manejoUsuario($conexion);
 
 // Paginación
@@ -122,9 +121,6 @@ $next = $page + 1;
                                             <table class="table">
                                                 <thead class=" text-primary">
                                                     <th>
-                                                        ID
-                                                    </th>
-                                                    <th>
                                                         Nickname (Usuario)
                                                     </th>
                                                     <th>
@@ -132,6 +128,9 @@ $next = $page + 1;
                                                     </th>
                                                     <th>
                                                         Rol
+                                                    </th>
+                                                    <th>
+                                                        Acciones
                                                     </th>
                                                 </thead>
                                                 <tbody>
@@ -142,17 +141,65 @@ $next = $page + 1;
                                                     
                                                <thead class=" text-primary">
                                                     <th>
-                                                        <?php echo $usuario->getId() ?>
-                                                    </th>
-                                                    <th>
                                                         <?php echo $usuario->getUsuario() ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo $usuario->getEstado() ?>
+                                                        <?php 
+                                                        if(strcasecmp($usuario->getEstado(), "A") == 0)
+                                                        {
+                                                            echo "Activo";
+                                                        }
+                                                        else
+                                                        {
+                                                            echo "Inactivo";
+                                                        }
+                                                        ?>
                                                     </th>
                                                     <th>
                                                         <?php echo $usuario->getRolUsuario() ?>
                                                     </th>
+                                                    <th>
+                                                    <?php
+
+                                                    $rolusuarioActual = $usuario->getRolUsuario();
+
+                                                    $ruta = "";
+                                                    $tipoId = "";
+
+                                                    if(strcasecmp($rolusuarioActual, "Empresa") == 0)
+                                                    {
+                                                        $ruta = "informacionEmpresa.php";
+                                                        $tipoId = "idEmpresa";
+                                                    }
+                                                    else if(strcasecmp($rolusuarioActual, "Estudiante") == 0)
+                                                    {
+                                                        $ruta = "informacionEstudiante.php";
+                                                        $tipoId = "idEstudiante";
+                                                    }
+
+                                                    ?>
+                                                    
+                                                    <?php
+                                                    if((strcasecmp($rolusuarioActual, "Empresa") == 0) OR (strcasecmp($rolusuarioActual, "Estudiante") == 0))
+                                                    {
+                                                    ?>
+                                                            <form action="<?php echo $ruta ?>" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $usuario->getId() . "'"; ?> name="<?php echo $tipoId ?>" value=<?php echo "'" . $usuario->getId() . "'"; ?>>
+                                                                <button class="btn btn-success" type="submit" id="submit" name="usuario" value="" tooltip="Ver perfil">
+                                                                <i class="material-icons">visibility</i>
+                                                                </button>
+                                                            </form>
+
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                            <form action="informacionVacante.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $usuario->getId() . "'"; ?> name="codigoUsuario" value=<?php echo "'" . $usuario->getId() . "'"; ?>>
+                                                                <button class="btn btn-danger" type="submit" id="submit" name="usuario" value="">
+                                                                    <i class="material-icons">delete</i>
+                                                                </button>
+                                                            </form>
+                                                        </th>
                                                 </thead>
 
                                                 <?php

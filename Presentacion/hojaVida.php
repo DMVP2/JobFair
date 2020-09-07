@@ -46,7 +46,7 @@ $ruta = "";
 
 if(strcasecmp($rolUsuario, "Estudiante") == 0)
 {
-$ruta = "portalEstudiante.php";
+$ruta = "#";
 }
 else if(strcasecmp($rolUsuario, "Administrador") == 0)
 {
@@ -86,7 +86,7 @@ else
                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
                 <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
                 <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
-                <a class="btn btn-primary" href="tablaEstudiante.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
+                <a class="btn btn-primary" href="<?php $ruta ?>" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
             </div>
           </div>

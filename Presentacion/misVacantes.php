@@ -8,13 +8,12 @@ if (!isset($_SESSION['usuario']))
    header("location:../index.php"); 
 }
 
-
 // Importación de clases
 
 include_once('../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoEmpresa.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoVacante.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'ManejoEmpresa.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'ManejoVacante.php');
 
 // Nombre de la pagina
 
@@ -29,11 +28,10 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 $idUsuario = $_SESSION['usuario'];
+$rolUsuario = $_SESSION['rol'];
 
 $manejoVacante = new ManejoVacante($conexion);
 $manejoEmpresa = new ManejoEmpresa($conexion);
-
-$manejoVacantes = new ManejoVacante($conexion);
 
 // Paginación
 
@@ -47,7 +45,14 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
+if(strcasecmp($rolUsuario, "Estudiante") == 0)
+{
 $vacantes = $manejoVacante->listarVacantesEstudiante($idUsuario, $paginationStart, $limit);
+}
+else if(strcasecmp($rolUsuario, "Empresa") == 0)
+{
+$vacantes = $manejoVacante->listarVacantesEmpresa($idUsuario, $paginationStart, $limit);
+}
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
@@ -114,8 +119,8 @@ $next = $page + 1;
                     </div>
                     <!-- Select dropdown -->
 
-
                     <?php
+
                     foreach ($vacantes as $vacante) {
 
                         $nitEmpresa = $manejoVacante->consultarNitEmpresa($vacante->getId());

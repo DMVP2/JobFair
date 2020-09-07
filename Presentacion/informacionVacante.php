@@ -26,13 +26,18 @@ $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
 
 $idUsuario = $_SESSION['usuario'];
 $idVacante = $_POST['idVacante'];
+$rolUsuario = $_SESSION['rol'];
+
 $manejoVacantes = new ManejoVacante($conexion);
 $vacante = $manejoVacantes->buscarVacante($idVacante);
 
 $nitEmpresa = $manejoVacantes->consultarNitEmpresa($idVacante);
 $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
 
-$verificacionVacante = $manejoVacantes->verificarCategoriaVacante($idVacante, $idUsuario);
+if(strcasecmp($rolUsuario, "Estudiante") == 0)
+{
+$verificacionVacante = $manejoVacantes->verificarVacanteEstudiante($idVacante, $idUsuario);
+}
 ?>
 
 <!doctype html>
@@ -124,17 +129,25 @@ $verificacionVacante = $manejoVacantes->verificarCategoriaVacante($idVacante, $i
                                 <br>
 
                                 <?php
-                                if (strcasecmp($verificacionVacante, null) == 0) 
+                                if (strcasecmp($rolUsuario, "Estudiante") == 0) 
                                 {
+                                    if (strcasecmp($verificacionVacante, null) == 0) 
+                                    {
                                 ?>
-                                    <button type="submit" class="btn btn-primary" onclick="window.location.href='listadoVacantes.php'">Aplicar a la vacante</button>
-                                    <br>
-                                <?php
-                                }
-                                else
-                                {
-                                ?>
-                                <div class="alert alert-warning" style="text-align: center"> Ya aplicaste a esta vacante </div>
+                                        <button type="submit" class="btn btn-primary" onclick="window.location.href='listadoVacantes.php'">Aplicar a la vacante</button>
+                                        <br>
+                                    <?php
+                                    } 
+                                    else
+                                    {
+                                    ?>
+                                        <div class="alert alert-warning" style="text-align: center"> Ya aplicaste a esta vacante </div>
+                                    <?php
+                                    }
+                                } 
+                                if (strcasecmp($rolUsuario, "Empresa") == 0) {
+                                    ?>
+                                    <button type="submit" class="btn btn-primary" onclick="window.location.href='#'"> Aspirantes a la vacante </button>
                                 <?php
                                 }
                                 ?>

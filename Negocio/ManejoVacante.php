@@ -171,7 +171,7 @@ class manejoVacante
      * @param int $pCodigo
      * @return Vacante[]
      */
-    public function verificarCategoriaVacante($idVacante, $idEstudiante)
+    public function verificarVacanteEstudiante($idVacante, $idEstudiante)
     {
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
         $verificacionVacante = $VacanteDAO->verificarVacanteEstudiante($idVacante, $idEstudiante);
@@ -179,7 +179,7 @@ class manejoVacante
     }
 
     /**
-     * Obtiene las verificacion de la vacante
+     * Método para listar las vacantes a las cuales el estudiante ya aplico
      * @param int $pCodigo
      * @return Vacante[]
      */
@@ -191,26 +191,14 @@ class manejoVacante
     }
 
     /**
-     * Obtiene la lista de ciudades
-     *
+     * Método para listar las vacantes que la empresa a postulado
+     * @param int $pCodigo
      * @return Vacante[]
      */
-    public function listarCiudades()
+    public function listarVacantesEmpresa($idEmpresa, $paginationStart, $limit)
     {
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
-        $Vacantes = $VacanteDAO->listarCiudades();
-        return $Vacantes;
-    }
-
-    /**
-     * Obtiene la lista de categorias
-     *
-     * @return Vacante[]
-     */
-    public function listarCategorias()
-    {
-        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
-        $Vacantes = $VacanteDAO->listarCategorias();
-        return $Vacantes;
+        $vacantes = $VacanteDAO->listarVacantesEmpresa($idEmpresa, $paginationStart, $limit);
+        return $vacantes;
     }
 }

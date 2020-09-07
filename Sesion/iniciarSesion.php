@@ -30,7 +30,6 @@ $manejoUsario = new ManejoUsuario($conexion);
 
         $rol = $usuarioActual->getRolUsuario();
 
-
         if(strnatcasecmp($rol,"Administrador") == 0)
         {
             session_start();
