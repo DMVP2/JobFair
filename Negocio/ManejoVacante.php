@@ -167,6 +167,30 @@ class manejoVacante
     }
 
     /**
+     * Obtiene las verificacion de la vacante
+     * @param int $pCodigo
+     * @return Vacante[]
+     */
+    public function verificarCategoriaVacante($idVacante, $idEstudiante)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $verificacionVacante = $VacanteDAO->verificarVacanteEstudiante($idVacante, $idEstudiante);
+        return $verificacionVacante;
+    }
+
+    /**
+     * Obtiene las verificacion de la vacante
+     * @param int $pCodigo
+     * @return Vacante[]
+     */
+    public function listarVacantesEstudiante($idEstudiante, $paginationStart, $limit)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $vacantes = $VacanteDAO->listarVacantesEstudiante($idEstudiante, $paginationStart, $limit);
+        return $vacantes;
+    }
+
+    /**
      * Obtiene la lista de ciudades
      *
      * @return Vacante[]

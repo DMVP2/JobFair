@@ -77,7 +77,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
                                 <h5> NIT: <?php echo $empresa->getNit() ?></h5>
                                 <h5 style="text-align: justify"> <?php echo $empresa->getDescripcion() ?></h5>
                                 <br>
-                                <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Gestionar información</button>
+                                <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Actualizar información de la empresa</button>
                                 <br>
                                 <br>
                             </div>

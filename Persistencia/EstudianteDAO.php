@@ -145,7 +145,6 @@ class EstudianteDAO implements DAO
         return $estudianteArray;
     }
 
-
     /**
      * Método para obtener la lista para usarla en la paginación
      * 

@@ -30,8 +30,9 @@ $manejoVacantes = new ManejoVacante($conexion);
 $vacante = $manejoVacantes->buscarVacante($idVacante);
 
 $nitEmpresa = $manejoVacantes->consultarNitEmpresa($idVacante);
-
 $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
+
+$verificacionVacante = $manejoVacantes->verificarCategoriaVacante($idVacante, $idUsuario);
 ?>
 
 <!doctype html>
@@ -121,10 +122,24 @@ $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
                                     </div>
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Aplicar a la vacante</button>
+
+                                <?php
+                                if (strcasecmp($verificacionVacante, null) == 0) 
+                                {
+                                ?>
+                                    <button type="submit" class="btn btn-primary" onclick="window.location.href='listadoVacantes.php'">Aplicar a la vacante</button>
+                                    <br>
+                                <?php
+                                }
+                                else
+                                {
+                                ?>
+                                <div class="alert alert-warning" style="text-align: center"> Ya aplicaste a esta vacante </div>
+                                <?php
+                                }
+                                ?>
                                 <br>
                             </div>
-                            <br>
                         </div>
                     </div>
 

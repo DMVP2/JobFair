@@ -62,7 +62,7 @@ class VacanteDAO implements DAO
 	 * Método para consultar un vacante por su ID
 	 *
 	 * @param int $codigo
-	 * @return vacante
+	 * @return Vacante
 	 */
 	public function consultar($codigo)
 	{
@@ -71,7 +71,7 @@ class VacanteDAO implements DAO
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 		$row = mysqli_fetch_array($result);
 
-		$vacante = new vacante();
+		$vacante = new Vacante();
 		$vacante->setId($row[0]);
 		$vacante->setNombre($row[1]);
 		$vacante->setDescripcion($row[2]);
@@ -90,7 +90,7 @@ class VacanteDAO implements DAO
 	/**
 	 * Método que actualiza un vacante
 	 *
-	 * @param vacante $vacante
+	 * @param Vacante $vacante
 	 * @return void
 	 */
 	public function actualizar($vacante)
@@ -114,7 +114,7 @@ class VacanteDAO implements DAO
 	/**
 	 * Método para obtener la lista de todas los vacantes
 	 *
-	 * @return vacante[]
+	 * @return Vacante[]
 	 */
 	public function listar()
 	{
@@ -125,7 +125,7 @@ class VacanteDAO implements DAO
 		$vacanteArray = array();
 
 		while ($row = mysqli_fetch_array($result)) {
-			$vacante = new vacante();
+			$vacante = new Vacante();
 			$vacante->setId($row[0]);
 			$vacante->setNombre($row[1]);
 			$vacante->setDescripcion($row[2]);
@@ -153,14 +153,14 @@ class VacanteDAO implements DAO
 	 */
 	public function listaPaginacionActiva($pagInicio, $limit)
 	{
-		$sql = "SELECT * FROM vacante WHERE estado_vacante='Activo' ORDER BY id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
+		$sql = "SELECT * FROM VACANTE WHERE estado_vacante = 'Activo' ORDER BY id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$vacanteArray = array();
 
 		while ($row = mysqli_fetch_array($result)) {
-			$vacante = new vacante();
+			$vacante = new Vacante();
 			$vacante->setId($row[0]);
 			$vacante->setNombre($row[1]);
 			$vacante->setDescripcion($row[2]);
@@ -212,7 +212,6 @@ class VacanteDAO implements DAO
 		return $resultado;
 	}
 
-
 	/**
 	 * Método para obtener la ciudad (Ubicación) donde se oferta la vacante
 	 *
@@ -233,7 +232,7 @@ class VacanteDAO implements DAO
 	/**
 	 * Método para obtener una lista de las ciudades de la vacantes
 	 *
-	 * @param int codigo
+	 * @param int $codigo
 	 * @return String
 	 */
 	public function obtenerCategoriasVacante(int $codigo)
@@ -243,6 +242,62 @@ class VacanteDAO implements DAO
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		return $result;
+	}
+
+	/**
+	 * Método para listar las vacantes a las cuales el estudiante ya aplico
+	 *
+	 * @param int $codigo
+	 * @return String
+	 */
+	public function listarVacantesEstudiante(int $codigo, $pagInicio, $limit)
+	{
+		$sql = "SELECT * FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = $codigo AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' LIMIT " . $pagInicio . " , " . $limit;
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$vacanteArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+			$vacante = new Vacante();
+			$vacante->setId($row[0]);
+			$vacante->setNombre($row[1]);
+			$vacante->setDescripcion($row[2]);
+			$vacante->setProgramaAcademico($row[3]);
+			$vacante->setHorariovacante($row[4]);
+			$vacante->setPosibilidadViaje($row[5]);
+			$vacante->setSalarioVacante($row[6]);
+			$vacante->setExperiencia($row[7]);
+			$vacante->setEstado($row[8]);
+			$ciudad = $this->obtenerCiudadVacante($row[0]);
+			$vacante->setCiudad($ciudad);
+
+
+			$vacanteArray[] = $vacante;
+		}
+
+		return $vacanteArray;
+	}
+
+	/**
+	 * Método para verificar que el estudiante ya haya aplicado a una variable en especifico
+	 *
+	 * @param int $idVacante
+	 * @param int $idEstudiante
+	 * @return String
+	 */
+	public function verificarVacanteEstudiante(int $idVacante, int $idEstudiante)
+	{
+		$sql = "SELECT * FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = $idEstudiante AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante AND VACANTE.id_vacante = $idVacante";
+
+		$result = mysqli_query($this->conexion, $sql);
+
+		if (mysqli_num_rows($result) == 0)
+		{
+			return null;
+		}
+
+		return "Si";
 	}
 
 	/**

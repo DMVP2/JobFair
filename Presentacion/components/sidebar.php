@@ -124,7 +124,7 @@ $rolUsuario = $_SESSION['rol'];
                 </li>
                 <br>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="misVacantes.php">
                         <i class="material-icons">done_outline</i>
                         <p>Mis vacantes</p>
                     </a>
