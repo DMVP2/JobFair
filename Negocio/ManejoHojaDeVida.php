@@ -165,4 +165,15 @@ class ManejoHojaDeVida
         $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
         $hojaDeVidaDAO->eliminar($pHojaDeVida);
     }
+
+    /**
+     * Limpiar datos hoja vida
+     *
+     * @param int $pIdEstudiante
+     */
+    public function limpiarDatosHojaVida($pIdEstudiante)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $hojaDeVidaDAO->limpiarHojaDeVida($pIdEstudiante);
+    }
 }

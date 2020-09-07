@@ -19,6 +19,7 @@ $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
 $idUsuario = $_SESSION['usuario'];
+$idUsuario = 1107064047;
 
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
 

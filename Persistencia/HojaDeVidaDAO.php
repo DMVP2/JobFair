@@ -211,7 +211,80 @@ class HojaDeVidaDAO implements DAO
         return $idiomas;
     }
 
+    /**
+     * Método para limpiar una hoja de vida con todos las tablas referentes
+     * 
+     * @param $pIdEstudiante
+     */
+    public function limpiarHojaDeVida($pIdEstudiante)
+    {
 
+        $idHojaVida = $this->consultarIdHojaVida($pIdEstudiante);
+
+        $sql = "SELECT id_referencia_personal FROM REFERENCIA_PERSONAL_HOJA_VIDA WHERE id_hoja_vida=" . $idHojaVida;
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $aux = 0;
+        while ($row = mysqli_fetch_array($result)) {
+
+            $listaIdReferencias[$aux] = $row[0];
+            $aux = $aux + 1;
+        }
+
+        $sql = "DELETE FROM REFERENCIA_PERSONAL_HOJA_VIDA WHERE id_hoja_vida =" . $idHojaVida;
+        mysqli_query($this->conexion, $sql);
+
+        for ($i = 0; $i < $aux; ++$i) {
+            $sql = "DELETE FROM REFERENCIA_PERSONAL WHERE id_referencia =" . $listaIdReferencias[$i];
+            mysqli_query($this->conexion, $sql);
+        }
+
+        $sql = "DELETE FROM IDIOMA_HOJA_VIDA WHERE id_hoja_vida=" . $idHojaVida;
+        mysqli_query($this->conexion, $sql);
+
+
+        $sql = "SELECT id_Experiencia FROM experiencia_laboral_hoja_vida WHERE id_hoja_vida=" . $idHojaVida;
+        $result = mysqli_query($this->conexion, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+
+            $aux = 0;
+            while ($row = mysqli_fetch_array($result)) {
+
+                $listaIdExperiencias[$aux] = $row[0];
+                $aux = $aux + 1;
+            }
+
+            $sql = "DELETE FROM EXPERIENCIA_LABORAL_HOJA_VIDA WHERE id_hoja_vida =" . $idHojaVida;
+            mysqli_query($this->conexion, $sql);
+
+            for ($i = 0; $i < $aux; ++$i) {
+                $sql = "DELETE FROM EXPERIENCIA_LABORAL WHERE id_experiencia =" . $listaIdExperiencias[$i];
+                mysqli_query($this->conexion, $sql);
+            }
+        }
+
+        $sql = "SELECT id_estudio FROM HOJA_VIDA_ESTUDIOS WHERE id_hoja_vida =" . $idHojaVida;
+        $result = mysqli_query($this->conexion, $sql);
+
+        $aux = 0;
+        while ($row = mysqli_fetch_array($result)) {
+            $listaIdEstudios[$aux] = $row[0];
+            $aux = $aux + 1;
+        }
+
+
+        $sql = "DELETE FROM HOJA_VIDA_ESTUDIOS WHERE id_hoja_vida =" . $idHojaVida;
+        mysqli_query($this->conexion, $sql);
+
+        for ($i = 0; $i < $aux; ++$i) {
+            $sql = "DELETE FROM ESTUDIO WHERE id_estudio =" . $listaIdEstudios[$i];
+            mysqli_query($this->conexion, $sql);
+        }
+
+        $this->eliminar($idHojaVida);
+    }
 
     /**
      * NO UTILIZADO
