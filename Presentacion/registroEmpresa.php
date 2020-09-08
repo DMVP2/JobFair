@@ -57,6 +57,7 @@ $conexion = $c->conectarBD();
                                 <div class="card-header card-header-primary">
                                     <p class="card-category">Registro de empresas
                                     </p>
+
                                     <h4 class="card-title">Registrate en la plataforma de la ¡Feria de oportunidades!
                                     </h4>
 
@@ -148,7 +149,7 @@ $conexion = $c->conectarBD();
                                                         <br><br>
 
                                                         <div class="row">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-4">
                                                                 <label class="bmd-label-floating">
                                                                     Tu logo:</label>
                                                             </div>
@@ -156,6 +157,32 @@ $conexion = $c->conectarBD();
                                                                 <input type="file" style="width: 140px;" riquired>
                                                             </div>
                                                         </div>
+
+                                                        <br><br><br>
+
+                                                        <div class="alert alert-info" style="height: 50px;">
+                                                            <h6> Representantes</h6>
+                                                        </div>
+
+                                                        <div id="divListRepresentantes">
+
+                                                            <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_CAMPOS . 'registroEmpresa/campoRepresentante.php'); ?>
+
+                                                        </div>
+
+                                                        <br><br><br><br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12 text-center">
+                                                                <input class="btn btn-warning" type="button"
+                                                                    value="Agregar campo"
+                                                                    onclick="agregarCampoRepresentante()">
+                                                                <input class="btn btn-warning" type="button"
+                                                                    value="Borrar campo"
+                                                                    onclick="eliminarCampoRepresentante()">
+                                                            </div>
+                                                        </div>
+
 
                                                         <br><br><br>
 
@@ -244,6 +271,26 @@ $conexion = $c->conectarBD();
 
 
         formulario.submit();
+    }
+
+    function agregarCampoRepresentante() {
+
+        $("<div>").load(
+            "./campos/registroEmpresa/campoRepresentante.php",
+            function() {
+                $("#divListRepresentantes").append($(this).html());
+            });
+    }
+
+    function eliminarCampoRepresentante() {
+
+        if ($('#divListRepresentantes div.divListId').length > 1) {
+            $('#divListRepresentantes div.divListId:last').remove();
+        } else {
+            $('#divListRepresentantes div.divListId:last').remove();
+            agregarCampoRepresentante();
+        }
+
     }
     </script>
 

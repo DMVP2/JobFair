@@ -8,3 +8,4 @@ define('RUTA_NEGOCIO', '/Negocio/');
 define('RUTA_PERSISTENCIA', '/Persistencia/');
 define('RUTA_ENTIDADES', '/Entidades/');
 define('RUTA_NEGOCIO_LIB', '/Negocio/lib/');
+define('RUTA_CAMPOS', '/Presentacion/campos/');
