@@ -87,6 +87,8 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Documento</label>
                                                                     <input type="number" min="0" class="form-control"
+                                                                        id="documentoEstudiante"
+                                                                        name="documentoEstudiante"
                                                                         pattern="^((\d{8})|(\d{10})|(\d{11})|(\d{6}-\d{5}))?$"
                                                                         title="Solo se permiten los siguientes documentos: C.C., C.E., T.I."
                                                                         required>
@@ -103,6 +105,7 @@ $conexion = $c->conectarBD();
                                                                     <input type="text" class="form-control"
                                                                         pattern="^[a-zA-Z]+$"
                                                                         title="Solo debe incluir el nombre de usuario del correo institucional"
+                                                                        id="correoEstudiante" name="correoEstudiante"
                                                                         required>
                                                                 </div>
                                                             </div>
@@ -122,12 +125,15 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Semestre</label>
                                                                     <input type="number" min="5" max="10"
-                                                                        class="form-control" required>
+                                                                        id="semestreEstudiante"
+                                                                        name="semestreEstudiante" class="form-control"
+                                                                        required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <select class="form-group form-control"
                                                                     style="margin-top: 4px;" id="carrera" name="carrera"
+                                                                    id="carreraEstudiante" name="carreraEstudiante"
                                                                     required>
                                                                     <option value="Ingeniería de Sistemas">Ingeniería de
                                                                         Sistemas</option>
@@ -152,7 +158,8 @@ $conexion = $c->conectarBD();
                                                                     <input type="number" min="1" class="form-control"
                                                                         pattern="(\+57|0057|57)?[ -]*(3)[ -]*([0-9][ -]*){10}"
                                                                         title="Solo se permite el número del teléfono celular. Opcionalmente puede incluir el código de país en diferentes formatos si asi lo desea."
-                                                                        required>
+                                                                        id="telefonoEstudiante"
+                                                                        name="telefonoEstudiante" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -169,8 +176,8 @@ $conexion = $c->conectarBD();
                                                             </div>
                                                             <div class="col-md-6">
 
-                                                                <select class="form-control" id="experienciaLaboral"
-                                                                    name="experienciaLaboral" required>
+                                                                <select class="form-control" id="experienciaEstudiante"
+                                                                    name="experienciaEstudiante" required>
                                                                     <option value="No" selected>No tengo</option>
                                                                     <option value="Si">Si tengo</option>
                                                                 </select>
@@ -194,7 +201,9 @@ $conexion = $c->conectarBD();
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <input type="date" class="form-control"
-                                                                        min="1950-01-01" max="2006-01-01" required>
+                                                                        min="1950-01-01" max="2006-01-01"
+                                                                        id="nacimientoEstudiante"
+                                                                        name="nacimientoEstudiante" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -207,7 +216,7 @@ $conexion = $c->conectarBD();
                                                                     Tu foto:</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;" required>
+                                                                <input type="file" style="width: 140px;">
                                                             </div>
                                                         </div>
 

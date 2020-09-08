@@ -4,11 +4,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//$rutaLib = $_SERVER['DOCUMENT_ROOT'] . "/softlutions/Negocio/lib/PHPMailer/";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Softlutions/Rutas.php";
 
-require "Exception.php";
-require "PHPMailer.php";
-require "SMTP.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/Exception.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/PHPMailer.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/SMTP.php";
+
+
+
+
 
 /**
  * Clase encargada de enviar correos pro medio de la libreria PHPMailer

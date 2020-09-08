@@ -42,12 +42,15 @@ include_once('./rutas.php')
                 <!-- CONTENIDO PAGINA -->
 
                 <div class="card">
-                    <div class="card card-header ">
-                        <h2 class="card-title card-header-primary">FERIA DE OPORTUNIDADES</h2>
+                    <br>
+                    <div class="card-title card-header-primary">
+                        <strong>
+                            <h2 class="card-category text-center" style="font-size:40px">FERIA DE OPORTUNIDADES</h2>
+                        </strong>
                     </div>
 
-                    <div class="card-body">
-
+                    <div class=" card-body">
+                        <br>
                         <img class="img" width="60%"
                             src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "banner3.png" ?>" />
 
@@ -93,9 +96,9 @@ include_once('./rutas.php')
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <button type="button" class="btn btn-outline-primary"
+                    <button type="button" class="btn btn-outline-primary" style="width: 132px;"
                         onclick="window.location.href='Presentacion/registroEstudiante.php'">ESTUDIANTE</button>
-                    <button type="button" class="btn btn-outline-primary"
+                    <button type="button" class="btn btn-outline-primary" style="width: 132px;"
                         onclick="window.location.href='Presentacion/registroEmpresa.php'">EMPRESA</button>
                 </div>
             </div>
