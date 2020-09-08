@@ -109,8 +109,8 @@ $next = $page + 1;
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Estudiantes</h4>
-                                    <p class="card-category">Listado de los estudiantes registrados en el sistema</p>
+                                    <h4 class="card-title ">Aspirantes</h4>
+                                    <p class="card-category">Listado de los estudiantes que aspiran a esta vacante </p>
                                 </div>
                                 <div class="card-body">
 
@@ -140,7 +140,6 @@ $next = $page + 1;
                                             </thead>
                                             <tbody>
                                                 <?php
-
                                                 foreach ($estudiantes as $estudiante) {
                                                 ?>
                                                     <thead class=" text-primary">
@@ -162,20 +161,8 @@ $next = $page + 1;
                                                         <th>
                                                             <form action="informacionEstudiante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="" tooltip="Ver perfil">
+                                                                <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="">
                                                                     <i class="material-icons">visibility</i>
-                                                                </button>
-                                                            </form>
-                                                            <form action="informacionEstudiante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <button class="btn btn-warning" type="submit" id="submit" name="estudiante" value="">
-                                                                    <i class="material-icons">edit</i>
-                                                                </button>
-                                                            </form>
-                                                            <form action="informacionEstudiante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <button class="btn btn-danger" type="submit" id="submit" name="estudiante" value="">
-                                                                    <i class="material-icons">delete</i>
                                                                 </button>
                                                             </form>
                                                         </th>

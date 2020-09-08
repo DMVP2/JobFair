@@ -131,7 +131,7 @@ class ManejoEstudiante
 	 *
 	 * @param int $idVacante
 	 * @param int $idEstudiante
-	 * @return String
+	 * @return Estudiante[]
 	 */
     public function listarPostulacionesVacante(int $idVacante, $pagInicio, $limit)
     {

@@ -161,7 +161,7 @@ $next = $page + 1;
                                                         <th>
                                                             <form action="informacionVacante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
-                                                                <button class="btn btn-success" type="submit" id="submit" name="vacante" value="" tooltip="Ver perfil">
+                                                                <button class="btn btn-success" type="submit" id="submit" name="vacante" value="">
                                                                 <i class="material-icons">visibility</i>
                                                                 </button>
                                                             </form>

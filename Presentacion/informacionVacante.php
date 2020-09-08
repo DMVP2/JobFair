@@ -34,9 +34,8 @@ $vacante = $manejoVacantes->buscarVacante($idVacante);
 $nitEmpresa = $manejoVacantes->consultarNitEmpresa($idVacante);
 $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
 
-if(strcasecmp($rolUsuario, "Estudiante") == 0)
-{
-$verificacionVacante = $manejoVacantes->verificarVacanteEstudiante($idVacante, $idUsuario);
+if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+    $verificacionVacante = $manejoVacantes->verificarVacanteEstudiante($idVacante, $idUsuario);
 }
 ?>
 
@@ -129,25 +128,24 @@ $verificacionVacante = $manejoVacantes->verificarVacanteEstudiante($idVacante, $
                                 <br>
 
                                 <?php
-                                if (strcasecmp($rolUsuario, "Estudiante") == 0) 
-                                {
-                                    if (strcasecmp($verificacionVacante, null) == 0) 
-                                    {
+                                if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+                                    if (strcasecmp($verificacionVacante, null) == 0) {
                                 ?>
                                         <button type="submit" class="btn btn-primary" onclick="window.location.href='listadoVacantes.php'">Aplicar a la vacante</button>
                                         <br>
                                     <?php
-                                    } 
-                                    else
-                                    {
+                                    } else {
                                     ?>
                                         <div class="alert alert-warning" style="text-align: center"> Ya aplicaste a esta vacante </div>
                                     <?php
                                     }
-                                } 
+                                }
                                 if (strcasecmp($rolUsuario, "Empresa") == 0) {
                                     ?>
-                                    <button type="submit" class="btn btn-primary" onclick="window.location.href='#'"> Aspirantes a la vacante </button>
+                                    <form action="tablaPostulaciones.php" method="post">
+                                        <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
+                                        <button type="submit" class="btn btn-primary"> Aspirantes a esta vacante </button>
+                                    </form>
                                 <?php
                                 }
                                 ?>
