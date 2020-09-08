@@ -178,28 +178,4 @@ class Estudios
     {
         $this->fecha = $pFecha;
     }
-
-    /**
-     * Método que genera una contraseña aleatoria para ser utilizada como la primera contraseña del usuario
-     * Esta contraseña funcionara como una segunda validación puesto que verificara que el correo electronico ingresado efectivamente exista
-     * 
-     * @param String
-     */
-    public function crearPassword()
-    {
-
-        $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        $longitudPass = 10;
-        $longitudCadena = strlen($cadena);
-        $password = "";
-
-        for($i = 1 ; $i <= $longitudPass; $i++){
-
-            $pos = rand(0, $longitudCadena - 1);
-     
-            $password .= substr($cadena, $pos, 1);
-        }
-
-        return $password;
-    }
 }
