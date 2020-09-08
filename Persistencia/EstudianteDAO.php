@@ -54,7 +54,7 @@ class EstudianteDAO implements DAO
      */
     public function crear($estudiante)
     {
-        $sql = "INSERT INTO ESTUDIANTE VALUES(" . $estudiante->getNumeroDocumento() . "','" . $estudiante->getNombreEstudiante() . "','" . $estudiante->getCorreoEstudiante() . "','" . $estudiante->getTipoDeDocumento() . "','" . $estudiante->getSemestreActual() . "','" . $estudiante->getProgramaAcademico() . "','" . $estudiante->getExperienciaEstudiante() . "','" . $estudiante->getEstadoEstudiante() . "','" . $estudiante->getRutaFotoEstudiante() . "');";
+        $sql = "INSERT INTO ESTUDIANTE VALUES(" . $estudiante->getNumeroDocumento() . ",'" . $estudiante->getNombre() . "','" . $estudiante->getCorreo() . "', '" . $estudiante->getTelefono() . "','" . $estudiante->getTipoDeDocumento() . "','" . $estudiante->getSemestreActual() . "','" . $estudiante->getProgramaAcademico() . "','" . $estudiante->getExperiencia() . "','" . $estudiante->getEstado() . "','" . $estudiante->getRutaFoto() . "', NOW(), '2001-03-10');";
         mysqli_query($this->conexion, $sql);
     }
 
@@ -122,8 +122,7 @@ class EstudianteDAO implements DAO
 
         $estudianteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) 
-        {
+        while ($row = mysqli_fetch_array($result)) {
 
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
@@ -157,8 +156,7 @@ class EstudianteDAO implements DAO
 
         $estudianteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) 
-        {
+        while ($row = mysqli_fetch_array($result)) {
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
             $estudiante->setNombre($row[1]);
@@ -194,22 +192,21 @@ class EstudianteDAO implements DAO
     }
 
     /**
-	 * Método para listar los estudiantes que aplicaron a determinada vacante
-	 *
-	 * @param int $idVacante
-	 * @param int $idEstudiante
-	 * @return String
-	 */
-	public function listarPostulacionesVacante(int $idVacante, $pagInicio, $limit)
-	{
-		$sql = "SELECT * FROM ESTUDIANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.id_vacante = $idVacante AND VACANTE_ESTUDIANTE.numero_documento = ESTUDIANTE.numero_documento  LIMIT " . $pagInicio . " , " . $limit;
+     * Método para listar los estudiantes que aplicaron a determinada vacante
+     *
+     * @param int $idVacante
+     * @param int $idEstudiante
+     * @return String
+     */
+    public function listarPostulacionesVacante(int $idVacante, $pagInicio, $limit)
+    {
+        $sql = "SELECT * FROM ESTUDIANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.id_vacante = $idVacante AND VACANTE_ESTUDIANTE.numero_documento = ESTUDIANTE.numero_documento  LIMIT " . $pagInicio . " , " . $limit;
 
-		if (!$result = mysqli_query($this->conexion, $sql)) die();
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
 
         $estudianteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) 
-        {
+        while ($row = mysqli_fetch_array($result)) {
             $estudiante = new Estudiante();
             $estudiante->setNumeroDocumento($row[0]);
             $estudiante->setNombre($row[1]);
@@ -228,7 +225,7 @@ class EstudianteDAO implements DAO
         }
 
         return $estudianteArray;
-	}
+    }
 
 
     /**
@@ -246,29 +243,23 @@ class EstudianteDAO implements DAO
         $ingenieriaAmbiental = 0;
         $bioingenieria = 0;
 
-        foreach($estudiantes as $estudiante)
-        {
+        foreach ($estudiantes as $estudiante) {
 
             $programaAcademico = $estudiante->getProgramaAcademico();
 
-            if(strcasecmp($programaAcademico, "Ingeniería de Sistemas") == 0)
-            {
+            if (strcasecmp($programaAcademico, "Ingeniería de Sistemas") == 0) {
                 $ingenieriaSistemas++;
             }
-            if(strcasecmp($programaAcademico, "Ingeniería Electrónica") == 0)
-            {
+            if (strcasecmp($programaAcademico, "Ingeniería Electrónica") == 0) {
                 $ingenieriaElectronica++;
             }
-            if(strcasecmp($programaAcademico, "Ingeniería Industrial") == 0)
-            {
+            if (strcasecmp($programaAcademico, "Ingeniería Industrial") == 0) {
                 $ingenieriaIndustrial++;
             }
-            if(strcasecmp($programaAcademico, "Ingeniería Ambiental") == 0)
-            {
+            if (strcasecmp($programaAcademico, "Ingeniería Ambiental") == 0) {
                 $ingenieriaAmbiental++;
             }
-            if(strcasecmp($programaAcademico, "Bioingeniería") == 0)
-            {
+            if (strcasecmp($programaAcademico, "Bioingeniería") == 0) {
                 $bioingenieria++;
             }
         }

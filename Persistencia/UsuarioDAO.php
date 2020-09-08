@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once 'DAO.php';
 
@@ -35,9 +35,9 @@ class UsuarioDAO implements DAO
 	 *
 	 * @param Object $conexion
 	 */
-    private function __construct($conexion)
-    {
-		$this->conexion=$conexion;
+	private function __construct($conexion)
+	{
+		$this->conexion = $conexion;
 		mysqli_set_charset($this->conexion, "utf8");
 	}
 
@@ -51,11 +51,11 @@ class UsuarioDAO implements DAO
 	 * @param Usuario $usuario
 	 * @return void
 	 */
-    public function crear($usuario)
-    {
-		$sql = "INSERT INTO USUARIO VALUES(".$usuario->getId().",'".$usuario->getUsuario()."','".$usuario->getEstado()."','".$usuario->getPassword()."','".$usuario->getRolUsuario()."');";
+	public function crear($usuario)
+	{
+		$sql = "INSERT INTO USUARIO VALUES(" . $usuario->getId() . ",'" . $usuario->getUsuario() . "','" . $usuario->getPassword() . "','" . $usuario->getEstado() . "','" . $usuario->getRolUsuario() . "');";
 
-		mysqli_query($this->conexion,$sql);
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -64,22 +64,21 @@ class UsuarioDAO implements DAO
 	 * @param int $codigo
 	 * @return Usuario
 	 */
-    public function consultar($codigo)
-    {
+	public function consultar($codigo)
+	{
 		$sql = "SELECT * FROM USUARIO WHERE id_usuario = $codigo";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
-		$row=mysqli_fetch_array($result);
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
 
 		$usuario = new Usuario();
 		$usuario->setId($row[0]);
-        $usuario->setUsuario($row[1]);
-        $usuario->setEstado($row[2]);
-        $usuario->setPassword($row[3]);
-        $usuario->setRolUsuario($row[4]);
-		
-		return $usuario;
+		$usuario->setUsuario($row[1]);
+		$usuario->setEstado($row[2]);
+		$usuario->setPassword($row[3]);
+		$usuario->setRolUsuario($row[4]);
 
+		return $usuario;
 	}
 
 	/**
@@ -88,22 +87,22 @@ class UsuarioDAO implements DAO
 	 * @param Usuario $usuario
 	 * @return void
 	 */
-    public function actualizar($usuario)
-    {
-		$sql = "UPDATE USUARIO SET obtener_usuario = '".$usuario->getUsuario()."', estado_usuario = '".$usuario->getEstado()."', password_usuario = '".$usuario->getPassword()."', rol_usuario = '".$usuario->getRolUsuario()."' WHERE id_usuario = ".$usuario->getId();
-		mysqli_query($this->conexion,$sql);
-    }
-    
-    /**
+	public function actualizar($usuario)
+	{
+		$sql = "UPDATE USUARIO SET nickname_usuario = '" . $usuario->getUsuario() . "', estado_usuario = '" . $usuario->getEstado() . "', password_usuario = '" . $usuario->getPassword() . "', rol_usuario = '" . $usuario->getRolUsuario() . "' WHERE id_usuario = " . $usuario->getId();
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
 	 * Método que elimina un usuario
-     * 
+	 * 
 	 * @param int $codigo
 	 * @return void
 	 */
-    public function eliminar($codigo)
-    {
-		$sql = "UPDATE USUARIO SET estado_usuario = 'I' WHERE id_usuario = ".$codigo;
-		mysqli_query($this->conexion,$sql);
+	public function eliminar($codigo)
+	{
+		$sql = "UPDATE USUARIO SET estado_usuario = 'I' WHERE id_usuario = " . $codigo;
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -111,16 +110,15 @@ class UsuarioDAO implements DAO
 	 *
 	 * @return Usuario[]
 	 */
-    public function listar()
-    {
+	public function listar()
+	{
 		$sql = "SELECT * FROM USUARIO";
 
-		if(!$result = mysqli_query($this->conexion, $sql))die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$usuarioArray = array();
 
-        while ($row = mysqli_fetch_array($result)) 
-        {
+		while ($row = mysqli_fetch_array($result)) {
 
 			$usuario = new Usuario();
 			$usuario->setId($row[0]);
@@ -141,15 +139,15 @@ class UsuarioDAO implements DAO
 	 * @param int $codigo
 	 * @return String
 	 */
-    public function consultarRol($codigo)
-    {
+	public function consultarRol($codigo)
+	{
 		$sql = "SELECT * FROM ROLES WHERE id_rol = $codigo";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
-		$row=mysqli_fetch_array($result);
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
 
 		$rol = $row[1];
-		
+
 		return $rol;
 	}
 
@@ -159,39 +157,38 @@ class UsuarioDAO implements DAO
 	 * @param String $nickname
 	 * @return Usuario
 	 */
-    public function consultarUsuarioPorNickname($nickname)
-    {
+	public function consultarUsuarioPorNickname($nickname)
+	{
 		$sql = "SELECT * FROM USUARIO WHERE nickname_usuario = '$nickname'";
 
-		if(!$result=mysqli_query($this->conexion,$sql))die();
-		$row=mysqli_fetch_array($result);
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
 
 		$usuario = new Usuario();
 		$usuario->setId($row[0]);
-        $usuario->setUsuario($row[1]);
+		$usuario->setUsuario($row[1]);
 		$usuario->setPassword($row[2]);
 		$usuario->setEstado($row[3]);
 		$rolUsuario = $this->consultarRol($row[4]);
 		$usuario->setRolUsuario($rolUsuario);
 
 		return $usuario;
-
 	}
 
-    /**
-     * Método para obtener la lista para usarla en la paginación
-     * 
-     * @return Usuario[]
-     */
-    public function listaPaginacion($pagInicio, $limit)
-    {
-        $sql = "SELECT * FROM USUARIO LIMIT " . $pagInicio . " , " . $limit;
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
+	/**
+	 * Método para obtener la lista para usarla en la paginación
+	 * 
+	 * @return Usuario[]
+	 */
+	public function listaPaginacion($pagInicio, $limit)
+	{
+		$sql = "SELECT * FROM USUARIO LIMIT " . $pagInicio . " , " . $limit;
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-        $usuarioArray = array();
+		$usuarioArray = array();
 
-        while ($row = mysqli_fetch_array($result)) {
-            $usuario = new Usuario();
+		while ($row = mysqli_fetch_array($result)) {
+			$usuario = new Usuario();
 			$usuario->setId($row[0]);
 			$usuario->setUsuario($row[1]);
 			$usuario->setPassword($row[2]);
@@ -199,12 +196,12 @@ class UsuarioDAO implements DAO
 			$rolUsuario = $this->consultarRol($row[4]);
 			$usuario->setRolUsuario($rolUsuario);
 			$usuarioArray[] = $usuario;
-        }
+		}
 
-        return $usuarioArray;
+		return $usuarioArray;
 	}
-	
-	
+
+
 	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos
 	 *
@@ -225,16 +222,12 @@ class UsuarioDAO implements DAO
 	 * @param Object $conexion
 	 * @return UsuarioDAO
 	 */
-    public static function obtenerUsuarioDAO($conexion)
-    {
-        if(self::$usuarioDAO==null)
-        {
+	public static function obtenerUsuarioDAO($conexion)
+	{
+		if (self::$usuarioDAO == null) {
 			self::$usuarioDAO = new UsuarioDAO($conexion);
-        }
-        
+		}
+
 		return self::$usuarioDAO;
 	}
-
 }
-
-?>

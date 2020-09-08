@@ -99,6 +99,21 @@ $conexion = $c->conectarBD();
                                                         <br>
 
                                                         <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Nombre</label>
+                                                                    <input type="text" class="form-control"
+                                                                        pattern="[a-zA-Z0-9\s]+"
+                                                                        title="El nombre solo puede contener letras"
+                                                                        id="nombreEstudiante" name="nombreEstudiante"
+                                                                        required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Correo</label>
