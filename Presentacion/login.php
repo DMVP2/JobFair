@@ -120,7 +120,7 @@ $conexion = $c->conectarBD();
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
-                                                                <a href="../index.php>Volver">Volver </a>
+                                                                <a href="../index.php">Volver </a>
                                                             </div>
                                                         </div>
                                                         <br>
