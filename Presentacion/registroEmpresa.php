@@ -64,7 +64,7 @@ $conexion = $c->conectarBD();
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-1">
 
                                         </div>
                                         <div class="col-lg-9">
@@ -77,13 +77,16 @@ $conexion = $c->conectarBD();
                                                 <div class="row">
                                                     <div class="col-md-2"></div>
 
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-9">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Nit</label>
-                                                                    <input type="number" class="form-control" pattern="^[0-9]{10,10}" title="Solo se permite el ingreso del NIT de una empresa." required>
-                                                                </div> 
+                                                                    <input type="number" class="form-control"
+                                                                        pattern="^[0-9]{10,10}"
+                                                                        title="Solo se permite el ingreso del NIT de una empresa."
+                                                                        required>
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -143,7 +146,7 @@ $conexion = $c->conectarBD();
                                                             </div>
                                                         </div>
 
-                                                        <br>
+                                                        <br><br>
 
                                                         <div class="row">
                                                             <div class="col-md-5">
@@ -157,19 +160,16 @@ $conexion = $c->conectarBD();
 
                                                         <br><br><br>
 
-                                                        <div class="row">
-                                                            <div class="col-md-2">
+                                                        <div class="row text-center">
 
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <button
-                                                                    class="btn btn-primary pull-center">Registrarme</button>
+                                                            <div class="col-md-12">
+                                                                <button class="btn btn-primary">Registrarme</button>
                                                                 <br><br>
 
 
-                                                                <center><a href="../index.php">Volver</a></center>
+                                                                <a href="../index.php">Volver</a>
 
-                                                                <br>
+                                                                <br><br>
 
 
 
