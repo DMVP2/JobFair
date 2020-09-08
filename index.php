@@ -98,6 +98,7 @@ include_once('./rutas.php')
                 <div class="modal-body text-center">
                     <button type="button" class="btn btn-outline-primary" style="width: 132px;"
                         onclick="window.location.href='Presentacion/registroEstudiante.php'">ESTUDIANTE</button>
+                    &nbsp;o&nbsp;
                     <button type="button" class="btn btn-outline-primary" style="width: 132px;"
                         onclick="window.location.href='Presentacion/registroEmpresa.php'">EMPRESA</button>
                 </div>
