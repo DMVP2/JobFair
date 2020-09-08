@@ -82,8 +82,8 @@ $conexion = $c->conectarBD();
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Nit</label>
-                                                                    <input type="number" class="form-control">
-                                                                </div>
+                                                                    <input type="number" class="form-control" pattern="^[0-9]{10,10}" title="Solo se permite el ingreso del NIT de una empresa." required>
+                                                                </div> 
                                                             </div>
                                                         </div>
 
@@ -95,7 +95,7 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Razón
                                                                         social</label>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" class="form-control" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -108,7 +108,7 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Razón
                                                                         comercial</label>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" class="form-control" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -121,8 +121,8 @@ $conexion = $c->conectarBD();
                                                                     <div class="form-group">
                                                                         <label class="bmd-label-floating">
                                                                             Descripción</label>
-                                                                        <textarea class="form-control" maxlength="950"
-                                                                            rows="6"></textarea>
+                                                                        <textarea class="form-control" maxlength="1000"
+                                                                            rows="6" required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -136,8 +136,8 @@ $conexion = $c->conectarBD();
                                                                     <div class="form-group">
                                                                         <label class="bmd-label-floating">
                                                                             Otros beneficios</label>
-                                                                        <textarea class="form-control" maxlength="950"
-                                                                            rows="6"></textarea>
+                                                                        <textarea class="form-control" maxlength="1000"
+                                                                            rows="6" required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -151,7 +151,7 @@ $conexion = $c->conectarBD();
                                                                     Tu logo:</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;">
+                                                                <input type="file" style="width: 140px;" riquired>
                                                             </div>
                                                         </div>
 
