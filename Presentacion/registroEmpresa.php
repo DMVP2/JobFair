@@ -55,10 +55,9 @@ $conexion = $c->conectarBD();
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <p class="card-category">Registrate (Empresa)
+                                    <p class="card-category">Registro de empresas
                                     </p>
-                                    <h4 class="card-title">Registrate en nuestra plataforma de la feria de
-                                        oportunidades
+                                    <h4 class="card-title">Registrate en la plataforma de la ¡Feria de oportunidades!
                                     </h4>
 
                                 </div>
