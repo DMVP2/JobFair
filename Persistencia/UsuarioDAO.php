@@ -82,6 +82,27 @@ class UsuarioDAO implements DAO
 	}
 
 	/**
+	 * Método para consultar un usuario estudiante por su nickname
+	 *
+	 * @param int $pUsuario
+	 * @return existe
+	 */
+	public function existeEstudianteUsuario($pUsuario)
+	{
+		$sql = "SELECT * FROM usuario WHERE id_rol_usuario = 3 AND nickname_usuario = " . $pUsuario;
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		if (mysqli_num_rows($result) == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+
+
+	/**
 	 * Método que actualiza un usuario
 	 *
 	 * @param Usuario $usuario
@@ -173,6 +194,19 @@ class UsuarioDAO implements DAO
 		$usuario->setRolUsuario($rolUsuario);
 
 		return $usuario;
+	}
+
+	/**
+	 * Método para cambiar la contraseña de un usuario por su ID
+	 *
+	 * @param int $codigo
+	 * @param String contraseña
+	 */
+	public function cambiarContraseñaUsuario($pCodigo, $pContraseña)
+	{
+		$sql = "UPDATE usuario SET password_usuario= '" . $pContraseña . "' , estado_usuario='A' WHERE id_usuario = " . $pCodigo;
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 	}
 
 	/**

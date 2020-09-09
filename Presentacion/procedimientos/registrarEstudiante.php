@@ -20,10 +20,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'En
 $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
+$manejoEstudiante = new ManejoEstudiante($conexion);
+$manejoUsuario = new ManejoUsuario($conexion);
+
+$correo = $_POST['correoEstudiante'];
+
 
 $tipoDocumento = $_POST['tipoDocumento'];
 $documento = $_POST['documentoEstudiante'];
-$correo = $_POST['correoEstudiante'];
 $correoIns = $correo . "@unbosque.edu.co";
 $nombre = $_POST['nombreEstudiante'];
 $semestre = $_POST['semestreEstudiante'];
@@ -31,9 +35,6 @@ $carrera = $_POST['carrera'];
 $telefono = $_POST['telefonoEstudiante'];
 $experiencia = $_POST['experienciaEstudiante'];
 $nacimiento = $_POST['nacimientoEstudiante'];
-
-$manejoEstudiante = new ManejoEstudiante($conexion);
-$manejoUsuario = new ManejoUsuario($conexion);
 
 $nuevoEstudiante = new Estudiante();
 $us = new Usuario();
@@ -65,3 +66,5 @@ $manejoUsuario->crearUsuario($us);
 $envioCorreo = new EnvioCorreo();
 $envioCorreo->prepararCorreo($correoIns, ASUNTO_REGISTRO_ESTUDIANTE, CUERPO_REGISTRO_ESTUDIANTE . $contraseña);
 $envioCorreo->enviarCorreo();
+
+header("Location: ../../index.php");
