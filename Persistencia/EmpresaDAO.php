@@ -3,6 +3,7 @@
 require_once 'DAO.php';
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Empresa.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Representante.php");
 
 
 /**
@@ -56,6 +57,26 @@ class EmpresaDAO implements DAO
 	{
 		$sql = "INSERT INTO EMPRESA VALUES(" . $empresa->getNit() . ",'" . $empresa->getRazonSocial() . "','" . $empresa->getRazonComercial() . "','" . $empresa->getDescripcion() . "','" . $empresa->getOtrosBeneficios() . "','" . $empresa->getEstadoEmpresa() . "','" . $empresa->getLogoEmpresa() . "');";
 
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
+	 * Método para crear un representante
+	 *
+	 * @param Representante $pRepresentante
+	 * @param int $pNitEmpresa
+	 * @return void
+	 */
+	public function crearRepresentante($pRepresentante, $pNitEmpresa)
+	{
+		$sql = "INSERT INTO REPRESENTANTE VALUES(NULL, '" . $pRepresentante->getNombre() . "','" . $pRepresentante->getCorreo() . "','" . $pRepresentante->getCargo() . "'," . $pRepresentante->getTelefono() . ")";
+		mysqli_query($this->conexion, $sql);
+
+		$sql = "SELECT id_representante FROM REPRESENTANTE ORDER BY id_representante DESC LIMIT 1";
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$idRepresentante = mysqli_fetch_array($result)[0];
+
+		$sql = "INSERT INTO REPRESENTANTE_EMPRESA VALUES(" . $idRepresentante . "," . $pNitEmpresa . ")";
 		mysqli_query($this->conexion, $sql);
 	}
 
@@ -134,17 +155,17 @@ class EmpresaDAO implements DAO
 	/**
 	 * Método para obtener la lista de todas las empresas pero permite la paginación
 	 *
-     * @return Empresa[]
-     */
-    public function listaPaginacion($pagInicio, $limit)
-    {
-        $sql = "SELECT * FROM EMPRESA LIMIT " . $pagInicio . " , " . $limit;
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
+	 * @return Empresa[]
+	 */
+	public function listaPaginacion($pagInicio, $limit)
+	{
+		$sql = "SELECT * FROM EMPRESA LIMIT " . $pagInicio . " , " . $limit;
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-        $estudianteArray = array();
+		$estudianteArray = array();
 
-        while ($row = mysqli_fetch_array($result)) {
-			
+		while ($row = mysqli_fetch_array($result)) {
+
 			$empresa = new Empresa();
 			$empresa->setNit($row[0]);
 			$empresa->setRazonSocial($row[1]);
@@ -153,12 +174,12 @@ class EmpresaDAO implements DAO
 			$empresa->setOtrosBeneficios($row[4]);
 			$empresa->setEstadoEmpresa($row[5]);
 			$empresa->setLogoEmpresa($row[6]);
-	
-			$empresaArray[] = $empresa;
-        }
 
-        return $empresaArray;
-    }
+			$empresaArray[] = $empresa;
+		}
+
+		return $empresaArray;
+	}
 
 	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos

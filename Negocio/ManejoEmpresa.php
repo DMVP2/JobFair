@@ -1,6 +1,6 @@
 <?php
 
-include_once('../Persistencia/EmpresaDAO.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_PERSISTENCIA . "EmpresaDAO.php");
 
 /**
  * Clase que representa la clase "ManejoEmpresa"
@@ -54,6 +54,21 @@ class ManejoEmpresa
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
         $empresaDAO->crear($pEmpresa);
     }
+
+
+    /**
+     * Crea una empresa
+     *
+     * @param Representante $pRepresentante
+     * @param int $pNitEmpresa
+     */
+    public function crearRepresentante($pRepresentante, $pNitEmpresa)
+    {
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        $empresaDAO->crearRepresentante($pRepresentante, $pNitEmpresa);
+    }
+
+
 
     /**
      * Busca una empresa en la base de datos

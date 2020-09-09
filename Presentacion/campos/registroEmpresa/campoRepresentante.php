@@ -21,7 +21,7 @@
                 <label class="bmd-label-floating">
                     Correo
                 </label>
-                <input type="text" class="form-control" id="correoRepresentante[]" name="correoRepresentante[]">
+                <input type="text" class="form-control" id="correoRepresentante[]" name="correoRepresentante[]" require>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
                 <label class="bmd-label-floating">
                     Cargo
                 </label>
-                <input type="text" class="form-control" id="cargoRepresentante[]" name="cargoRepresentante[]" />
+                <input type="text" class="form-control" id="cargoRepresentante[]" name="cargoRepresentante[]" require />
             </div>
         </div>
         <div class="col-md-6">
@@ -43,7 +43,8 @@
                 <label class="bmd-label-floating">
                     Teléfono
                 </label>
-                <input type="number" class="form-control" id="telefonoRepresentante[]" name="telefonoRepresentante[]" />
+                <input type="number" class="form-control" id="telefonoRepresentante[]" name="telefonoRepresentante[]"
+                    pattern="(\+57|0057|57)?[ -]*(3)[ -]*([0-9][ -]*){10}" require />
             </div>
         </div>
     </div>
