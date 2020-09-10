@@ -23,6 +23,11 @@ $idUsuario = $_SESSION['usuario'];
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
 
+if ($manejoHojaVida->buscarHojaVida($idUsuario) != null) {
+    $manejoHojaVida->limpiarDatosHojaVida($idUsuario);
+}
+
+
 // OBTENER DATOS PARA TABLA HOJA VIDA
 $perfilProfesional = $_POST['perfilProfesionalArea'];
 $certificaciones = $_POST['certificacionesArea'];
@@ -38,8 +43,6 @@ $hojaVidaAgregar->setDocumento($idUsuario);
 
 $manejoHojaVida->crearHojaVida($hojaVidaAgregar);
 
-
-
 //OBTENER DATOS PARA LA TABLA ESTUDIOS
 
 $idHojaVida = $manejoHojaVida->consultarIdHojaVida($idUsuario);
@@ -48,8 +51,11 @@ $arregloEstudios = $_POST['nivelEstudio'];
 $arregloInstituciones = $_POST['institucion'];
 $arregloAñoInicioEducacion = $_POST['estudiosIngreso'];
 $arregloAñoFinalEducacion = $_POST['estudiosSalida'];
-$arregloNombreEstudio = $_POST['nombreEstudio'];
-$arregloAreaEstudio = $_POST['areaEstudio'];
+
+if (isset($_POST['nombreEstudio'])) {
+    $arregloNombreEstudio = $_POST['nombreEstudio'];
+    $arregloAreaEstudio = $_POST['areaEstudio'];
+}
 
 $aux = 0;
 $auxNoBachiller = 0;
@@ -135,3 +141,5 @@ foreach ($arregloNombreRef as $nombreRef) {
 
     $aux = $aux + 1;
 }
+
+header("Location: ../PortalEstudiante.php");

@@ -39,6 +39,8 @@ $nacimiento = $_POST['nacimientoEstudiante'];
 $nuevoEstudiante = new Estudiante();
 $us = new Usuario();
 
+print_r($_POST);
+
 $contraseña = $us->crearPassword();
 $contraseñaCifrada = md5($contraseña);
 
@@ -51,7 +53,8 @@ $nuevoEstudiante->setSemestreActual($semestre);
 $nuevoEstudiante->setProgramaAcademico($carrera);
 $nuevoEstudiante->setExperiencia($experiencia);
 $nuevoEstudiante->setEstado("Activo (Sin postulación)");
-$nuevoEstudiante->setRutaFoto("test");
+$nuevoEstudiante->setRutaFoto("default.png");
+$nuevoEstudiante->setFechaNacimiento($nacimiento);
 
 $manejoEstudiante->crearEstudiante($nuevoEstudiante);
 

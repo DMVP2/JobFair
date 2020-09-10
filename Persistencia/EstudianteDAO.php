@@ -54,7 +54,7 @@ class EstudianteDAO implements DAO
      */
     public function crear($estudiante)
     {
-        $sql = "INSERT INTO ESTUDIANTE VALUES(" . $estudiante->getNumeroDocumento() . ",'" . $estudiante->getNombre() . "','" . $estudiante->getCorreo() . "', '" . $estudiante->getTelefono() . "','" . $estudiante->getTipoDeDocumento() . "','" . $estudiante->getSemestreActual() . "','" . $estudiante->getProgramaAcademico() . "','" . $estudiante->getExperiencia() . "','" . $estudiante->getEstado() . "','" . $estudiante->getRutaFoto() . "', NOW(), '2001-03-10');";
+        $sql = "INSERT INTO ESTUDIANTE VALUES(" . $estudiante->getNumeroDocumento() . ",'" . $estudiante->getNombre() . "','" . $estudiante->getCorreo() . "', '" . $estudiante->getTelefono() . "','" . $estudiante->getTipoDeDocumento() . "','" . $estudiante->getSemestreActual() . "','" . $estudiante->getProgramaAcademico() . "','" . $estudiante->getExperiencia() . "','" . $estudiante->getEstado() . "','" . $estudiante->getRutaFoto() . "', NOW(), '" . $estudiante->getFechaNacimiento() . "');";
         mysqli_query($this->conexion, $sql);
     }
 
