@@ -82,6 +82,8 @@ class EnvioCorreo
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $this->mail->Port = 587; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
+            $this->mail->CharSet = 'UTF-8';
+
             //Recipients
             $this->mail->setFrom(self::CORREO_FERIA, self::NOMBRE_FERIA);
         } catch (Exception $e) {

@@ -55,6 +55,18 @@ class ManejoUsuario
         $usuarioDAO->crear($pUsuario);
     }
 
+
+    /**
+     * Modificar contraseña olvido
+     *
+     * @param Usuario $pUsuario
+     */
+    public function modificarUsuarioContraseña($pUsuario)
+    {
+        $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
+        $usuarioDAO->modificarUsuarioContraseña($pUsuario);
+    }
+
     /**
      * Busca un usuario en la base de datos
      *
