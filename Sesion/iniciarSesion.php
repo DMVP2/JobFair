@@ -1,5 +1,15 @@
 <?php
 
+function catch_fatal_error()
+{
+    $error =  error_get_last();
+
+    if ($error['type'] == E_ERROR) {
+        header("Location: ../Presentacion/login.php?error=1");
+    }
+}
+register_shutdown_function('catch_fatal_error');
+
 // Importación de clases
 
 include_once('../rutas.php');
@@ -19,61 +29,67 @@ $password = $_POST["password"];
 $manejoUsario = new ManejoUsuario($conexion);
 
 // Verificación de roles
- 
+try {
+
     $usuarioActual = $manejoUsario->buscarUsuarioPorNickname($usuario);
 
     $nickname = $usuarioActual->getUsuario();
     $passwordCifrado = $usuarioActual->getPassword();
 
-    if(strnatcasecmp($nickname, $usuario) == 0 AND strnatcasecmp($passwordCifrado, md5($password)) == 0)
-    {
+
+
+    if (strnatcasecmp($nickname, $usuario) == 0 and strnatcasecmp($passwordCifrado, md5($password)) == 0) {
 
         $rol = $usuarioActual->getRolUsuario();
 
-        if(strnatcasecmp($rol,"Administrador") == 0)
-        {
+        if (strnatcasecmp($rol, "Administrador") == 0) {
             session_start();
- 
+
             $idUsuario = $usuarioActual->getID();
 
             $_SESSION['usuario'] = "$idUsuario";
             $_SESSION['rol'] = "Administrador";
-    
-            header("Location: ../Presentacion/portalAdministrador.php");
-    
-            exit();
-        }
-        else if(strnatcasecmp($rol,"Empresa") == 0)
-        {
-            session_start();
- 
-            $idUsuario = $usuarioActual->getID();
 
-            $_SESSION['usuario'] = "$idUsuario";
-            $_SESSION['rol'] = "Empresa";
-    
-            header("Location: ../Presentacion/portalEmpresa.php");
-    
+            header("Location: ../Presentacion/portalAdministrador.php");
+
             exit();
-        }
-        else if(strnatcasecmp($rol,"Estudiante") == 0)
-        {
+        } else if (strnatcasecmp($rol, "Empresa") == 0) {
+
+            if (strnatcasecmp($usuarioActual->getEstado(), "V") == 0) {
+                header("Location: ../Presentacion/login.php?error=2");
+            } else {
+                session_start();
+
+                $idUsuario = $usuarioActual->getID();
+
+                $_SESSION['usuario'] = "$idUsuario";
+                $_SESSION['rol'] = "Empresa";
+
+
+                header("Location: ../Presentacion/portalEmpresa.php");
+            }
+
+
+            exit();
+        } else if (strnatcasecmp($rol, "Estudiante") == 0) {
             session_start();
- 
+
             $idUsuario = $usuarioActual->getID();
 
             $_SESSION['usuario'] = "$idUsuario";
             $_SESSION['rol'] = "Estudiante";
-    
-            header("Location: ../Presentacion/portalEstudiante.php");
-    
+
+            if (strnatcasecmp($usuarioActual->getEstado(), "V") == 0) {
+                header("Location: ../Presentacion/cambioContraseña.php");
+            } else {
+                header("Location: ../Presentacion/portalEstudiante.php");
+            }
+
             exit();
         }
+    } else {
+        header("Location: ../Presentacion/login.php?error=1");
     }
-    else 
-    {
-        $mensajeaccesoincorrecto = "El usuario y la contraseña son incorrectos, por favor vuelva a introducirlos.";
-        echo $mensajeaccesoincorrecto; 
-    }
-
-    ?>
+} catch (Exception $e) {
+    header("Location: ../Presentacion/login.php?error=1");
+}

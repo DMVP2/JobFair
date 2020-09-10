@@ -160,7 +160,7 @@ class Usuario
     {
 
         $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        $longitudPass = 10;
+        $longitudPass = 8;
         $longitudCadena = strlen($cadena);
         $password = "";
 
@@ -174,5 +174,3 @@ class Usuario
         return $password;
     }
 }
-
-?>

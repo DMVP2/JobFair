@@ -70,8 +70,7 @@ $conexion = $c->conectarBD();
                                         <div class="col-lg-9">
 
 
-                                            <form id="formRegistroEstudiante" method="POST"
-                                                action="/Softlutions/Presentacion/procedimientos/registrarEstudiante.php">
+                                            <form id="formRegistroEmpresa" autocomplete="off">
                                                 <br><br>
 
                                                 <div class="row">
@@ -83,6 +82,7 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Nit</label>
                                                                     <input type="number" class="form-control"
+                                                                        id="nitEmpresa" name="nitEmpresa"
                                                                         pattern="^[0-9]{10,10}"
                                                                         title="Solo se permite el ingreso del NIT de una empresa."
                                                                         required>
@@ -98,7 +98,8 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Razón
                                                                         social</label>
-                                                                    <input type="text" class="form-control" required>
+                                                                    <input type="text" class="form-control"
+                                                                        id="razonSocial" name="razonSocial" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -106,12 +107,13 @@ $conexion = $c->conectarBD();
                                                         <br>
 
                                                         <div class="row">
-
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Razón
                                                                         comercial</label>
-                                                                    <input type="text" class="form-control" required>
+                                                                    <input type="text" class="form-control"
+                                                                        id="razonComercial" name="razonComercial"
+                                                                        required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -125,7 +127,9 @@ $conexion = $c->conectarBD();
                                                                         <label class="bmd-label-floating">
                                                                             Descripción</label>
                                                                         <textarea class="form-control" maxlength="1000"
-                                                                            rows="6" required></textarea>
+                                                                            rows="6" id="descripcionEmpresa"
+                                                                            name="descripcionEmpresa"
+                                                                            required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -140,7 +144,8 @@ $conexion = $c->conectarBD();
                                                                         <label class="bmd-label-floating">
                                                                             Otros beneficios</label>
                                                                         <textarea class="form-control" maxlength="1000"
-                                                                            rows="6" required></textarea>
+                                                                            rows="6" id="otrosBeneficios"
+                                                                            name="otrosBeneficios" required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -154,7 +159,8 @@ $conexion = $c->conectarBD();
                                                                     Tu logo:</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;" riquired>
+                                                                <input type="file" style="width: 140px;"
+                                                                    id="logoEmpresa" name="logoEmpresa" riquired>
                                                             </div>
                                                         </div>
 
@@ -183,13 +189,59 @@ $conexion = $c->conectarBD();
                                                             </div>
                                                         </div>
 
+                                                        <br><br>
+                                                        <div class="alert alert-info" style="height: 50px;">
+                                                            <h6> Usuario</h6>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Usuario</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="usuarioEmpresa" name="usuarioEmpresa"
+                                                                        autocomplete="username" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Contraseña</label>
+                                                                    <input type="password" class="form-control"
+                                                                        id="contraseña" name="contraseña"
+                                                                        autocomplete="new-password" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Confirmar
+                                                                        contraseña</label>
+                                                                    <input type="password" class="form-control"
+                                                                        id="contraseña2" name="contraseña2"
+                                                                        autocomplete="new-password" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
 
                                                         <br><br><br>
 
                                                         <div class="row text-center">
 
                                                             <div class="col-md-12">
-                                                                <button class="btn btn-primary">Registrarme</button>
+                                                                <input type="submit" class="btn btn-primary"
+                                                                    value="Registrarme" onclick="confirmarRegistro()">
                                                                 <br><br>
 
 
@@ -209,22 +261,10 @@ $conexion = $c->conectarBD();
                                             </form>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
-
-
-
-
-
-
                     <!-- CONTENIDO PAGINA -->
                 </div>
             </div>
@@ -235,6 +275,29 @@ $conexion = $c->conectarBD();
             ?>
             <!-- Footer -->
 
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>ADVERTENCIA</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Su usuario estará inactivo hasta que un administrador verifique su información.
+                        <br><br>
+                        Oprima Enviar para continuar.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-warning" onclick="enviarFormulario()">Enviar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -267,10 +330,42 @@ $conexion = $c->conectarBD();
         text/javascript"> </script>
     <script>
     function enviarFormulario() {
-        var formulario = document.getElementById("formRegistroEstudiante");
+
+        datos = $('#formRegistroEmpresa').serialize();
+
+        $.ajax({
+            type: "POST",
+            data: datos,
+            url: "/Softlutions/Presentacion/procedimientos/registrarEmpresa.php",
+            success: function(r) {
+
+                window.location.href = "../index.php";
+            }
+        });
+
+    }
 
 
-        formulario.submit();
+
+    function confirmarRegistro() {
+
+
+        $("#formRegistroEmpresa").on('submit', function(evt) {
+            evt.preventDefault();
+
+            var p1 = document.getElementById("contraseña").value;
+            var p2 = document.getElementById("contraseña2").value;
+
+            if (p1 == p2) {
+                $('#modalConfirmar').modal('show');
+            } else {
+                md.showNotificationError('Las contraseñas no coinciden.');
+            }
+        });
+
+
+
+
     }
 
     function agregarCampoRepresentante() {

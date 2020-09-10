@@ -35,7 +35,6 @@ $conexion = $c->conectarBD();
 
     <!-- JQuerry -->
     <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 
@@ -51,14 +50,14 @@ $conexion = $c->conectarBD();
                 <br><br>
 
                 <div>
-                    <br>
+                    <br><br>
                     <div class="row">
                         <div class="col-md-4">
                         </div>
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <p class="card-category text-center">INICIAR SESIÓN</p>
+                                    <p class="card-category text-center">CAMBIO DE CONTRASEÑA</p>
 
                                 </div>
                                 <div class="card-body">
@@ -69,8 +68,8 @@ $conexion = $c->conectarBD();
                                         <div class="col-lg-9">
 
 
-                                            <form id="formRegistroEstudiante" method="post"
-                                                action="../Sesion/iniciarSesion.php">
+                                            <form id="formCambioContraseña" method="post"
+                                                action="./procedimientos/cambiarContraseña.php">
                                                 <br>
 
                                                 <div class="row">
@@ -80,9 +79,9 @@ $conexion = $c->conectarBD();
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label class="bmd-label-floating">Usuario</label>
-                                                                    <input type="text" name="usuario"
-                                                                        class="form-control">
+                                                                    <label class="bmd-label-floating">Contraseña</label>
+                                                                    <input type="password" name="contraseña1"
+                                                                        id="contraseña1" class="form-control">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -93,9 +92,10 @@ $conexion = $c->conectarBD();
 
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label class="bmd-label-floating">Contraseña</label>
-                                                                    <input type="password" name="password"
-                                                                        class="form-control">
+                                                                    <label class="bmd-label-floating">Confirmar
+                                                                        contraseña</label>
+                                                                    <input type="password" name="contraseña2"
+                                                                        id="contraseña2" class="form-control">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -104,37 +104,14 @@ $conexion = $c->conectarBD();
 
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
-
-                                                                <?php
-                                                                if (isset($_GET["captcha"]) && $_GET["captcha"] == 'true') {
-                                                                    echo "<div style='color:red' align='center'>Catcha inválido ¡Eres un Robot!</div>";
-                                                                }
-                                                                ?>
-                                                                <div class="g-recaptcha" name="captcha" id="captcha"
-                                                                    data-sitekey="6LeiEfwUAAAAAOemG1uxH0AeOYRMZUzraIP69ooW">
-                                                                </div>
-                                                                <br>
-                                                                <button class="btn btn-primary pull-center">INICIAR
-                                                                    SESIÓN</button>
+                                                                <input type="button" class="btn btn-primary pull-center"
+                                                                    value="CAMBIAR CONTRASEÑA"
+                                                                    onclick="enviarFormulario()">
                                                                 <br><br>
 
                                                             </div>
                                                         </div>
 
-                                                        <br>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-12 text-center">
-                                                                <a href="#">¿Olvidaste tu Contraseña?</a>
-                                                            </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="row">
-                                                            <div class="col-md-12 text-center">
-                                                                <a href="../index.php">Volver </a>
-                                                            </div>
-                                                        </div>
                                                         <br>
 
                                                     </div>
@@ -144,22 +121,10 @@ $conexion = $c->conectarBD();
                                             </form>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
-
-
-
-
-
-
                     <!-- CONTENIDO PAGINA -->
                 </div>
             </div>
@@ -200,6 +165,25 @@ $conexion = $c->conectarBD();
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-notify.js" ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type="
         text/javascript"> </script>
+    <script>
+    function enviarFormulario() {
+        var formulario = document.getElementById("formCambioContraseña");
+
+        var p1 = document.getElementById("contraseña1").value;
+        var p2 = document.getElementById("contraseña2").value;
+
+
+
+        if (p1 == p2) {
+            formulario.submit();
+        } else {
+            md.showNotificationError('Las contraseñas no coinciden.');
+        }
+
+
+    }
+    </script>
+
     <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -409,19 +393,6 @@ $conexion = $c->conectarBD();
         })
     });
     </script>
-
-    <?php if (isset($_GET['error'])) {
-
-        echo "<script>";
-
-        $numError = $_GET['error'];
-        if ($numError == '1') {
-            echo "md.showNotificationError('La contraseña y/o usuario es inválido');";
-        } else if ($numError == '2') {
-            echo "md.showNotificationError('El usuario de la empresa no se ha activado.<br>Contacte a un administrador.');";
-        }
-        echo "</script>";
-    } ?>
 
 
 </body>
