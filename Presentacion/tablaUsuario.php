@@ -196,7 +196,7 @@ $next = $page + 1;
                                                             <form action="informacionVacante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $usuario->getId() . "'"; ?> name="codigoUsuario" value=<?php echo "'" . $usuario->getId() . "'"; ?>>
                                                                 <button class="btn btn-danger" type="submit" id="submit" name="usuario" value="">
-                                                                    <i class="material-icons">delete</i>
+                                                                    <i class="material-icons">clear</i>
                                                                 </button>
                                                             </form>
                                                         </th>

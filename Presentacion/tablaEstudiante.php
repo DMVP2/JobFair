@@ -172,7 +172,7 @@ $next = $page + 1;
                                                             <form action="informacionEstudiante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
                                                                 <button class="btn btn-danger" type="submit" id="submit" name="estudiante" value="">
-                                                                    <i class="material-icons">delete</i>
+                                                                    <i class="material-icons">clear</i>
                                                                 </button>
                                                             </form>
                                                         </th>

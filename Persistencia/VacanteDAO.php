@@ -3,6 +3,7 @@
 require_once 'DAO.php';
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Vacante.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Empresa.php");
 
 /**
  * Representa el DAO de la entidad "Vacante"
@@ -377,6 +378,40 @@ class VacanteDAO implements DAO
 		}
 
 		return $vacanteArray;
+	}
+
+	/**
+     * Método para contar la cantidad de vacantes por empresa
+	 *
+	 * @return Empresa[]
+	 */
+	public function cantidadAplicacionesVacante($empresas, $pagInicio, $limit)
+	{
+
+		$aux = 0;
+		foreach($empresas as $empresa)
+		{
+			
+			$idEmpresa = $empresa->getNit();
+
+			$sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE, EMPRESA_VACANTE WHERE EMPRESA_VACANTE.nit_empresa = $idEmpresa AND EMPRESA_VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante LIMIT " . $pagInicio . " , " . $limit;
+
+			if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+			$cantidadVacantes = array();
+
+			$consulta = mysqli_query($this->conexion, $sql);
+			$resultado = mysqli_fetch_array($consulta)[0];
+
+			$cantidadVacantes[$aux][0] = $empresa->getRazonSocial();
+			$cantidadVacantes[$aux][1] = $empresa->getRazonComercial();
+			$cantidadVacantes[$aux][2] = $resultado;
+
+			
+		}
+		$aux = $aux + 1;
+
+		return $cantidadVacantes;
 	}
 
 	/**

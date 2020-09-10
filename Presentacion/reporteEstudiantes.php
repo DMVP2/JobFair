@@ -31,6 +31,7 @@ $cantidadEstudiantesPorPrograma = $manejoEstudiantes->cantidadEstudiantesPorProg
 
 $manejoVacantes = new ManejoVacante($conexion);
 $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
+
 ?>
 
 <!doctype html>
@@ -70,7 +71,7 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
                     <!-- CONTENIDO PAGINA -->
 
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="col-lg-12 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <br>
                                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
@@ -98,6 +99,7 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
     $dataPoints = $cantidadEstudiantesPorPrograma;
 
     ?>
+
     <script>
         window.onload = function() {
 
@@ -118,7 +120,6 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
 
         }
     </script>
-
 
     <!--   Core JS Files   -->
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>

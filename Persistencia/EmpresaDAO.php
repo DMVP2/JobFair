@@ -144,8 +144,14 @@ class EmpresaDAO implements DAO
 
 		while ($row = mysqli_fetch_array($result)) {
 			$empresa = new Empresa();
-			$empresa->setcodigo($row[0]);
-			$empresa->setnombre($row[1]);
+			$empresa->setNit($row[0]);
+			$empresa->setRazonSocial($row[1]);
+			$empresa->setRazonComercial($row[2]);
+			$empresa->setDescripcion($row[3]);
+			$empresa->setOtrosBeneficios($row[4]);
+			$empresa->setEstadoEmpresa($row[5]);
+			$empresa->setLogoEmpresa($row[6]);
+			
 			$empresaArray[] = $empresa;
 		}
 
@@ -162,7 +168,7 @@ class EmpresaDAO implements DAO
 		$sql = "SELECT * FROM EMPRESA LIMIT " . $pagInicio . " , " . $limit;
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-		$estudianteArray = array();
+		$empresaArray = array();
 
 		while ($row = mysqli_fetch_array($result)) {
 

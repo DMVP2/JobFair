@@ -201,4 +201,16 @@ class manejoVacante
         $vacantes = $VacanteDAO->listarVacantesEmpresa($idEmpresa, $paginationStart, $limit);
         return $vacantes;
     }
+
+    /**
+     * Método para contar la cantidad de vacantes por empresa
+     * @param int
+     * @return Vacante[]
+     */
+    public function cantidadAplicacionesVacante($empresas, $paginationStart, $limit)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $vacantes = $VacanteDAO->cantidadAplicacionesVacante($empresas, $paginationStart, $limit);
+        return $vacantes;
+    }
 }

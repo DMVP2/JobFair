@@ -170,6 +170,12 @@ $next = $page + 1;
                                                             <form action="informacionEmpresa.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
                                                                 <button class="btn btn-danger" type="submit" id="submit" name="empresa" value="">
+                                                                    <i class="material-icons">clear</i>
+                                                                </button>
+                                                            </form>
+                                                            <form action="informacionEmpresa.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                                                <button class="btn btn-danger" type="submit" id="submit" name="empresa" value="">
                                                                     <i class="material-icons">delete</i>
                                                                 </button>
                                                             </form>

@@ -2,18 +2,16 @@
 
 session_start();
 
-if (!isset($_SESSION['usuario'])) {
-
-    header("location:../index.php");
-}
-
 // Importación de clases
 
 include_once('../rutas.php');
 include_once('../Persistencia/conexion.php');
-include_once('../Negocio/ManejoEmpresa.php');
-include_once('../Negocio/ManejoEstudiante.php');
-include_once('../Negocio/ManejoVacante.php');
+include_once('../Negocio/manejoEmpresa.php');
+include_once('../Negocio/manejoVacante.php');
+
+// Nombre de la pagina
+
+$nombrePagina = basename(__FILE__);
 
 // Conexión con la base de datos
 
@@ -22,15 +20,38 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
+
 $manejoEmpresas = new ManejoEmpresa($conexion);
-$cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
+$manejoVacante = new ManejoVacante($conexion);
 
-$manejoEstudiantes = new ManejoEstudiante($conexion);
-$cantidadEstudiantes = $manejoEstudiantes->cantidadEstudiantes();
-$cantidadEstudiantesPorPrograma = $manejoEstudiantes->cantidadEstudiantesPorPrograma();
+// Paginación
 
-$manejoVacantes = new ManejoVacante($conexion);
-$cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
+if (isset($_POST['records-limit'])) {
+    $_SESSION['records-limit'] = $_POST['records-limit'];
+}
+
+$limit = isset($_SESSION['records-limit']) ? $_SESSION['records-limit'] : 10;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+$paginationStart = ($page - 1) * $limit;
+
+// RETORNA EL ARREGLO DE LA BD
+
+$empresas = $manejoEmpresas->listarEmpresas();
+$cantidadAplicacionesVacante = $manejoVacante->cantidadAplicacionesVacante($empresas, $paginationStart, $limit);
+
+// CANTIDAD TOTAL A CARGAR - COUNT BD
+
+$allRecords = $manejoEmpresas->cantidadEmpresas();
+
+// Total de las paginas
+
+$totoalPages = ceil($allRecords / $limit);
+
+// Prev + Next
+
+$prev = $page - 1;
+$next = $page + 1;
+
 ?>
 
 <!doctype html>
@@ -46,8 +67,9 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
+    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css?v=2.1.2"  ?>" rel="stylesheet" />
 </head>
 
 <body>
@@ -69,18 +91,113 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
+                    <!-- Select dropdown -->
+                    <div class="d-flex flex-row-reverse bd-highlight mb-3">
+                        <form action="<?php echo $nombrePagina ?>" method="post">
+                            <select name="records-limit" id="records-limit" class="custom-select">
+                                <option disabled selected>Límite</option>
+                                <?php foreach ([5, 10, 15, 20] as $limit) : ?>
+                                    <option <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?> value="<?= $limit; ?>">
+                                        <?= $limit; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </form>
+                    </div>
+                    <!-- Select dropdown -->
+
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <br>
-                                <div id="canvas" style="height: 370px; width: 100%;"></div>
-                                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-                                <br>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Empresas</h4>
+                                    <p class="card-category">Listado de las empresas registradas en el sistema</p>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+
+
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                                <th>
+                                                    Razón Social
+                                                </th>
+                                                <th>
+                                                    Razón Comercial
+                                                </th>
+                                                <th>
+                                                    Cantidad de postulaciones
+                                                </th>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+
+                                                foreach ($cantidadAplicacionesVacante as $postulacion) {
+                                                ?>
+
+                                                    <thead class=" text-primary">
+                                                        <th>
+                                                            <?php echo $postulacion[0] ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $postulacion[1] ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $postulacion[2] ?>
+                                                        </th>
+                                                    </thead>
+
+                                                <?php
+                                                }
+
+                                                ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- CONTENIDO PAGINA -->
+
+
+                    </div>
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item <?php if ($page <= 1) {
+                                                        echo 'disabled';
+                                                    } ?>">
+                                <a class="page-link" href="<?php if ($page <= 1) {
+                                                                echo '#';
+                                                            } else {
+                                                                echo "?page=" . $prev;
+                                                            } ?>"><span aria-hidden="true">&laquo;</span></a>
+
+                            </li>
+
+                            <?php for ($i = 1; $i <= $totoalPages; $i++) : ?>
+                                <li class="page-item <?php if ($page == $i) {
+                                                            echo 'active';
+                                                        } ?>">
+                                    <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+                                </li>
+                            <?php endfor; ?>
+
+                            <li class="page-item <?php if ($page >= $totoalPages) {
+                                                        echo 'disabled';
+                                                    } ?>">
+                                <a class="page-link" href="<?php if ($page >= $totoalPages) {
+                                                                echo '#';
+                                                            } else {
+                                                                echo "?page=" . $next;
+                                                            } ?>"><span aria-hidden="true">&raquo;</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Pagination -->
 
                 </div>
             </div>
@@ -93,48 +210,14 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
 
         </div>
     </div>
-    <?php
-
-    $dataPoints = $cantidadEstudiantesPorPrograma;
-
-    ?>
-    <script>
-        html2canvas($("#canvas"), {
-            onrendered: function(canvas) {         
-                var imgData = canvas.toDataURL(
-                    'image/png');              
-                var doc = new jsPDF('p', 'mm');
-                doc.addImage(imgData, 'PNG', 10, 10);
-                doc.save('sample-file.pdf');
-            }
-        });
-    </script>
-    <script>
-        window.onload = function() {
-
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                title: {
-                    text: "Cantidad de estudiantes por programa"
-                },
-                data: [{
-                    type: "pie",
-                    startAngle: 240,
-                    yValueFormatString: "#",
-                    indexLabel: "{label} {y}",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                }]
-            });
-            chart.render();
-
-        }
-    </script>
 
 
     <!--   Core JS Files   -->
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>"></script>
+
+    <?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
     </script>
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
@@ -338,10 +421,12 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
                         }, 300);
                     }
 
+                    // We simulate the window Resize so the charts will get updated in realtime.
                     var simulateWindowResize = setInterval(function() {
                         window.dispatchEvent(new Event("resize"));
                     }, 180);
 
+                    // We stop the simulation of Window Resize after the animations are completed
                     setTimeout(function() {
                         clearInterval(simulateWindowResize);
                     }, 1000);
@@ -351,8 +436,15 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
     </script>
     <script>
         $(document).ready(function() {
-
+            // Javascript method's body can be found in assets/js/demos.js
             md.initDashboardPageCharts();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#records-limit').change(function() {
+                $('form').submit();
+            })
         });
     </script>
 </body>
