@@ -60,6 +60,7 @@ $conexion = $c->conectarBD();
                                     <div class="row">
                                         <div class="col-md-12">
                                             <form id="formRegistroEstudiante" method="POST"
+                                                enctype="multipart/form-data"
                                                 action="/Softlutions/Presentacion/procedimientos/registrarEstudiante.php">
                                                 <br>
                                                 <br>
@@ -206,7 +207,8 @@ $conexion = $c->conectarBD();
                                                                     Tu foto:</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;">
+                                                                <input type="file" style="width: 140px;" id="user_image"
+                                                                    name="user_image" require>
                                                             </div>
                                                         </div>
                                                         <br><br><br>
