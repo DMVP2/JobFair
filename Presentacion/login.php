@@ -38,20 +38,13 @@ $conexion = $c->conectarBD();
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
-
 <body>
     <div class="wrapper ">
-
-
-
         <div class="content">
             <div class="container-fluid">
                 <!-- CONTENIDO PAGINA -->
-
                 <br><br>
-
                 <div>
-                    <br>
                     <div class="row">
                         <div class="col-md-4">
                         </div>
@@ -59,23 +52,17 @@ $conexion = $c->conectarBD();
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <p class="card-category text-center">INICIAR SESIÓN</p>
-
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-2">
-
                                         </div>
                                         <div class="col-lg-9">
-
-
                                             <form id="formRegistroEstudiante" method="post"
                                                 action="../Sesion/iniciarSesion.php">
                                                 <br>
-
                                                 <div class="row">
                                                     <div class="col-md-2"></div>
-
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -86,9 +73,7 @@ $conexion = $c->conectarBD();
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <br>
-
                                                         <div class="row">
 
                                                             <div class="col-md-12">
@@ -126,7 +111,8 @@ $conexion = $c->conectarBD();
                                                         <div class="row">
 
                                                             <div class="col-md-12 text-center">
-                                                                <a href="#">¿Olvidaste tu Contraseña?</a>
+                                                                <a href="olvideContraseña.php">¿Olvidaste tu
+                                                                    Contraseña?</a>
                                                             </div>
                                                         </div>
                                                         <br>
@@ -144,22 +130,10 @@ $conexion = $c->conectarBD();
                                             </form>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
-
-
-
-
-
-
                     <!-- CONTENIDO PAGINA -->
                 </div>
             </div>

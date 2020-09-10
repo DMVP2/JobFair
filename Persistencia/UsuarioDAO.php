@@ -58,6 +58,21 @@ class UsuarioDAO implements DAO
 		mysqli_query($this->conexion, $sql);
 	}
 
+
+	/**
+	 * Método para cambiar contraseña de un usuario
+	 *
+	 * @param Usuario $usuario
+	 * @return void
+	 */
+	public function modificarUsuarioContraseña($usuario)
+	{
+		$sql = "UPDATE USUARIO SET estado_usuario = '" . $usuario->getEstado() . "', password_usuario='" . $usuario->getPassword() . "' WHERE id_rol_usuario = 3 AND nickname_usuario = '" . $usuario->getUsuario() . "' ";
+		mysqli_query($this->conexion, $sql);
+	}
+
+
+
 	/**
 	 * Método para consultar un usuario por su ID
 	 *

@@ -243,18 +243,11 @@ $conexion = $c->conectarBD();
                                                                 <input type="submit" class="btn btn-primary"
                                                                     value="Registrarme" onclick="confirmarRegistro()">
                                                                 <br><br>
-
-
                                                                 <a href="../index.php">Volver</a>
 
                                                                 <br><br>
-
-
-
                                                             </div>
-
                                                         </div>
-
                                                     </div>
                                                     <br>
                                                     <div class="clearfix"></div>
@@ -342,14 +335,11 @@ $conexion = $c->conectarBD();
                 window.location.href = "../index.php";
             }
         });
-
     }
 
 
 
     function confirmarRegistro() {
-
-
         $("#formRegistroEmpresa").on('submit', function(evt) {
             evt.preventDefault();
 
@@ -362,10 +352,6 @@ $conexion = $c->conectarBD();
                 md.showNotificationError('Las contraseñas no coinciden.');
             }
         });
-
-
-
-
     }
 
     function agregarCampoRepresentante() {
