@@ -106,6 +106,8 @@ include_once('./rutas.php')
         </div>
     </div>
     <!-- Modal -->
+
+
 </body>
 
 </html>
