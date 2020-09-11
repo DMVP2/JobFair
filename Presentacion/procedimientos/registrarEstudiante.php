@@ -106,4 +106,4 @@ $envioCorreo = new EnvioCorreo();
 $envioCorreo->prepararCorreo($correoIns, ASUNTO_REGISTRO_ESTUDIANTE, CUERPO_REGISTRO_ESTUDIANTE . $contraseña);
 $envioCorreo->enviarCorreo();
 
-//header("Location: ../../index.php");
+header("Location: ../../index.php");

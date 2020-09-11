@@ -55,7 +55,7 @@ class EmpresaDAO implements DAO
 	 */
 	public function crear($empresa)
 	{
-		$sql = "INSERT INTO EMPRESA VALUES(" . $empresa->getNit() . ",'" . $empresa->getRazonSocial() . "','" . $empresa->getRazonComercial() . "','" . $empresa->getDescripcion() . "','" . $empresa->getOtrosBeneficios() . "','" . $empresa->getEstadoEmpresa() . "','" . $empresa->getLogoEmpresa() . "');";
+		$sql = "INSERT INTO EMPRESA VALUES(" . $empresa->getNit() . ",'" . $empresa->getRazonSocial() . "','" . $empresa->getRazonComercial() . "','" . $empresa->getDescripcion() . "','" . $empresa->getOtrosBeneficios() . "','" . $empresa->getEstadoEmpresa() . "','" . $empresa->getLogoEmpresa() . "' , '" . $empresa->getCamaraComercio() . "');";
 
 		mysqli_query($this->conexion, $sql);
 	}
@@ -151,7 +151,7 @@ class EmpresaDAO implements DAO
 			$empresa->setOtrosBeneficios($row[4]);
 			$empresa->setEstadoEmpresa($row[5]);
 			$empresa->setLogoEmpresa($row[6]);
-			
+
 			$empresaArray[] = $empresa;
 		}
 

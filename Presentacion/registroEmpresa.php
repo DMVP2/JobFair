@@ -70,13 +70,28 @@ $conexion = $c->conectarBD();
                                         <div class="col-lg-9">
 
 
-                                            <form id="formRegistroEmpresa" autocomplete="off">
+                                            <form id="formRegistroEmpresa" enctype="multipart/form-data" method="POST"
+                                                action="/Softlutions/Presentacion/procedimientos/registrarEmpresa.php">
                                                 <br><br>
 
                                                 <div class="row">
                                                     <div class="col-md-2"></div>
 
                                                     <div class="col-md-9">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        class="bmd-label-floating"><strong>Atención:</strong>
+                                                                        Su
+                                                                        usuario tendrá que ser activado por un
+                                                                        administrador.</label>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
@@ -154,13 +169,26 @@ $conexion = $c->conectarBD();
                                                         <br><br>
 
                                                         <div class="row">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
+                                                                <label class="bmd-label-floating">
+                                                                    Camara de comercio:</label>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <input type="file" style="width: 140px;" id="user_image"
+                                                                    name="user_image" riquired>
+                                                            </div>
+                                                        </div>
+
+                                                        <br><br>
+
+                                                        <div class="row">
+                                                            <div class="col-md-5">
                                                                 <label class="bmd-label-floating">
                                                                     Tu logo:</label>
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <input type="file" style="width: 140px;"
-                                                                    id="logoEmpresa" name="logoEmpresa" riquired>
+                                                                    id="camaraComercio" name="camaraComercio" riquired>
                                                             </div>
                                                         </div>
 
@@ -241,7 +269,7 @@ $conexion = $c->conectarBD();
 
                                                             <div class="col-md-12">
                                                                 <input type="submit" class="btn btn-primary"
-                                                                    value="Registrarme" onclick="confirmarRegistro()">
+                                                                    value="Registrarme">
                                                                 <br><br>
                                                                 <a href="../index.php">Volver</a>
 
@@ -269,29 +297,7 @@ $conexion = $c->conectarBD();
             <!-- Footer -->
 
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><strong>ADVERTENCIA</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Su usuario estará inactivo hasta que un administrador verifique su información.
-                        <br><br>
-                        Oprima Enviar para continuar.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-warning" onclick="enviarFormulario()">Enviar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
 
@@ -322,23 +328,6 @@ $conexion = $c->conectarBD();
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type="
         text/javascript"> </script>
     <script>
-    function enviarFormulario() {
-
-        datos = $('#formRegistroEmpresa').serialize();
-
-        $.ajax({
-            type: "POST",
-            data: datos,
-            url: "/Softlutions/Presentacion/procedimientos/registrarEmpresa.php",
-            success: function(r) {
-
-                window.location.href = "../index.php";
-            }
-        });
-    }
-
-
-
     function confirmarRegistro() {
         $("#formRegistroEmpresa").on('submit', function(evt) {
             evt.preventDefault();
