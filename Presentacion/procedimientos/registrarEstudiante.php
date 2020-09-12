@@ -37,41 +37,6 @@ $experiencia = $_POST['experienciaEstudiante'];
 $nacimiento = $_POST['nacimientoEstudiante'];
 
 
-// RECIBIR IMAGEN
-
-$imgFile = $_FILES['user_image']['name'];
-$tmp_dir = $_FILES['user_image']['tmp_name'];
-$imgSize = $_FILES['user_image']['size'];
-
-
-if (empty($imgFile)) {
-    $userpic = "default.png";
-} else {
-    $upload_dir = '../img/Estudiante/'; //Cargar directorio a la ruta especificada
-
-    $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); //Información sobre la extensión del archivo
-
-
-    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif');  //Extensiónes validas
-
-    //Renonbrar archivo
-    $userpic = $documento . "." . $imgExt;
-    //Permitir imagenes de formatos validos
-    if (in_array($imgExt, $valid_extensions)) {
-        //Verificar tamaño del archivo '1 MB'
-        if ($imgSize < 1000000) {
-            move_uploaded_file($tmp_dir, $upload_dir . $userpic);
-        } else {
-            echo 'No se pudo';
-        }
-    } else {
-        echo 'Se pudo';
-    }
-}
-
-// RECIBIR IMAGEN
-
-
 $nuevoEstudiante = new Estudiante();
 $us = new Usuario();
 
@@ -89,7 +54,7 @@ $nuevoEstudiante->setSemestreActual($semestre);
 $nuevoEstudiante->setProgramaAcademico($carrera);
 $nuevoEstudiante->setExperiencia($experiencia);
 $nuevoEstudiante->setEstado("Activo (Sin postulación)");
-$nuevoEstudiante->setRutaFoto($userpic);
+$nuevoEstudiante->setRutaFoto("defaultUser.png");
 $nuevoEstudiante->setFechaNacimiento($nacimiento);
 
 $manejoEstudiante->crearEstudiante($nuevoEstudiante);

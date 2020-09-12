@@ -37,9 +37,6 @@ $conexion = $c->conectarBD();
 
 <body>
     <div class="wrapper ">
-
-
-
         <div class="content">
             <div class="container-fluid">
                 <!-- CONTENIDO PAGINA -->
@@ -60,7 +57,6 @@ $conexion = $c->conectarBD();
                                     <div class="row">
                                         <div class="col-md-12">
                                             <form id="formRegistroEstudiante" method="POST"
-                                                enctype="multipart/form-data"
                                                 action="/Softlutions/Presentacion/procedimientos/registrarEstudiante.php">
                                                 <br>
                                                 <br>
@@ -200,21 +196,11 @@ $conexion = $c->conectarBD();
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <br>
-                                                        <div class="row">
-                                                            <div class="col-md-5">
-                                                                <label class="bmd-label-floating">
-                                                                    Tu foto:</label>
-                                                            </div>
-                                                            <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;" id="user_image"
-                                                                    name="user_image" require>
-                                                            </div>
-                                                        </div>
+
                                                         <br><br><br>
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
-                                                                <button
+                                                                <button id="botonRegistrar" name="botonRegistrar"
                                                                     class="btn btn-primary pull-center">Registrarme</button>
                                                                 <br><br>
                                                                 <center><a href="../index.php">Volver</a></center>
@@ -278,6 +264,12 @@ $conexion = $c->conectarBD();
     <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type="
         text/javascript"> </script>
     <script>
+    $("#formRegistroEstudiante").submit(function(e) {
+        $("#botonRegistrar").attr("disabled", true);
+        alert("En tu correo encontrarás una contraseña temporal.");
+    });
+
+
     $(document).ready(function() {
         $().ready(function() {
             $sidebar = $(".sidebar");

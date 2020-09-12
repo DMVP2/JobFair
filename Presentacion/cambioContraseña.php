@@ -81,7 +81,7 @@ $conexion = $c->conectarBD();
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Contraseña</label>
                                                                     <input type="password" name="contraseña1"
-                                                                        id="contraseña1" class="form-control">
+                                                                        id="contraseña1" class="form-control" require>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -95,7 +95,7 @@ $conexion = $c->conectarBD();
                                                                     <label class="bmd-label-floating">Confirmar
                                                                         contraseña</label>
                                                                     <input type="password" name="contraseña2"
-                                                                        id="contraseña2" class="form-control">
+                                                                        id="contraseña2" class="form-control" require>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -105,8 +105,8 @@ $conexion = $c->conectarBD();
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
                                                                 <input type="button" class="btn btn-primary pull-center"
-                                                                    value="CAMBIAR CONTRASEÑA"
-                                                                    onclick="enviarFormulario()">
+                                                                    value="CAMBIAR CONTRASEÑA" id="btnCambiar"
+                                                                    name="btnCambiar" onclick="enviarFormulario()">
                                                                 <br><br>
 
                                                             </div>
@@ -172,13 +172,17 @@ $conexion = $c->conectarBD();
         var p1 = document.getElementById("contraseña1").value;
         var p2 = document.getElementById("contraseña2").value;
 
-
-
-        if (p1 == p2) {
-            formulario.submit();
+        if (p1.trim() != "" || p2.trim() != "") {
+            if (p1 == p2) {
+                $("#btnCambiar").attr("disabled", true);
+                formulario.submit();
+            } else {
+                md.showNotificationError('Las contraseñas no coinciden.');
+            }
         } else {
-            md.showNotificationError('Las contraseñas no coinciden.');
+            md.showNotificationError('Rellene los campos.');
         }
+
 
 
     }

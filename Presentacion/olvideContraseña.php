@@ -94,6 +94,7 @@ $conexion = $c->conectarBD();
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
                                                                 <input type="submit" class="btn btn-primary pull-center"
+                                                                    id="btnRecuperar" name="btnRecuperar"
                                                                     onclick="confirmarRecuperar()" value="RECUPERAR
                                                                     CONTRASEÑA">
                                                                 <br>
@@ -143,7 +144,7 @@ $conexion = $c->conectarBD();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-warning"
+                            <button type="button" class="btn btn-warning" id="btnConfirmar" name="btnConfirmar"
                                 onclick="enviarFormulario()">Confirmar</button>
                         </div>
                     </div>
@@ -188,6 +189,9 @@ $conexion = $c->conectarBD();
     <script>
     function enviarFormulario() {
 
+        $("#btnConfirmar").attr("disabled", true);
+        $("#btnRecuperar").attr("disabled", true);
+        btnConfirmar
         datos = $('#formRecuperar').serialize();
 
         $.ajax({
