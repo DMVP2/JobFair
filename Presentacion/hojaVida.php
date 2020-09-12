@@ -79,12 +79,13 @@ else
       <div class="profile-page">
         <div class="wrapper">
           <div class="page-header page-header-small" filter-color="green">
-            <div class="page-header-image" data-parallax="true" style="background: rgb(62, 71, 41);"></div>
+            <div class="page-header-image" data-parallax="true" style="background: rgb(0, 94, 110);"></div>
             <div class="container">
               <div class="content-center">
                 <div class="cc-profile-image"><a href="#"><img class="img" src=<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>></a></div>
                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
                 <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
+                <br>
                 <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
                 <a class="btn btn-primary" href="<?php $ruta ?>" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
@@ -126,12 +127,11 @@ else
                 <?php
                 if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) 
                 {
-                if ($hojaVida->getPerfilProfesional() != null AND $hojaVida->getCertificaciones() != null) {
+                if ($hojaVida->getPerfilProfesional() != null) {
                 ?>
                   <div class="card-body">
                     <div class="h4 mt-0 title">Perfil profesional</div>
                     <p> <strong> Perfil profesional: </strong> <?php echo $hojaVida->getPerfilProfesional() ?> </p>
-                    <p> <strong> Certificaciones: </strong> <?php echo $hojaVida->getCertificaciones() ?> </p>
                   </div>
 
                 <?php
@@ -195,48 +195,7 @@ else
       }
       ?>
 
-      <?php
-      if ($hojaVida->getExperienciaLaboral() != null) {
-      ?>
-        <div class="section" id="experience">
-          <div class="container cc-experience">
-            <div class="h4 text-center mb-4 title">Experiencia laboral</div>
-
-            <?php
-
-            foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
-
-            ?>
-
-              <div class="card">
-                <div class="row">
-                  <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-                    <div class="card-body cc-experience-header">
-                      <p> <?php echo $experiencia[3] ?> </p>
-                      <div class="h5"> <?php echo $experiencia[2] ?> </div>
-                    </div>
-                  </div>
-                  <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                    <div class="card-body">
-                      <div class="h5"> <?php echo $experiencia[0] ?> </div>
-                      <p> <?php echo $experiencia[1] ?> </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            <?php
-            }
-            ?>
-
-          </div>
-        </div>
-
-      <?php
-      }
-      ?>
-
-      <?php
+<?php
       if ($hojaVida->getEstudios() != null) {
       ?>
         <div class="section">
@@ -278,12 +237,55 @@ else
       }
   ?>
 
+      <?php
+      if ($hojaVida->getExperienciaLaboral() != null) {
+      ?>
+        <div class="section" id="experience">
+          <div class="container cc-experience">
+            <div class="h4 text-center mb-4 title">Experiencia laboral</div>
+
+            <?php
+
+            foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
+
+            ?>
+
+              <div class="card">
+                <div class="row">
+                  <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                    <div class="card-body cc-experience-header">
+                      <p> <?php echo $experiencia[3] ?> </p>
+                      <div class="h5"> <?php echo $experiencia[2] ?> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                    <div class="card-body">
+                      <div class="h5"> <?php echo $experiencia[0] ?> </div>
+                      <p> <?php echo $experiencia[1] ?> </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <?php
+            }
+            ?>
+
+          </div>
+        </div>
+
+      <?php
+      }
+      ?>
+ 
+
+
   <?php
   if ($hojaVida->getReferenciasPersonales() != null) {
   ?>
     <div class="section" id="reference">
       <div class="container cc-reference">
-        <div class="h4 mb-4 text-center title">Referencias personales</div>
+        <div class="h4 mb-4 text-center title">Referencias</div>
 
         <?php
 
@@ -298,7 +300,7 @@ else
               <div class="col-lg-10 col-md-9">
                 <p> Nombre: <?php echo $referencia[0] ?> </p>
                 <p> Teléfono: <?php echo $referencia[1] ?> </p>
-                <p> Parentesco: <?php echo $referencia[2] ?> </p>
+                <p> Cargo / Profesión: <?php echo $referencia[2] ?> </p>
               </div>
             </div>
           </div>

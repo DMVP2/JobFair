@@ -117,7 +117,7 @@ $next = $page + 1;
                                         <table class="table">
                                             <thead class=" text-primary">
                                                 <th>
-                                                    ID
+                                                    Número de documento
                                                 </th>
                                                 <th>
                                                     Nombre
@@ -132,7 +132,10 @@ $next = $page + 1;
                                                     Semestre
                                                 </th>
                                                 <th>
-                                                Acciones
+                                                    Estado
+                                                </th>
+                                                <th>
+                                                    Acciones
                                                 </th>
                                             </thead>
                                             <tbody>
@@ -155,6 +158,9 @@ $next = $page + 1;
                                                         </th>
                                                         <th>
                                                             <?php echo $estudiante->getSemestreActual() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $estudiante->getEstado() ?>
                                                         </th>
                                                         <th>
                                                             <form action="informacionEstudiante.php" method="post">

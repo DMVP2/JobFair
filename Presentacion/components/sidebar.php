@@ -56,7 +56,7 @@ $rolUsuario = $_SESSION['rol'];
                 </li>
                 <br>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">groups</i>
                         <p>Reportes</p>
                     </a>

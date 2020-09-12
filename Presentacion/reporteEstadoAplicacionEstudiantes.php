@@ -5,8 +5,8 @@ session_start();
 // Importación de clases
 
 include_once('../rutas.php');
-include_once('../Persistencia/conexion.php');
-include_once('../Negocio/manejoVacante.php');
+include_once('../Persistencia/Conexion.php');
+include_once('../Negocio/ManejoEstudiante.php');
 
 // Nombre de la pagina
 
@@ -19,8 +19,7 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-
-$manejoVacantes = new ManejoVacante($conexion);
+$manejoEstudiantes = new ManejoEstudiante($conexion);
 
 // Paginación
 
@@ -34,15 +33,15 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
-$vacantes = $manejoVacantes->listarVacantesActivasPaginacion($paginationStart, $limit);
+$estudiantes = $manejoEstudiantes->listarEstudiantesPaginacion($paginationStart, $limit);
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
-$allRecords = $manejoVacantes->cantidadVacantesActivas();
+$allRecords = $manejoEstudiantes->cantidadEstudiantes();
 
 // Total de las paginas
 
-$totoalPages = ceil($allRecords / $limit);
+$totalPages = ceil($allRecords / $limit);
 
 // Prev + Next
 
@@ -107,8 +106,8 @@ $next = $page + 1;
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Vacantes</h4>
-                                    <p class="card-category">Listado de las vacantes registradas en el sistema</p>
+                                    <h4 class="card-title ">Estudiantes</h4>
+                                    <p class="card-category">Listado de los estudiantes registrados en el sistema</p>
                                 </div>
                                 <div class="card-body">
 
@@ -118,71 +117,29 @@ $next = $page + 1;
                                         <table class="table">
                                             <thead class=" text-primary">
                                                 <th>
-                                                    ID
+                                                    Número de documento
                                                 </th>
                                                 <th>
                                                     Nombre
                                                 </th>
                                                 <th>
-                                                    Programa Academico
-                                                </th>
-                                                <th>
-                                                    Horario
-                                                </th>
-                                                <th>
-                                                    Salario
-                                                </th>
-                                                <th>
                                                     Estado
-                                                </th>
-                                                <th>
-                                                    Acciones
                                                 </th>
                                             </thead>
                                             <tbody>
                                                 <?php
 
-                                                foreach ($vacantes as $vacante) {
+                                                foreach ($estudiantes as $estudiante) {
                                                 ?>
-
                                                     <thead class=" text-primary">
                                                         <th>
-                                                            <?php echo $vacante->getId() ?>
+                                                            <?php echo $estudiante->getNumeroDocumento() ?>
                                                         </th>
                                                         <th>
-                                                            <?php echo $vacante->getNombre() ?>
+                                                            <?php echo $estudiante->getNombre() ?>
                                                         </th>
                                                         <th>
-                                                            <?php echo $vacante->getProgramaAcademico() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $vacante->getHorarioVacante() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $vacante->getSalarioVacante() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $vacante->getEstado() ?>
-                                                        </th>
-                                                        <th>
-                                                            <form action="informacionVacante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
-                                                                <button class="btn btn-success" type="submit" id="submit" name="vacante" value="">
-                                                                <i class="material-icons">visibility</i>
-                                                                </button>
-                                                            </form>
-                                                            <form action="informacionVacante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
-                                                                <button class="btn btn-warning" type="submit" id="submit" name="vacante" value="" >
-                                                                <i class="material-icons">edit</i>
-                                                                </button>
-                                                            </form>
-                                                            <form action="informacionVacante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
-                                                                <button class="btn btn-danger" type="submit" id="submit" name="vacante" value="">
-                                                                    <i class="material-icons">clear</i>
-                                                                </button>
-                                                            </form>
+                                                            <?php echo $estudiante->getEstado() ?>
                                                         </th>
                                                     </thead>
 
@@ -199,9 +156,8 @@ $next = $page + 1;
                             </div>
                         </div>
 
-
-
                     </div>
+
                     <!-- Pagination -->
                     <nav aria-label="Page navigation example mt-5">
                         <ul class="pagination justify-content-center">
@@ -216,7 +172,7 @@ $next = $page + 1;
 
                             </li>
 
-                            <?php for ($i = 1; $i <= $totoalPages; $i++) : ?>
+                            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
                                 <li class="page-item <?php if ($page == $i) {
                                                             echo 'active';
                                                         } ?>">
@@ -224,10 +180,10 @@ $next = $page + 1;
                                 </li>
                             <?php endfor; ?>
 
-                            <li class="page-item <?php if ($page >= $totoalPages) {
+                            <li class="page-item <?php if ($page >= $totalPages) {
                                                         echo 'disabled';
                                                     } ?>">
-                                <a class="page-link" href="<?php if ($page >= $totoalPages) {
+                                <a class="page-link" href="<?php if ($page >= $totalPages) {
                                                                 echo '#';
                                                             } else {
                                                                 echo "?page=" . $next;
@@ -236,6 +192,9 @@ $next = $page + 1;
                         </ul>
                     </nav>
                     <!-- Pagination -->
+
+
+
 
                 </div>
             </div>
@@ -288,6 +247,7 @@ $next = $page + 1;
                 $sidebar_responsive = $("body > .navbar-collapse");
 
                 window_width = $(window).width();
+
 
                 fixed_plugin_open = $(
                     ".sidebar .sidebar-wrapper .nav li.active a p"
@@ -460,11 +420,13 @@ $next = $page + 1;
                     }
 
                     // We simulate the window Resize so the charts will get updated in realtime.
+
                     var simulateWindowResize = setInterval(function() {
                         window.dispatchEvent(new Event("resize"));
                     }, 180);
 
                     // We stop the simulation of Window Resize after the animations are completed
+
                     setTimeout(function() {
                         clearInterval(simulateWindowResize);
                     }, 1000);
@@ -474,7 +436,9 @@ $next = $page + 1;
     </script>
     <script>
         $(document).ready(function() {
+
             // Javascript method's body can be found in assets/js/demos.js
+
             md.initDashboardPageCharts();
         });
     </script>

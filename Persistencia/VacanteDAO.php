@@ -388,7 +388,10 @@ class VacanteDAO implements DAO
 	public function cantidadAplicacionesVacante($empresas, $pagInicio, $limit)
 	{
 
+		$cantidadVacantes = array();
+
 		$aux = 0;
+		
 		foreach($empresas as $empresa)
 		{
 			
@@ -398,8 +401,6 @@ class VacanteDAO implements DAO
 
 			if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-			$cantidadVacantes = array();
-
 			$consulta = mysqli_query($this->conexion, $sql);
 			$resultado = mysqli_fetch_array($consulta)[0];
 
@@ -407,9 +408,9 @@ class VacanteDAO implements DAO
 			$cantidadVacantes[$aux][1] = $empresa->getRazonComercial();
 			$cantidadVacantes[$aux][2] = $resultado;
 
-			
+			$aux = $aux + 1;
 		}
-		$aux = $aux + 1;
+
 
 		return $cantidadVacantes;
 	}

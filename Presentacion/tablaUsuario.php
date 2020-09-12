@@ -124,10 +124,10 @@ $next = $page + 1;
                                                         Nickname (Usuario)
                                                     </th>
                                                     <th>
-                                                        Estado
+                                                        Rol
                                                     </th>
                                                     <th>
-                                                        Rol
+                                                        Estado
                                                     </th>
                                                     <th>
                                                         Acciones
@@ -144,6 +144,9 @@ $next = $page + 1;
                                                         <?php echo $usuario->getUsuario() ?>
                                                     </th>
                                                     <th>
+                                                        <?php echo $usuario->getRolUsuario() ?>
+                                                    </th>
+                                                    <th>
                                                         <?php 
                                                         if(strcasecmp($usuario->getEstado(), "A") == 0)
                                                         {
@@ -154,9 +157,6 @@ $next = $page + 1;
                                                             echo "Inactivo";
                                                         }
                                                         ?>
-                                                    </th>
-                                                    <th>
-                                                        <?php echo $usuario->getRolUsuario() ?>
                                                     </th>
                                                     <th>
                                                     <?php
