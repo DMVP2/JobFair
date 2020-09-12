@@ -59,6 +59,13 @@ class Empresa
 	 */
 	private $logoEmpresa;
 
+	/**
+	 * Ruta del archivo de la camara de comercio
+	 * 
+	 * @var String
+	 */
+	private $camaraComercio;
+
 	//---------------------
 	// Constructor
 	//---------------------
@@ -212,5 +219,25 @@ class Empresa
 	public function setLogoEmpresa(String $pLogoEmpresa)
 	{
 		$this->logoEmpresa = $pLogoEmpresa;
+	}
+
+	/**
+	 * Método para obtener la ruta del archivo de la camara de comercio de la empresa
+	 * 
+	 * @return String
+	 */
+	public function getCamaraComercio()
+	{
+		return $this->camaraComercio;
+	}
+
+	/**
+	 * Método para establecer la ruta del archivo de la camara de comercio de la empresa
+	 * 
+	 * @param String
+	 */
+	public function setCamaraComercio(String $pCamaraComercio)
+	{
+		$this->camaraComercio = $pCamaraComercio;
 	}
 }
