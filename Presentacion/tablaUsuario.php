@@ -121,6 +121,9 @@ $next = $page + 1;
                                             <table class="table">
                                                 <thead class=" text-primary">
                                                     <th>
+                                                        ID
+                                                    </th>
+                                                    <th>
                                                         Nickname (Usuario)
                                                     </th>
                                                     <th>
@@ -140,6 +143,9 @@ $next = $page + 1;
                                                 ?>
                                                     
                                                <thead class=" text-primary">
+                                                    <th>
+                                                        <?php echo $usuario->getId() ?>
+                                                    </th>
                                                     <th>
                                                         <?php echo $usuario->getUsuario() ?>
                                                     </th>
@@ -189,16 +195,16 @@ $next = $page + 1;
                                                                 <i class="material-icons">visibility</i>
                                                                 </button>
                                                             </form>
-
-                                                    <?php
-                                                    }
-                                                    ?>
                                                             <form action="informacionVacante.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $usuario->getId() . "'"; ?> name="codigoUsuario" value=<?php echo "'" . $usuario->getId() . "'"; ?>>
                                                                 <button class="btn btn-danger" type="submit" id="submit" name="usuario" value="">
                                                                     <i class="material-icons">clear</i>
                                                                 </button>
                                                             </form>
+
+                                                    <?php
+                                                    }
+                                                    ?>
                                                         </th>
                                                 </thead>
 

@@ -42,20 +42,6 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null)
 $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
 }
 
-$ruta = "";
-
-if(strcasecmp($rolUsuario, "Estudiante") == 0)
-{
-$ruta = "#";
-}
-else if(strcasecmp($rolUsuario, "Administrador") == 0)
-{
-  $ruta = "tablaEstudiante.php";
-}
-else
-{
-  $ruta = "";
-}
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +73,6 @@ else
                 <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
                 <br>
                 <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">PDF</a>
-                <a class="btn btn-primary" href="<?php $ruta ?>" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Volver</a>
               </div>
             </div>
           </div>
@@ -107,10 +92,6 @@ else
                   <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Correo electrónico:</strong></div>
                     <div class="col-sm-8"><?php echo $estudiante->getCorreo() ?></div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-sm-4"><strong class="text-uppercase">Edad:</strong></div>
-                    <div class="col-sm-8"><?php echo $estudiante->getEdad() ?></div>
                   </div>
                   <div class="row mt-3">
                     <div class="col-sm-4"><strong class="text-uppercase">Teléfono:</strong></div>

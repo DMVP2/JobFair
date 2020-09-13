@@ -1,6 +1,18 @@
 <?php
 
-include_once('./rutas.php')
+include_once('./rutas.php');
+
+$numero = rand(1,3);
+$ruta = "";
+
+if($numero <= 2)
+{
+    $ruta = "banner3.png";
+}
+else
+{
+    $ruta = "banner5.jpeg";
+}
 
 ?>
 
@@ -52,7 +64,7 @@ include_once('./rutas.php')
                     <div class=" card-body">
                         <br>
                         <img class="img" width="60%"
-                            src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "banner3.png" ?>" />
+                            src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . $ruta ?>" />
 
                         <div>
                             <br>

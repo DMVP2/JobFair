@@ -7,6 +7,7 @@ session_start();
 include_once('../rutas.php');
 include_once('../Persistencia/conexion.php');
 include_once('../Negocio/manejoVacante.php');
+include_once('../Negocio/manejoEmpresa.php');
 
 // Nombre de la pagina
 
@@ -21,6 +22,7 @@ $conexion = $c->conectarBD();
 
 
 $manejoVacantes = new ManejoVacante($conexion);
+$manejoEmpresas = new ManejoEmpresa($conexion);
 
 // Paginación
 
@@ -118,7 +120,7 @@ $next = $page + 1;
                                         <table class="table">
                                             <thead class=" text-primary">
                                                 <th>
-                                                    ID
+                                                    Empresa
                                                 </th>
                                                 <th>
                                                     Nombre
@@ -142,12 +144,15 @@ $next = $page + 1;
                                             <tbody>
                                                 <?php
 
-                                                foreach ($vacantes as $vacante) {
+                                                foreach ($vacantes as $vacante) 
+                                                {
+                                                    $nitEmpresa = $manejoVacantes->consultarNitEmpresa($vacante->getId());
+                                                    $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
                                                 ?>
 
                                                     <thead class=" text-primary">
                                                         <th>
-                                                            <?php echo $vacante->getId() ?>
+                                                            <?php echo $empresa->getRazonComercial() ?>
                                                         </th>
                                                         <th>
                                                             <?php echo $vacante->getNombre() ?>
@@ -169,12 +174,6 @@ $next = $page + 1;
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
                                                                 <button class="btn btn-success" type="submit" id="submit" name="vacante" value="">
                                                                 <i class="material-icons">visibility</i>
-                                                                </button>
-                                                            </form>
-                                                            <form action="informacionVacante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante" value=<?php echo "'" . $vacante->getId() . "'"; ?>>
-                                                                <button class="btn btn-warning" type="submit" id="submit" name="vacante" value="" >
-                                                                <i class="material-icons">edit</i>
                                                                 </button>
                                                             </form>
                                                             <form action="informacionVacante.php" method="post">

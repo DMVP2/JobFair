@@ -141,7 +141,7 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="col-lg-12 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <br>
                                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>

@@ -120,7 +120,7 @@ $next = $page + 1;
                                         <table class="table">
                                             <thead class=" text-primary">
                                                 <th>
-                                                    ID
+                                                    NIT
                                                 </th>
                                                 <th>
                                                     Razón Social
@@ -131,8 +131,11 @@ $next = $page + 1;
                                                 <th>
                                                     Estado
                                                 </th>
-                                                <th>
+                                                <th colspan="2" class="text-center">
                                                     Acciones
+                                                </th>
+                                                <th>
+
                                                 </th>
                                             </thead>
                                             <tbody>
@@ -153,7 +156,7 @@ $next = $page + 1;
                                                         </th>
                                                         <th>
                                                             <?php echo $empresa->getEstadoEmpresa() ?>
-                                                        </th>
+                                                        </th>                            
                                                         <th>
                                                             <form action="informacionEmpresa.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
@@ -167,6 +170,8 @@ $next = $page + 1;
                                                                 <i class="material-icons">edit</i>
                                                                 </button>
                                                             </form>
+                                                </th>
+                                                <th>
                                                             <form action="informacionEmpresa.php" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $empresa->getNit() . "'"; ?> name="idEmpresa" value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
                                                                 <button class="btn btn-danger" type="submit" id="submit" name="empresa" value="">

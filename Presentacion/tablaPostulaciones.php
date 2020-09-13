@@ -120,7 +120,7 @@ $next = $page + 1;
                                         <table class="table">
                                             <thead class=" text-primary">
                                                 <th>
-                                                    ID
+                                                    Número de documento
                                                 </th>
                                                 <th>
                                                     Nombre
