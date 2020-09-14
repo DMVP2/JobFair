@@ -4,11 +4,11 @@ include_once('../../Rutas.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoHojaDeVida.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoHojaDeVida.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'HojaDeVida.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Estudios.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Experiencia.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'ExperienciaLaboral.php');
 
 
 // Conexión con la base de datos
@@ -97,7 +97,7 @@ if (isset($_POST["cargoExperiencia"])) {
     $aux = 0;
     foreach ($arregloCargos as $cargo) {
 
-        $experiencia = new Experiencia();
+        $experiencia = new ExperienciaLaboral();
         $experiencia->setCargo($arregloCargos[$aux]);
         $experiencia->setDescripcion($arregloEmpresas[$aux]);
         $experiencia->setEmpresa($arregloEmpresas[$aux]);
