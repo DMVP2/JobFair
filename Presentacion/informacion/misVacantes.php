@@ -1,11 +1,6 @@
 <?php
 
-session_start();
 
-if (!isset($_SESSION['usuario'])) {
-
-    header("location:../index.php");
-}
 
 // Importación de clases
 
@@ -51,7 +46,6 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
 }
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
-
 $allRecords = $manejoVacante->cantidadVacantesActivas();
 
 // Total de las paginas
@@ -135,7 +129,7 @@ $next = $page + 1;
                             <div class="row">
                                 <div class="col-sm-2">
                                     <img class="img" width="40%"
-                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Empresa/" . $empresa->getLogoEmpresa() ?>" />
+                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>" />
                                     <br><br>
                                     <h6 class="card-title"><?php echo $empresa->getRazonComercial() ?>
                                     </h6>

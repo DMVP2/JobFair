@@ -81,8 +81,8 @@ if (strcasecmp($rolUsuario, "Empresa") == 0) {
                         }
                         ?>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"
-                            href=" <?php echo "/" . CARPETA_RAIZ . "/Sesion/cerrarSesion.php" ?> ">Cerrar sesión</a>
+                        <a class="dropdown-item" href=" <?php echo CARPETA_RAIZ . "Sesion/cerrarSesion.php" ?> ">Cerrar
+                            sesión</a>
                     </div>
                 </li>
                 <!-- your navbar here -->

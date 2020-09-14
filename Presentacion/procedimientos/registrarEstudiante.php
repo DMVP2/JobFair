@@ -62,7 +62,7 @@ $manejoEstudiante->crearEstudiante($nuevoEstudiante);
 $us->setId($documento);
 $us->setUsuario($correo);
 $us->setPassword($contraseñaCifrada);
-$us->setEstado("V");
+$us->setEstado("Activo (Sin verificar)");
 $us->setRolUsuario("3");
 $manejoUsuario->crearUsuario($us);
 

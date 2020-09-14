@@ -56,7 +56,6 @@ class EmpresaDAO implements DAO
 	public function crear($empresa)
 	{
 		$sql = "INSERT INTO EMPRESA VALUES(" . $empresa->getNit() . ",'" . $empresa->getRazonSocial() . "','" . $empresa->getRazonComercial() . "','" . $empresa->getDescripcion() . "','" . $empresa->getOtrosBeneficios() . "','" . $empresa->getEstadoEmpresa() . "','" . $empresa->getLogoEmpresa() . "' , '" . $empresa->getCamaraComercio() . "');";
-
 		mysqli_query($this->conexion, $sql);
 	}
 

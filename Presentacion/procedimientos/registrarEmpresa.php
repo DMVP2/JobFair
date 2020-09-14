@@ -4,15 +4,14 @@ session_start();
 
 include_once('../../rutas.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEmpresa.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoUsuario.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEmpresa.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoUsuario.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_ENTIDADES . 'Empresa.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_ENTIDADES . 'Representante.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_ENTIDADES . 'Usuario.php');
-
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Empresa.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Representante.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Usuario.php');
 
 // Conexión con la base de datos
 
@@ -38,7 +37,7 @@ $docSize = $_FILES['camaraComercio']['size'];
 if (empty($docFile)) {
     $document = "default.pdf";
 } else {
-    $upload_dir = '../documentos/'; //Cargar directorio a la ruta especificada
+    $upload_dir = './documentos/'; //Cargar directorio a la ruta especificada
 
     $documentExt = strtolower(pathinfo($docFile, PATHINFO_EXTENSION)); //Información sobre la extensión del archivo
 
@@ -70,7 +69,7 @@ $imgSize = $_FILES['user_image']['size'];
 if (empty($imgFile)) {
     $userpic = "default.png";
 } else {
-    $upload_dir = '../img/Empresa/'; //Cargar directorio a la ruta especificada
+    $upload_dir = './imagenes/Empresa/'; //Cargar directorio a la ruta especificada
 
     $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); //Información sobre la extensión del archivo
 
@@ -131,7 +130,7 @@ $us = new Usuario();
 $us->setId($nit);
 $us->setUsuario($usuario);
 $us->setPassword(md5($_POST['contraseña']));
-$us->setEstado("V");
+$us->setEstado("Activo (Sin verificar)");
 $us->setRolUsuario("2");
 $manejoUsuario->crearUsuario($us);
 

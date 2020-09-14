@@ -22,7 +22,7 @@ $rolUsuario = $_SESSION['rol'];
 
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="portalAdministrador.php">
+                <a class="nav-link" href="<?php echo CARPETA_RAIZ . RUTA_PORTALES . 'portalAdministrador.php' ?>">
                     <i class="material-icons">home</i>
                     <p>Inicio</p>
                 </a>
@@ -35,19 +35,19 @@ $rolUsuario = $_SESSION['rol'];
                     <p>Gestión de información</p>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                    <a class="dropdown-item" href="tablaEmpresa.php">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php' ?>">
                         <i class="material-icons">apartment</i>
                         <p>Empresas</p>
                     </a>
-                    <a class="dropdown-item" href="tablaEstudiante.php">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEstudiante.php' ?>">
                         <i class="material-icons">face</i>
                         <p>Estudiantes</p>
                     </a>
-                    <a class="dropdown-item" href="tablaVacante.php">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaVacante.php' ?>">
                         <i class="material-icons">assessment</i>
                         <p>Vacantes</p>
                     </a>
-                    <a class="dropdown-item" href="tablaUsuario.php">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' ?>">
                         <i class="material-icons">person</i>
                         <p>Usuarios del sistema</p>
                     </a>

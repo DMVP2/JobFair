@@ -50,13 +50,13 @@ if (strnatcasecmp($nickname, $usuario) == 0 and strnatcasecmp($passwordCifrado, 
         $_SESSION['usuario'] = "$idUsuario";
         $_SESSION['rol'] = "Administrador";
 
-        header("Location: ../Presentacion/portalAdministrador.php");
+        header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "portalAdministrador.php");
 
         exit();
     } else if (strnatcasecmp($rol, "Empresa") == 0) {
 
-        if (strnatcasecmp($usuarioActual->getEstado(), "V") == 0) {
-            header("Location: ../Presentacion/login.php?error=2");
+        if (strnatcasecmp($usuarioActual->getEstado(), "Activo (Sin verificar)") == 0) {
+            header("Location: " . CARPETA_RAIZ . RUTA_PRESENTACION . "login.php?error=2");
         } else {
             session_start();
 
@@ -66,7 +66,7 @@ if (strnatcasecmp($nickname, $usuario) == 0 and strnatcasecmp($passwordCifrado, 
             $_SESSION['rol'] = "Empresa";
 
 
-            header("Location: ../Presentacion/portalEmpresa.php");
+            header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "portalEmpresa.php");
         }
 
 
@@ -79,14 +79,14 @@ if (strnatcasecmp($nickname, $usuario) == 0 and strnatcasecmp($passwordCifrado, 
         $_SESSION['usuario'] = "$idUsuario";
         $_SESSION['rol'] = "Estudiante";
 
-        if (strnatcasecmp($usuarioActual->getEstado(), "V") == 0) {
-            header("Location: ../Presentacion/cambioContraseña.php");
+        if (strnatcasecmp($usuarioActual->getEstado(), "Activo (Sin verificar)") == 0) {
+            header("Location: " . CARPETA_RAIZ . RUTA_PRESENTACION . "cambioContraseña.php");
         } else {
-            header("Location: ../Presentacion/portalEstudiante.php");
+            header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "portalEstudiante.php");
         }
 
         exit();
     }
 } else {
-    header("Location: ../Presentacion/login.php?error=1");
+    header("Location: " . CARPETA_RAIZ . RUTA_PRESENTACION . "login.php?error=1");
 }
