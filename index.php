@@ -2,15 +2,12 @@
 
 include_once('./rutas.php');
 
-$numero = rand(1,3);
+$numero = rand(1, 3);
 $ruta = "";
 
-if($numero <= 2)
-{
+if ($numero <= 2) {
     $ruta = "banner3.png";
-}
-else
-{
+} else {
     $ruta = "banner5.jpeg";
 }
 
@@ -63,14 +60,14 @@ else
 
                     <div class=" card-body">
                         <br>
-                        <img class="img" width="60%"
-                            src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . $ruta ?>" />
+                        <img class="img" width="60%" src="<?php echo CARPETA_RAIZ . RUTA_IMAGENES_WEB . $ruta ?>" />
 
                         <div>
                             <br>
                             <br>
                             <button type="submit" class="btn btn-primary"
-                                onclick="window.location.href='Presentacion/login.php'">Iniciar Sesión</button>
+                                onclick="window.location.href='<?php echo RUTA_PRESENTACION . 'login.php' ?>'">Iniciar
+                                Sesión</button>
                             <button type="submit" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal">Crear
                                 Cuenta</button>
@@ -91,7 +88,7 @@ else
 
     <!-- Footer -->
     <?php
-    include "Presentacion/components/footer.php";
+    include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
     ?>
     <!-- Footer -->
 

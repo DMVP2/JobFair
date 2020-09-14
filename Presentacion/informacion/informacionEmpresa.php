@@ -2,21 +2,34 @@
 
 session_start();
 
+if (!isset($_SESSION['usuario'])) {
+
+    header("location:../index.php");
+}
+
 // Importación de clases
 
-include_once('../rutas.php');
-
+include_once('../../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEmpresa.php');
 
 // Conexión con la base de datos
 
 $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
+// Ejecución de métodos (Manejos)
 
+$manejoEmpresas = new ManejoEmpresa($conexion);
+$cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
 
+$idUsuario = $_SESSION['usuario'];
+$idEmpresa = $_POST['idEmpresa'];
+
+$empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
 ?>
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -32,100 +45,53 @@ $conexion = $c->conectarBD();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
-
-    <!-- JQuerry -->
-    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
 </head>
-
 
 <body>
     <div class="wrapper ">
+        <!-- SideBar -->
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "sidebar.php";
+        ?>
+        <!-- SideBar -->
 
+        <div class="main-panel">
+            <!-- NavBar  -->
+            <?php
 
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "navbar.php";            ?>
+            <!-- NavBar -->
 
-        <div class="content">
-            <div class="container-fluid">
-                <!-- CONTENIDO PAGINA -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- CONTENIDO PAGINA -->
 
-                <br><br>
-
-                <div>
-                    <br><br>
                     <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <p class="card-category text-center">CAMBIO DE CONTRASEÑA</p>
-
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
-
-                                        </div>
-                                        <div class="col-lg-9">
 
 
-                                            <form id="formCambioContraseña" method="post"
-                                                action=" <?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'cambiarContraseña.php' ?>">
-                                                <br>
+                    </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-2"></div>
-
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Contraseña</label>
-                                                                    <input type="password" name="contraseña1"
-                                                                        id="contraseña1" class="form-control" require>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <br>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Confirmar
-                                                                        contraseña</label>
-                                                                    <input type="password" name="contraseña2"
-                                                                        id="contraseña2" class="form-control" require>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <br><br>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12 text-center">
-                                                                <input type="button" class="btn btn-primary pull-center"
-                                                                    value="CAMBIAR CONTRASEÑA" id="btnCambiar"
-                                                                    name="btnCambiar" onclick="enviarFormulario()">
-                                                                <br><br>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <br>
-
-                                                    </div>
-                                                    <br>
-                                                    <div class=" clearfix">
-                                                    </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="col-md-12">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <img class="img"
+                                    src=<?php echo CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial() ?> </h5>
+                                <h3 class="card-title"><?php echo $empresa->getRazonComercial() ?></h3>
+                                <br>
+                                <h5 style="text-align: justify"> <strong> Descripción de la empresa: </strong>
+                                    <?php echo $empresa->getDescripcion() ?> </h5>
+                                <h5 style="text-align: justify"> <strong> Otros beneficios ofertados por la empresa:
+                                    </strong> <?php echo $empresa->getOtrosBeneficios() ?> </h5>
+                                <br>
                             </div>
                         </div>
                     </div>
+
                     <!-- CONTENIDO PAGINA -->
+
                 </div>
             </div>
 
@@ -164,29 +130,6 @@ $conexion = $c->conectarBD();
     <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <script>
-    function enviarFormulario() {
-        var formulario = document.getElementById("formCambioContraseña");
-
-        var p1 = document.getElementById("contraseña1").value;
-        var p2 = document.getElementById("contraseña2").value;
-
-        if (p1.trim() != "" || p2.trim() != "") {
-            if (p1 == p2) {
-                $("#btnCambiar").attr("disabled", true);
-                formulario.submit();
-            } else {
-                md.showNotificationError('Las contraseñas no coinciden.');
-            }
-        } else {
-            md.showNotificationError('Rellene los campos.');
-        }
-
-
-
-    }
-    </script>
-
     <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -389,15 +332,6 @@ $conexion = $c->conectarBD();
         md.initDashboardPageCharts();
     });
     </script>
-    <script>
-    $(document).ready(function() {
-        $('#records-limit').change(function() {
-            $('form').submit();
-        })
-    });
-    </script>
-
-
 </body>
 
 </html>

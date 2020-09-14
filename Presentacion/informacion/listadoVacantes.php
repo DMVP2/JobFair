@@ -2,11 +2,22 @@
 
 session_start();
 
+if (!isset($_SESSION['usuario'])) {
+
+    header("location:../index.php");
+}
+
+
 // Importación de clases
 
-include_once('../rutas.php');
-
+include_once('../../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEmpresa.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoVacante.php');
+
+// Nombre de la pagina
+
+$nombrePagina = basename(__FILE__);
 
 // Conexión con la base de datos
 
@@ -14,9 +25,40 @@ $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
 
+// Ejecución de métodos (Manejos)
 
+$manejoVacante = new ManejoVacante($conexion);
+$manejoEmpresa = new ManejoEmpresa($conexion);
+
+// Paginación
+
+if (isset($_POST['records-limit'])) {
+    $_SESSION['records-limit'] = $_POST['records-limit'];
+}
+
+$limit = isset($_SESSION['records-limit']) ? $_SESSION['records-limit'] : 10;
+$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+$paginationStart = ($page - 1) * $limit;
+
+// RETORNA EL ARREGLO DE LA BD
+
+$vacantes = $manejoVacante->listarVacantesActivasPaginacion($paginationStart, $limit);
+
+// CANTIDAD TOTAL A CARGAR - COUNT BD
+
+$allRecords = $manejoVacante->cantidadVacantesActivas();
+
+// Total de las paginas
+
+$totoalPages = ceil($allRecords / $limit);
+
+// Prev + Next
+
+$prev = $page - 1;
+$next = $page + 1;
 ?>
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -32,99 +74,139 @@ $conexion = $c->conectarBD();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
-
-    <!-- JQuerry -->
-    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
 </head>
-
 
 <body>
     <div class="wrapper ">
+        <!-- SideBar -->
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "sidebar.php";
+        ?>
+        <!-- SideBar -->
+
+        <div class="main-panel">
+            <!-- NavBar  -->
+            <?php
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "navbar.php";
+            ?>
+            <!-- NavBar -->
+
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- CONTENIDO PAGINA -->
+
+                    <!-- Select dropdown -->
+                    <div class="d-flex flex-row-reverse bd-highlight mb-3">
+                        <form action="<?php echo $nombrePagina ?>" method="post">
+                            <select name="records-limit" id="records-limit" class="custom-select">
+                                <option disabled selected>Límite</option>
+                                <?php foreach ([5, 10, 15, 20] as $limit) : ?>
+                                <option
+                                    <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?>
+                                    value="<?= $limit; ?>">
+                                    <?= $limit; ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </form>
+                    </div>
+                    <!-- Select dropdown -->
 
 
+                    <?php
+                    foreach ($vacantes as $vacante) {
 
-        <div class="content">
-            <div class="container-fluid">
-                <!-- CONTENIDO PAGINA -->
+                        $nitEmpresa = $manejoVacante->consultarNitEmpresa($vacante->getId());
 
-                <br><br>
+                        $empresa = $manejoEmpresa->buscarEmpresa($nitEmpresa);
 
-                <div>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-md-4">
+                    ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <center><?php echo $vacante->getProgramaAcademico() ?></center>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <p class="card-category text-center">CAMBIO DE CONTRASEÑA</p>
-
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img class="img" width="40%"
+                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>" />
+                                    <br><br>
+                                    <h6 class="card-title"><?php echo $empresa->getRazonComercial() ?>
+                                    </h6>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
+                                <div class="col-md-8">
+                                    <br>
+                                    <h5 class="card-title"><strong><?php echo $vacante->getNombre() ?>
+                                        </strong></h5>
 
-                                        </div>
-                                        <div class="col-lg-9">
+                                    <p class="card-text">
+                                        <?php
+                                            if (strlen($vacante->getDescripcion()) > 290) {
+                                                echo substr($vacante->getDescripcion(), 0, 290) . "....";
+                                            } else {
+                                                echo $vacante->getDescripcion();
+                                            }
 
+                                            ?>
+                                    </p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <br><br>
+                                    <form action="informacionVacante.php" method="post">
+                                        <input class="btn btn-primary" type="hidden"
+                                            id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante"
+                                            value=<?php echo "'" . $vacante->getId() . "'"; ?>>
+                                        <input class="btn btn-primary" type="submit" id="submit" name="vacante"
+                                            value="Ver mas">
+                                    </form>
 
-                                            <form id="formCambioContraseña" method="post"
-                                                action=" <?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'cambiarContraseña.php' ?>">
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-2"></div>
-
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Contraseña</label>
-                                                                    <input type="password" name="contraseña1"
-                                                                        id="contraseña1" class="form-control" require>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <br>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Confirmar
-                                                                        contraseña</label>
-                                                                    <input type="password" name="contraseña2"
-                                                                        id="contraseña2" class="form-control" require>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <br><br>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12 text-center">
-                                                                <input type="button" class="btn btn-primary pull-center"
-                                                                    value="CAMBIAR CONTRASEÑA" id="btnCambiar"
-                                                                    name="btnCambiar" onclick="enviarFormulario()">
-                                                                <br><br>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <br>
-
-                                                    </div>
-                                                    <br>
-                                                    <div class=" clearfix">
-                                                    </div>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php
+                    }
+                    ?>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item <?php if ($page <= 1) {
+                                                        echo 'disabled';
+                                                    } ?>">
+                                <a class="page-link" href="<?php if ($page <= 1) {
+                                                                echo '#';
+                                                            } else {
+                                                                echo "?page=" . $prev;
+                                                            } ?>"><span aria-hidden="true">&laquo;</span></a>
+
+                            </li>
+
+                            <?php for ($i = 1; $i <= $totoalPages; $i++) : ?>
+                            <li class="page-item <?php if ($page == $i) {
+                                                            echo 'active';
+                                                        } ?>">
+                                <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+                            </li>
+                            <?php endfor; ?>
+
+                            <li class="page-item <?php if ($page >= $totoalPages) {
+                                                        echo 'disabled';
+                                                    } ?>">
+                                <a class="page-link" href="<?php if ($page >= $totoalPages) {
+                                                                echo '#';
+                                                            } else {
+                                                                echo "?page=" . $next;
+                                                            } ?>"><span aria-hidden="true">&raquo;</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Pagination -->
+
+
+
+
+
                     <!-- CONTENIDO PAGINA -->
                 </div>
             </div>
@@ -164,29 +246,6 @@ $conexion = $c->conectarBD();
     <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <script>
-    function enviarFormulario() {
-        var formulario = document.getElementById("formCambioContraseña");
-
-        var p1 = document.getElementById("contraseña1").value;
-        var p2 = document.getElementById("contraseña2").value;
-
-        if (p1.trim() != "" || p2.trim() != "") {
-            if (p1 == p2) {
-                $("#btnCambiar").attr("disabled", true);
-                formulario.submit();
-            } else {
-                md.showNotificationError('Las contraseñas no coinciden.');
-            }
-        } else {
-            md.showNotificationError('Rellene los campos.');
-        }
-
-
-
-    }
-    </script>
-
     <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -396,8 +455,6 @@ $conexion = $c->conectarBD();
         })
     });
     </script>
-
-
 </body>
 
 </html>

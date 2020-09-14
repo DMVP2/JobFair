@@ -2,8 +2,8 @@
 
 require_once 'DAO.php';
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Vacante.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Empresa.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "Vacante.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "Empresa.php");
 
 /**
  * Representa el DAO de la entidad "Vacante"
@@ -208,7 +208,7 @@ class VacanteDAO implements DAO
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$resultado = mysqli_fetch_array($result)[0];
-		
+
 		return $resultado;
 	}
 
@@ -222,7 +222,7 @@ class VacanteDAO implements DAO
 	{
 		$sql = "SELECT * FROM CIUDAD, VACANTE_CIUDAD WHERE VACANTE_CIUDAD.id_vacante = $codigo AND CIUDAD.id_ciudad = VACANTE_CIUDAD.id_ciudad";
 
-		if(!$result = mysqli_query($this->conexion, $sql)) die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$resultado = mysqli_fetch_array($result);
 
@@ -292,8 +292,7 @@ class VacanteDAO implements DAO
 
 		$result = mysqli_query($this->conexion, $sql);
 
-		if (mysqli_num_rows($result) == 0)
-		{
+		if (mysqli_num_rows($result) == 0) {
 			return null;
 		}
 
@@ -314,8 +313,7 @@ class VacanteDAO implements DAO
 
 		$ciudadArray = array();
 
-		while ($row = mysqli_fetch_array($result)) 
-		{
+		while ($row = mysqli_fetch_array($result)) {
 
 			$ciudadArray[] = $row;
 		}
@@ -381,7 +379,7 @@ class VacanteDAO implements DAO
 	}
 
 	/**
-     * Método para contar la cantidad de vacantes por empresa
+	 * Método para contar la cantidad de vacantes por empresa
 	 *
 	 * @return Empresa[]
 	 */
@@ -391,10 +389,9 @@ class VacanteDAO implements DAO
 		$cantidadVacantes = array();
 
 		$aux = 0;
-		
-		foreach($empresas as $empresa)
-		{
-			
+
+		foreach ($empresas as $empresa) {
+
 			$idEmpresa = $empresa->getNit();
 
 			$sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE, EMPRESA_VACANTE WHERE EMPRESA_VACANTE.nit_empresa = $idEmpresa AND EMPRESA_VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante LIMIT " . $pagInicio . " , " . $limit;

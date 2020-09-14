@@ -2,15 +2,15 @@
 
 session_start();
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/softlutions/Rutas.php');
+include_once('../../Rutas.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoHojaDeVida.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoHojaDeVida.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_ENTIDADES . 'HojaDeVida.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_ENTIDADES . 'Estudios.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_ENTIDADES . 'Experiencia.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'HojaDeVida.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Estudios.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Experiencia.php');
 
 
 // Conexión con la base de datos
@@ -142,4 +142,4 @@ foreach ($arregloNombreRef as $nombreRef) {
     $aux = $aux + 1;
 }
 
-header("Location: ../PortalEstudiante.php");
+header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "PortalEstudiante.php");

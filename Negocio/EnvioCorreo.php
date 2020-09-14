@@ -4,11 +4,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/Softlutions/Rutas.php";
+include_once "../../rutas.php";
 
-require $_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/Exception.php";
-require $_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/PHPMailer.php";
-require $_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/SMTP.php";
+require $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/Exception.php";
+require $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/PHPMailer.php";
+require $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_NEGOCIO_LIB . "PHPMailer/SMTP.php";
 
 
 

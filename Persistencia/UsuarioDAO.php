@@ -2,7 +2,7 @@
 
 require_once 'DAO.php';
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/" . CARPETA_RAIZ . RUTA_ENTIDADES . "Usuario.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "Usuario.php");
 
 /**
  * Representa el DAO de la entidad "Usuario"
