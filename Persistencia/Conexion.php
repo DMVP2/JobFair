@@ -24,8 +24,8 @@ class Conexion
 	public function conectarBD()
 	{
 
-		$server = "feriadeoportunidades.mysql.database.azure.com";
-		$user = "ueb@feriadeoportunidades";
+		$server = "feriadeoportunidadesueb.mysql.database.azure.com";
+		$user = "adminueb@feriadeoportunidadesueb";
 		$pass = "Uelbosque1234";
 		$bd = "feriadeoportunidades";
 		$port = "3306";
