@@ -40,6 +40,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
     <!-- JQuerry -->
     <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+
 </head>
 
 <body>
@@ -140,8 +141,6 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                                                     </div>
 
                                                     <div id="divCategoria">
-
-
 
                                                     </div>
 
@@ -279,10 +278,10 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                                                     <br><br><br>
 
                                                     <div class="row">
-                                                        <div class="col-md-2"></div>
+                                                        <div class="col-md-3"></div>
                                                         <div class="col-md-6">
-                                                            <input type="button" class="btn btn-primary pull-center"
-                                                                value="Crear vacante" onclick="enviarFormulario()">
+                                                            <input type="submit" class="btn btn-primary pull-center"
+                                                                value="Crear vacante">
                                                         </div>
 
                                                     </div>

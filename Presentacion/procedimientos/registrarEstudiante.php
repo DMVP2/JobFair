@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include_once('../../Rutas.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . ARCHIVO_PARAMETRIZACION_CORREO);

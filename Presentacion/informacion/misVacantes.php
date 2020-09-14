@@ -101,7 +101,7 @@ $next = $page + 1;
                     ?>
                     <br>
                     <input class="btn btn-warning" type="button" id="button" value="Agregar vacante"
-                        onclick="window.location='<?php echo CARPETA_RAIZ . RUTA_PRESENTACION . 'crearVacante.php'  ?>'">
+                        onclick="window.location='<?php echo CARPETA_RAIZ . RUTA_PRESENTACION . 'registroVacante.php'  ?>'">
                     <?php
                     }
 

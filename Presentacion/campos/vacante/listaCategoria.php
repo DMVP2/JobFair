@@ -26,7 +26,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                     $listaCategorias = $manejoHojaVida->listarCategorias();
 
                     foreach ($listaCategorias as $categoria) {
-                        echo "<option data-value=" . $categoria[0] . ">" . $categoria[1] . "</option>";
+                        echo "<option value=" . $categoria[0] . ">" . $categoria[1] . "</option>";
                     }
 
                     ?>

@@ -1,8 +1,5 @@
 <?php
 
-
-print_r($_FILES);
-
 include_once('../../rutas.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
@@ -49,7 +46,6 @@ if (empty($docFile)) {
         //Verificar tamaño del archivo '1 MB'
         if ($docSize < 1000000) {
             move_uploaded_file($tmp_dir, $upload_dir . $document);
-            
         } else {
             //Si no se puede
         }
@@ -85,7 +81,6 @@ if (empty($imgFile)) {
         //Verificar tamaño del archivo '1 MB'
         if ($imgSize < 1000000) {
             move_uploaded_file($tmp_dir, $upload_dir . $userpic);
-            
         } else {
             //echo 'No se pudo';
         }
