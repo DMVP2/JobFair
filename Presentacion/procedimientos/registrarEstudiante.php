@@ -25,7 +25,6 @@ $manejoUsuario = new ManejoUsuario($conexion);
 
 $correo = $_POST['correoEstudiante'];
 
-
 $tipoDocumento = $_POST['tipoDocumento'];
 $documento = $_POST['documentoEstudiante'];
 $correoIns = $correo . "@unbosque.edu.co";
@@ -39,8 +38,6 @@ $nacimiento = $_POST['nacimientoEstudiante'];
 
 $nuevoEstudiante = new Estudiante();
 $us = new Usuario();
-
-print_r($_POST);
 
 $contraseña = $us->crearPassword();
 $contraseñaCifrada = md5($contraseña);

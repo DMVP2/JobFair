@@ -5,7 +5,6 @@
 include_once('../rutas.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEstudiante.php');
 
 // Conexión con la base de datos
 
@@ -14,12 +13,11 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-$manejoEstudiantes = new ManejoEstudiante($conexion);
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoHojaDeVida.php');
 
 
-$documentoEstudiante = $_SESSION['usuario'];
+$manejoHojaVida = new ManejoHojaDeVida($conexion);
 
-$estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
 
 ?>
@@ -63,8 +61,6 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
-
-
                     <div>
                         <div class="row">
                             <div class="col-md-2">
@@ -72,10 +68,11 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                             <div class="col-md-7">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
-                                        <p class="card-category">Hoja de vida
+                                        <p class="card-category">Vacante
                                         </p>
-                                        <h4 class="card-title">Tu información
-                                            al alcance de las empresas</h4>
+                                        <h4 class="card-title">¡Consigue nuevos practicantes!
+                                        </h4>
+
 
                                     </div>
                                     <div class="card-body">
@@ -86,62 +83,16 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                             <div class="col-lg-7">
 
 
-                                                <form id="formularioHojaVida" method="POST"
-                                                    action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'agregarHojaVida.php' ?>">
-                                                    <br>
+                                                <form id="formularioVacante" method="POST"
+                                                    action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'crearVacante.php' ?>">
+                                                    <br><br>
 
                                                     <div class="row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    <?php echo $estudiante->getTipoDeDocumento() ?>
-                                                                </label>
-                                                                <input type="text" class="form-control" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label
-                                                                    class="bmd-label-floating"><?php echo $estudiante->getNumeroDocumento() ?></label>
-                                                                <input type="text" class="form-control" disabled>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-10">
-                                                            <div class="form-group">
-                                                                <label
-                                                                    class="bmd-label-floating"><?php echo $estudiante->getNombre() ?></label>
-                                                                <input type="text" class="form-control" disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-10">
-                                                            <div class="form-group">
-                                                                <label
-                                                                    class="bmd-label-floating"><?php echo $estudiante->getCorreo() ?></label>
-                                                                <input type="text" class="form-control" disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    <?php echo $estudiante->getProgramaAcademico() ?>
-                                                                </label>
-                                                                <input type="text" class="form-control" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">Semestre
-                                                                    <?php echo $estudiante->getSemestreActual() ?></label>
-                                                                <input type="text" class="form-control" disabled>
+                                                                <label class="bmd-label-floating">Titulo</label>
+                                                                <input type="text" class="form-control" id="titulo"
+                                                                    name="titulo" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,13 +101,33 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <div class="row">
                                                         <div class="col-md-12">
+                                                            <select class="form-group form-control"
+                                                                style="margin-top: 4px;" id="programa" name="programa"
+                                                                required>
+                                                                <option value="Ingeniería de Sistemas">Ingeniería de
+                                                                    Sistemas</option>
+                                                                <option value="Ingeniería Electrónica">Ingeniería
+                                                                    Electrónica</option>
+                                                                <option value="Ingeniería Ambiental">Ingeniería
+                                                                    Ambiental</option>
+                                                                <option value="Ingeniería Industrial">Ingeniería
+                                                                    Industrial</option>
+                                                                <option value="Bioingeniería">Bioingeniería</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <br><br>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">
-                                                                        Perfil profesional</label>
+                                                                        Descripción:</label>
                                                                     <textarea class="form-control" maxlength="950"
-                                                                        name="perfilProfesionalArea"
-                                                                        id="perfilProfesionalArea" rows="6"></textarea>
+                                                                        name="descripcion" id="descripcion"
+                                                                        rows="6"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -164,20 +135,43 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <br>
 
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">
-                                                                        Certificaciones</label>
-                                                                    <textarea class="form-control" maxlength="950"
-                                                                        rows="6" name="certificacionesArea"
-                                                                        id="certificacionesArea"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Categorías</h6>
                                                     </div>
 
+                                                    <div id="divCategoria">
+
+
+
+                                                    </div>
+
+                                                    <br><br>
+
+                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
+                                                        onclick="agregarCampoCategoria()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
+                                                        onclick="eliminarCampoCategoria()">
+
+                                                    <br><br><br>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Jornada:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select class="form-group form-control"
+                                                                style="margin-top: 4px;" id="horario" name="horario"
+                                                                required>
+                                                                <option value="Ingeniería de Sistemas">Diurna
+                                                                </option>
+                                                                <option value="Ingeniería Electrónica">Nocturna</option>
+                                                                <option value="Ingeniería Ambiental">A definir
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
                                                     <br><br>
 
@@ -185,118 +179,101 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                         <div class="col-md-6">
                                                             <label class="bmd-label-floating"
                                                                 style="padding-top: 15px;">
+                                                                Salario mínimo:
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="number" class="form-control"
+                                                                    id="salarioMin" name="salarioMin" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="bmd-label-floating"
+                                                                style="padding-top: 15px;">
+                                                                Salario máximo:
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="number" class="form-control"
+                                                                    id="salarioMax" name="salarioMax" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="bmd-label-floating"
+                                                                style="padding-top: 15px;">
+                                                                Ciudad:
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" list="items2"
+                                                                    id="textCiudad[]" name="textCiudad[]" />
+                                                                <datalist id="items2" id="dataCiudad[]"
+                                                                    name="dataCiudad[]">
+                                                                    <?php
+
+                                                                    $listaCiudades = $manejoHojaVida->listarCiudades();
+
+                                                                    foreach ($listaCiudades as $ciudad) {
+                                                                        echo "<option data-value=" . $ciudad[0] . ">" . $ciudad[1] . "</option>";
+                                                                    }
+
+                                                                    ?>
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="bmd-label-floating"
+                                                                style="padding-top: 15px;">
                                                                 Disponibilidad de viaje:
                                                             </label>
-
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-6">
 
                                                             <select class="form-control" id="disponibilidadViaje"
                                                                 name="disponibilidadViaje">
-                                                                <option value="No" selected>No</option>
                                                                 <option value="Si">Si</option>
+                                                                <option value="No" selected>No</option>
+
                                                             </select>
                                                         </div>
                                                     </div>
 
-                                                    <br><br>
-
-                                                    <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Estudios</h6>
-                                                    </div>
-
-                                                    <div id="divListaEstudios">
-
-                                                        <?php require_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_CAMPOS . './hojaVida/listaEstudio.php'); ?>
-
-                                                    </div>
-
-                                                    <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar estudio"
-                                                        onclick="agregarCampoListaEstudio()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar estudio"
-                                                        onclick="eliminarCampoListaEstudio()">
-
-
-                                                    <br><br><br>
-
-
-                                                    <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Experiencia laboral</h6>
-                                                    </div>
-
-
-                                                    <div id="divListaExperiencia">
-
-
-
-                                                    </div>
-
-                                                    <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoExperiencia()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoExperiencia()">
-
-
-
-                                                    <br><br><br>
-
-                                                    <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Idiomas</h6>
-                                                    </div>
+                                                    <br>
 
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    Idioma</label>
+                                                                <label class="bmd-label-floating">Experiencia:</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    Nivel</label>
-
-                                                            </div>
+                                                        <div class="col-md-6">
+                                                            <select class="form-group form-control"
+                                                                style="margin-top: 4px;" id="experiencia"
+                                                                name="experiencia" required>
+                                                                <option value="Si">Si
+                                                                </option>
+                                                                <option value="No" selected>No</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-
-                                                    <div id="divListaIdiomas">
-
-
-                                                    </div>
-
-                                                    <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar idioma"
-                                                        onclick="agregarCampoListaIdioma()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar idioma"
-                                                        onclick="eliminarCampoListaIdioma()">
-
-
-
-                                                    <br><br><br>
-
-
-                                                    <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Referencias personales</h6>
-                                                    </div>
-
-
-                                                    <div id="divListaReferencias">
-                                                        <?php require_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_CAMPOS . './hojaVida/listaReferencias.php'); ?>
-
-                                                    </div>
-
-                                                    <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoReferencia()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoReferencia()">
 
 
                                                     <br><br><br>
@@ -305,7 +282,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-6">
                                                             <input type="button" class="btn btn-primary pull-center"
-                                                                value="Crear hoja de vida" onclick="enviarFormulario()">
+                                                                value="Crear vacante" onclick="enviarFormulario()">
                                                         </div>
 
                                                     </div>
@@ -370,89 +347,23 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <script>
-    function agregarCampoListaIdioma() {
+    function agregarCampoCategoria() {
 
         $("<div>").load(
-            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'hojaVida/listaIdioma.php' ?>",
+            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'vacante/listaCategoria.php' ?>",
             function() {
-                $("#divListaIdiomas").append($(this).html());
+                $("#divCategoria").append($(this).html());
             });
     }
 
-    function eliminarCampoListaIdioma() {
+    function eliminarCampoCategoria() {
 
-        if ($('#divListaIdiomas div.divListId').length > 1) {
-            $('#divListaIdiomas div.divListId:last').remove();
+        if ($('#divCategoria div.divListId').length > 1) {
+            $('#divCategoria div.divListId:last').remove();
         } else {
-            $('#divListaIdiomas div.divListId:last').remove();
-            agregarCampoListaIdioma();
+            $('#divCategoria div.divListId:last').remove();
+            agregarCampoCategoria();
         }
-    }
-
-    function agregarCampoListaEstudio() {
-
-        $("<div>").load(
-            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'hojaVida/listaEstudio.php' ?>",
-            function() {
-                $("#divListaEstudios").append($(this).html());
-            });
-    }
-
-    function eliminarCampoListaEstudio() {
-
-        if ($('#divListaEstudios div.divListId').length > 1) {
-            $('#divListaEstudios div.divListId:last').remove();
-        } else {
-            $('#divListaEstudios div.divListId:last').remove();
-            agregarCampoListaEstudio();
-        }
-
-    }
-
-    function agregarCampoExperiencia() {
-
-        $("<div>").load(
-            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'hojaVida/listaExperiencia.php' ?>",
-            function() {
-                $("#divListaExperiencia").append($(this).html());
-            });
-    }
-
-    function eliminarCampoExperiencia() {
-
-        if ($('#divListaExperiencia div.divListId').length > 0) {
-            $('#divListaExperiencia div.divListId:last').remove();
-        }
-
-    }
-
-
-    function agregarCampoReferencia() {
-
-        $("<div>").load(
-            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'hojaVida/listaReferencias.php' ?>",
-            function() {
-                $("#divListaReferencias").append($(this).html());
-            });
-    }
-
-    function eliminarCampoReferencia() {
-
-        if ($('#divListaReferencias div.divListId').length > 1) {
-            $('#divListaReferencias div.divListId:last').remove();
-        } else {
-            $('#divListaReferencias div.divListId:last').remove();
-            agregarCampoReferencia();
-        }
-
-    }
-
-    function maximoAño(elementoCambio) {
-
-        var today = new Date();
-        var yyyy = today.getFullYear();
-
-        elementoCambio.setAttribute("max", yyyy);
     }
 
 
@@ -507,10 +418,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
     <script>
     $(document).ready(function() {
 
+
+
         $("<div>").load(
-            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'hojaVida/listaIdioma.php' ?>",
+            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'vacante/listaCategoria.php' ?>",
             function() {
-                $("#divListaIdiomas").append($(this).html());
+                $("#divCategoria").append($(this).html());
             });
 
         $().ready(function() {

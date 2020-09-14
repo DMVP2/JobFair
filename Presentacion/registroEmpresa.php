@@ -172,8 +172,8 @@ $conexion = $c->conectarBD();
                                                                     Camara de comercio:</label>
                                                             </div>
                                                             <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;" id="user_image"
-                                                                    name="user_image" riquired>
+                                                                <input type="file" style="width: 140px;" id="camaraComercio"
+                                                                    name="camaraComercio" riquired>
                                                             </div>
                                                         </div>
 
@@ -186,7 +186,7 @@ $conexion = $c->conectarBD();
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <input type="file" style="width: 140px;"
-                                                                    id="camaraComercio" name="camaraComercio" riquired>
+                                                                    id="user_image" name="user_image" riquired>
                                                             </div>
                                                         </div>
 

@@ -24,6 +24,7 @@ define('RUTA_PRESENTACION_LIB', 'Presentacion/lib/');
 
 define('RUTA_IMAGENES', 'Presentacion/imagenes/');
 define('RUTA_IMAGENES_WEB', 'Presentacion/imagenes/banner/');
+define('RUTA_DOCUMENTOS', 'Presentacion/documentos/');
 
 define('RUTA_SESION', 'Sesion/');
 

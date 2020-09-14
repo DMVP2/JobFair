@@ -63,7 +63,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <img class="img"
-                                    src=<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>>
+                                    src=<?php echo  CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial() ?> </h5>

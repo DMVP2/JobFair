@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+
+print_r($_FILES);
 
 include_once('../../rutas.php');
 
@@ -28,7 +29,7 @@ $descripcion = $_POST['descripcionEmpresa'];
 $beneficios = $_POST['otrosBeneficios'];
 
 
-// RECIBIR CAMARA COMERCIO - Start
+// RECIBIR CAMARA COMERCIO - Star
 $docFile = $_FILES['camaraComercio']['name'];
 $tmp_dir = $_FILES['camaraComercio']['tmp_name'];
 $docSize = $_FILES['camaraComercio']['size'];
@@ -37,10 +38,8 @@ $docSize = $_FILES['camaraComercio']['size'];
 if (empty($docFile)) {
     $document = "default.pdf";
 } else {
-    $upload_dir = './documentos/'; //Cargar directorio a la ruta especificada
-
+    $upload_dir = '../documentos/'; //Cargar directorio a la ruta especificada
     $documentExt = strtolower(pathinfo($docFile, PATHINFO_EXTENSION)); //Información sobre la extensión del archivo
-
     $valid_extensions = array('pdf');  //Extensiónes validas
 
     //Renonbrar archivo
@@ -50,11 +49,12 @@ if (empty($docFile)) {
         //Verificar tamaño del archivo '1 MB'
         if ($docSize < 1000000) {
             move_uploaded_file($tmp_dir, $upload_dir . $document);
+            
         } else {
-            echo 'No se pudo';
+            //Si no se puede
         }
     } else {
-        echo 'Se pudo';
+        //Si se puede
     }
 }
 // RECIBIR CAMARA COMERCIO - End
@@ -69,7 +69,7 @@ $imgSize = $_FILES['user_image']['size'];
 if (empty($imgFile)) {
     $userpic = "default.png";
 } else {
-    $upload_dir = './imagenes/Empresa/'; //Cargar directorio a la ruta especificada
+    $upload_dir = '../imagenes/Empresa/'; //Cargar directorio a la ruta especificada
 
     $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); //Información sobre la extensión del archivo
 
@@ -79,15 +79,18 @@ if (empty($imgFile)) {
     //Renonbrar archivo
     $userpic = $nit . "." . $imgExt;
     //Permitir imagenes de formatos validos
+
     if (in_array($imgExt, $valid_extensions)) {
+
         //Verificar tamaño del archivo '1 MB'
         if ($imgSize < 1000000) {
             move_uploaded_file($tmp_dir, $upload_dir . $userpic);
+            
         } else {
-            echo 'No se pudo';
+            //echo 'No se pudo';
         }
     } else {
-        echo 'Se pudo';
+        //echo 'Se pudo';
     }
 }
 // RECIBIR IMAGEN - End

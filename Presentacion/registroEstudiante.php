@@ -124,7 +124,7 @@ $conexion = $c->conectarBD();
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">Semestre</label>
-                                                                    <input type="number" min="5" max="10"
+                                                                    <input type="number" min="6" max="10"
                                                                         id="semestreEstudiante"
                                                                         name="semestreEstudiante" class="form-control"
                                                                         required>
@@ -133,7 +133,6 @@ $conexion = $c->conectarBD();
                                                             <div class="col-md-8">
                                                                 <select class="form-group form-control"
                                                                     style="margin-top: 4px;" id="carrera" name="carrera"
-                                                                    id="carreraEstudiante" name="carreraEstudiante"
                                                                     required>
                                                                     <option value="Ingeniería de Sistemas">Ingeniería de
                                                                         Sistemas</option>

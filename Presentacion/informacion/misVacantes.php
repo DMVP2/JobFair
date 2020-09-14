@@ -95,8 +95,21 @@ $next = $page + 1;
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
+                    <?php
+
+                    if (strnatcasecmp($rolUsuario, "Empresa") == 0) {
+                    ?>
+                    <br>
+                    <input class="btn btn-warning" type="button" id="button" value="Agregar vacante"
+                        onclick="window.location='<?php echo CARPETA_RAIZ . RUTA_PRESENTACION . 'crearVacante.php'  ?>'">
+                    <?php
+                    }
+
+                    ?>
+
                     <!-- Select dropdown -->
                     <div class="d-flex flex-row-reverse bd-highlight mb-3">
+
                         <form action="<?php echo $nombrePagina ?>" method="post">
                             <select name="records-limit" id="records-limit" class="custom-select">
                                 <option disabled selected>Límite</option>
@@ -112,14 +125,11 @@ $next = $page + 1;
                     </div>
                     <!-- Select dropdown -->
 
+
                     <?php
-
                     foreach ($vacantes as $vacante) {
-
                         $nitEmpresa = $manejoVacante->consultarNitEmpresa($vacante->getId());
-
                         $empresa = $manejoEmpresa->buscarEmpresa($nitEmpresa);
-
                     ?>
                     <div class="card">
                         <div class="card-header">
@@ -129,7 +139,7 @@ $next = $page + 1;
                             <div class="row">
                                 <div class="col-sm-2">
                                     <img class="img" width="40%"
-                                        src="<?php echo "/" . CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>" />
+                                        src="<?php echo  CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>" />
                                     <br><br>
                                     <h6 class="card-title"><?php echo $empresa->getRazonComercial() ?>
                                     </h6>
@@ -246,6 +256,8 @@ $next = $page + 1;
     <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+
     <script>
     $(document).ready(function() {
         $().ready(function() {
