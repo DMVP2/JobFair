@@ -1,326 +1,300 @@
 <?php
 
-
 // Importación de clases
 
 include_once('../../rutas.php');
-
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEstudiante.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoHojaDeVida.php');
 
-// Conexión con la base de datos
-
-$c = Conexion::getInstancia();
-$conexion = $c->conectarBD();
-
-// Ejecución de métodos (Manejos)
-
-$idUsuario = $_SESSION['usuario'];
-
-$idEstudiante = "";
-
-$rolUsuario = $_SESSION['rol'];
-if (strcasecmp($rolUsuario, "Estudiante") == 0) {
-    $idEstudiante = $idUsuario;
-} else {
-    $idEstudiante = $_POST['idEstudiante'];
-}
-
-$manejoEstudiantes = new ManejoEstudiante($conexion);
-$estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
-
-$manejoHojaVida = new ManejoHojaDeVida($conexion);
-
-if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
-    $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
-}
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en-US">
+<!doctype html>
+<html lang="en">
 
 <head>
-    <title>Hoja de vida</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "css/aos.css" ?> rel="stylesheet">
-    <link href=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "css/bootstrap.min.css" ?> rel="stylesheet">
-    <link href=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "styles/main.css" ?> rel="stylesheet">
+
+    <title>Feria de oportunidades</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
 </head>
 
-<body id="top">
-    <div class="page-content">
-        <div>
-            <div class="profile-page">
-                <div class="wrapper">
-                    <div class="page-header page-header-small" filter-color="green">
-                        <div class="page-header-image" data-parallax="true" style="background: rgb(0, 94, 110);"></div>
-                        <div class="container">
-                            <div class="content-center">
-                                <div class="cc-profile-image"><a href="#"><img class="img"
-                                            src=<?php echo CARPETA_RAIZ . RUTA_IMAGENES . "Estudiante/" . $estudiante->getRutaFoto() ?>></a>
-                                </div>
-                                <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
-                                <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
-                                <br>
-                                <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in"
-                                    data-aos-anchor="data-aos-anchor">PDF</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section" id="about">
-                <div class="container">
-                    <div class="card" data-aos="fade-up" data-aos-offset="10">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="card-body">
-                                    <div class="h4 mt-0 title">Información básica</div>
-                                    <div class="row mt-3">
-                                        <div class="col-sm-4"><strong class="text-uppercase">Documento:</strong></div>
-                                        <div class="col-sm-8">
-                                            <?php echo $estudiante->getTipoDeDocumento() . " " . $estudiante->getNumeroDocumento() ?>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-sm-4"><strong class="text-uppercase">Correo
-                                                electrónico:</strong></div>
-                                        <div class="col-sm-8"><?php echo $estudiante->getCorreo() ?></div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-sm-4"><strong class="text-uppercase">Teléfono:</strong></div>
-                                        <div class="col-sm-8"><?php echo $estudiante->getTelefono() ?></div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-sm-4"><strong class="text-uppercase">Programa
-                                                Académico:</strong></div>
-                                        <div class="col-sm-8"><?php echo $estudiante->getProgramaAcademico() ?></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
+<body>
+    <div class="wrapper ">
+        <!-- SideBar -->
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "sidebar.php";
+        ?>
+        <!-- SideBar -->
 
-                                <?php
-                                if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
-                                    if ($hojaVida->getPerfilProfesional() != null) {
-                                ?>
-                                <div class="card-body">
-                                    <div class="h4 mt-0 title">Perfil profesional</div>
-                                    <p> <strong> Perfil profesional: </strong>
-                                        <?php echo $hojaVida->getPerfilProfesional() ?> </p>
-                                </div>
-
-                                <?php
-                                    }
-                                    ?>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="main-panel">
+            <!-- NavBar  -->
             <?php
-                                    if ($hojaVida->getIdiomas() != null) {
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "navbar.php";
             ?>
-            <div class="section" id="skill">
-                <div class="container">
-                    <div class="h4 text-center mb-4 title">Idiomas</div>
-                    <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-                        <div class="card-body">
+            <!-- NavBar -->
 
-                            <?php
-                                        foreach ($hojaVida->getIdiomas() as $idioma) {
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- CONTENIDO PAGINA -->
 
-                                            $nivel = "0";
+                    <iframe src="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'hojaVidaEmbebida.php' ?>" width="100%"
+                        height="800px">
+                    </iframe>
 
-                                            if (strcasecmp($idioma[1], "Básico") == 0) {
-                                                $nivel = "30";
-                                            }
-                                            if (strcasecmp($idioma[1], "Intermedio") == 0) {
-                                                $nivel = "50";
-                                            }
-                                            if (strcasecmp($idioma[1], "Avanzado") == 0) {
-                                                $nivel = "70";
-                                            }
-                                            if (strcasecmp($idioma[1], "Nativo") == 0) {
-                                                $nivel = "100";
-                                            }
 
-                                ?>
+                    <!-- CONTENIDO PAGINA -->
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="progress-container progress-primary"><span class="progress-badge">
-                                            <?php echo $idioma[0] ?> </span>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-primary" data-aos="progress-full"
-                                                data-aos-offset="10" data-aos-duration="2000" role="progressbar"
-                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                                style="width: <?php echo $nivel . "%" ?>;"></div><span
-                                                class="progress-value"> <?php echo $idioma[1] ?>
-                                                <?php echo "(" . $nivel . "%)" ?> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <?php
-                                        }
-                                ?>
-
-                        </div>
-                    </div>
                 </div>
             </div>
+
+            <!-- Footer -->
             <?php
-                                    }
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
+
             ?>
+            <!-- Footer -->
 
-            <?php
-                                    if ($hojaVida->getEstudios() != null) {
-            ?>
-            <div class="section">
-                <div class="container cc-education">
-                    <div class="h4 text-center mb-4 title">Educación</div>
-
-                    <?php
-
-                                        foreach ($hojaVida->getEstudios() as $estudio) {
-
-                        ?>
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50"
-                                data-aos-duration="500">
-                                <div class="card-body cc-education-header">
-                                    <p> <?php echo $estudio[4] ?> </p>
-                                    <div class="h5"><?php echo $estudio[3] ?> </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                                <div class="card-body">
-                                    <div class="h5"> <?php echo $estudio[0] ?> </div>
-                                    <p class="category"> <?php echo $estudio[2] ?> </p>
-                                    <p> Area de estudio: <?php echo $estudio[1] ?></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php
-                                        }
-                        ?>
-
-                </div>
-            </div>
         </div>
-
-        <?php
-                                    }
-    ?>
-
-        <?php
-                                    if ($hojaVida->getExperienciaLaboral() != null) {
-    ?>
-        <div class="section" id="experience">
-            <div class="container cc-experience">
-                <div class="h4 text-center mb-4 title">Experiencia laboral</div>
-
-                <?php
-
-                                        foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
-
-                ?>
-
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50"
-                            data-aos-duration="500">
-                            <div class="card-body cc-experience-header">
-                                <p> <?php echo $experiencia[3] ?> </p>
-                                <div class="h5"> <?php echo $experiencia[2] ?> </div>
-                            </div>
-                        </div>
-                        <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-                            <div class="card-body">
-                                <div class="h5"> <?php echo $experiencia[0] ?> </div>
-                                <p> <?php echo $experiencia[1] ?> </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <?php
-                                        }
-                ?>
-
-            </div>
-        </div>
-
-        <?php
-                                    }
-    ?>
-
-
-
-        <?php
-                                    if ($hojaVida->getReferenciasPersonales() != null) {
-    ?>
-        <div class="section" id="reference">
-            <div class="container cc-reference">
-                <div class="h4 mb-4 text-center title">Referencias</div>
-
-                <?php
-
-                                        foreach ($hojaVida->getReferenciasPersonales() as $referencia) {
-
-                ?>
-                <div class="card" data-aos="zoom-in">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-3 cc-reference-header">
-                            <div class="h5 pt-2"> <img
-                                    src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "images/users.png" ?>
-                                    alt="Image" /> </div>
-                        </div>
-                        <div class="col-lg-10 col-md-9">
-                            <p> Nombre: <?php echo $referencia[0] ?> </p>
-                            <p> Teléfono: <?php echo $referencia[1] ?> </p>
-                            <p> Cargo / Profesión: <?php echo $referencia[2] ?> </p>
-                        </div>
-                    </div>
-                </div>
-                <?php
-                                        }
-                ?>
-
-            </div>
-        </div>
-
-        <?php
-                                    }
-                                }
-?>
     </div>
-    </div>
-    <footer class="footer">
-        <div class="text-center text-muted">
-            <p>Desing by: Anthony Barnett <br> &copy; Creative CV. All rights reserved.<br>Design - <a class="credit"
-                    href="https://templateflip.com" target="_blank">TemplateFlip</a></p>
-        </div>
-    </footer>
-    <script src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "js/core/jquery.3.2.1.min.js" ?>></script>
-    <script src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "js/core/popper.min.js" ?>></script>
-    <script src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "js/core/bootstrap.min.js" ?>></script>
-    <script src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "js/now-ui-kit.js?v=1.1.0" ?>></script>
-    <script src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "js/aos.js" ?>></script>
-    <script src=<?php echo CARPETA_RAIZ . RUTA_ASSETS . "cv/" . "scripts/main.js" ?>></script>
+
+
+    <!--   Core JS Files   -->
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/sweetalert2.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.validate.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.bootstrap-wizard.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-selectpicker.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-datetimepicker.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.dataTables.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-tagsinput.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jasny-bootstrap.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/fullcalendar.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery-jvectormap.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/nouislider.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/arrive.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/chartist.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-notify.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        $().ready(function() {
+            $sidebar = $(".sidebar");
+
+            $sidebar_img_container = $sidebar.find(".sidebar-background");
+
+            $full_page = $(".full-page");
+
+            $sidebar_responsive = $("body > .navbar-collapse");
+
+            window_width = $(window).width();
+
+            fixed_plugin_open = $(
+                ".sidebar .sidebar-wrapper .nav li.active a p"
+            ).html();
+
+            if (window_width > 767 && fixed_plugin_open == "Dashboard") {
+                if ($(".fixed-plugin .dropdown").hasClass("show-dropdown")) {
+                    $(".fixed-plugin .dropdown").addClass("open");
+                }
+            }
+
+            $(".fixed-plugin a").click(function(event) {
+                if ($(this).hasClass("switch-trigger")) {
+                    if (event.stopPropagation) {
+                        event.stopPropagation();
+                    } else if (window.event) {
+                        window.event.cancelBubble = true;
+                    }
+                }
+            });
+
+            $(".fixed-plugin .active-color span").click(function() {
+                $full_page_background = $(".full-page-background");
+
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+
+                var new_color = $(this).data("color");
+
+                if ($sidebar.length != 0) {
+                    $sidebar.attr("data-color", new_color);
+                }
+
+                if ($full_page.length != 0) {
+                    $full_page.attr("filter-color", new_color);
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.attr("data-color", new_color);
+                }
+            });
+
+            $(".fixed-plugin .background-color .badge").click(function() {
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+
+                var new_color = $(this).data("background-color");
+
+                if ($sidebar.length != 0) {
+                    $sidebar.attr("data-background-color", new_color);
+                }
+            });
+
+            $(".fixed-plugin .img-holder").click(function() {
+                $full_page_background = $(".full-page-background");
+
+                $(this).parent("li").siblings().removeClass("active");
+                $(this).parent("li").addClass("active");
+
+                var new_image = $(this).find("img").attr("src");
+
+                if (
+                    $sidebar_img_container.length != 0 &&
+                    $(".switch-sidebar-image input:checked").length != 0
+                ) {
+                    $sidebar_img_container.fadeOut("fast", function() {
+                        $sidebar_img_container.css(
+                            "background-image",
+                            'url("' + new_image + '")'
+                        );
+                        $sidebar_img_container.fadeIn("fast");
+                    });
+                }
+
+                if (
+                    $full_page_background.length != 0 &&
+                    $(".switch-sidebar-image input:checked").length != 0
+                ) {
+                    var new_image_full_page = $(".fixed-plugin li.active .img-holder")
+                        .find("img")
+                        .data("src");
+
+                    $full_page_background.fadeOut("fast", function() {
+                        $full_page_background.css(
+                            "background-image",
+                            'url("' + new_image_full_page + '")'
+                        );
+                        $full_page_background.fadeIn("fast");
+                    });
+                }
+
+                if ($(".switch-sidebar-image input:checked").length == 0) {
+                    var new_image = $(".fixed-plugin li.active .img-holder")
+                        .find("img")
+                        .attr("src");
+                    var new_image_full_page = $(".fixed-plugin li.active .img-holder")
+                        .find("img")
+                        .data("src");
+
+                    $sidebar_img_container.css(
+                        "background-image",
+                        'url("' + new_image + '")'
+                    );
+                    $full_page_background.css(
+                        "background-image",
+                        'url("' + new_image_full_page + '")'
+                    );
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.css(
+                        "background-image",
+                        'url("' + new_image + '")'
+                    );
+                }
+            });
+
+            $(".switch-sidebar-image input").change(function() {
+                $full_page_background = $(".full-page-background");
+
+                $input = $(this);
+
+                if ($input.is(":checked")) {
+                    if ($sidebar_img_container.length != 0) {
+                        $sidebar_img_container.fadeIn("fast");
+                        $sidebar.attr("data-image", "#");
+                    }
+
+                    if ($full_page_background.length != 0) {
+                        $full_page_background.fadeIn("fast");
+                        $full_page.attr("data-image", "#");
+                    }
+
+                    background_image = true;
+                } else {
+                    if ($sidebar_img_container.length != 0) {
+                        $sidebar.removeAttr("data-image");
+                        $sidebar_img_container.fadeOut("fast");
+                    }
+
+                    if ($full_page_background.length != 0) {
+                        $full_page.removeAttr("data-image", "#");
+                        $full_page_background.fadeOut("fast");
+                    }
+
+                    background_image = false;
+                }
+            });
+
+            $(".switch-sidebar-mini input").change(function() {
+                $body = $("body");
+
+                $input = $(this);
+
+                if (md.misc.sidebar_mini_active == true) {
+                    $("body").removeClass("sidebar-mini");
+                    md.misc.sidebar_mini_active = false;
+
+                    $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar();
+                } else {
+                    $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar(
+                        "destroy"
+                    );
+
+                    setTimeout(function() {
+                        $("body").addClass("sidebar-mini");
+
+                        md.misc.sidebar_mini_active = true;
+                    }, 300);
+                }
+
+                // We simulate the window Resize so the charts will get updated in realtime.
+                var simulateWindowResize = setInterval(function() {
+                    window.dispatchEvent(new Event("resize"));
+                }, 180);
+
+                // We stop the simulation of Window Resize after the animations are completed
+                setTimeout(function() {
+                    clearInterval(simulateWindowResize);
+                }, 1000);
+            });
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        // Javascript method's body can be found in assets/js/demos.js
+        md.initDashboardPageCharts();
+    });
+    </script>
 </body>
 
 </html>

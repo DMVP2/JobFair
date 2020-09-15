@@ -153,49 +153,19 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                             <div class="form-group">
                                                                 <div class="form-group">
                                                                     <label class="bmd-label-floating">
-                                                                        Perfil profesional</label>
+                                                                        Perfil
+                                                                        profesional&nbsp&nbsp <span
+                                                                            class="material-icons">
+                                                                            info
+                                                                        </span></label>
                                                                     <textarea class="form-control" maxlength="950"
-                                                                        name="perfilProfesionalArea"
-                                                                        id="perfilProfesionalArea" rows="6"></textarea>
+                                                                        name="perfilProfesionalArea" delay: { "show" :
+                                                                        100, "hide" : 100 } data-toggle="tooltip"
+                                                                        data-placement="right"
+                                                                        title="Recuerda que una hoja de vida deberia tener una estructura, es muy importante."
+                                                                        id="perfilProfesionalArea" rows="8"></textarea>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <br>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">
-                                                                        Certificaciones</label>
-                                                                    <textarea class="form-control" maxlength="950"
-                                                                        rows="6" name="certificacionesArea"
-                                                                        id="certificacionesArea"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <br><br>
-
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label class="bmd-label-floating"
-                                                                style="padding-top: 15px;">
-                                                                Disponibilidad de viaje:
-                                                            </label>
-
-                                                        </div>
-                                                        <div class="col-md-3">
-
-                                                            <select class="form-control" id="disponibilidadViaje"
-                                                                name="disponibilidadViaje">
-                                                                <option value="No" selected>No</option>
-                                                                <option value="Si">Si</option>
-                                                            </select>
                                                         </div>
                                                     </div>
 
@@ -211,35 +181,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     </div>
 
-                                                    <br><br>
+                                                    <br><br><br>
 
                                                     <input class="btn btn-warning" type="button" value="Agregar estudio"
                                                         onclick="agregarCampoListaEstudio()">
                                                     <input class="btn btn-warning" type="button" value="Borrar estudio"
                                                         onclick="eliminarCampoListaEstudio()">
-
-
-                                                    <br><br><br>
-
-
-                                                    <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Experiencia laboral</h6>
-                                                    </div>
-
-
-                                                    <div id="divListaExperiencia">
-
-
-
-                                                    </div>
-
-                                                    <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoExperiencia()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoExperiencia()">
-
 
 
                                                     <br><br><br>
@@ -276,13 +223,51 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     <input class="btn btn-warning" type="button" value="Borrar idioma"
                                                         onclick="eliminarCampoListaIdioma()">
 
+                                                    <br><br><br>
 
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">
+                                                                        Certificaciones</label>
+                                                                    <textarea class="form-control" maxlength="950"
+                                                                        rows="6" name="certificacionesArea"
+                                                                        id="certificacionesArea"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                     <br><br><br>
 
 
+
+
+
                                                     <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Referencias personales</h6>
+                                                        <h6> Experiencia laboral</h6>
+                                                    </div>
+
+
+                                                    <div id="divListaExperiencia">
+
+
+
+                                                    </div>
+
+                                                    <br><br>
+
+                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
+                                                        onclick="agregarCampoExperiencia()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
+                                                        onclick="eliminarCampoExperiencia()">
+
+
+                                                    <br><br><br>
+
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Referencias</h6>
                                                     </div>
 
 
@@ -291,13 +276,32 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     </div>
 
-                                                    <br><br>
+                                                    <br><br><br>
 
                                                     <input class="btn btn-warning" type="button" value="Agregar campo"
                                                         onclick="agregarCampoReferencia()">
                                                     <input class="btn btn-warning" type="button" value="Borrar campo"
                                                         onclick="eliminarCampoReferencia()">
 
+                                                    <br><br><br>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="bmd-label-floating"
+                                                                style="padding-top: 15px;">
+                                                                Disponibilidad de viaje:
+                                                            </label>
+
+                                                        </div>
+                                                        <div class="col-md-3">
+
+                                                            <select class="form-control" id="disponibilidadViaje"
+                                                                name="disponibilidadViaje">
+                                                                <option value="No" selected>No</option>
+                                                                <option value="Si">Si</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
                                                     <br><br><br>
 
@@ -459,9 +463,6 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
     function verificarNivelEstudio(object) {
 
-
-
-
         if (object.value != "Bachiller") {
 
             object.disabled = true;
@@ -474,9 +475,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                     jComp.append($(this).html());
 
                 });
-
         }
-
 
     }
 

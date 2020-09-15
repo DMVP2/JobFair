@@ -214,6 +214,20 @@ class VacanteDAO implements DAO
 	}
 
 	/**
+	 * Obtiene la cantidad de vacantes aplicadas por un estudiante en la base de datos
+	 *
+	 * @return int $cantidadVacantesActivasEstudiantes
+	 */
+	public function cantidadVacantesAplicadas($pEstudiante)
+	{
+		$sql = "SELECT COUNT(*) FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = " . $pEstudiante . " AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante";
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
+
+	/**
 	 * Obtiene la cantidad de vacantes activas registradas en la base de datos de una sola empresa
 	 *
 	 * @return int $cantidadVacantesActivas
@@ -337,7 +351,7 @@ class VacanteDAO implements DAO
 	 */
 	public function listarVacantesEstudiante(int $codigo, $pagInicio, $limit)
 	{
-		$sql = "SELECT * FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = $codigo AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' ORDER BY vacante.id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
+		$sql = "SELECT * FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = $codigo AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante ORDER BY vacante.id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 

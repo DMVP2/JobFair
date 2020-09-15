@@ -185,10 +185,23 @@ class manejoVacante
         return $cantidadVacantes;
     }
 
+
+    /**
+     * Obtiene la cantidad de vacantes aplicadas
+     *
+     * @return int $cantidadVacantesActivas
+     */
+    public function cantidadVacantes()
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $cantidadVacantes = $VacanteDAO->cantidadVacantesActivas();
+        return $cantidadVacantes;
+    }
+
     /**
      * Obtiene la cantidad de vacantes activas registradas en la base de datos de una sola empresa
      *
-     * @return int $cantidadVacantesActivas
+     * @return int $cantidadVacantesActivasEmpresa
      */
     public function cantidadVacantesActivasEmpresa($pNitEmpresa)
     {
@@ -196,6 +209,20 @@ class manejoVacante
         $cantidadVacantes = $VacanteDAO->cantidadVacantesActivasEmpresa($pNitEmpresa);
         return $cantidadVacantes;
     }
+
+    /**
+     * Obtiene la cantidad de vacantes aplicadas por un estudiante
+     *
+     * @param int $pEstudiante
+     * @return int $cantidadVacantesAplicadasEstudiante
+     */
+    public function cantidadVacantesAplicadasEstudiante($pEstudiante)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $cantidadVacantes = $VacanteDAO->cantidadVacantesAplicadas($pEstudiante);
+        return $cantidadVacantes;
+    }
+
 
 
 
