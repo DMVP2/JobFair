@@ -2,6 +2,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . "EstudianteDAO.php");
 
+
 /**
  * Clase que representa la clase "ManejoEstudiante"
  */
@@ -150,5 +151,29 @@ class ManejoEstudiante
         $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
         $cantidadEstudiantes = $estudianteDAO->cantidadEstudiantes();
         return $cantidadEstudiantes;
+    }
+
+    /**
+     * Método para contar los 5 estudiantes con mas postulaciones
+     *
+     * @return String
+     */
+    public function masPostulaciones()
+    {
+        $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $masPostulaciones = $estudianteDAO->masPostulaciones();
+        return $masPostulaciones;
+    }
+
+        /**
+     * Método para contar los 5 estudiantes con menos postulaciones
+     *
+     * @return String
+     */
+    public function menosPostulaciones()
+    {
+        $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $menosPostulaciones = $estudianteDAO->menosPostulaciones();
+        return $menosPostulaciones;
     }
 }

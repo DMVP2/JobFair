@@ -118,6 +118,7 @@ class EstudianteDAO implements DAO
     public function listar()
     {
         $sql = "SELECT * FROM ESTUDIANTE";
+        
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
         $estudianteArray = array();
@@ -195,7 +196,6 @@ class EstudianteDAO implements DAO
      * Método para listar los estudiantes que aplicaron a determinada vacante
      *
      * @param int $idVacante
-     * @param int $idEstudiante
      * @return String
      */
     public function listarPostulacionesVacante(int $idVacante, $pagInicio, $limit)
@@ -225,6 +225,96 @@ class EstudianteDAO implements DAO
         }
 
         return $estudianteArray;
+    }
+
+    /**
+     * Método para contar los 5 estudiantes con mas postulaciones
+     *
+     * @return String
+     */
+    public function masPostulaciones()
+    {
+
+        $estudiantes = $this->listar();
+
+        $estudianteArray = array();
+
+        $numeroEstudiante = 0;
+
+        foreach($estudiantes as $estudiante)
+        {
+
+            $sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento =". $estudiante->getNumeroDocumento();
+
+            $consulta = mysqli_query($this->conexion, $sql);
+            $resultado = mysqli_fetch_array($consulta)[0];
+
+            $estudianteArray[$numeroEstudiante][0] = $resultado;
+            $estudianteArray[$numeroEstudiante][1] = $estudiante->getNumeroDocumento();
+
+            $numeroEstudiante = $numeroEstudiante + 1; 
+        }
+
+        foreach ($estudianteArray as $key => $row) 
+        {
+            $cantidad[$key] = $row[0];
+        }
+        
+        array_multisort($cantidad, SORT_DESC, $estudianteArray);
+
+        $masPostulaciones = array();
+
+        for($i = 0; $i < 5; $i++)
+        {
+            $masPostulaciones[] = $estudianteArray[$i];
+        }
+
+        return $masPostulaciones;
+    }
+
+    /**
+     * Método para contar los 5 estudiantes con menos postulaciones
+     *
+     * @return String
+     */
+    public function menosPostulaciones()
+    {
+
+        $estudiantes = $this->listar();
+
+        $estudianteArray = array();
+
+        $numeroEstudiante = 0;
+
+        foreach($estudiantes as $estudiante)
+        {
+
+            $sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento =". $estudiante->getNumeroDocumento();
+
+            $consulta = mysqli_query($this->conexion, $sql);
+            $resultado = mysqli_fetch_array($consulta)[0];
+
+            $estudianteArray[$numeroEstudiante][0] = $resultado;
+            $estudianteArray[$numeroEstudiante][1] = $estudiante->getNumeroDocumento();
+
+            $numeroEstudiante = $numeroEstudiante + 1; 
+        }
+
+        foreach ($estudianteArray as $key => $row) 
+        {
+            $cantidad[$key] = $row[0];
+        }
+        
+        array_multisort($cantidad, SORT_ASC, $estudianteArray);
+
+        $masPostulaciones = array();
+
+        for($i = 0; $i < 5; $i++)
+        {
+            $masPostulaciones[] = $estudianteArray[$i];
+        }
+
+        return $masPostulaciones;
     }
 
 
