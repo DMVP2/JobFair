@@ -324,7 +324,7 @@ class VacanteDAO implements DAO
 	 */
 	public function listarVacantesEstudiante(int $codigo, $pagInicio, $limit)
 	{
-		$sql = "SELECT * FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = $codigo AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' LIMIT " . $pagInicio . " , " . $limit;
+		$sql = "SELECT * FROM VACANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento = $codigo AND VACANTE.id_vacante = VACANTE_ESTUDIANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' ORDER BY vacante.id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
@@ -423,7 +423,7 @@ class VacanteDAO implements DAO
 	public function listarVacantesEmpresa(int $codigo, $pagInicio, $limit)
 	{
 
-		$sql = "SELECT * FROM VACANTE, EMPRESA_VACANTE WHERE EMPRESA_VACANTE.nit_empresa = $codigo AND VACANTE.id_vacante = EMPRESA_VACANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' LIMIT " . $pagInicio . " , " . $limit;
+		$sql = "SELECT * FROM VACANTE, EMPRESA_VACANTE WHERE EMPRESA_VACANTE.nit_empresa = $codigo AND VACANTE.id_vacante = EMPRESA_VACANTE.id_vacante AND VACANTE.estado_vacante = 'Activo' ORDER BY vacante.id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
