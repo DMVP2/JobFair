@@ -107,7 +107,7 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
                 startAngle: 240,
                 yValueFormatString: "#",
                 indexLabel: "{label} {y}",
-                dataPoints: < ? php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ? >
+                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
             }]
         });
         chart.render();
