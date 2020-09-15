@@ -317,6 +317,19 @@ class VacanteDAO implements DAO
 	}
 
 	/**
+	 * Método para relacionar una vacante con un estudiante
+	 *
+	 * @param int $idVacante
+	 * @param int $idEstudiante
+	 * @return void
+	 */
+	public function aplicarVacanteEstudiante($pVacante, $pIdEstudiante)
+	{
+		$sql = "INSERT INTO vacante_estudiante VALUES( " . $pVacante . "," . $pIdEstudiante . ", 'Activo (Sin verificar)')";
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
 	 * Método para listar las vacantes a las cuales el estudiante ya aplico
 	 *
 	 * @param int $codigo
@@ -479,7 +492,6 @@ class VacanteDAO implements DAO
 
 			$aux = $aux + 1;
 		}
-
 
 		return $cantidadVacantes;
 	}

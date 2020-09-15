@@ -1,11 +1,5 @@
 <?php
 
-session_start();
-
-if (!isset($_SESSION['usuario'])) {
-
-  header("location:../index.php");
-}
 
 // Importación de clases
 
@@ -28,9 +22,9 @@ $idEstudiante = "";
 
 $rolUsuario = $_SESSION['rol'];
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
-  $idEstudiante = $idUsuario;
+    $idEstudiante = $idUsuario;
 } else {
-  $idEstudiante = $_POST['idEstudiante'];
+    $idEstudiante = $_POST['idEstudiante'];
 }
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
@@ -39,7 +33,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
 if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
-  $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
+    $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
 }
 
 ?>
@@ -113,9 +107,9 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                             <div class="col-lg-6 col-md-12">
 
                                 <?php
-                if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
-                  if ($hojaVida->getPerfilProfesional() != null) {
-                ?>
+                                if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
+                                    if ($hojaVida->getPerfilProfesional() != null) {
+                                ?>
                                 <div class="card-body">
                                     <div class="h4 mt-0 title">Perfil profesional</div>
                                     <p> <strong> Perfil profesional: </strong>
@@ -123,8 +117,8 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                                 </div>
 
                                 <?php
-                  }
-                  ?>
+                                    }
+                                    ?>
 
                             </div>
                         </div>
@@ -133,8 +127,8 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
             </div>
 
             <?php
-                  if ($hojaVida->getIdiomas() != null) {
-      ?>
+                                    if ($hojaVida->getIdiomas() != null) {
+            ?>
             <div class="section" id="skill">
                 <div class="container">
                     <div class="h4 text-center mb-4 title">Idiomas</div>
@@ -142,24 +136,24 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                         <div class="card-body">
 
                             <?php
-                    foreach ($hojaVida->getIdiomas() as $idioma) {
+                                        foreach ($hojaVida->getIdiomas() as $idioma) {
 
-                      $nivel = "0";
+                                            $nivel = "0";
 
-                      if (strcasecmp($idioma[1], "Básico") == 0) {
-                        $nivel = "30";
-                      }
-                      if (strcasecmp($idioma[1], "Intermedio") == 0) {
-                        $nivel = "50";
-                      }
-                      if (strcasecmp($idioma[1], "Avanzado") == 0) {
-                        $nivel = "70";
-                      }
-                      if (strcasecmp($idioma[1], "Nativo") == 0) {
-                        $nivel = "100";
-                      }
+                                            if (strcasecmp($idioma[1], "Básico") == 0) {
+                                                $nivel = "30";
+                                            }
+                                            if (strcasecmp($idioma[1], "Intermedio") == 0) {
+                                                $nivel = "50";
+                                            }
+                                            if (strcasecmp($idioma[1], "Avanzado") == 0) {
+                                                $nivel = "70";
+                                            }
+                                            if (strcasecmp($idioma[1], "Nativo") == 0) {
+                                                $nivel = "100";
+                                            }
 
-                ?>
+                                ?>
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -178,29 +172,29 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                             </div>
 
                             <?php
-                    }
-                ?>
+                                        }
+                                ?>
 
                         </div>
                     </div>
                 </div>
             </div>
             <?php
-                  }
-      ?>
+                                    }
+            ?>
 
             <?php
-                  if ($hojaVida->getEstudios() != null) {
-      ?>
+                                    if ($hojaVida->getEstudios() != null) {
+            ?>
             <div class="section">
                 <div class="container cc-education">
                     <div class="h4 text-center mb-4 title">Educación</div>
 
                     <?php
 
-                    foreach ($hojaVida->getEstudios() as $estudio) {
+                                        foreach ($hojaVida->getEstudios() as $estudio) {
 
-            ?>
+                        ?>
                     <div class="card">
                         <div class="row">
                             <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50"
@@ -221,29 +215,29 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                     </div>
 
                     <?php
-                    }
-            ?>
+                                        }
+                        ?>
 
                 </div>
             </div>
         </div>
 
         <?php
-                  }
-  ?>
+                                    }
+    ?>
 
         <?php
-                  if ($hojaVida->getExperienciaLaboral() != null) {
-  ?>
+                                    if ($hojaVida->getExperienciaLaboral() != null) {
+    ?>
         <div class="section" id="experience">
             <div class="container cc-experience">
                 <div class="h4 text-center mb-4 title">Experiencia laboral</div>
 
                 <?php
 
-                    foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
+                                        foreach ($hojaVida->getExperienciaLaboral() as $experiencia) {
 
-        ?>
+                ?>
 
                 <div class="card">
                     <div class="row">
@@ -264,30 +258,30 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                 </div>
 
                 <?php
-                    }
-        ?>
+                                        }
+                ?>
 
             </div>
         </div>
 
         <?php
-                  }
-  ?>
+                                    }
+    ?>
 
 
 
         <?php
-                  if ($hojaVida->getReferenciasPersonales() != null) {
-  ?>
+                                    if ($hojaVida->getReferenciasPersonales() != null) {
+    ?>
         <div class="section" id="reference">
             <div class="container cc-reference">
                 <div class="h4 mb-4 text-center title">Referencias</div>
 
                 <?php
 
-                    foreach ($hojaVida->getReferenciasPersonales() as $referencia) {
+                                        foreach ($hojaVida->getReferenciasPersonales() as $referencia) {
 
-        ?>
+                ?>
                 <div class="card" data-aos="zoom-in">
                     <div class="row">
                         <div class="col-lg-2 col-md-3 cc-reference-header">
@@ -303,15 +297,15 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                     </div>
                 </div>
                 <?php
-                    }
-        ?>
+                                        }
+                ?>
 
             </div>
         </div>
 
         <?php
-                  }
-                }
+                                    }
+                                }
 ?>
     </div>
     </div>

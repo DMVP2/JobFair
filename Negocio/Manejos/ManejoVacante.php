@@ -113,6 +113,17 @@ class manejoVacante
         $VacanteDAO->relacionarCiudadVacante($pVacante, $pCiudad);
     }
 
+    /**
+     * Aplicar estudiante a una vacante
+     *
+     */
+    public function aplicarVacanteEstudiante($pVacante, $pIdEstudiante)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->aplicarVacanteEstudiante($pVacante, $pIdEstudiante);
+    }
+
+
 
 
 

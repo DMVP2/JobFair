@@ -142,8 +142,9 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                     if (strcasecmp($verificacionVacante, null) == 0) {
                                 ?>
-                                <button type="submit" class="btn btn-primary"
-                                    onclick="window.location.href='listadoVacantes.php'">Aplicar a la vacante</button>
+                                <input class="btn btn-primary" type="button" value="Aplicar a la vacante"
+                                    onclick="window.location='<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'aplicarVacante.php?vacante=' . $idVacante  ?>'">
+
                                 <br>
                                 <?php
                                     } else {
