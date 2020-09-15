@@ -1,5 +1,6 @@
 <?php
 
+include_once("../../../rutas.php");
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 

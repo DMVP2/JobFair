@@ -30,7 +30,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label class="bmd-label-floating">
-                    Parentesco
+                    Cargo / Profesión
                 </label>
                 <input type="text" class="form-control" id="parentescoReferencia[]" name="parentescoReferencia[]" />
             </div>

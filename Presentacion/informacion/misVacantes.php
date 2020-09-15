@@ -41,7 +41,7 @@ $paginationStart = ($page - 1) * $limit;
 
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $vacantes = $manejoVacante->listarVacantesEstudiante($idUsuario, $paginationStart, $limit);
-    $allRecords = $manejoVacante->cantidadVacantesActivas();
+    $allRecords = $manejoVacante->cantidadVacantesAplicadasEstudiante($idUsuario);
 } else if (strcasecmp($rolUsuario, "Empresa") == 0) {
     $vacantes = $manejoVacante->listarVacantesEmpresa($idUsuario, $paginationStart, $limit);
     $allRecords = $manejoVacante->cantidadVacantesActivasEmpresa($idUsuario);

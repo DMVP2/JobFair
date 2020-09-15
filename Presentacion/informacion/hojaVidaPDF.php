@@ -45,6 +45,8 @@ $referencias = $hojaVida->getReferenciasPersonales();
 require_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PRESENTACION_LIB . "/fpdf/fpdf.php");
 $pdf = new FPDF();
 
+$pdf->SetTitle("Hoja de vida - " . $nombre);
+
 $pdf->AddPage();
 
 
@@ -71,8 +73,6 @@ $pdf->Cell(65, 10, "Nombre:", 0, 0);
 $pdf->Multicell(125, 10, utf8_decode($nombre), 0, 1);
 $pdf->Cell(65, 10, "Documento:", 0, 0);
 $pdf->Cell(125, 10, utf8_decode($documento), 0, 1);
-$pdf->Cell(65, 10, "Edad:", 0, 0);
-$pdf->Cell(125, 10, $edad, 0, 1);
 $pdf->Cell(65, 10, utf8_decode("Teléfono:"), 0, 0);
 $pdf->Cell(125, 10, $telefono, 0, 1);
 $pdf->Cell(65, 10, utf8_decode("Correo Electrónico:"), 0, 0);
