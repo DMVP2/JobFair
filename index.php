@@ -4,13 +4,15 @@ include_once('./rutas.php');
 
 $_SESSION['index'] = 1;
 
-$numero = rand(1, 3);
+$numero = rand(1, 6);
 $ruta = "";
 
-if ($numero <= 2) {
-    $ruta = "banner3.png";
+if ($numero <= 3) {
+    $ruta = "banner1.png";
+} else if ($numero == 4 or $numero == 5) {
+    $ruta = "banner2.png";
 } else {
-    $ruta = "banner5.jpeg";
+    $ruta = "banner3.png";
 }
 
 ?>
