@@ -17,10 +17,14 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
 <div class="divListId">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <div class="form-group">
-                <input type="text" class="form-control" list="items" id="textCategoria[]" name="textCategoria[]" />
-                <datalist id="items" id="dataCategoria[]" name="dataCategoria[]">
+                <label class="bmd-label-floating">Categoria:</label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <select class="form-control" id="dataCategoria[]" name="dataCategoria[]">
                     <?php
 
                     $listaCategorias = $manejoHojaVida->listarCategorias();
@@ -30,7 +34,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                     }
 
                     ?>
-                </datalist>
+                </select>
             </div>
         </div>
     </div>

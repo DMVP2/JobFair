@@ -7,6 +7,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Con
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEmpresa.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoVacante.php');
 
+
+header('Cache-Control: no cache'); //no cache
+
 // Conexión con la base de datos
 
 $c = Conexion::getInstancia();
@@ -139,8 +142,9 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                     if (strcasecmp($verificacionVacante, null) == 0) {
                                 ?>
-                                <button type="submit" class="btn btn-primary"
-                                    onclick="window.location.href='listadoVacantes.php'">Aplicar a la vacante</button>
+                                <input class="btn btn-primary" type="button" value="Aplicar a la vacante"
+                                    onclick="window.location='<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'aplicarVacante.php?vacante=' . $idVacante  ?>'">
+
                                 <br>
                                 <?php
                                     } else {
@@ -168,6 +172,7 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                     </div>
 
                     <!-- CONTENIDO PAGINA -->
+
 
                 </div>
             </div>

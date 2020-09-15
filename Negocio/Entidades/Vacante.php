@@ -87,7 +87,7 @@ class Vacante
 	 * 
 	 * @var String
 	 */
-	private  $ciudad;
+	private $ciudad;
 
 
 
@@ -314,7 +314,7 @@ class Vacante
 	 * 
 	 * @param String
 	 */
-	public function setCiudad(String $pCiudad)
+	public function setCiudad($pCiudad)
 	{
 		$this->ciudad = $pCiudad;
 	}
