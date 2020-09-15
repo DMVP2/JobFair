@@ -101,7 +101,12 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                                                     <br>
 
                                                     <div class="row">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Programa:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-9">
                                                             <select class="form-group form-control"
                                                                 style="margin-top: 4px;" id="programa" name="programa"
                                                                 required>
@@ -163,10 +168,10 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                                                             <select class="form-group form-control"
                                                                 style="margin-top: 4px;" id="horario" name="horario"
                                                                 required>
-                                                                <option value="Ingeniería de Sistemas">Diurna
+                                                                <option value="Diurna">Diurna
                                                                 </option>
-                                                                <option value="Ingeniería Electrónica">Nocturna</option>
-                                                                <option value="Ingeniería Ambiental">A definir
+                                                                <option value="Nocturna">Nocturna</option>
+                                                                <option value="A definir">A definir
                                                                 </option>
                                                             </select>
                                                         </div>
@@ -217,20 +222,22 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" list="items2"
-                                                                    id="textCiudad[]" name="textCiudad[]" />
-                                                                <datalist id="items2" id="dataCiudad[]"
-                                                                    name="dataCiudad[]">
+                                                                <select class="form-control" id="dataCiudad"
+                                                                    name="dataCiudad">
                                                                     <?php
 
                                                                     $listaCiudades = $manejoHojaVida->listarCiudades();
 
                                                                     foreach ($listaCiudades as $ciudad) {
-                                                                        echo "<option data-value=" . $ciudad[0] . ">" . $ciudad[1] . "</option>";
+                                                                        if ($ciudad[1] == "Bogotá") {
+                                                                            echo "<option value=" . $ciudad[0] . " selected>" . $ciudad[1] . "</option>";
+                                                                        } else {
+                                                                            echo "<option value=" . $ciudad[0] . ">" . $ciudad[1] . "</option>";
+                                                                        }
                                                                     }
 
                                                                     ?>
-                                                                </datalist>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>

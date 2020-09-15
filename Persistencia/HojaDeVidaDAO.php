@@ -481,13 +481,15 @@ class HojaDeVidaDAO implements DAO
      */
     public function consultarIdHojaVida($pDocumento)
     {
-        $sql = "SELECT id_hoja_vida FROM HOJA_VIDA WHERE numero_documento = " . $pDocumento . " ORDER BY id_hoja_vida DESC";
+        $sql = "SELECT id_hoja_vida FROM HOJA_VIDA WHERE numero_documento = " . $pDocumento . " ORDER BY id_hoja_vida DESC LIMIT 1";
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
         $row = mysqli_fetch_array($result);
 
         return $row[0];
     }
+
+
 
 
     /**

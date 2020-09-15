@@ -41,12 +41,14 @@ $paginationStart = ($page - 1) * $limit;
 
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $vacantes = $manejoVacante->listarVacantesEstudiante($idUsuario, $paginationStart, $limit);
+    $allRecords = $manejoVacante->cantidadVacantesActivas();
 } else if (strcasecmp($rolUsuario, "Empresa") == 0) {
     $vacantes = $manejoVacante->listarVacantesEmpresa($idUsuario, $paginationStart, $limit);
+    $allRecords = $manejoVacante->cantidadVacantesActivasEmpresa($idUsuario);
 }
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
-$allRecords = $manejoVacante->cantidadVacantesActivas();
+
 
 // Total de las paginas
 

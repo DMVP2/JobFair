@@ -54,10 +54,10 @@ class VacanteDAO implements DAO
 	 */
 	public function crear($vacante)
 	{
-		$sql = "INSERT INTO VACANTE VALUES(" . $vacante->getId() . ",'" . $vacante->getNombre() . "','" . $vacante->getDescripcion() . "','" . $vacante->getProgramaAcademico() . "','" . $vacante->getHorarioVacante() . "','" . $vacante->getPosibilidadViaje() . "','" . $vacante->getSalarioVacante() . "','" . $vacante->getExperiencia() . ");";
-
+		$sql = "INSERT INTO VACANTE VALUES(NULL,'" . $vacante->getNombre() . "','" . $vacante->getDescripcion() . "','" . $vacante->getProgramaAcademico() . "','" . $vacante->getHorarioVacante() . "','" . $vacante->getPosibilidadViaje() . "','" . $vacante->getSalarioVacante() . "','" . $vacante->getExperiencia() . "','" . $vacante->getEstado() . "');";
 		mysqli_query($this->conexion, $sql);
 	}
+
 
 	/**
 	 * Método para consultar un vacante por su ID
@@ -181,6 +181,24 @@ class VacanteDAO implements DAO
 		return $vacanteArray;
 	}
 
+
+	/**
+	 * Método para consultar el id de la ultima vacante 
+	 *
+	 * @param int $pDocumento
+	 * @return idHojaVida
+	 */
+	public function consultarIdUltimaVacante()
+	{
+		$sql = "SELECT id_vacante FROM VACANTE ORDER BY id_vacante DESC LIMIT 1";
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
+
+		return $row[0];
+	}
+
+
 	/**
 	 * Obtiene la cantidad de vacantes activas registradas en la base de datos
 	 *
@@ -194,6 +212,22 @@ class VacanteDAO implements DAO
 
 		return $resultado;
 	}
+
+	/**
+	 * Obtiene la cantidad de vacantes activas registradas en la base de datos de una sola empresa
+	 *
+	 * @return int $cantidadVacantesActivas
+	 */
+	public function cantidadVacantesActivasEmpresa($pNitEmpresa)
+	{
+		$sql = "SELECT count(*) FROM vacante, empresa_vacante WHERE empresa_vacante.nit_empresa = " . $pNitEmpresa . " AND empresa_vacante.id_vacante = vacante.id_vacante AND  vacante.estado_vacante='Activo'";
+		$consulta = mysqli_query($this->conexion, $sql);
+		$resultado = mysqli_fetch_array($consulta)[0];
+
+		return $resultado;
+	}
+
+
 
 	/**
 	 * Obtiene el NIT de la empresa que postulo una vacante
@@ -216,17 +250,16 @@ class VacanteDAO implements DAO
 	 * Método para obtener la ciudad (Ubicación) donde se oferta la vacante
 	 *
 	 * @param int $codigo
-	 * @return String[]
+	 * @return String
 	 */
-	public function obtenerCiudadVacante(int $codigo)
+	public function obtenerCiudadVacante($codigo)
 	{
 		$sql = "SELECT * FROM CIUDAD, VACANTE_CIUDAD WHERE VACANTE_CIUDAD.id_vacante = $codigo AND CIUDAD.id_ciudad = VACANTE_CIUDAD.id_ciudad";
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$row = mysqli_fetch_array($result);
 
-		$resultado = mysqli_fetch_array($result);
-
-		return $resultado[1];
+		return $row[1];
 	}
 
 	/**
@@ -242,6 +275,45 @@ class VacanteDAO implements DAO
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		return $result;
+	}
+
+	/**
+	 * Método para relacionar una vacante con la empresa
+	 *
+	 * @param int $idVacante
+	 * @param int $nitEmpresa
+	 * @return void
+	 */
+	public function relacionarEmpresaVacante($pVacante, $pNitEmpresa)
+	{
+		$sql = "INSERT INTO empresa_vacante VALUES( " . $pNitEmpresa . "," . $pVacante . ")";
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
+	 * Método para relacionar una vacante con categoria
+	 *
+	 * @param int $idVacante
+	 * @param int $idCategoria
+	 * @return void
+	 */
+	public function relacionarCategoriaVacante($pCategoria, $pVacante)
+	{
+		$sql = "INSERT INTO categoria_vacante VALUES( " . $pCategoria . "," . $pVacante . ")";
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
+	 * Método para relacionar una vacante con una ciudad
+	 *
+	 * @param int $idVacante
+	 * @param int $idCategoria
+	 * @return void
+	 */
+	public function relacionarCiudadVacante($pVacante, $pCiudad)
+	{
+		$sql = "INSERT INTO vacante_ciudad VALUES( " . $pVacante . "," . $pCiudad . ")";
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**

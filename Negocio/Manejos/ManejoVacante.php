@@ -72,6 +72,51 @@ class manejoVacante
     }
 
     /**
+     * Busca el id de la ultima Vacante creada
+     *
+     * @return int
+     */
+    public function obtenerIdUltimaVacante()
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $Vacante = $VacanteDAO->consultarIdUltimaVacante();
+        return $Vacante;
+    }
+
+    /**
+     * Relaciona una vacante con una categoria
+     *
+     */
+    public function relacionarEmpresaVacante($pVacante, $pNitEmpresa)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->relacionarEmpresaVacante($pVacante, $pNitEmpresa);
+    }
+
+    /**
+     * Relaciona una vacante con una categoria
+     *
+     */
+    public function relacionarCategoriaVacante($pCategoria, $pVacante)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->relacionarCategoriaVacante($pCategoria, $pVacante);
+    }
+
+    /**
+     * Relaciona una ciudad con una vacante
+     *
+     */
+    public function relacionarCiudadVacante($pVacante, $pCiudad)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->relacionarCiudadVacante($pVacante, $pCiudad);
+    }
+
+
+
+
+    /**
      * Actualiza una Vacante
      *
      * @param Vacante $pVacante
@@ -128,6 +173,20 @@ class manejoVacante
         $cantidadVacantes = $VacanteDAO->cantidadVacantesActivas();
         return $cantidadVacantes;
     }
+
+    /**
+     * Obtiene la cantidad de vacantes activas registradas en la base de datos de una sola empresa
+     *
+     * @return int $cantidadVacantesActivas
+     */
+    public function cantidadVacantesActivasEmpresa($pNitEmpresa)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $cantidadVacantes = $VacanteDAO->cantidadVacantesActivasEmpresa($pNitEmpresa);
+        return $cantidadVacantes;
+    }
+
+
 
     /**
      * Obtiene el nit de una empresa por el codigo de una vacante postulada
