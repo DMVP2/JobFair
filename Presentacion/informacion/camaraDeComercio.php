@@ -1,11 +1,13 @@
 <?php
 
+header('Cache-Control: no cache'); //no cache
 
 // Importación de clases
 
 include_once('../../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEmpresa.php');
+
 
 // Conexión con la base de datos
 
@@ -14,16 +16,14 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
+$idEmpresa = $_POST['idEmpresa'];
+
 $manejoEmpresas = new ManejoEmpresa($conexion);
 $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
 
-$idUsuario = $_SESSION['usuario'];
-$idEmpresa = $_POST['idEmpresa'];
-$rolUsuario = $_SESSION['rol'];
-
 $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
-?>
 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -53,56 +53,15 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
         <div class="main-panel">
             <!-- NavBar  -->
             <?php
-
-            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "navbar.php";            ?>
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "navbar.php";
+            ?>
             <!-- NavBar -->
 
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
-                    <div class="row">
-
-
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="card card-profile">
-                            <div class="card-avatar">
-                                <img class="img"
-                                    src=<?php echo CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial() ?> </h5>
-                                <h3 class="card-title"><?php echo $empresa->getRazonComercial() ?></h3>
-                                <br>
-                                <h5 style="text-align: justify"> <strong> Descripción de la empresa: </strong>
-                                    <?php echo $empresa->getDescripcion() ?> </h5>
-                                <h5 style="text-align: justify"> <strong> Otros beneficios ofertados por la empresa:
-                                    </strong> <?php echo $empresa->getOtrosBeneficios() ?> </h5>
-                                <br>
-
-                                <?php
-                                    if (strcasecmp($rolUsuario, "Administrador") == 0) {
-                                    ?>
-                                    <form action="camaraDeComercio.php" method="post">
-                                        <input class="btn btn-primary" type="hidden" id="idEmpresa"
-                                            name="idEmpresa"
-                                            value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
-                                        <input class="btn btn-primary" type="submit" id="submit" name="empresa"
-                                            value="Ver archivo de la cámara de comercio">
-                                        <br><br>
-                                    </form>
-                                    <?php
-                                    }
-                                    ?>
-
-                                    
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <embed  src= <?php echo "../documentos/" . $empresa->getNit() . ".pdf"?>  type="application/pdf" width="100%" height="600px" />
 
                     <!-- CONTENIDO PAGINA -->
 
@@ -112,6 +71,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
             <!-- Footer -->
             <?php
             include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
+
             ?>
             <!-- Footer -->
 
@@ -146,6 +106,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <script>
     $(document).ready(function() {
+
         $().ready(function() {
             $sidebar = $(".sidebar");
 
