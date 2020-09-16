@@ -60,6 +60,24 @@ $rolUsuario = $_SESSION['rol'];
                     <i class="material-icons">groups</i>
                     <p>Reportes</p>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaVacante.php' ?>">
+                        <i class="material-icons">analytics</i>
+                        <p>Estudiantes X Programa</p>
+                    </a>    
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php' ?>">
+                        <i class="material-icons">analytics</i>
+                        <p>Aplicaciones X Empresa</p>
+                    </a>
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEstudiante.php' ?>">
+                        <i class="material-icons">analytics</i>
+                        <p>Aplicación de Estudiantes</p>
+                    </a>
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' ?>">
+                        <i class="material-icons">analytics</i>
+                        <p>Mas o menos aplicaciones</p>
+                    </a>
+                </div>
             </li>
             <br>
         </ul>
@@ -130,7 +148,7 @@ $rolUsuario = $_SESSION['rol'];
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'misVacantes.php' ?>">
                     <i class="material-icons">done_outline</i>
-                    <p>Mis vacantes</p>
+                    <p>Mis postulaciones</p>
                 </a>
             </li>
         </ul>
