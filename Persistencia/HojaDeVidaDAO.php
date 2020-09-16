@@ -4,6 +4,9 @@ require_once 'DAO.php';
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "HojaDeVida.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "Estudios.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "ReferenciaPersonal.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "ExperienciaLaboral.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . "ExperienciaAcademica.php");
 
 /**
  * Representa el DAO de la entidad HojaDeVida
@@ -156,8 +159,10 @@ class HojaDeVidaDAO implements DAO
             $hojaDeVida->setEstudios($estudios);
             $referencias = $this->consultarReferenciasPersonales($row[0]);
             $hojaDeVida->setReferenciasPersonales($referencias);
-            $experiencias = $this->consultarExperienciaLaboral($row[0]);
-            $hojaDeVida->setExperienciaLaboral($experiencias);
+            $experienciaLaboral = $this->consultarExperienciaLaboral($row[0]);
+            $hojaDeVida->setExperienciaLaboral($experienciaLaboral);
+            $experienciaAcademica = $this->consultarExperienciaAcademica($row[0]);
+            $hojaDeVida->setExperienciaLaboral($experienciaAcademica);
         }
 
         return $hojaDeVida;
@@ -333,7 +338,7 @@ class HojaDeVidaDAO implements DAO
      * Método que consulta los estudios que posee el estudiante
      * 
      * @param int $pHojaVida
-     * @return ArregloDeDosDimensiones
+     * @return Estudio[]
      */
     public function consultarEstudios($pHojaVida)
     {
@@ -343,22 +348,17 @@ class HojaDeVidaDAO implements DAO
 
         $estudiosArray = array();
 
-        $cantidadEstudios = 0;
-
         while ($row = mysqli_fetch_array($result)) {
-            $nombre = $row[1];
-            $area = $row[2];
-            $institucion = $row[3];
-            $nivel = $row[4];
-            $fecha = $row[5];
 
-            $estudiosArray[$cantidadEstudios][0] = $nombre;
-            $estudiosArray[$cantidadEstudios][1] = $area;
-            $estudiosArray[$cantidadEstudios][2] = $institucion;
-            $estudiosArray[$cantidadEstudios][3] = $nivel;
-            $estudiosArray[$cantidadEstudios][4] = $fecha;
+            $estudio = new Estudios();
+            $estudio->setId($row[0]);
+            $estudio->setNombre($row[1]);
+            $estudio->setArea($row[2]);
+            $estudio->setInstitucion($row[3]);
+            $estudio->setNivelEstudio($row[4]);
+            $estudio->setfecha($row[5]);
 
-            $cantidadEstudios++;
+            $estudiosArray = $estudio;
         }
 
         return $estudiosArray;
@@ -368,7 +368,7 @@ class HojaDeVidaDAO implements DAO
      * Método que consulta las referencias personales del estudiante
      * 
      * @param int $pHojaVida
-     * @return ArregloDeDosDimensiones
+     * @return ReferenciaPersonal[]
      */
     public function consultarReferenciasPersonales($pHojaVida)
     {
@@ -378,18 +378,15 @@ class HojaDeVidaDAO implements DAO
 
         $referenciasArray = array();
 
-        $cantidadReferencias = 0;
-
         while ($row = mysqli_fetch_array($result)) {
-            $nombre = $row[1];
-            $telefono = $row[2];
-            $parentesco = $row[3];
 
-            $referenciasArray[$cantidadReferencias][0] = $nombre;
-            $referenciasArray[$cantidadReferencias][1] = $telefono;
-            $referenciasArray[$cantidadReferencias][2] = $parentesco;
+            $referenciaPersonal = new ReferenciaPersonal();
+            $referenciaPersonal->setId($row[0]);
+            $referenciaPersonal->setNombre($row[1]);
+            $referenciaPersonal->setTelefono($row[2]);
+            $referenciaPersonal->setParentesco($row[3]);
 
-            $cantidadReferencias++;
+            $referenciasArray = $referenciaPersonal;
         }
 
         return $referenciasArray;
@@ -399,7 +396,7 @@ class HojaDeVidaDAO implements DAO
      * Método que consulta la experiencia laboral del estudiante
      * 
      * @param int $pHojaVida
-     * @return ArregloDeDosDimensiones
+     * @return ExperienciaLaboral[]
      */
     public function consultarExperienciaLaboral($pHojaVida)
     {
@@ -409,25 +406,50 @@ class HojaDeVidaDAO implements DAO
 
         $experienciaArray = array();
 
-        $cantidadExperiencias = 0;
-
         while ($row = mysqli_fetch_array($result)) {
-            $cargo = $row[1];
-            $descripcion = $row[2];
-            $empresa = $row[3];
-            $fecha = $row[4];
 
-            $experienciaArray[$cantidadExperiencias][0] = $cargo;
-            $experienciaArray[$cantidadExperiencias][1] = $descripcion;
-            $experienciaArray[$cantidadExperiencias][2] = $empresa;
-            $experienciaArray[$cantidadExperiencias][3] = $fecha;
+            $experienciaLaboral = new ExperienciaLaboral();
+            $experienciaLaboral->setId($row[0]);
+            $experienciaLaboral->setCargo($row[1]);
+            $experienciaLaboral->setDescripcion($row[2]);
+            $experienciaLaboral->setEmpresa($row[3]);
+            $experienciaLaboral->setFecha($row[4]);
 
-
-            $cantidadExperiencias++;
+            $experienciaArray = $experienciaLaboral;
         }
 
         return $experienciaArray;
     }
+
+    /**
+     * Método que consulta la experiencia académcia del estudiante
+     * 
+     * @param int $pHojaVida
+     * @return ArregloDeDosDimensiones
+     */
+    public function consultarExperienciaAcademica($pHojaVida)
+    {
+        $sql = "SELECT * FROM EXPERIENCIA_ACADEMICA, HOJA_VIDA, EXPERIENCIA_ACADEMICA_HOJA_VIDA WHERE HOJA_VIDA.id_hoja_vida = $pHojaVida AND EXPERIENCIA_ACADEMICA.id_experiencia = EXPERIENCIA_ACADEMICA_HOJA_VIDA.id_experiencia AND HOJA_VIDA.id_hoja_vida = EXPERIENCIA_ACADEMICA_HOJA_VIDA.id_hoja_vida";
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $experienciaArray = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+
+            $experienciaAcademica = new ExperienciaAcademica();
+            $experienciaAcademica->setId($row[0]);
+            $experienciaAcademica->setNombre($row[1]);
+            $experienciaAcademica->setDescripcion($row[2]);
+            $experienciaAcademica->setInstitucion($row[3]);
+            $experienciaAcademica->setFecha($row[4]);
+
+            $experienciaArray = $experienciaAcademica;
+        }
+
+        return $experienciaArray;
+    }
+
 
     /**
      * Método para consultar el id de una hoja de vida por numero de documento 

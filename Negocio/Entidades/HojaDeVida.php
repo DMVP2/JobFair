@@ -60,11 +60,18 @@ class HojaDeVida
     private $referencias;
 
     /**
-     * Referencias personales del estudiante
+     * Experiencia laboral que posea el estudiante
      * 
      * @var ArregloDeDosDimensiones
      */
-    private $experiencia;
+    private $experienciaLaboral;
+
+    /**
+     * Experiencia académica que posea el estudiante
+     * 
+     * @var ArregloDeDosDimensiones
+     */
+    private $experienciaAcademica;
 
     /**
      * Referencias personales del estudiante
@@ -251,7 +258,7 @@ class HojaDeVida
      */
     public function getExperienciaLaboral()
     {
-        return $this->experiencia;
+        return $this->experienciaLaboral;
     }
 
     /**
@@ -261,6 +268,26 @@ class HojaDeVida
      */
     public function setExperienciaLaboral($pExperiencia)
     {
-        $this->experiencia = $pExperiencia;
+        $this->experienciaLaboral = $pExperiencia;
+    }
+
+    /**
+     * Método que obtiene la experiencia académica del estudiante
+     * 
+     * @return ArregloDeDosDimensiones
+     */
+    public function getExperienciaAcademica()
+    {
+        return $this->experienciaAcademica;
+    }
+
+    /**
+     * Método que establece la experiencia académica del estudiante
+     * 
+     * @param ArregloDeDosDimensiones
+     */
+    public function setExperienciaAcademica($pExperiencia)
+    {
+        $this->experienciaAcademica = $pExperiencia;
     }
 }
