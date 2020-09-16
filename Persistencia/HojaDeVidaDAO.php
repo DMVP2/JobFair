@@ -211,50 +211,6 @@ class HojaDeVidaDAO implements DAO
 
 
     /**
-     * Método para listar las diferentes categorias
-     * 
-     * @return String[][]
-     */
-    public function listarCategorias()
-    {
-        $sql = "SELECT * FROM categoria ORDER BY nombre_categoria ASC";
-
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
-
-        $aux = 0;
-        while ($row = mysqli_fetch_array($result)) {
-
-            $categoria[$aux][0] = $row[0];
-            $categoria[$aux][1] = $row[1];
-            $aux = $aux + 1;
-        }
-
-        return $categoria;
-    }
-
-    /**
-     * Método para listar las diferentes ciudades
-     * 
-     * @return String[][]
-     */
-    public function listarCiudades()
-    {
-        $sql = "SELECT * FROM ciudad ORDER BY nombre_ciudad ASC";
-
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
-
-        $aux = 0;
-        while ($row = mysqli_fetch_array($result)) {
-
-            $ciudades[$aux][0] = $row[0];
-            $ciudades[$aux][1] = $row[1];
-            $aux = $aux + 1;
-        }
-
-        return $ciudades;
-    }
-
-    /**
      * Método para limpiar una hoja de vida con todos las tablas referentes
      * 
      * @param $pIdEstudiante

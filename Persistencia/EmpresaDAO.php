@@ -291,11 +291,6 @@ class EmpresaDAO implements DAO
 		mysqli_query($this->conexion, $sql);
 	}
 
-
-
-
-
-
 	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos
 	 *

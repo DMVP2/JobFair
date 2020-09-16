@@ -419,48 +419,49 @@ class VacanteDAO implements DAO
 		return "Si";
 	}
 
-	/**
-	 * Método para listar ciudades
-	 *
-	 * @return Arreglo
-	 */
-	public function listarCiudades()
-	{
+    /**
+     * Método para listar las diferentes ciudades
+     * 
+     * @return String[][]
+     */
+    public function listarCiudades()
+    {
+        $sql = "SELECT * FROM ciudad ORDER BY nombre_ciudad ASC";
 
-		$sql = "SELECT * FROM CIUDAD";
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-		if (!$result = mysqli_query($this->conexion, $sql)) die();
+        $aux = 0;
+        while ($row = mysqli_fetch_array($result)) {
 
-		$ciudadArray = array();
+            $ciudades[$aux][0] = $row[0];
+            $ciudades[$aux][1] = $row[1];
+            $aux = $aux + 1;
+        }
 
-		while ($row = mysqli_fetch_array($result)) {
+        return $ciudades;
+    }
 
-			$ciudadArray[] = $row;
-		}
-		return $ciudadArray;
-	}
+    /**
+     * Método para listar las diferentes categorias
+     * 
+     * @return String[][]
+     */
+    public function listarCategorias()
+    {
+        $sql = "SELECT * FROM categoria ORDER BY nombre_categoria ASC";
 
-	/**
-	 * Método para listar categorias
-	 *
-	 * @return Arreglo
-	 */
-	public function listarCategorias()
-	{
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-		$sql = "SELECT * FROM CATEGORIA";
+        $aux = 0;
+        while ($row = mysqli_fetch_array($result)) {
 
-		if (!$result = mysqli_query($this->conexion, $sql)) die();
+            $categoria[$aux][0] = $row[0];
+            $categoria[$aux][1] = $row[1];
+            $aux = $aux + 1;
+        }
 
-		$categoriaArray = array();
-
-		while ($row = mysqli_fetch_array($result)) {
-
-
-			$categoriaArray[] = $row;
-		}
-		return $categoriaArray;
-	}
+        return $categoria;
+    }
 
 	/**
 	 * Método para listar las vacantes que la empresa a postulado
@@ -541,7 +542,9 @@ class VacanteDAO implements DAO
 	 */
 	public function listaFiltrada($pagInicio, $limit, $filtro)
 	{
-		$sql = "SELECT * FROM VACANTE, CATEGORIA_VACANTE WHERE CATEGORIA_VACANTE.id_categoria = $filtro AND VACANTE.id_vacante" . " LIMIT " . $pagInicio . " , " . $limit;
+		$sql = "SELECT * FROM VACANTE, CATEGORIA_VACANTE WHERE CATEGORIA_VACANTE.id_categoria = $filtro AND VACANTE.id_vacante = CATEGORIA_VACANTE.id_vacante" . " LIMIT " . $pagInicio . " , " . $limit;
+
+		echo $sql;
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 

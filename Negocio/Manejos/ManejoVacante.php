@@ -322,4 +322,28 @@ class manejoVacante
         $vacantes = $VacanteDAO->listaFiltrada($pagInicio, $limit, $filtro);
         return $vacantes;
     }
+
+    /**
+     * Listar categorias
+     *
+     * @return String[][]
+     */
+    public function listarCategorias()
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $listaCategorias = $VacanteDAO->listarCategorias();
+        return $listaCategorias;
+    }
+
+    /**
+     * Listar ciudades
+     *
+     * @return String[][]
+     */
+    public function listarCiudades()
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $listaCiudades = $VacanteDAO->listarCiudades();
+        return $listaCiudades;
+    }
 }

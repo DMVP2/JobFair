@@ -154,34 +154,6 @@ class ManejoHojaDeVida
         return $listaIdiomas;
     }
 
-
-    /**
-     * Listar categorias
-     *
-     * @return String[][]
-     */
-    public function listarCategorias()
-    {
-        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
-        $listaCategorias = $hojaDeVidaDAO->listarCategorias();
-        return $listaCategorias;
-    }
-
-    /**
-     * Listar ciudades
-     *
-     * @return String[][]
-     */
-    public function listarCiudades()
-    {
-        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
-        $listaCiudades = $hojaDeVidaDAO->listarCiudades();
-        return $listaCiudades;
-    }
-
-
-
-
     /**
      * Elimina una hoja de vida
      *
