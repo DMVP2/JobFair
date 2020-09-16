@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Clase que representa la clase "Experiencia"
+ * Clase que representa la clase "Experiencia Laboral"
  */
-class Experiencia
+class ExperienciaLaboral
 {
 
     //-----------------------------------
@@ -11,35 +11,35 @@ class Experiencia
     //-----------------------------------
 
     /**
-     * ID de la experiencia
+     * ID de la experiencia laboral
      * 
      * @var int
      */
     private $id;
 
     /**
-     * Cargo de la experiencia
+     * Cargo de la experiencia laboral
      * 
      * @var String
      */
     private $cargo;
 
     /**
-     * Descripción de la experienca
+     * Descripción de la experienca laboral
      * 
      * @var String
      */
     private $descripcion;
 
     /**
-     * Empresa de la experiencia
+     * Empresa de la experiencia laboral
      * 
      * @var String
      */
     private $empresa;
 
     /**
-     * Fecha de la experiencia
+     * Fecha de la experiencia laboral
      * 
      * @var String
      */
