@@ -9,6 +9,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoHo
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'HojaDeVida.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Estudios.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'ExperienciaLaboral.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'ExperienciaAcademica.php');
 
 
 print_r($_POST);
@@ -85,6 +86,29 @@ foreach ($arregloEstudios as $nivelEstudio) {
     $manejoHojaVida->crearEstudio($estudio, $idHojaVida);
 
     $aux = $aux + 1;
+}
+
+if (isset($_POST["expAcademica"])) {
+
+    $arregloExpA = $_POST['expAcademica'];
+    $arregloDescripcionesExpA = $_POST['descripcionExp'];
+    $arregloInstitucionExpA = $_POST['institucionExpA'];
+    $arregloAñosExpA = $_POST['añoExpAcademica'];
+
+    $aux = 0;
+    foreach ($arregloExpA as $expA) {
+
+        $expA = new ExperienciaAcademica();
+        $expA->setNombre($expA[$aux]);
+        $expA->setDescripcion($arregloDescripcionesExpA[$aux]);
+        $expA->setInstitucion($arregloInstitucionExpA[$aux]);
+        $expA->setFecha($arregloAñosExpA[$aux]);
+
+
+        //$manejoHojaVida->crearExperiencia($experiencia, $idHojaVida);
+
+        $aux = $aux + 1;
+    }
 }
 
 
