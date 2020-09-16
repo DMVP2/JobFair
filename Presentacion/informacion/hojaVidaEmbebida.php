@@ -142,16 +142,22 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
 
                                             $nivel = "0";
 
-                                            if (strcasecmp($idioma[1], "Básico") == 0) {
+                                            if (strcasecmp($idioma[1], "A1") == 0) {
                                                 $nivel = "30";
                                             }
-                                            if (strcasecmp($idioma[1], "Intermedio") == 0) {
+                                            if (strcasecmp($idioma[1], "A2") == 0) {
+                                                $nivel = "40";
+                                            }
+                                            if (strcasecmp($idioma[1], "B1") == 0) {
                                                 $nivel = "50";
                                             }
-                                            if (strcasecmp($idioma[1], "Avanzado") == 0) {
+                                            if (strcasecmp($idioma[1], "B2") == 0) {
                                                 $nivel = "70";
                                             }
-                                            if (strcasecmp($idioma[1], "Nativo") == 0) {
+                                            if (strcasecmp($idioma[1], "C1") == 0) {
+                                                $nivel = "80";
+                                            }
+                                            if (strcasecmp($idioma[1], "C2") == 0) {
                                                 $nivel = "100";
                                             }
 
