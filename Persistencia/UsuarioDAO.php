@@ -72,6 +72,18 @@ class UsuarioDAO implements DAO
 	}
 
 
+	/**
+	 * Método para cambiar el estado de un usuario
+	 * 
+	 * @param int pIdUsuario
+	 * @param String pEstado
+	 */
+	public function modificarEstadoUsuario($pIdUsuario, $pEstado)
+	{
+		$sql = "UPDATE usuario SET estado_usuario='" . $pEstado . "' WHERE id_usuario=" . $pIdUsuario;
+		mysqli_query($this->conexion, $sql);
+	}
+
 
 	/**
 	 * Método para consultar un usuario por su ID

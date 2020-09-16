@@ -17,7 +17,7 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-$idUsuario = $_SESSION['usuario'];
+$idUsuario = $_GET['idEstudiante'];
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 $estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
 

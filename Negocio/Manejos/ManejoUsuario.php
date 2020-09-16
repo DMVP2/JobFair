@@ -92,6 +92,19 @@ class ManejoUsuario
         $usuarioDAO->cambiarContraseñaUsuario($pCodigo, $pContraseña);
     }
 
+    /**
+     * Cambia el estado de un usuario
+     *
+     * @param int pIdUsuario
+     * @param String pEstado
+     */
+    public function modificarEstadoUsuario($pIdUsuario, $pEstado)
+    {
+        $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
+        $usuarioDAO->modificarEstadoUsuario($pIdUsuario, $pEstado);
+    }
+
+
 
     /**
      * Busca un usuario estudiante en la base de datos por su usuario
