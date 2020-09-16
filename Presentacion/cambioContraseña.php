@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 // Importación de clases
 
 include_once('../rutas.php');
