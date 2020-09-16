@@ -89,7 +89,7 @@ class ReferenciaPersonal
 	 */
     public function getTelefono()
     {
-		return $this->descripcion;
+		return $this->telefono;
     }
     
     /**

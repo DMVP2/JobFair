@@ -182,7 +182,7 @@ class HojaDeVidaDAO implements DAO
             $experienciaLaboral = $this->consultarExperienciaLaboral($row[0]);
             $hojaDeVida->setExperienciaLaboral($experienciaLaboral);
             $experienciaAcademica = $this->consultarExperienciaAcademica($row[0]);
-            $hojaDeVida->setExperienciaLaboral($experienciaAcademica);
+            $hojaDeVida->setExperienciaAcademica($experienciaAcademica);
         }
 
         return $hojaDeVida;
@@ -390,8 +390,6 @@ class HojaDeVidaDAO implements DAO
     {
         $sql = "SELECT * FROM ESTUDIO, HOJA_VIDA, HOJA_VIDA_ESTUDIOS WHERE HOJA_VIDA.id_hoja_vida = $pHojaVida AND ESTUDIO.id_estudio = HOJA_VIDA_ESTUDIOS.id_estudio AND HOJA_VIDA.id_hoja_vida = HOJA_VIDA_ESTUDIOS.id_hoja_vida";
 
-        echo $sql;
-
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
         $estudiosArray = array();
@@ -406,7 +404,7 @@ class HojaDeVidaDAO implements DAO
             $estudio->setNivelEstudio($row[4]);
             $estudio->setfecha($row[5]);
 
-            $estudiosArray = $estudio;
+            $estudiosArray[] = $estudio;
         }
 
         return $estudiosArray;
@@ -434,7 +432,7 @@ class HojaDeVidaDAO implements DAO
             $referenciaPersonal->setTelefono($row[2]);
             $referenciaPersonal->setParentesco($row[3]);
 
-            $referenciasArray = $referenciaPersonal;
+            $referenciasArray[] = $referenciaPersonal;
         }
 
         return $referenciasArray;
@@ -463,7 +461,7 @@ class HojaDeVidaDAO implements DAO
             $experienciaLaboral->setEmpresa($row[3]);
             $experienciaLaboral->setFecha($row[4]);
 
-            $experienciaArray = $experienciaLaboral;
+            $experienciaArray[] = $experienciaLaboral;
         }
 
         return $experienciaArray;
@@ -492,7 +490,7 @@ class HojaDeVidaDAO implements DAO
             $experienciaAcademica->setInstitucion($row[3]);
             $experienciaAcademica->setFecha($row[4]);
 
-            $experienciaArray = $experienciaAcademica;
+            $experienciaArray[] = $experienciaAcademica;
         }
 
         return $experienciaArray;

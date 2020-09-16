@@ -188,9 +188,6 @@ class HojaDeVida
         $this->documento = $pDocumento;
     }
 
-
-
-
     /**
      * Método que obtiene los idiomas que habla el estudiante
      * 
