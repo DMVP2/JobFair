@@ -68,7 +68,7 @@ class ManejoHojaDeVida
     }
 
     /**
-     * Crea una experiencia
+     * Crea una experiencia laboral
      *
      * @param Experiencia $pExperiencia
      * @param int $pIdHojaVida
@@ -78,6 +78,20 @@ class ManejoHojaDeVida
         $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
         $hojaDeVidaDAO->crearExperiencia($experiencia, $pIdHojaVida);
     }
+
+    /**
+     * Crea una experiencia academica
+     *
+     * @param ExperienciaAcademica $pExperienciaA
+     * @param int $pIdHojaVida
+     */
+    public function crearExperienciaAcademica($pExperienciaA, $pIdHojaVida)
+    {
+        $hojaDeVidaDAO = HojaDeVidaDAO::obtenerHojaDeVidaDAO($this->conexion);
+        $hojaDeVidaDAO->crearExperienciaAcademica($pExperienciaA, $pIdHojaVida);
+    }
+
+
 
 
     /**

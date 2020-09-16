@@ -98,6 +98,26 @@ class HojaDeVidaDAO implements DAO
         mysqli_query($this->conexion, $sql);
     }
 
+
+    /**
+     * Método para crear una fila en la tabla experiencia laboral
+     *
+     * @param ExperienciaAcademica $pExpAcademica
+     * @param int $pIdHojaVida
+     */
+    public function crearExperienciaAcademica($pExpAcademica, $pIdHojaVida)
+    {
+        $sql = "INSERT INTO EXPERIENCIA_ACADEMICA VALUES(  NULL ,'" . $pExpAcademica->getNombre() . "', '" . $pExpAcademica->getDescripcion() . "', '" . $pExpAcademica->getInstitucion() . "', " . $pExpAcademica->getFecha() . ")";
+        mysqli_query($this->conexion, $sql);
+
+        $sql = "SELECT id_experiencia FROM EXPERIENCIA_ACADEMICA ORDER BY id_experiencia DESC LIMIT 1";
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+        $idExperienciaA = mysqli_fetch_array($result)[0];
+
+        $sql = "INSERT INTO experiencia_academica_hoja_vida VALUES( " . $pIdHojaVida  . ", " . $idExperienciaA . ")";
+        mysqli_query($this->conexion, $sql);
+    }
+
     /**
      * Método para crear una fila en la tabla hoja_vida_idioma
      *
@@ -176,7 +196,7 @@ class HojaDeVidaDAO implements DAO
      */
     public function actualizar($hojaDeVida)
     {
-        $sql = "UPDATE HOJA_VIDA SET perfil_profesional = '" . $hojaDeVida->getPerfilProfesional() . "', disponibilidad_viaje = '" . $hojaDeVida->getDisponibilidadViaje() . "', certificaciones = '" . $hojaDeVida->getCertificaciones() . "', idiomas = '" . $hojaDeVida->getIdiomas() . "' WHERE id_hoja_vida = " . $hojaDeVida->getIdHojaVida();
+        $sql = "UPDATE HOJA_VIDA SET perfil_profesional = '" . $hojaDeVida->getPerfilProfesional() . "', disponibilidad_viaje = '" . $hojaDeVida->getDisponibilidadViaje() . "', certificaciones = '" . $hojaDeVida->getCertificaciones() . "', idiomas = '" . $hojaDeVida->getIdiomas() . "' WHERE id_hoja_vida = " . $hojaDeVida->getId();
         mysqli_query($this->conexion, $sql);
     }
 
@@ -247,6 +267,30 @@ class HojaDeVidaDAO implements DAO
         $sql = "DELETE FROM IDIOMA_HOJA_VIDA WHERE id_hoja_vida=" . $idHojaVida;
         mysqli_query($this->conexion, $sql);
 
+        // -------------- BORRAR EXPEIRNEICA ACADEMICA
+
+        $sql = "SELECT id_Experiencia FROM EXPERIENCIA_ACADEMICA_HOJA_VIDA WHERE id_hoja_vida=" . $idHojaVida;
+        $result = mysqli_query($this->conexion, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+
+            $aux = 0;
+            while ($row = mysqli_fetch_array($result)) {
+
+                $listaIdExperienciasA[$aux] = $row[0];
+                $aux = $aux + 1;
+            }
+
+            $sql = "DELETE FROM EXPERIENCIA_ACADEMICA_HOJA_VIDA WHERE id_hoja_vida =" . $idHojaVida;
+            mysqli_query($this->conexion, $sql);
+
+            for ($i = 0; $i < $aux; ++$i) {
+                $sql = "DELETE FROM experiencia_academica WHERE id_experiencia =" . $listaIdExperienciasA[$i];
+                mysqli_query($this->conexion, $sql);
+            }
+        }
+
+        // -------------- BORRAR EXPERIENCIA LABORAL
 
         $sql = "SELECT id_Experiencia FROM experiencia_laboral_hoja_vida WHERE id_hoja_vida=" . $idHojaVida;
         $result = mysqli_query($this->conexion, $sql);
@@ -268,6 +312,8 @@ class HojaDeVidaDAO implements DAO
                 mysqli_query($this->conexion, $sql);
             }
         }
+
+        // -------------- BORRAR ESTUDIOS
 
         $sql = "SELECT id_estudio FROM HOJA_VIDA_ESTUDIOS WHERE id_hoja_vida =" . $idHojaVida;
         $result = mysqli_query($this->conexion, $sql);
