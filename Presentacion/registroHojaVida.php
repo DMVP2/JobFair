@@ -507,17 +507,13 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
         var formulario = document.getElementById("formularioHojaVida");
 
         var selectsNivelEstudio = document.getElementsByName('nivelEstudio[]');
-        console.log(selectsNivelEstudio.length);
         selectsNivelEstudio.forEach(function(elemento, indice, array) {
-            console.log(elemento, indice);
             elemento.disabled = false;
         })
 
 
         var selectsIdiomas = document.getElementsByName('idiomas[]');
-        console.log(selectsIdiomas.length);
         selectsIdiomas.forEach(function(elemento, indice, array) {
-            console.log(elemento, indice);
             elemento.disabled = false;
         })
 

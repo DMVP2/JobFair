@@ -104,6 +104,17 @@ class manejoVacante
     }
 
     /**
+     * Elimina las categorias de una vacante
+     *
+     */
+    public function limpiarCategoriasVacante($idVacante)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->limpiarCategoriasVacante($idVacante);
+    }
+
+
+    /**
      * Relaciona una ciudad con una vacante
      *
      */
@@ -112,6 +123,17 @@ class manejoVacante
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
         $VacanteDAO->relacionarCiudadVacante($pVacante, $pCiudad);
     }
+
+    /**
+     * Método para modificar la ciudad de una vacante
+     *
+     */
+    public function editarCiudadVacante($pVacante, $pCiudad)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->editarCiudadVacante($pVacante, $pCiudad);
+    }
+
 
     /**
      * Aplicar estudiante a una vacante
@@ -311,11 +333,11 @@ class manejoVacante
         return $vacantes;
     }
 
-	/**
-	 * Método para obtener la lista de todas las vacantes que posean una categoria que corresponda con el filtro
-	 *
-	 * @return 
-	 */
+    /**
+     * Método para obtener la lista de todas las vacantes que posean una categoria que corresponda con el filtro
+     *
+     * @return 
+     */
     public function listaFiltrada($pagInicio, $limit, $filtro)
     {
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);

@@ -98,7 +98,8 @@ class VacanteDAO implements DAO
 	 */
 	public function actualizar($vacante)
 	{
-		$sql = "UPDATE vacante SET obtener_nombre = '" . $vacante->getNombre() . "', descripcion_vacante = '" . $vacante->getDescripcion() . "', programa_academico = '" . $vacante->getProgramaAcademico() . "', horario_vacante = '" . $vacante->getHorarioVacante() . "', posibilidad_viaje = '" . $vacante->getPosibilidadViaje() . "', salario_vacante = '" . $vacante->getSalarioVacante() . "', experiencia_vacante = '" . $vacante->getExperiencia() .   "' WHERE id_vacante = " . $vacante->getId();
+		$sql = "UPDATE vacante SET nombre_vacante = '" . $vacante->getNombre() . "', descripcion_vacante = '" . $vacante->getDescripcion() . "', programa_academico = '" . $vacante->getProgramaAcademico() . "', horario_vacante = '" . $vacante->getHorarioVacante() . "', posibilidad_viaje = '" . $vacante->getPosibilidadViaje() . "', salario_vacante = '" . $vacante->getSalarioVacante() . "', experiencia_vacante = '" . $vacante->getExperiencia() .   "' WHERE id_vacante = " . $vacante->getId();
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**
@@ -336,6 +337,18 @@ class VacanteDAO implements DAO
 	}
 
 	/**
+	 * Método para eliminar las categorias de una vacante
+	 *
+	 * @param int $idVacante
+	 * @return void
+	 */
+	public function limpiarCategoriasVacante($idVacante)
+	{
+		$sql = "DELETE FROM categoria_vacante WHERE id_vacante=" . $idVacante;
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
 	 * Método para relacionar una vacante con una ciudad
 	 *
 	 * @param int $idVacante
@@ -347,6 +360,20 @@ class VacanteDAO implements DAO
 		$sql = "INSERT INTO vacante_ciudad VALUES( " . $pVacante . "," . $pCiudad . ")";
 		mysqli_query($this->conexion, $sql);
 	}
+
+	/**
+	 * Método para editar la ciudad de una vacante
+	 *
+	 * @param int $idVacante
+	 * @param int $idCiudad
+	 * @return void
+	 */
+	public function editarCiudadVacante($pVacante, $pCiudad)
+	{
+		$sql = "UPDATE vacante_ciudad SET id_ciudad = " . $pCiudad . " WHERE id_vacante = " . $pVacante;
+		mysqli_query($this->conexion, $sql);
+	}
+
 
 	/**
 	 * Método para relacionar una vacante con un estudiante
@@ -419,49 +446,49 @@ class VacanteDAO implements DAO
 		return "Si";
 	}
 
-    /**
-     * Método para listar las diferentes ciudades
-     * 
-     * @return String[][]
-     */
-    public function listarCiudades()
-    {
-        $sql = "SELECT * FROM ciudad ORDER BY nombre_ciudad ASC";
+	/**
+	 * Método para listar las diferentes ciudades
+	 * 
+	 * @return String[][]
+	 */
+	public function listarCiudades()
+	{
+		$sql = "SELECT * FROM ciudad ORDER BY nombre_ciudad ASC";
 
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-        $aux = 0;
-        while ($row = mysqli_fetch_array($result)) {
+		$aux = 0;
+		while ($row = mysqli_fetch_array($result)) {
 
-            $ciudades[$aux][0] = $row[0];
-            $ciudades[$aux][1] = $row[1];
-            $aux = $aux + 1;
-        }
+			$ciudades[$aux][0] = $row[0];
+			$ciudades[$aux][1] = $row[1];
+			$aux = $aux + 1;
+		}
 
-        return $ciudades;
-    }
+		return $ciudades;
+	}
 
-    /**
-     * Método para listar las diferentes categorias
-     * 
-     * @return String[][]
-     */
-    public function listarCategorias()
-    {
-        $sql = "SELECT * FROM categoria ORDER BY nombre_categoria ASC";
+	/**
+	 * Método para listar las diferentes categorias
+	 * 
+	 * @return String[][]
+	 */
+	public function listarCategorias()
+	{
+		$sql = "SELECT * FROM categoria ORDER BY nombre_categoria ASC";
 
-        if (!$result = mysqli_query($this->conexion, $sql)) die();
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-        $aux = 0;
-        while ($row = mysqli_fetch_array($result)) {
+		$aux = 0;
+		while ($row = mysqli_fetch_array($result)) {
 
-            $categoria[$aux][0] = $row[0];
-            $categoria[$aux][1] = $row[1];
-            $aux = $aux + 1;
-        }
+			$categoria[$aux][0] = $row[0];
+			$categoria[$aux][1] = $row[1];
+			$aux = $aux + 1;
+		}
 
-        return $categoria;
-    }
+		return $categoria;
+	}
 
 	/**
 	 * Método para listar las vacantes que la empresa a postulado

@@ -8,16 +8,16 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Vacant
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoVacante.php');
 
-
 // Conexión con la base de datos
 
 $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
-$manejoVacante = new manejoVacante($conexion);
+$manejoVacante = new ManejoVacante($conexion);
 
+$idVacante = $_POST['idVacante'];
 $titulo = $_POST['titulo'];
-$programa = $_POST['programa'];
+$programa = $_POST['carrera'];
 $descripcion = $_POST['descripcion'];
 $horario = $_POST['horario'];
 $ciudad = $_POST['dataCiudad'];
@@ -29,6 +29,7 @@ $salarioMax = $_POST['salarioMax'];
 $salario = $salarioMin . " - " . $salarioMax;
 
 $vacante = new Vacante();
+$vacante->setId($idVacante);
 $vacante->setNombre($titulo);
 $vacante->setDescripcion($descripcion);
 $vacante->setProgramaAcademico($programa);
@@ -38,12 +39,12 @@ $vacante->setSalarioVacante($salario);
 $vacante->setExperiencia($experiencia);
 $vacante->setEstado("Activo");
 
-$manejoVacante->crearVacante($vacante);
+$manejoVacante->actualizarVacante($vacante);
 
+
+$manejoVacante->limpiarCategoriasVacante($idVacante);
 
 $arregloCategorias = $_POST['dataCategoria'];
-
-$idVacante = $manejoVacante->obtenerIdUltimaVacante();
 
 $aux = 0;
 foreach ($arregloCategorias as $categoria) {
@@ -54,8 +55,6 @@ foreach ($arregloCategorias as $categoria) {
 
 $ciudad = $_POST['dataCiudad'];
 
-$manejoVacante->relacionarCiudadVacante($idVacante, $ciudad);
+$manejoVacante->editarCiudadVacante($idVacante, $ciudad);
 
-$manejoVacante->relacionarEmpresaVacante($idVacante, $_SESSION['usuario']);
-
-header("Location: " . CARPETA_RAIZ . RUTA_INFORMACION . "misVacantes.php");
+header("Location: " . CARPETA_RAIZ . RUTA_INFORMACION . "informacionVacante.php");

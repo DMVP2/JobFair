@@ -64,9 +64,8 @@ $manejoVacante = new ManejoVacante($conexion);
 
                     <div>
                         <div class="row">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-7">
+
+                            <div class="col-md-7" style=" margin-left: auto; margin-right: auto;">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
                                         <p class="card-category">Vacante
@@ -78,10 +77,8 @@ $manejoVacante = new ManejoVacante($conexion);
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3">
 
-                                            </div>
-                                            <div class="col-lg-7">
+                                            <div class="col-md-9" style=" margin-left: auto; margin-right: auto;">
 
 
                                                 <form id="formularioVacante" method="POST"
@@ -151,10 +148,12 @@ $manejoVacante = new ManejoVacante($conexion);
 
                                                     <br><br>
 
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoCategoria()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoCategoria()">
+                                                    <div class="text-center">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Agregar campo" onclick="agregarCampoCategoria()">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Borrar campo" onclick="eliminarCampoCategoria()">
+                                                    </div>
 
                                                     <br><br><br>
 
@@ -285,10 +284,14 @@ $manejoVacante = new ManejoVacante($conexion);
                                                     <br><br><br>
 
                                                     <div class="row">
-                                                        <div class="col-md-3"></div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12 text-center">
                                                             <input type="submit" class="btn btn-primary pull-center"
                                                                 value="Crear vacante">
+
+                                                            <br><br>
+
+                                                            <a
+                                                                href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'misVacantes.php'  ?>">Volver</a>
                                                         </div>
 
                                                     </div>
@@ -297,22 +300,11 @@ $manejoVacante = new ManejoVacante($conexion);
                                                 </form>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
-
-
-
-
-
-
                     <!-- CONTENIDO PAGINA -->
                 </div>
             </div>
@@ -370,54 +362,6 @@ $manejoVacante = new ManejoVacante($conexion);
             $('#divCategoria div.divListId:last').remove();
             agregarCampoCategoria();
         }
-    }
-
-
-
-    function verificarNivelEstudio(object) {
-
-
-
-
-        if (object.value != "Bachiller") {
-
-            object.disabled = true;
-
-            $("<div>").load(
-                "<?php echo $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_CAMPOS . '/hojaVida/listaEstudio.php?op=a' ?>",
-                function() {
-                    comp = object.parentNode.parentNode.parentNode.parentNode;
-                    var jComp = $(comp);
-                    jComp.append($(this).html());
-
-                });
-
-        }
-
-
-    }
-
-    function enviarFormulario() {
-        var formulario = document.getElementById("formularioHojaVida");
-
-        var selectsNivelEstudio = document.getElementsByName('nivelEstudio[]');
-        console.log(selectsNivelEstudio.length);
-        selectsNivelEstudio.forEach(function(elemento, indice, array) {
-            console.log(elemento, indice);
-            elemento.disabled = false;
-        })
-
-
-        var selectsIdiomas = document.getElementsByName('idiomas[]');
-        console.log(selectsIdiomas.length);
-        selectsIdiomas.forEach(function(elemento, indice, array) {
-            console.log(elemento, indice);
-            elemento.disabled = false;
-        })
-
-
-
-        formulario.submit();
     }
     </script>
 

@@ -21,8 +21,15 @@ $manejoEmpresas = new ManejoEmpresa($conexion);
 $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
 
 $idUsuario = $_SESSION['usuario'];
-$idVacante = $_POST['idVacante'];
 $rolUsuario = $_SESSION['rol'];
+
+if (isset($_POST['idVacante'])) {
+    $idVacante = $_POST['idVacante'];
+    $_SESSION['idVacante'] = $idVacante;
+} else {
+    $idVacante = $_SESSION['idVacante'];
+}
+
 
 $manejoVacantes = new ManejoVacante($conexion);
 $vacante = $manejoVacantes->buscarVacante($idVacante);
@@ -77,7 +84,7 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
 
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-10" style=" margin-left: auto; margin-right: auto;">
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <img class="img"
@@ -136,7 +143,7 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                         ?>
                                     </div>
                                 </div>
-                                <br>
+                                <br><br>
 
                                 <?php
                                 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
@@ -163,9 +170,21 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                         value=<?php echo "'" . $vacante->getId() . "'"; ?>>
                                     <button type="submit" class="btn btn-primary"> Aspirantes a esta vacante </button>
                                 </form>
+                                <br>
+                                <form action="<?php echo CARPETA_RAIZ . RUTA_EDITAR . 'editarVacante.php'  ?>"
+                                    method="post">
+                                    <input class="btn btn-primary" type="hidden" id="idVacante" name="idVacante"
+                                        value=<?php echo "'" . $vacante->getId() . "'"; ?>>
+                                    <button type="submit" class="btn btn-primary">Editar vacante</button>
+                                </form>
                                 <?php
                                 }
                                 ?>
+                                <br>
+
+                                <a href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'misVacantes.php'  ?>">Volver</a>
+
+
                                 <br>
                             </div>
                         </div>
