@@ -112,7 +112,7 @@ class EmpresaDAO implements DAO
 	 */
 	public function actualizar($empresa)
 	{
-		$sql = "UPDATE EMPRESA SET razon_social = '" . $empresa->getRazonSocial() . "', razon_comercial = '" . $empresa->getRazonComercial() . "', descripcion_empresa = '" . $empresa->getDescripcion() . "', otros_beneficios = '" . $empresa->getOtrosBeneficios() . "', estado_empresa = '" . $empresa->getLogoEmpresa() . "' WHERE nit_empresa = " . $empresa->getNit();
+		$sql = "UPDATE EMPRESA SET razon_social = '" . $empresa->getRazonSocial() . "', razon_comercial = '" . $empresa->getRazonComercial() . "', descripcion_empresa = '" . $empresa->getDescripcion() . "', otros_beneficios = '" . $empresa->getOtrosBeneficios() . "' WHERE nit_empresa = " . $empresa->getNit();
 		mysqli_query($this->conexion, $sql);
 	}
 

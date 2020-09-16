@@ -2,8 +2,6 @@
 
 include_once('./rutas.php');
 
-$_SESSION['index'] = 1;
-
 $numero = rand(1, 6);
 $ruta = "";
 

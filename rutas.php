@@ -33,8 +33,3 @@ define('ARCHIVO_PARAMETRIZACION_CORREO', '/Persistencia/parametrizacionCorreos.p
 
 
 session_start();
-
-if (!isset($_SESSION['index']) and !isset($_SESSION['usuario'])) {
-
-    header("location: " . CARPETA_RAIZ . "index.php");
-}

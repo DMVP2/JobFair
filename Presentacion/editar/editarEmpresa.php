@@ -3,8 +3,11 @@
 // Importación de clases
 
 include_once('../../rutas.php');
+
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEmpresa.php');
+
 
 // Conexión con la base de datos
 
@@ -12,11 +15,14 @@ $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
+$manejoEmpresa = new ManejoEmpresa($conexion);
 
-$idUsuario = $_SESSION['usuario'];
-$manejoEmpresas = new ManejoEmpresa($conexion);
-$empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
+$nitEmpresa = $_SESSION['usuario'];
+
+$empresa = $manejoEmpresa->buscarEmpresa($nitEmpresa);
+
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -54,33 +60,144 @@ $empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
-                    <div class="row">
+                    <br><br>
+
+                    <div>
+                        <div class="row">
+
+                            <div class="col-md-7" style=" margin-left: auto; margin-right: auto;">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <p class="card-category">Actualizar empresa
+                                        </p>
+
+                                        <h4 class="card-title">Mantén la información de tu empresa actualizada
+                                        </h4>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+
+                                                <form id="formRegistroEmpresa" enctype="multipart/form-data"
+                                                    method="POST"
+                                                    action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'actualizarEmpresa.php' ?>">
+                                                    <br><br>
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-9"
+                                                            style=" margin-left: auto; margin-right: auto;">
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Nit</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="nitEmpresa" name="nitEmpresa"
+                                                                            pattern="^[0-9]{10,10}"
+                                                                            title="Solo se permite el ingreso del NIT de una empresa."
+                                                                            value="<?php echo $empresa->getNit() ?>"
+                                                                            disabled required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Razón
+                                                                            social</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="razonSocial" name="razonSocial"
+                                                                            value="<?php echo $empresa->getRazonSocial() ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Razón
+                                                                            comercial</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="razonComercial" name="razonComercial"
+                                                                            value="<?php echo $empresa->getRazonComercial() ?>"
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <div class="form-group">
+                                                                            <label class="bmd-label-floating">
+                                                                                Descripción</label>
+                                                                            <br>
+                                                                            <textarea class="form-control"
+                                                                                maxlength="1000" rows="8"
+                                                                                id="descripcionEmpresa"
+                                                                                name="descripcionEmpresa"
+                                                                                required></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <div class="form-group">
+                                                                            <label class="bmd-label-floating">
+                                                                                Otros beneficios</label>
+                                                                            <br>
+                                                                            <textarea class="form-control"
+                                                                                maxlength="1000" rows="6"
+                                                                                id="otrosBeneficios"
+                                                                                name="otrosBeneficios"
+                                                                                required></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
 
-                    </div>
+                                                            <br><br><br>
 
-                    <div class="col-md-12">
-                        <div class="card card-profile">
-                            <div class="card-avatar">
-                                <img class="img"
-                                    src=<?php echo  CARPETA_RAIZ . RUTA_IMAGENES . "Empresa/" . $empresa->getLogoEmpresa() ?>>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-category text-gray"> <?php echo $empresa->getRazonSocial() ?> </h5>
-                                <h3 class="card-title"><?php echo $empresa->getRazonComercial() ?></h3>
-                                <br>
-                                <h5> NIT: <?php echo $empresa->getNit() ?></h5>
-                                <h5 style="text-align: justify"> <?php echo $empresa->getDescripcion() ?></h5>
-                                <br>
-                                <button type="submit" class="btn btn-primary"
-                                    onclick="window.location.href='<?php echo CARPETA_RAIZ . RUTA_EDITAR . 'editarEmpresa.php' ?>'">Actualizar
-                                    información de la
-                                    empresa</button>
-                                <br>
-                                <br>
+                                                            <div class="row">
+
+                                                                <div class="col-md-12 text-center"
+                                                                    style=" margin-left: auto; margin-right: auto;">
+                                                                    <input type="submit" class="btn btn-primary"
+                                                                        value="Actualizar">
+                                                                    <br><br>
+                                                                    <a
+                                                                        href="<?php echo CARPETA_RAIZ . RUTA_PORTALES . 'portalEmpresa.php'  ?>">Volver</a>
+
+                                                                    <br><br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="clearfix"></div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                         <!-- CONTENIDO PAGINA -->
 
                     </div>
@@ -124,6 +241,14 @@ $empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
         <script>
         $(document).ready(function() {
             $().ready(function() {
+
+                document.getElementById("descripcionEmpresa").value =
+                    "<?php echo $empresa->getDescripcion() ?>";
+
+                document.getElementById("otrosBeneficios").value =
+                    "<?php echo $empresa->getOtrosBeneficios() ?>";
+
+
                 $sidebar = $(".sidebar");
 
                 $sidebar_img_container = $sidebar.find(".sidebar-background");
