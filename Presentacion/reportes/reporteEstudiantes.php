@@ -4,9 +4,7 @@
 
 include_once('../../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEmpresa.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEstudiante.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoVcanate.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEstudiante.php');
 
 // Conexión con la base de datos
 
@@ -15,15 +13,9 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-$manejoEmpresas = new ManejoEmpresa($conexion);
-$cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
-
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 $cantidadEstudiantes = $manejoEstudiantes->cantidadEstudiantes();
 $cantidadEstudiantesPorPrograma = $manejoEstudiantes->cantidadEstudiantesPorPrograma();
-
-$manejoVacantes = new ManejoVacante($conexion);
-$cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
 
 ?>
 
@@ -42,7 +34,7 @@ $cantidadVacantes = $manejoVacantes->cantidadVacantesActivas();
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
+    <link href="<?php echo  CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
 </head>
 
 <body>
