@@ -155,7 +155,6 @@ class VacanteDAO implements DAO
 	public function listaPaginacionActiva($pagInicio, $limit)
 	{
 		$sql = "SELECT * FROM VACANTE WHERE estado_vacante = 'Activo' ORDER BY id_vacante DESC LIMIT " . $pagInicio . " , " . $limit;
-
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$vacanteArray = array();

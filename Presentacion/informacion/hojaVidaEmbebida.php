@@ -21,10 +21,11 @@ $idUsuario = $_SESSION['usuario'];
 $idEstudiante = "";
 
 $rolUsuario = $_SESSION['rol'];
+
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $idEstudiante = $idUsuario;
 } else {
-    $idEstudiante = $_POST['idEstudiante'];
+    $idEstudiante = $_GET['idEstudiante'];
 }
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
@@ -68,7 +69,8 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                                 <div class="h2 title"> <?php echo $estudiante->getNombre() ?> </div>
                                 <p class="category text-white"> <?php echo $estudiante->getProgramaAcademico() ?> </p>
                                 <br>
-                                <a class="btn btn-primary" href="hojaVidaPDF.php" data-aos="zoom-in"
+                                <a class="btn btn-primary"
+                                    href="hojaVidaPDF.php?idEstudiante=<?php echo $idEstudiante ?>" data-aos="zoom-in"
                                     data-aos-anchor="data-aos-anchor">PDF</a>
                             </div>
                         </div>

@@ -1,5 +1,7 @@
 <?php
 
+header('Cache-Control: no cache'); //no cache
+
 // Importación de clases
 
 include_once('../../rutas.php');
@@ -7,6 +9,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Con
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEstudiante.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoHojaDeVida.php');
 
+
+$idEstudiante = "";
+
+if (isset($_POST['idEstudiante'])) {
+    $idEstudiante = $_POST['idEstudiante'];
+} else {
+    $idEstudiante = $_GET['idEstudiante'];
+}
 
 ?>
 <!doctype html>
@@ -46,8 +56,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoHo
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
-                    <iframe src="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'hojaVidaEmbebida.php' ?>" width="100%"
-                        height="800px">
+                    <iframe
+                        src="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'hojaVidaEmbebida.php?idEstudiante=' . $idEstudiante ?>"
+                        width="100%" height="800px">
                     </iframe>
 
 

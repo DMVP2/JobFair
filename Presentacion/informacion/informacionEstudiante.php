@@ -1,10 +1,13 @@
 <?php
 
+header('Cache-Control: no cache'); //no cache
+
 // Importación de clases
 
-include_once('../rutas.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_NEGOCIO . 'manejoEstudiante.php');
+include_once('../../rutas.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEstudiante.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoHojaDeVida.php');
 
 // Conexión con la base de datos
 
@@ -17,8 +20,16 @@ $conexion = $c->conectarBD();
 $idUsuario = $_SESSION['usuario'];
 $idEstudiante = $_POST['idEstudiante'];
 
+$manejoHojaVida = new ManejoHojaDeVida($conexion);
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
+
+
+$hojaVida = "No";
+
+if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
+    $hojaVida = "Si";
+}
 
 ?>
 
@@ -37,21 +48,21 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
+    <link href="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "css/material-dashboard.css"  ?>" rel="stylesheet" />
 </head>
 
 <body>
     <div class="wrapper ">
         <!-- SideBar -->
         <?php
-        include "./components/sidebar.php";
+        include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "sidebar.php";
         ?>
         <!-- SideBar -->
 
         <div class="main-panel">
             <!-- NavBar  -->
             <?php
-            include "./components/navbar.php";
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "navbar.php";
             ?>
             <!-- NavBar -->
 
@@ -68,7 +79,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <img class="img"
-                                    src=<?php echo "/" . CARPETA_RAIZ . RUTA_FOTOS . "Estudiante/" . $estudiante->getRutaFoto() ?>>
+                                    src=<?php echo  CARPETA_RAIZ . RUTA_IMAGENES . "Estudiante/" . $estudiante->getRutaFoto() ?>>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-category text-gray"> <?php echo $estudiante->getProgramaAcademico() ?>
@@ -106,17 +117,33 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
                                             ?>
                                         </div>
                                     </div>
-                                    <br>
+
+                                    <br><br>
+
+
+                                    <?php
+                                    if (strcasecmp($hojaVida, "Si") == 0) {
+                                    ?>
                                     <form action="hojaVida.php" method="post">
-                                        <input class="btn btn-primary" type="hidden"
-                                            id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>
+                                        <input class="btn btn-primary" type="hidden" id="idEstudiante"
                                             name="idEstudiante"
                                             value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
                                         <input class="btn btn-primary" type="submit" id="submit" name="estudiante"
                                             value="Ver hoja de vida">
+                                        <br><br>
                                     </form>
+                                    <?php
+                                    } else {
+                                    ?>
+                                    <div class="alert alert-primary" style="text-align: center"> El estudiante no tiene
+                                        hoja de vida</div>
+                                    <?php
+                                    }
+                                    ?>
+
+
                             </div>
-                            <br>
+
                         </div>
                     </div>
 
@@ -127,7 +154,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 
             <!-- Footer -->
             <?php
-            include "./components/footer.php";
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
             ?>
             <!-- Footer -->
 
@@ -136,31 +163,41 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 
 
     <!--   Core JS Files   -->
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/core/jquery.min.js"  ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/core/popper.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/core/bootstrap-material-design.min.js" ?>">
     </script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/sweetalert2.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.validate.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.bootstrap-wizard.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-selectpicker.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-datetimepicker.min.js" ?>">
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/perfect-scrollbar.jquery.min.js" ?>">
     </script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.dataTables.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-tagsinput.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jasny-bootstrap.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/fullcalendar.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery-jvectormap.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/nouislider.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/moment.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/sweetalert2.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.validate.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.bootstrap-wizard.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-selectpicker.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-datetimepicker.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery.dataTables.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-tagsinput.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jasny-bootstrap.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/fullcalendar.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/jquery-jvectormap.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/nouislider.min.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/arrive.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/chartist.min.js" ?>"></script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-notify.js" ?>">
+    </script>
+    <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/arrive.min.js" ?>"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/chartist.min.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-notify.js" ?>"></script>
-    <script src="<?php echo "/" . CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type="
-        text/javascript"> </script>
     <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -251,7 +288,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
                     $full_page_background.length != 0 &&
                     $(".switch-sidebar-image input:checked").length != 0
                 ) {
-                    var new_image_full_page = $(".fixed-plugin li.active .img-holder")
+                    var new_image_full_page = $(
+                            ".fixed-plugin li.active .img-holder")
                         .find("img")
                         .data("src");
 
@@ -268,7 +306,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
                     var new_image = $(".fixed-plugin li.active .img-holder")
                         .find("img")
                         .attr("src");
-                    var new_image_full_page = $(".fixed-plugin li.active .img-holder")
+                    var new_image_full_page = $(
+                            ".fixed-plugin li.active .img-holder")
                         .find("img")
                         .data("src");
 
@@ -331,11 +370,13 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
                     $("body").removeClass("sidebar-mini");
                     md.misc.sidebar_mini_active = false;
 
-                    $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar();
+                    $(".sidebar .sidebar-wrapper, .main-panel")
+                        .perfectScrollbar();
                 } else {
-                    $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar(
-                        "destroy"
-                    );
+                    $(".sidebar .sidebar-wrapper, .main-panel")
+                        .perfectScrollbar(
+                            "destroy"
+                        );
 
                     setTimeout(function() {
                         $("body").addClass("sidebar-mini");
