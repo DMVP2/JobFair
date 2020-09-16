@@ -4,7 +4,7 @@ include_once('../../Rutas.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . ARCHIVO_PARAMETRIZACION_CORREO);
 
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_NEGOCIO . 'ManejoUSuario.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoUSuario.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Usuario.php');
