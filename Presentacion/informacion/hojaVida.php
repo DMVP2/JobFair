@@ -14,8 +14,10 @@ $idEstudiante = "";
 
 if (isset($_POST['idEstudiante'])) {
     $idEstudiante = $_POST['idEstudiante'];
-} else {
+} else if (isset($_GET['idEstudiante'])) {
     $idEstudiante = $_GET['idEstudiante'];
+} else {
+    $idEstudiante = $_SESSION['usuario'];
 }
 
 ?>
