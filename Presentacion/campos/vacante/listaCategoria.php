@@ -4,14 +4,14 @@ include_once("../../../rutas.php");
 
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoHojaDeVida.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoVacante.php');
 
 // Conexión con la base de datos
 
 $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
-$manejoHojaVida = new ManejoHojaDeVida($conexion);
+$manejoVacante = new manejoVacante($conexion);
 
 ?>
 
@@ -27,7 +27,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                 <select class="form-control" id="dataCategoria[]" name="dataCategoria[]">
                     <?php
 
-                    $listaCategorias = $manejoHojaVida->listarCategorias();
+                    $listaCategorias = $manejoVacante->listarCategorias();
 
                     foreach ($listaCategorias as $categoria) {
                         echo "<option value=" . $categoria[0] . ">" . $categoria[1] . "</option>";

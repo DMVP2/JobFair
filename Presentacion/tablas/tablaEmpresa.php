@@ -38,16 +38,16 @@ $paginationStart = ($page - 1) * $limit;
 
 $nombre = "";
 
-if(isset($_POST['nombre'])) {
+if (isset($_POST['nombre'])) {
 
     $nombre = $_POST['nombre'];
-  }
-  if($nombre != null) {
+}
+if ($nombre != null) {
 
     $empresas = $manejoEmpresas->listaFiltrada($paginationStart, $limit, $nombre);
-  } else {
+} else {
     $empresas = $manejoEmpresas->listarEmpresasPaginacion($paginationStart, $limit);
-  }
+}
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
@@ -182,7 +182,9 @@ $next = $page + 1;
                                                         <?php echo $empresa->getEstadoEmpresa() ?>
                                                     </th>
                                                     <th>
-                                                        <form action="informacionEmpresa.php" method="post">
+                                                        <form
+                                                            action="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'informacionEmpresa.php'  ?>"
+                                                            method="post">
                                                             <input class="btn btn-primary" type="hidden"
                                                                 id=<?php echo "'" . $empresa->getNit() . "'"; ?>
                                                                 name="idEmpresa"
