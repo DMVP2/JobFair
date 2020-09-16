@@ -17,15 +17,14 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 $idUsuario = $_SESSION['usuario'];
+$rolUsuario = $_SESSION['rol'];
 
 $idEstudiante = "";
-
-$rolUsuario = $_SESSION['rol'];
 
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $idEstudiante = $idUsuario;
 } else {
-    $idEstudiante = $_GET['idEstudiante'];
+    $idEstudiante = $_POST['idEstudiante'];
 }
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
@@ -193,6 +192,7 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
 
             <?php
                                     if ($hojaVida->getEstudios() != null) {
+                                        
             ?>
             <div class="section">
                 <div class="container cc-education">
@@ -201,6 +201,7 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                     <?php
 
                                         foreach ($hojaVida->getEstudios() as $estudio) {
+                                            echo "Si entra a estudios";
 
                         ?>
                     <div class="card">
@@ -208,15 +209,15 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                             <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50"
                                 data-aos-duration="500">
                                 <div class="card-body cc-education-header">
-                                    <p> <?php echo $estudio[4] ?> </p>
-                                    <div class="h5"><?php echo $estudio[3] ?> </div>
+                                    <p> <?php echo $estudio->getFecha() ?> </p>
+                                    <div class="h5"><?php echo $estudio->getNivelEstudio() ?> </div>
                                 </div>
                             </div>
                             <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
                                 <div class="card-body">
-                                    <div class="h5"> <?php echo $estudio[0] ?> </div>
-                                    <p class="category"> <?php echo $estudio[2] ?> </p>
-                                    <p> Area de estudio: <?php echo $estudio[1] ?></p>
+                                    <div class="h5"> <?php echo $estudio->getNombre() ?> </div>
+                                    <p class="category"> <?php echo $estudio->getInstitucion() ?> </p>
+                                    <p> Area de estudio: <?php echo $estudio->getArea() ?></p>
                                 </div>
                             </div>
                         </div>
@@ -227,6 +228,49 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                         ?>
 
                 </div>
+            </div>
+        </div>
+
+        <?php
+                                    }
+    ?>
+
+    
+<?php
+                                    if ($hojaVida->getExperienciaAcademica() != null) {
+    ?>
+        <div class="section" id="experience">
+            <div class="container cc-experience">
+                <div class="h4 text-center mb-4 title">Experiencia laboral</div>
+
+                <?php
+
+                                        foreach ($hojaVida->getExperienciaAcademica() as $experiencia) {
+
+                ?>
+
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50"
+                            data-aos-duration="500">
+                            <div class="card-body cc-experience-header">
+                                <p> <?php echo $experiencia[3] ?> </p>
+                                <div class="h5"> <?php echo $experiencia[2] ?> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                            <div class="card-body">
+                                <div class="h5"> <?php echo $experiencia[0] ?> </div>
+                                <p> <?php echo $experiencia[1] ?> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+                                        }
+                ?>
+
             </div>
         </div>
 
