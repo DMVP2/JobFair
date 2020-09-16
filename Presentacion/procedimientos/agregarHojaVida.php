@@ -12,7 +12,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Experi
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'ExperienciaAcademica.php');
 
 
-print_r($_POST);
 
 // Conexión con la base de datos
 
@@ -23,10 +22,10 @@ $idUsuario = $_SESSION['usuario'];
 
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
-
 if ($manejoHojaVida->buscarHojaVida($idUsuario) != null) {
     $manejoHojaVida->limpiarDatosHojaVida($idUsuario);
 }
+
 
 
 // OBTENER DATOS PARA TABLA HOJA VIDA
@@ -96,16 +95,15 @@ if (isset($_POST["expAcademica"])) {
     $arregloAñosExpA = $_POST['añoExpAcademica'];
 
     $aux = 0;
-    foreach ($arregloExpA as $expA) {
+    foreach ($arregloExpA as $actual) {
 
         $expA = new ExperienciaAcademica();
-        $expA->setNombre($expA[$aux]);
+        $expA->setNombre($actual);
         $expA->setDescripcion($arregloDescripcionesExpA[$aux]);
         $expA->setInstitucion($arregloInstitucionExpA[$aux]);
         $expA->setFecha($arregloAñosExpA[$aux]);
 
-
-        //$manejoHojaVida->crearExperiencia($experiencia, $idHojaVida);
+        $manejoHojaVida->crearExperienciaAcademica($expA, $idHojaVida);
 
         $aux = $aux + 1;
     }
@@ -166,4 +164,4 @@ foreach ($arregloNombreRef as $nombreRef) {
     $aux = $aux + 1;
 }
 
-//header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "PortalEstudiante.php");
+header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "PortalEstudiante.php");

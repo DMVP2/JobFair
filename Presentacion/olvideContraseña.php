@@ -190,7 +190,7 @@ $conexion = $c->conectarBD();
 
         $("#btnConfirmar").attr("disabled", true);
         $("#btnRecuperar").attr("disabled", true);
-        btnConfirmar
+
         datos = $('#formRecuperar').serialize();
 
         $.ajax({
