@@ -13,10 +13,10 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoHojaDeVida.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoVacante.php');
 
 
-$manejoHojaVida = new ManejoHojaDeVida($conexion);
+$manejoVacante = new ManejoHojaDeVida($conexion);
 
 
 
@@ -226,7 +226,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
                                                                     name="dataCiudad">
                                                                     <?php
 
-                                                                    $listaCiudades = $manejoHojaVida->listarCiudades();
+                                                                    $listaCiudades = $manejoVacante->listarCiudades();
 
                                                                     foreach ($listaCiudades as $ciudad) {
                                                                         if ($ciudad[1] == "Bogotá") {
