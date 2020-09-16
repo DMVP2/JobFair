@@ -16,7 +16,7 @@ $conexion = $c->conectarBD();
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoVacante.php');
 
 
-$manejoVacante = new ManejoHojaDeVida($conexion);
+$manejoVacante = new ManejoVacante($conexion);
 
 
 

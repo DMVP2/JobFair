@@ -158,6 +158,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                             class="material-icons">
                                                                             info
                                                                         </span></label>
+                                                                    <br>
                                                                     <textarea class="form-control" maxlength="950"
                                                                         name="perfilProfesionalArea" delay: { "show" :
                                                                         100, "hide" : 100 } data-toggle="tooltip"
@@ -170,6 +171,41 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     </div>
 
                                                     <br><br>
+
+                                                    <div class="alert alert-info" style="height: 50px;">
+                                                        <h6> Idiomas</h6>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">
+                                                                    Idioma</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">
+                                                                    Nivel</label>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="divListaIdiomas">
+
+
+                                                    </div>
+
+                                                    <br><br><br>
+
+                                                    <input class="btn btn-warning" type="button" value="Agregar idioma"
+                                                        onclick="agregarCampoListaIdioma()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar idioma"
+                                                        onclick="eliminarCampoListaIdioma()">
+
+                                                    <br><br><br>
+
 
                                                     <div class="alert alert-info" style="height: 50px;">
                                                         <h6> Estudios</h6>
@@ -188,42 +224,25 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     <input class="btn btn-warning" type="button" value="Borrar estudio"
                                                         onclick="eliminarCampoListaEstudio()">
 
-
                                                     <br><br><br>
 
                                                     <div class="alert alert-info" style="height: 50px;">
-                                                        <h6> Idiomas</h6>
+                                                        <h6> Experiencia academica</h6>
                                                     </div>
 
-                                                    <div class="row">
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    Idioma</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <div class="form-group">
-                                                                <label class="bmd-label-floating">
-                                                                    Nivel</label>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div id="divListaIdiomas">
-
+                                                    <div id="divExperienciaAcademica">
 
                                                     </div>
-
-                                                    <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar idioma"
-                                                        onclick="agregarCampoListaIdioma()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar idioma"
-                                                        onclick="eliminarCampoListaIdioma()">
 
                                                     <br><br><br>
+
+                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
+                                                        onclick="agregarCampoListaExpA()">
+                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
+                                                        onclick="eliminarCampoListaExpA()">
+
+                                                    <br><br><br>
+
 
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -448,8 +467,27 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
             $('#divListaReferencias div.divListId:last').remove();
             agregarCampoReferencia();
         }
-
     }
+
+    function agregarCampoListaExpA() {
+
+        $("<div>").load(
+            "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . 'hojaVida/listaExperienciaA.php' ?>",
+            function() {
+                $("#divExperienciaAcademica").append($(this).html());
+            });
+    }
+
+    function eliminarCampoListaExpA() {
+
+        if ($('#divExperienciaAcademica div.divListId').length > 1) {
+            $('#divExperienciaAcademica div.divListId:last').remove();
+        } else {
+            $('#divExperienciaAcademica div.divListId:last').remove();
+        }
+    }
+
+
 
     function maximoAño(elementoCambio) {
 

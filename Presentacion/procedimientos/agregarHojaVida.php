@@ -11,6 +11,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'Estudi
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_ENTIDADES . 'ExperienciaLaboral.php');
 
 
+print_r($_POST);
+
 // Conexión con la base de datos
 
 $c = Conexion::getInstancia();
@@ -140,4 +142,4 @@ foreach ($arregloNombreRef as $nombreRef) {
     $aux = $aux + 1;
 }
 
-header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "PortalEstudiante.php");
+//header("Location: " . CARPETA_RAIZ . RUTA_PORTALES . "PortalEstudiante.php");
