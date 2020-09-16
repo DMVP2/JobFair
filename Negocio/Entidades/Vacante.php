@@ -74,7 +74,6 @@ class Vacante
 	private  $estado;
 
 
-
 	/**
 	 * Categorias de la vacante
 	 * 

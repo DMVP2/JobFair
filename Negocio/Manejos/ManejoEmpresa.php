@@ -95,6 +95,19 @@ class ManejoEmpresa
     }
 
     /**
+     * Actualiza el estado de una empresa
+     *
+     * @param int $pNitEmpresa
+     * @param String $pEstado
+     */
+    public function actualizarEstado($pNitEmpresa, $pEstado)
+    {
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        $empresaDAO->actualizarEstado($pNitEmpresa, $pEstado);
+    }
+
+
+    /**
      * Elimina una empresa
      *
      * @param int $pNit
@@ -102,7 +115,8 @@ class ManejoEmpresa
     public function eliminarEmpresa($pNit)
     {
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
-        $empresaDAO->eliminar($pNit);
+        $empresaDAO->eliminarRepresentantesEmpresa($pNit);
+        $empresaDAO->eliminarEmpresa($pNit);
     }
 
     /**
@@ -114,6 +128,20 @@ class ManejoEmpresa
     {
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
         $empresas = $empresaDAO->listar();
+        return $empresas;
+    }
+
+
+    /**
+     * Obtiene la lista de representantes de una empresa
+     *
+     * @param int pNitEmpresa
+     * @return Representantes[]
+     */
+    public function listarRepresentantes($pNitEmpresa)
+    {
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        $empresas = $empresaDAO->listarRepresentantes($pNitEmpresa);
         return $empresas;
     }
 

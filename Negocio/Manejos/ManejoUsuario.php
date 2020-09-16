@@ -136,12 +136,12 @@ class ManejoUsuario
     /**
      * Elimina un usuario
      *
-     * @param int $pId
+     * @param int $pIdUsuario
      */
-    public function eliminarUsuario($pId)
+    public function eliminarUsuario($pIdUsuario)
     {
         $usuarioDAO = UsuarioDAO::obtenerUsuarioDAO($this->conexion);
-        $usuarioDAO->eliminar($pId);
+        $usuarioDAO->eliminarUsuario($pIdUsuario);
     }
 
     /**
