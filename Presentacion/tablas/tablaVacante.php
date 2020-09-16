@@ -173,13 +173,6 @@ $next = $page + 1;
                                                                 <i class="material-icons">visibility</i>
                                                                 </button>
                                                             </form>
-                                                            <form action="informacionVacante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id="<?php
-                                                                                                                    echo $vacante->getId() ?>" name="idVacante" value="<?php echo $vacante->getId()  ?>">
-                                                                <button class="btn btn-danger" type="submit" id="submit" name="vacante">
-                                                                    <i class="material-icons">clear</i>
-                                                                </button>
-                                                            </form>
                                                         </th>
                                                     </thead>
 

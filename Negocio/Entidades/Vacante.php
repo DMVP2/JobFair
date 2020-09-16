@@ -78,7 +78,7 @@ class Vacante
 	/**
 	 * Categorias de la vacante
 	 * 
-	 * @var Int[]
+	 * @var ArregloDeDosDimensiones
 	 */
 	private  $categorias;
 
@@ -291,9 +291,9 @@ class Vacante
 	/**
 	 * Método para establecer las categorias de la vacante
 	 * 
-	 * @param int[]
+	 * @param
 	 */
-	public function setCategorias(int $pCategorias)
+	public function setCategorias($pCategorias)
 	{
 		$this->categorias = $pCategorias;
 	}

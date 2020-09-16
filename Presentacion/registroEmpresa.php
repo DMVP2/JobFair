@@ -112,7 +112,7 @@ $conexion = $c->conectarBD();
                                                                     <label class="bmd-label-floating">Razón
                                                                         social</label>
                                                                     <input type="text" class="form-control"
-                                                                        id="razonSocial" name="razonSocial" required>
+                                                                        id="razonSocial" name="razonSocial">
                                                                 </div>
                                                             </div>
                                                         </div>

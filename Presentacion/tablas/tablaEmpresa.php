@@ -35,12 +35,21 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
-// CAMBIO
 
-$empresas = $manejoEmpresas->listarEmpresasPaginacion($paginationStart, $limit);
+$nombre = "";
+
+if(isset($_POST['nombre'])) {
+
+    $nombre = $_POST['nombre'];
+  }
+  if($nombre != null) {
+
+    $empresas = $manejoEmpresas->listaFiltrada($paginationStart, $limit, $nombre);
+  } else {
+    $empresas = $manejoEmpresas->listarEmpresasPaginacion($paginationStart, $limit);
+  }
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
-// CAMBIO
 
 $allRecords = $manejoEmpresas->cantidadEmpresas();
 
@@ -92,6 +101,16 @@ $next = $page + 1;
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
+
+
+                    <form class="user" method="post">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Filtrar por nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Select dropdown -->
                     <div class="d-flex flex-row-reverse bd-highlight mb-3">
@@ -173,49 +192,10 @@ $next = $page + 1;
                                                                 <i class="material-icons">visibility</i>
                                                             </button>
                                                         </form>
-                                                        <form action="informacionEmpresa.php" method="post">
-                                                            <input class="btn btn-primary" type="hidden"
-                                                                id=<?php echo "'" . $empresa->getNit() . "'"; ?>
-                                                                name="idEmpresa"
-                                                                value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
-                                                            <button class="btn btn-warning" type="submit" id="submit"
-                                                                name="empresa" value="">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                        </form>
-                                                    </th>
-                                                    <th>
-                                                        <!-- DESACTIVAR -->
-                                                        <form action="informacionEmpresa.php" method="post">
-                                                            <input class="btn btn-primary" type="hidden"
-                                                                id=<?php echo "'" . $empresa->getNit() . "'"; ?>
-                                                                name="idEmpresa"
-                                                                value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
-                                                            <button class="btn btn-danger" type="submit" id="submit"
-                                                                name="empresa" value="">
-                                                                <i class="material-icons">clear</i>
-                                                            </button>
-                                                        </form>
-
-                                                        <?php if (strnatcasecmp($manejoUsuario->buscarUsuario($empresa->getNit())->getEstado(), "Activo (Sin verificar)") == 0) { ?>
-                                                        <!-- ELIMINAR -->
-                                                        <form action="informacionEmpresa.php" method="post">
-                                                            <input class="btn btn-primary" type="hidden"
-                                                                id=<?php echo "'" . $empresa->getNit() . "'"; ?>
-                                                                name="idEmpresa"
-                                                                value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
-                                                            <button class="btn btn-danger" type="submit" id="submit"
-                                                                name="empresa" value="">
-                                                                <i class="material-icons">delete</i>
-                                                            </button>
-                                                        </form>
-                                                        <?php } ?>
                                                     </th>
                                                 </thead>
-
                                                 <?php
                                                 }
-
                                                 ?>
 
                                             </tbody>

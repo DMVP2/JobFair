@@ -84,6 +84,8 @@ class VacanteDAO implements DAO
 		$vacante->setEstado($row[8]);
 		$ciudad = $this->obtenerCiudadVacante($row[0]);
 		$vacante->setCiudad($ciudad);
+		$categorias = $this->obtenerCategoriasVacante($row[0]);
+		$vacante->setCategorias($categorias);
 
 		return $vacante;
 	}
@@ -126,6 +128,7 @@ class VacanteDAO implements DAO
 		$vacanteArray = array();
 
 		while ($row = mysqli_fetch_array($result)) {
+
 			$vacante = new Vacante();
 			$vacante->setId($row[0]);
 			$vacante->setNombre($row[1]);
@@ -138,6 +141,8 @@ class VacanteDAO implements DAO
 			$vacante->setEstado($row[8]);
 			$ciudad = $this->obtenerCiudadVacante($row[0]);
 			$vacante->setCiudad($ciudad);
+			$categorias = $this->obtenerCategoriasVacante($row[0]);
+			$vacante->setCategorias($categorias);
 
 
 			$vacanteArray[] = $vacante;
@@ -172,6 +177,8 @@ class VacanteDAO implements DAO
 			$vacante->setEstado($row[8]);
 			$ciudad = $this->obtenerCiudadVacante($row[0]);
 			$vacante->setCiudad($ciudad);
+			$categorias = $this->obtenerCategoriasVacante($row[0]);
+			$vacante->setCategorias($categorias);
 
 
 			$vacanteArray[] = $vacante;
@@ -283,11 +290,23 @@ class VacanteDAO implements DAO
 	 */
 	public function obtenerCategoriasVacante(int $codigo)
 	{
-		$sql = "SELECT * FROM CATEGORIA WHERE CATEGORIA_VACANTE.id_vacante = $codigo AND CATEGORIA_VACANTE.id_categoria = CATEGORIA.id_categoria";
+		$sql = "SELECT * FROM CATEGORIA, CATEGORIA_VACANTE WHERE CATEGORIA_VACANTE.id_vacante = $codigo AND CATEGORIA_VACANTE.id_categoria = CATEGORIA.id_categoria";
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
-		return $result;
+		$vacanteArray = array();
+
+		$cantidadVacantes = 0;
+
+		while ($row = mysqli_fetch_array($result)) {
+
+			$vacanteArray[$cantidadVacantes][0] = $row[0];
+			$vacanteArray[$cantidadVacantes][1] = $row[1];
+
+			$cantidadVacantes = $cantidadVacantes + 1;
+		}
+
+		return $vacanteArray;
 	}
 
 	/**
@@ -357,6 +376,7 @@ class VacanteDAO implements DAO
 		$vacanteArray = array();
 
 		while ($row = mysqli_fetch_array($result)) {
+
 			$vacante = new Vacante();
 			$vacante->setId($row[0]);
 			$vacante->setNombre($row[1]);
@@ -369,6 +389,8 @@ class VacanteDAO implements DAO
 			$vacante->setEstado($row[8]);
 			$ciudad = $this->obtenerCiudadVacante($row[0]);
 			$vacante->setCiudad($ciudad);
+			$categorias = $this->obtenerCategoriasVacante($row[0]);
+			$vacante->setCategorias($categorias);
 
 
 			$vacanteArray[] = $vacante;
@@ -456,6 +478,7 @@ class VacanteDAO implements DAO
 		$vacanteArray = array();
 
 		while ($row = mysqli_fetch_array($result)) {
+
 			$vacante = new Vacante();
 			$vacante->setId($row[0]);
 			$vacante->setNombre($row[1]);
@@ -468,6 +491,8 @@ class VacanteDAO implements DAO
 			$vacante->setEstado($row[8]);
 			$ciudad = $this->obtenerCiudadVacante($row[0]);
 			$vacante->setCiudad($ciudad);
+			$categorias = $this->obtenerCategoriasVacante($row[0]);
+			$vacante->setCategorias($categorias);
 
 
 			$vacanteArray[] = $vacante;
@@ -507,6 +532,43 @@ class VacanteDAO implements DAO
 		}
 
 		return $cantidadVacantes;
+	}
+
+	/**
+	 * Método para obtener la lista de todas las vacantes que posean una categoria que corresponda con el filtro
+	 *
+	 * @return 
+	 */
+	public function listaFiltrada($pagInicio, $limit, $filtro)
+	{
+		$sql = "SELECT * FROM VACANTE, CATEGORIA_VACANTE WHERE CATEGORIA_VACANTE.id_categoria = $filtro AND VACANTE.id_vacante" . " LIMIT " . $pagInicio . " , " . $limit;
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$vacanteArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+
+			$vacante = new Vacante();
+			$vacante->setId($row[0]);
+			$vacante->setNombre($row[1]);
+			$vacante->setDescripcion($row[2]);
+			$vacante->setProgramaAcademico($row[3]);
+			$vacante->setHorariovacante($row[4]);
+			$vacante->setPosibilidadViaje($row[5]);
+			$vacante->setSalarioVacante($row[6]);
+			$vacante->setExperiencia($row[7]);
+			$vacante->setEstado($row[8]);
+			$ciudad = $this->obtenerCiudadVacante($row[0]);
+			$vacante->setCiudad($ciudad);
+			$categorias = $this->obtenerCategoriasVacante($row[0]);
+			$vacante->setCategorias($categorias);
+
+
+			$vacanteArray[] = $vacante;
+		}
+
+		return $vacanteArray;
 	}
 
 	/**

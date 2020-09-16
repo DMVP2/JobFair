@@ -108,8 +108,8 @@ $next = $page + 1;
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title ">Aspirantes</h4>
-                                    <p class="card-category">Listado de los estudiantes que aspiran a esta vacante </p>
+                                    <h4 class="card-title ">Postulados</h4>
+                                    <p class="card-category"> Listado de estudiantes que postulan su hoja de vida a esta empresa </p>
                                 </div>
                                 <div class="card-body">
 
@@ -158,7 +158,7 @@ $next = $page + 1;
                                                             <?php echo $estudiante->getSemestreActual() ?>
                                                         </th>
                                                         <th>
-                                                            <form action=" <?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php" ?> method="post">
+                                                            <form action=" <?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php" ?>" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
                                                                 <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="">
                                                                     <i class="material-icons">visibility</i>

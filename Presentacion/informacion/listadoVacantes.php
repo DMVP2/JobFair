@@ -34,7 +34,18 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
-$vacantes = $manejoVacante->listarVacantesActivasPaginacion($paginationStart, $limit);
+$categoria = "";
+
+if(isset($_POST['categoria'])) {
+
+    $categoria = $_POST['categoria'];
+  }
+  if($categoria != null) {
+
+    $empresas = $manejoVacante->listaFiltrada($paginationStart, $limit, $categoria);
+  } else {
+    $empresas = $manejoVacante->listarVacantesActivasPaginacion($paginationStart, $limit);
+  }
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
@@ -87,7 +98,17 @@ $next = $page + 1;
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
 
+                    <form class="user" method="post">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Filtrar por nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre">
+                            </div>
+                        </div>
+                    </form>
+
                     <!-- Select dropdown -->
+
                     <div class="d-flex flex-row-reverse bd-highlight mb-3">
                         <form action="<?php echo $nombrePagina ?>" method="post">
                             <select name="records-limit" id="records-limit" class="custom-select">

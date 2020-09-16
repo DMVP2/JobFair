@@ -187,6 +187,36 @@ class EmpresaDAO implements DAO
 	}
 
 	/**
+	 * Método para obtener la lista de todas las empresas cuyo nombre corresponda con el filtro
+	 *
+	 * @return Empresa[]
+	 */
+	public function listaFiltrada($pagInicio, $limit, $filtro)
+	{
+		$sql = "SELECT * FROM EMPRESA WHERE EMPRESA.razon_comercial LIKE '%$filtro%'" . " LIMIT " . $pagInicio . " , " . $limit;
+
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$empresaArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+
+			$empresa = new Empresa();
+			$empresa->setNit($row[0]);
+			$empresa->setRazonSocial($row[1]);
+			$empresa->setRazonComercial($row[2]);
+			$empresa->setDescripcion($row[3]);
+			$empresa->setOtrosBeneficios($row[4]);
+			$empresa->setEstadoEmpresa($row[5]);
+			$empresa->setLogoEmpresa($row[6]);
+
+			$empresaArray[] = $empresa;
+		}
+
+		return $empresaArray;
+	}
+
+	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos
 	 *
 	 * @return int $cantidadEmpresas

@@ -125,8 +125,21 @@ class ManejoEmpresa
     public function listarEmpresasPaginacion($pagInicio, $limit)
     {
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
-        $empresa = $empresaDAO->listaPaginacion($pagInicio, $limit);
-        return $empresa;
+        $empresas = $empresaDAO->listaPaginacion($pagInicio, $limit);
+        return $empresas;
+    }
+
+
+	/**
+	 * Método para obtener la lista de todas las empresas pero permite la paginación
+	 *
+	 * @return Empresa[]
+	 */
+	public function listaFiltrada($pagInicio, $limit, $filtro)
+	{
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        $empresas = $empresaDAO->listaFiltrada($pagInicio, $limit, $filtro);
+        return $empresas;
     }
 
     /**

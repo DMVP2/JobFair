@@ -3,7 +3,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . "VacanteDAO.php");
 
 /**
- * Clase que representa la clase "manejoVacante"
+ * Clase que representa la clase "ManejoVacante"
  */
 class manejoVacante
 {
@@ -308,6 +308,18 @@ class manejoVacante
     {
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
         $vacantes = $VacanteDAO->cantidadAplicacionesVacante($empresas, $paginationStart, $limit);
+        return $vacantes;
+    }
+
+	/**
+	 * Método para obtener la lista de todas las vacantes que posean una categoria que corresponda con el filtro
+	 *
+	 * @return 
+	 */
+    public function listaFiltrada($pagInicio, $limit, $filtro)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $vacantes = $VacanteDAO->listaFiltrada($pagInicio, $limit, $filtro);
         return $vacantes;
     }
 }
