@@ -81,6 +81,17 @@ class ManejoEstudiante
     }
 
     /**
+     * Actualiza el estado de un estudiante
+     *
+     * @param int $pIdEstudiante
+     * @param String $pEstado
+     */
+    public function actualizarEstado($pIdEstudiante, $pEstado)
+    {
+        $empresaDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $empresaDAO->actualizarEstado($pIdEstudiante, $pEstado);
+    }
+    /**
      * Elimina un estudiante
      *
      * @param int $pNumeroDocumento
@@ -178,11 +189,11 @@ class ManejoEstudiante
     }
 
     /**
-	 * Obtiene los estudiantes que postularon su hoja de vida a la empresa en si y no a la vacante
-	 *
-	 * @return 
-	 */
-	public function listarPostulaciones($idEmpresa, $pagInicio, $limit)
+     * Obtiene los estudiantes que postularon su hoja de vida a la empresa en si y no a la vacante
+     *
+     * @return 
+     */
+    public function listarPostulaciones($idEmpresa, $pagInicio, $limit)
     {
         $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
         $postulados = $estudianteDAO->listarPostulaciones($idEmpresa, $pagInicio, $limit);

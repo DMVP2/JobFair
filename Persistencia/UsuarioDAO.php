@@ -154,6 +154,18 @@ class UsuarioDAO implements DAO
 	}
 
 	/**
+	 * Método para eliminar un usuario de la bd
+	 * 
+	 * @param int $pIdUsuario
+	 * @return void
+	 */
+	public function eliminarUsuario($pIdUsuario)
+	{
+		$sql = "DELETE FROM USUARIO WHERE id_usuario = " . $pIdUsuario;
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
 	 * Método para obtener la lista de todas los usuarios
 	 *
 	 * @return Usuario[]

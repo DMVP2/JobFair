@@ -177,6 +177,7 @@ $next = $page + 1;
                                                         <?php
                                                             if ((strcasecmp($rolusuarioActual, "Empresa") == 0) or (strcasecmp($rolusuarioActual, "Estudiante") == 0)) {
                                                             ?>
+                                                        <!-- BOTON VER USUARIO (EMPRESA/ESTUDIANTE) -->
                                                         <form action="<?php echo $ruta ?>" method="post">
                                                             <input class="btn btn-primary" type="hidden"
                                                                 id=<?php echo "'" . $usuario->getId() . "'"; ?>
@@ -188,44 +189,10 @@ $next = $page + 1;
                                                             </button>
                                                         </form>
                                                         <?php
-                                                                if (strnatcasecmp($usuario->getEstado(), 'Activo (Sin verificar)') == 0) {
-                                                                ?>
-                                                        <form action="informacionVacante.php" method="post">
-                                                            <input type="hidden"
-                                                                id=<?php echo "'" . $usuario->getId() . "'"; ?>
-                                                                name="codigoUsuario"
-                                                                value=<?php echo "'" . $usuario->getId() . "'"; ?>>
-                                                            <button class="btn btn-warning" type="submit" id="submit"
-                                                                name="usuario" value="">
-                                                                <i class="material-icons">done</i>
-                                                            </button>
-                                                        </form>
+                                                            }
 
-                                                        <?php
-                                                                }
-                                                                ?>
-
-
-                                                        <?php
-                                                                if (strnatcasecmp($usuario->getEstado(), 'Activo (Sin verificar)') == 0) {
-                                                                ?>
-                                                        <form action="informacionVacante.php" method="post">
-                                                            <input class="btn btn-primary" type="hidden"
-                                                                id=<?php echo "'" . $usuario->getId() . "'"; ?>
-                                                                name="codigoUsuario"
-                                                                value=<?php echo "'" . $usuario->getId() . "'"; ?>>
-                                                            <button class="btn btn-danger" type="submit" id="submit"
-                                                                name="usuario" value="">
-                                                                <i class="material-icons">delete</i>
-                                                            </button>
-                                                        </form>
-
-                                                        <?php
-                                                                } else {
-                                                                    if (strnatcasecmp($usuario->getEstado(), 'Inactivo') == 0) {
-
-                                                                    ?>
-
+                                                            if (strnatcasecmp($usuario->getEstado(), 'Activo (Sin verificar)') == 0 or strnatcasecmp($usuario->getEstado(), 'Inactivo') == 0) {
+                                                            ?>
                                                         <form
                                                             action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'modificarEstadoUsuario.php?op=1'   ?>"
                                                             method="post">
@@ -240,8 +207,12 @@ $next = $page + 1;
                                                         </form>
 
                                                         <?php
-                                                                    } else {
-                                                                    ?>
+
+                                                            } else {
+                                                                if (!(strnatcasecmp($usuario->getRolUsuario(), 'Administrador') == 0)) {
+
+                                                                ?>
+
                                                         <form
                                                             action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'modificarEstadoUsuario.php'  ?>"
                                                             method="post">
@@ -253,16 +224,33 @@ $next = $page + 1;
                                                                 <i class="material-icons">clear</i>
                                                             </button>
                                                         </form>
-                                                        <?php
-                                                                    }
-                                                                    ?>
-
-
 
                                                         <?php
                                                                 }
                                                             }
-                                                            ?>
+
+                                                            if (strnatcasecmp($usuario->getEstado(), 'Activo (Sin verificar)') == 0) {
+
+                                                                ?>
+                                                        <form
+                                                            action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'eliminarUsuario.php'  ?>"
+                                                            method="post">
+                                                            <input class="btn btn-primary" type="hidden"
+                                                                id="codigoUsuario" name="codigoUsuario"
+                                                                value=<?php echo "'" . $usuario->getId() . "'"; ?>>
+                                                            <button class="btn btn-danger" type="submit" id="submit"
+                                                                name="usuario" value="">
+                                                                <i class="material-icons">delete</i>
+                                                            </button>
+                                                            <?php
+
+
+
+                                                            }
+
+                                                                ?>
+
+
                                                     </th>
                                                 </thead>
 

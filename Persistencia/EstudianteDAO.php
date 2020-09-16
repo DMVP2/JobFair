@@ -95,7 +95,43 @@ class EstudianteDAO implements DAO
      */
     public function actualizar($estudiante)
     {
-        $sql = "UPDATE ESTUDIANTE SET nombre_estudiante = '" . $estudiante->getNombreEstudiante() . "', correo_estudiante = '" . $estudiante->getCorreoEstudiante() . "', tipo_de_documento = '" . $estudiante->getTipoDeDocumento() . "', semestre_actual = '" . $estudiante->getSemestreActual() . "', programa_academico = '" . $estudiante->getProgramaAcademico() . "', experiencia_estudiante = '" . $estudiante->getExperienciaEstudiante() . "', estado_estudiante = '" . $estudiante->getEstadoEstudiante() . "', ruta_foto_estudiante = '" . $estudiante->getRutaFotoEstudiante() . "' WHERE numero_documento = " . $estudiante->getNumeroDocumento();
+        $sql = "UPDATE ESTUDIANTE SET nombre_estudiante = '" . $estudiante->getNombre() . "', correo_estudiante = '" . $estudiante->getCorreo() . "', tipo_de_documento = '" . $estudiante->getTipoDeDocumento() . "', semestre_actual = '" . $estudiante->getSemestreActual() . "', programa_academico = '" . $estudiante->getProgramaAcademico() . "', experiencia_estudiante = '" . $estudiante->getExperiencia() . "', estado_estudiante = '" . $estudiante->getEstado() . "', ruta_foto_estudiante = '" . $estudiante->getRutaFoto() . "' WHERE numero_documento = " . $estudiante->getNumeroDocumento();
+        mysqli_query($this->conexion, $sql);
+    }
+
+    /**
+     * Método que actualiza el estado de un estudiante
+     *
+     * @param int pIdEstudiante
+     * @return void
+     */
+    public function actualizarEstado($pIdEstudiante, $pEstado)
+    {
+
+        $sql = "SELECT estado_estudiante FROM estudiante WHERE numero_documento=" . $pIdEstudiante;
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+        $row = mysqli_fetch_array($result);
+
+        $estado = $row[0];
+
+        if (strnatcasecmp($pEstado, 'Inactivo') == 0) {
+
+            if (strnatcasecmp($estado, 'Activo (Sin postulación)') == 0) {
+                $estado = 'Inactivo (Sin postulación)';
+            } else {
+                $estado = 'Inactivo (Con postulación)';
+            }
+        } else {
+            if (strnatcasecmp($estado, 'Inactivo (Sin postulación)') == 0) {
+                $estado = 'Activo (Sin postulación)';
+            } else {
+                $estado = 'Activo (Con postulación)';
+            }
+        }
+
+
+        $sql = "UPDATE ESTUDIANTE SET estado_estudiante = '" . $estado . "' WHERE numero_documento = " . $pIdEstudiante;
         mysqli_query($this->conexion, $sql);
     }
 
@@ -118,7 +154,7 @@ class EstudianteDAO implements DAO
     public function listar()
     {
         $sql = "SELECT * FROM ESTUDIANTE";
-        
+
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
         $estudianteArray = array();
@@ -228,12 +264,12 @@ class EstudianteDAO implements DAO
     }
 
     /**
-	 * Obtiene los estudiantes que postularon su hoja de vida a la empresa en si y no a la vacante
-	 *
-	 * @return 
-	 */
-	public function listarPostulaciones($idEmpresa, $pagInicio, $limit)
-	{
+     * Obtiene los estudiantes que postularon su hoja de vida a la empresa en si y no a la vacante
+     *
+     * @return 
+     */
+    public function listarPostulaciones($idEmpresa, $pagInicio, $limit)
+    {
         $sql = "SELECT * FROM ESTUDIANTE_EMPRESA WHERE ESTUDIANTE_EMPRESA.nit_empresa = $idEmpresa  LIMIT " . $pagInicio . " , " . $limit;
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
@@ -248,7 +284,7 @@ class EstudianteDAO implements DAO
         }
 
         return $estudianteArray;
-	}
+    }
 
     /**
      * Método para contar los 5 estudiantes con mas postulaciones
@@ -264,10 +300,9 @@ class EstudianteDAO implements DAO
 
         $numeroEstudiante = 0;
 
-        foreach($estudiantes as $estudiante)
-        {
+        foreach ($estudiantes as $estudiante) {
 
-            $sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento =". $estudiante->getNumeroDocumento();
+            $sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento =" . $estudiante->getNumeroDocumento();
 
             $consulta = mysqli_query($this->conexion, $sql);
             $resultado = mysqli_fetch_array($consulta)[0];
@@ -275,20 +310,18 @@ class EstudianteDAO implements DAO
             $estudianteArray[$numeroEstudiante][0] = $resultado;
             $estudianteArray[$numeroEstudiante][1] = $estudiante->getNumeroDocumento();
 
-            $numeroEstudiante = $numeroEstudiante + 1; 
+            $numeroEstudiante = $numeroEstudiante + 1;
         }
 
-        foreach ($estudianteArray as $key => $row) 
-        {
+        foreach ($estudianteArray as $key => $row) {
             $cantidad[$key] = $row[0];
         }
-        
+
         array_multisort($cantidad, SORT_DESC, $estudianteArray);
 
         $masPostulaciones = array();
 
-        for($i = 0; $i < 5; $i++)
-        {
+        for ($i = 0; $i < 5; $i++) {
             $masPostulaciones[] = $estudianteArray[$i];
         }
 
@@ -309,10 +342,9 @@ class EstudianteDAO implements DAO
 
         $numeroEstudiante = 0;
 
-        foreach($estudiantes as $estudiante)
-        {
+        foreach ($estudiantes as $estudiante) {
 
-            $sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento =". $estudiante->getNumeroDocumento();
+            $sql = "SELECT COUNT(*) FROM VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.numero_documento =" . $estudiante->getNumeroDocumento();
 
             $consulta = mysqli_query($this->conexion, $sql);
             $resultado = mysqli_fetch_array($consulta)[0];
@@ -320,20 +352,18 @@ class EstudianteDAO implements DAO
             $estudianteArray[$numeroEstudiante][0] = $resultado;
             $estudianteArray[$numeroEstudiante][1] = $estudiante->getNumeroDocumento();
 
-            $numeroEstudiante = $numeroEstudiante + 1; 
+            $numeroEstudiante = $numeroEstudiante + 1;
         }
 
-        foreach ($estudianteArray as $key => $row) 
-        {
+        foreach ($estudianteArray as $key => $row) {
             $cantidad[$key] = $row[0];
         }
-        
+
         array_multisort($cantidad, SORT_ASC, $estudianteArray);
 
         $masPostulaciones = array();
 
-        for($i = 0; $i < 5; $i++)
-        {
+        for ($i = 0; $i < 5; $i++) {
             $masPostulaciones[] = $estudianteArray[$i];
         }
 

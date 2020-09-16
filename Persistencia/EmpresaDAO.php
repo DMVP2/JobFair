@@ -112,9 +112,23 @@ class EmpresaDAO implements DAO
 	 */
 	public function actualizar($empresa)
 	{
-		$sql = "UPDATE EMPRESA SET razon_social = '" . $empresa->getRazonSocial() . "', razon_comercial = '" . $empresa->getRazonComercial() . "', descripcion_empresa = '" . $empresa->getDescripcion() . "', otros_beneficios = '" . $empresa->getOtrosBenficios() . "', estado_empresa = '" . $empresa->getLogoEmpresa() . "' WHERE nit_empresa = " . $empresa->getNit();
+		$sql = "UPDATE EMPRESA SET razon_social = '" . $empresa->getRazonSocial() . "', razon_comercial = '" . $empresa->getRazonComercial() . "', descripcion_empresa = '" . $empresa->getDescripcion() . "', otros_beneficios = '" . $empresa->getOtrosBeneficios() . "', estado_empresa = '" . $empresa->getLogoEmpresa() . "' WHERE nit_empresa = " . $empresa->getNit();
 		mysqli_query($this->conexion, $sql);
 	}
+
+
+	/**
+	 * Método que actualiza el estado de una empresa
+	 *
+	 * @param int pNitEmpresa
+	 * @return void
+	 */
+	public function actualizarEstado($pNitEmpresa, $pEstado)
+	{
+		$sql = "UPDATE EMPRESA SET estado_empresa = '" . $pEstado . "' WHERE nit_empresa = " . $pNitEmpresa;
+		mysqli_query($this->conexion, $sql);
+	}
+
 
 	/**
 	 * Método que elimina una empresa
@@ -215,6 +229,72 @@ class EmpresaDAO implements DAO
 
 		return $empresaArray;
 	}
+
+	/**
+	 * Método para obtener la lista de representantes
+	 *
+	 * @param int pNit 
+	 * @return Representantes[]
+	 */
+	public function listarRepresentantes($pNit)
+	{
+		$sql = "SELECT * FROM representante, representante_empresa WHERE representante.id_representante = representante_empresa.id_representante AND representante_empresa.nit_empresa = " . $pNit;
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+		$representantesArray = array();
+
+		while ($row = mysqli_fetch_array($result)) {
+
+			$representante = new Representante();
+			$representante->setId($row[0]);
+			$representante->setNombre($row[1]);
+			$representante->setCorreo($row[2]);
+			$representante->setCargo($row[3]);
+			$representante->setTelefono($row[4]);
+
+			$representantesArray[] = $representante;
+		}
+
+		return $representantesArray;
+	}
+
+
+
+	/**
+	 * Método para eliminar los representantes de una empresa
+	 *
+	 * @param int pNit 
+	 */
+	public function eliminarRepresentantesEmpresa($pNit)
+	{
+		$representantes = $this->listarRepresentantes($pNit);
+
+		foreach ($representantes as $representante) {
+
+			$sql = "DELETE FROM representante_empresa WHERE id_representante=" . $representante->getId();
+			mysqli_query($this->conexion, $sql);
+
+			$sql = "DELETE FROM representante WHERE id_representante=" . $representante->getId();
+			mysqli_query($this->conexion, $sql);
+		}
+	}
+
+	/**
+	 * Método para eliminar los representantes de una empresa
+	 *
+	 * @param int pNit 
+	 */
+	public function eliminarEmpresa($pNit)
+	{
+
+		$sql = "DELETE FROM empresa WHERE nit_empresa=" . $pNit;
+		mysqli_query($this->conexion, $sql);
+	}
+
+
+
+
+
 
 	/**
 	 * Obtiene la cantidad de empresas registradas en la base de datos

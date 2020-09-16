@@ -13,28 +13,26 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEs
 $c = Conexion::getInstancia();
 $conexion = $c->conectarBD();
 
+
 $manejoUsuario = new ManejoUsuario($conexion);
 $manejoEmpresa = new ManejoEmpresa($conexion);
 $manejoEstudiante = new ManejoEstudiante($conexion);
 
 $idUsuario = $_POST['codigoUsuario'];
+
 $usuario = $manejoUsuario->buscarUsuario($idUsuario);
 $rol = $usuario->getRolUsuario();
 
-$estado = "Inactivo";
+$manejoUsuario->eliminarUsuario($idUsuario);
 
-if (isset($_GET['op'])) {
-    $estado = "Activo";
-}
-echo $rol;
 if ($rol == 2) {
-    $manejoEmpresa->actualizarEstado($idUsuario, $estado);
+    //Eliminar empresa
+    $manejoEmpresa->eliminarEmpresa($idUsuario);
 } else {
-    $manejoEstudiante->actualizarEstado($idUsuario, $estado);
+    //Eliminar estudiante
+    $manejoEstudiante->eliminarEstudiante($idUsuario);
 }
 
-
-$manejoUsuario->modificarEstadoUsuario($idUsuario, $estado);
 
 
 header("Location: " . CARPETA_RAIZ . RUTA_TABLAS . "tablaUsuario.php");
