@@ -83,6 +83,7 @@ class EstudianteDAO implements DAO
         $estudiante->setRutaFoto($row[9]);
         $edad = $estudiante->calcularEdad($row[11]);
         $estudiante->setEdad($edad);
+        $estudiante->setFechaNacimiento($row[11]);
 
         return $estudiante;
     }
@@ -95,7 +96,8 @@ class EstudianteDAO implements DAO
      */
     public function actualizar($estudiante)
     {
-        $sql = "UPDATE ESTUDIANTE SET nombre_estudiante = '" . $estudiante->getNombre() . "', correo_estudiante = '" . $estudiante->getCorreo() . "', tipo_de_documento = '" . $estudiante->getTipoDeDocumento() . "', semestre_actual = '" . $estudiante->getSemestreActual() . "', programa_academico = '" . $estudiante->getProgramaAcademico() . "', experiencia_estudiante = '" . $estudiante->getExperiencia() . "', estado_estudiante = '" . $estudiante->getEstado() . "', ruta_foto_estudiante = '" . $estudiante->getRutaFoto() . "' WHERE numero_documento = " . $estudiante->getNumeroDocumento();
+        $sql = "UPDATE ESTUDIANTE SET nombre_estudiante = '" . $estudiante->getNombre() . "', tipo_de_documento = '" . $estudiante->getTipoDeDocumento() . "', semestre_actual = '" . $estudiante->getSemestreActual() . "', programa_academico = '" . $estudiante->getProgramaAcademico() . "', experiencia_estudiante = '" . $estudiante->getExperiencia() . "', fecha_nacimiento = '" . $estudiante->getFechaNacimiento() . "'  WHERE numero_documento = " . $estudiante->getNumeroDocumento();
+        echo $sql;
         mysqli_query($this->conexion, $sql);
     }
 

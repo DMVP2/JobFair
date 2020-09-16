@@ -16,7 +16,6 @@ $conexion = $c->conectarBD();
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
 
-
 $documentoEstudiante = $_SESSION['usuario'];
 
 $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
@@ -260,18 +259,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <br><br><br>
 
-
-
-
-
                                                     <div class="alert alert-info" style="height: 50px;">
                                                         <h6> Experiencia laboral</h6>
                                                     </div>
 
 
                                                     <div id="divListaExperiencia">
-
-
 
                                                     </div>
 
@@ -343,15 +336,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                 </div>
                             </div>
 
-
-
                         </div>
                     </div>
-
-
-
-
-
 
                     <!-- CONTENIDO PAGINA -->
                 </div>
