@@ -228,6 +228,29 @@ class EstudianteDAO implements DAO
     }
 
     /**
+	 * Obtiene los estudiantes que postularon su hoja de vida a la empresa en si y no a la vacante
+	 *
+	 * @return 
+	 */
+	public function listarPostulaciones($idEmpresa, $pagInicio, $limit)
+	{
+        $sql = "SELECT * FROM ESTUDIANTE_EMPRESA WHERE ESTUDIANTE_EMPRESA.nit_empresa = $idEmpresa  LIMIT " . $pagInicio . " , " . $limit;
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $estudianteArray = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+
+            $estudiante = $this->consultar($row[1]);
+
+            $estudianteArray[] = $estudiante;
+        }
+
+        return $estudianteArray;
+	}
+
+    /**
      * Método para contar los 5 estudiantes con mas postulaciones
      *
      * @return String

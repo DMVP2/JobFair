@@ -165,7 +165,7 @@ class ManejoEstudiante
         return $masPostulaciones;
     }
 
-        /**
+    /**
      * Método para contar los 5 estudiantes con menos postulaciones
      *
      * @return String
@@ -175,5 +175,17 @@ class ManejoEstudiante
         $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
         $menosPostulaciones = $estudianteDAO->menosPostulaciones();
         return $menosPostulaciones;
+    }
+
+    /**
+	 * Obtiene los estudiantes que postularon su hoja de vida a la empresa en si y no a la vacante
+	 *
+	 * @return 
+	 */
+	public function listarPostulaciones($idEmpresa, $pagInicio, $limit)
+    {
+        $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $postulados = $estudianteDAO->listarPostulaciones($idEmpresa, $pagInicio, $limit);
+        return $postulados;
     }
 }

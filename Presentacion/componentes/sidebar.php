@@ -89,7 +89,7 @@ $rolUsuario = $_SESSION['rol'];
             </li>
             <br>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaPostulados.php' ?>">
                     <i class="material-icons">work</i>
                     <p>Postulados</p>
                 </a>

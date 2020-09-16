@@ -5,7 +5,7 @@
 
 include_once('../../rutas.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Conexion.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'manejoEstudiante.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEstudiante.php');
 
 
 // Nombre de la pagina
@@ -20,9 +20,8 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 $idUsuario = $_SESSION['usuario'];
-$idVacante = $_POST['idVacante'];
 
-$manejoEstudiantes = new ManejoEstudiante($conexion);
+$manejoEstudiante = new ManejoEstudiante($conexion);
 
 // Paginación
 
@@ -36,11 +35,11 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
-$estudiantes = $manejoEstudiantes->listarPostulacionesVacante($idVacante, $paginationStart, $limit);
+$estudiantes = $manejoEstudiante->listarPostulaciones($idUsuario, $paginationStart, $limit);
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
-$allRecords = $manejoEstudiantes->cantidadEstudiantes();
+$allRecords = $manejoEstudiante->cantidadEstudiantes();
 
 // Total de las paginas
 
@@ -159,7 +158,7 @@ $next = $page + 1;
                                                             <?php echo $estudiante->getSemestreActual() ?>
                                                         </th>
                                                         <th>
-                                                            <form action="informacionEstudiante.php" method="post">
+                                                            <form action=" <?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php" ?> method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
                                                                 <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="">
                                                                     <i class="material-icons">visibility</i>
