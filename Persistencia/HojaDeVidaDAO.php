@@ -344,6 +344,8 @@ class HojaDeVidaDAO implements DAO
     {
         $sql = "SELECT * FROM ESTUDIO, HOJA_VIDA, HOJA_VIDA_ESTUDIOS WHERE HOJA_VIDA.id_hoja_vida = $pHojaVida AND ESTUDIO.id_estudio = HOJA_VIDA_ESTUDIOS.id_estudio AND HOJA_VIDA.id_hoja_vida = HOJA_VIDA_ESTUDIOS.id_hoja_vida";
 
+        echo $sql;
+
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
         $estudiosArray = array();

@@ -1,7 +1,5 @@
 <?php
 
-header('Cache-Control: no cache'); //no cache
-
 // Importación de clases
 
 include_once('../../rutas.php');
@@ -9,15 +7,15 @@ include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PERSISTENCIA . 'Con
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoEstudiante.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_MANEJOS . 'ManejoHojaDeVida.php');
 
+$idUsuario = $_SESSION['usuario'];
+$rolUsuario = $_SESSION['rol'];
 
 $idEstudiante = "";
 
-if (isset($_POST['idEstudiante'])) {
-    $idEstudiante = $_POST['idEstudiante'];
-} else if (isset($_GET['idEstudiante'])) {
-    $idEstudiante = $_GET['idEstudiante'];
+if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+    $idEstudiante = $idUsuario;
 } else {
-    $idEstudiante = $_SESSION['usuario'];
+    $idEstudiante = $_POST['idEstudiante'];
 }
 
 ?>

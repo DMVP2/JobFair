@@ -86,37 +86,29 @@ if ($manejoHojaVida->buscarHojaVida($idUsuario) != null) {
                                     <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h5>
                                     <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h5>
                                     <br>
-                                    <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Actualizar información
-                                        personal</button>
+                                    <button type="submit" class="btn btn-primary" onclick="window.location.href='hojaVida.php'">Actualizar información personal</button>
 
                                     <?php
                                     if (strcasecmp($hojaVida, "Si") == 0) {
                                     ?>
                                         <form action="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'hojaVida.php' ?>" method="post">
                                             <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                            <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="" tooltip="Ver hoja de vida">
-                                                <i class="material-icons">visibility</i>
-                                            </button>
+                                            <button type="submit" class="btn btn-primary" >Ver hoja de vida</button>
                                         </form>
                                         <form action="<?php echo CARPETA_RAIZ . RUTA_PRESENTACION . 'registroHojaVida.php' ?>" method="post">
                                             <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                            <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="" tooltip="Ver actualizar hoja de vida">
-                                                <i class="material-icons">visibility</i>
-                                            </button>
+                                            <button type="submit" class="btn btn-primary" >Actualizar hoja de vida</button>
                                         </form>
                                     <?php
                                     } else {
                                     ?>
                                         <form action="<?php echo CARPETA_RAIZ . RUTA_PRESENTACION . 'registroHojaVida.php' ?>" method="post">
                                             <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                            <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="" tooltip="Crear hoja de vida">
-                                                <i class="material-icons">visibility</i>
-                                            </button>
+                                            <button type="submit" class="btn btn-primary" >crear hoja de vida</button>
                                         </form>
                                     <?php
                                     }
                                     ?>
-                                    <br>
                                     <br>
                             </div>
                         </div>

@@ -161,7 +161,7 @@ $next = $page + 1;
                                                             <?php echo $estudiante->getEstado() ?>
                                                         </th>
                                                         <th>
-                                                            <form action="informacionEstudiante.php" method="post">
+                                                            <form action=" <?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php" ?>" method="post">
                                                                 <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
                                                                 <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="" tooltip="Ver perfil">
                                                                     <i class="material-icons">visibility</i>

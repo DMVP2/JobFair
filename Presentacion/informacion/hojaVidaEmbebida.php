@@ -24,7 +24,7 @@ $idEstudiante = "";
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
     $idEstudiante = $idUsuario;
 } else {
-    $idEstudiante = $_POST['idEstudiante'];
+    $idEstudiante = $_GET['idEstudiante'];
 }
 
 $manejoEstudiantes = new ManejoEstudiante($conexion);
@@ -201,7 +201,6 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                     <?php
 
                                         foreach ($hojaVida->getEstudios() as $estudio) {
-                                            echo "Si entra a estudios";
 
                         ?>
                     <div class="card">
