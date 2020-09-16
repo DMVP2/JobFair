@@ -18,6 +18,7 @@ define('RUTA_PROCEDIMIENTOS', 'Presentacion/procedimientos/');
 define('RUTA_PORTALES', 'Presentacion/portales/');
 define('RUTA_INFORMACION', 'Presentacion/informacion/');
 define('RUTA_TABLAS', 'Presentacion/tablas/');
+define('RUTA_EDITAR', 'Presentacion/editar/');
 define('RUTA_CAMPOS', 'Presentacion/campos/');
 define('RUTA_PRESENTACION_LIB', 'Presentacion/lib/');
 
