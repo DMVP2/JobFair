@@ -33,11 +33,11 @@ if (strcasecmp($rolUsuario, "Empresa") == 0) {
 $ruta = "";
 
 if (strcasecmp($rolUsuario, "Empresa") == 0) {
-    $ruta = "portalEmpresa.php";
+    $ruta = CARPETA_RAIZ . RUTA_PORTALES . "portalEmpresa.php";
 } else if (strcasecmp($rolUsuario, "Estudiante") == 0) {
-    $ruta = "portalEstudiante.php";
+    $ruta = CARPETA_RAIZ . RUTA_PORTALES . "portalEstudiante.php";
 } else if (strcasecmp($rolUsuario, "Administrador") == 0) {
-    $ruta = "portalAdministrador.php";
+    $ruta = CARPETA_RAIZ . RUTA_PORTALES . "portalAdministrador.php";
 }
 
 
