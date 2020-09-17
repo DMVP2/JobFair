@@ -84,6 +84,29 @@ class ManejoEmpresa
     }
 
     /**
+     * Aplciar estudiante empresa
+     *
+     */
+    public function aplicarEstudianteEmpresa($pNiEmpresa, $pIdEstudiante)
+    {
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        $empresaDAO->aplicarEstudianteEmpresa($pNiEmpresa, $pIdEstudiante);
+    }
+
+    /**
+     * Consultar si ha aplicado a una empresa un estudiante estudiante empresa
+     *
+     */
+    public function consultarAplicoEstudianteEmpresa($pNitEmpresa, $pIdEstudiante)
+    {
+        $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
+        return $empresaDAO->consultarAplicoEstudianteEmpresa($pNitEmpresa, $pIdEstudiante);
+    }
+
+
+
+
+    /**
      * Actualiza una empresa
      *
      * @param Empresa $pEmpresa
@@ -93,6 +116,8 @@ class ManejoEmpresa
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
         $empresaDAO->actualizar($pEmpresa);
     }
+
+
 
     /**
      * Actualiza el estado de una empresa
@@ -158,13 +183,13 @@ class ManejoEmpresa
     }
 
 
-	/**
-	 * Método para obtener la lista de todas las empresas pero permite la paginación
-	 *
-	 * @return Empresa[]
-	 */
-	public function listaFiltrada($pagInicio, $limit, $filtro)
-	{
+    /**
+     * Método para obtener la lista de todas las empresas pero permite la paginación
+     *
+     * @return Empresa[]
+     */
+    public function listaFiltrada($pagInicio, $limit, $filtro)
+    {
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
         $empresas = $empresaDAO->listaFiltrada($pagInicio, $limit, $filtro);
         return $empresas;

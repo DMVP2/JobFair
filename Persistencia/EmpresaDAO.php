@@ -80,6 +80,33 @@ class EmpresaDAO implements DAO
 	}
 
 	/**
+	 * Método para aplicar un estudiante a una empresa
+	 *
+	 * @param int $pNiEmpresa
+	 * @param int $pIdEstudiante
+	 * @return void
+	 */
+	public function aplicarEstudianteEmpresa($pNiEmpresa, $pIdEstudiante)
+	{
+		$sql = "INSERT INTO estudiante_empresa VALUES(" . $pNiEmpresa . "," . $pIdEstudiante . ", NOW() )";
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
+	 * Método para consultar si ya postulo a una empresa 
+	 *
+	 */
+	public function consultarAplicoEstudianteEmpresa($pNitEmpresa, $pIdEstudiante)
+	{
+		$sql = "SELECT * FROM estudiante_empresa WHERE nit_empresa = " . $pNitEmpresa . " AND numero_documento = " . $pIdEstudiante;
+		if (!$result = mysqli_query($this->conexion, $sql)) die();
+		$cuenta = mysqli_num_rows($result);
+		return $cuenta;
+	}
+
+
+
+	/**
 	 * Método para consultar una empresa por su NIT 
 	 *
 	 * @param int $codigo

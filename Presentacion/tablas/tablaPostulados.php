@@ -174,11 +174,7 @@ $next = $page + 1;
                                                                 <i class="material-icons">visibility</i>
                                                             </button>
                                                         </form>
-                                                        <button class="btn btn-warning" type="submit" id="submit"
-                                                            name="estudiante" value="" data-toggle="modal"
-                                                            data-target="#exampleModal">
-                                                            <i class="material-icons">pan_tool</i>
-                                                        </button>
+
                                                     </th>
                                                 </thead>
 

@@ -100,6 +100,27 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
                                     <br><br>
                                 </form>
                                 <?php
+                                } else if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+                                    if ($manejoEmpresas->consultarAplicoEstudianteEmpresa($empresa->getNit(), $_SESSION['usuario']) == 0) {
+                                    ?>
+                                <br>
+                                <form action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'dejarHojaDeVida.php'  ?>"
+                                    method="post">
+                                    <input class="btn btn-primary" type="hidden" id="idEmpresa" name="idEmpresa"
+                                        value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                    <input class="btn btn-primary" type="submit" id="submit" name="empresa"
+                                        value="Dejar hoja de vida">
+                                    <br><br>
+                                </form>
+                                <?php
+                                    } else {
+                                    ?>
+                                <div class="alert alert-primary" style="text-align: center"> Ya aplicaste</div>
+                                <?php
+
+
+
+                                    }
                                 }
                                 ?>
 
@@ -109,7 +130,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
                                 if (isset($_GET['u'])) {
                                     echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' . "'>Volver</a>";
                                 } else if (strcasecmp($rolUsuario, "Estudiante") == 0) {
-                                    echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'listadoEmpresas.php' . "'>Volver</a>";
+                                    echo "<a href='" . CARPETA_RAIZ . RUTA_INFORMACION . 'listadoEmpresas.php' . "'>Volver</a>";
                                 } else {
                                     echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php' . "'>Volver</a>";
                                 }
