@@ -170,9 +170,11 @@ $next = $page + 1;
                                                         <?php echo $vacante->getEstado() ?>
                                                     </th>
                                                     <th>
-                                                        <form action="informacionVacante.php" method="post">
-                                                            <input class="btn btn-primary" type="hidden"
-                                                                id="<?php echo $vacante->getId() ?>" name="idVacante"
+                                                        <form
+                                                            action="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionVacante.php"; ?>"
+                                                            method="post">
+                                                            <input class="btn btn-primary" type="hidden" id="idVacante"
+                                                                name=" idVacante"
                                                                 value="<?php echo $vacante->getId() ?>"">
                                                             <button class=" btn btn-success" type="submit" id="submit"
                                                                 name="vacante">

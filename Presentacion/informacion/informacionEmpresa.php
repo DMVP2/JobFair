@@ -66,7 +66,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
 
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-10" style=" margin-left: auto; margin-right: auto;">
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <img class="img"
@@ -83,21 +83,20 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
                                 <br>
 
                                 <?php
-                                    if (strcasecmp($rolUsuario, "Administrador") == 0) {
-                                    ?>
-                                    <form action="camaraDeComercio.php" method="post">
-                                        <input class="btn btn-primary" type="hidden" id="idEmpresa"
-                                            name="idEmpresa"
-                                            value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
-                                        <input class="btn btn-primary" type="submit" id="submit" name="empresa"
-                                            value="Ver archivo de la cámara de comercio">
-                                        <br><br>
-                                    </form>
-                                    <?php
-                                    }
-                                    ?>
+                                if (strcasecmp($rolUsuario, "Administrador") == 0) {
+                                ?>
+                                <form action="camaraDeComercio.php" method="post">
+                                    <input class="btn btn-primary" type="hidden" id="idEmpresa" name="idEmpresa"
+                                        value=<?php echo "'" . $empresa->getNit() . "'"; ?>>
+                                    <input class="btn btn-primary" type="submit" id="submit" name="empresa"
+                                        value="Ver archivo de la cámara de comercio">
+                                    <br><br>
+                                </form>
+                                <?php
+                                }
+                                ?>
 
-                                    
+
                             </div>
                         </div>
                     </div>

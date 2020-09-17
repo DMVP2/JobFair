@@ -160,6 +160,8 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                 </div>
                                 <?php
                                     }
+                                    echo "<br>";
+                                    echo "<a href='" . CARPETA_RAIZ . RUTA_INFORMACION . "misVacantes.php" . "'>Volver</a>";
                                 }
                                 if (strcasecmp($rolUsuario, "Empresa") == 0) {
                                     ?>
@@ -177,12 +179,18 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                         value=<?php echo "'" . $vacante->getId() . "'"; ?>>
                                     <button type="submit" class="btn btn-primary">Editar vacante</button>
                                 </form>
+                                <br>
+                                <a href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'misVacantes.php'  ?>">Volver</a>
                                 <?php
+                                }
+
+                                if (strcasecmp($rolUsuario, "Administrador") == 0) {
+                                    echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . "tablaVacante.php" . "'>Volver</a>";
                                 }
                                 ?>
                                 <br>
 
-                                <a href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'misVacantes.php'  ?>">Volver</a>
+
 
 
                                 <br>

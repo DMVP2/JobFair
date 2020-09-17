@@ -255,7 +255,7 @@ class UsuarioDAO implements DAO
 	 */
 	public function listaPaginacion($pagInicio, $limit)
 	{
-		$sql = "SELECT * FROM USUARIO LIMIT " . $pagInicio . " , " . $limit;
+		$sql = "SELECT * FROM USUARIO ORDER BY id_rol_usuario ASC LIMIT " . $pagInicio . " , " . $limit;
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$usuarioArray = array();

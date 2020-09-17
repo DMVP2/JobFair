@@ -59,7 +59,7 @@ $empresa = $manejoEmpresas->buscarEmpresa($idUsuario);
 
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-10" style=" margin-left: auto; margin-right: auto;">
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <img class="img"
