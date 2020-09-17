@@ -19,7 +19,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <select class="form-control" name="idiomas[]">
+                <select class="form-control" name="idiomas[]" required>
                     <?php
 
                     $listaIdiomas = $manejoHojaVida->listarIdiomas();
@@ -35,7 +35,7 @@ $manejoHojaVida = new ManejoHojaDeVida($conexion);
         <div class="col-md-4">
             <div class="form-group">
 
-                <select class="form-control" name="niveles[]">
+                <select class="form-control" name="niveles[]" required>
                     <option value="A1" selected>A1</option>
                     <option value="A2">A2</option>
                     <option value="B1">B1</option>

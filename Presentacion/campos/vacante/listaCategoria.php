@@ -27,7 +27,7 @@ if (isset($_GET['op'])) {
         </div>
         <div class="col-md-9">
             <div class="form-group">
-                <select class="form-control" id="dataCategoria[]" name="dataCategoria[]">
+                <select class="form-control" id="dataCategoria[]" name="dataCategoria[]" required>
                     <?php
                         $listaCategorias = $manejoVacante->listarCategorias();
 

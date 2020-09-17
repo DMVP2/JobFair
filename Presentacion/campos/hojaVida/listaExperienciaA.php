@@ -10,7 +10,7 @@
                 <label class="bmd-label-floating">
                     Experiencia académica
                 </label>
-                <input type="text" class="form-control" id="expAcademica[]" name="expAcademica[]">
+                <input type="text" class="form-control" id="expAcademica[]" name="expAcademica[]" required>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                     <label class="bmd-label-floating">
                         Descripción</label>
                     <textarea class="form-control" maxlength="950" rows="6" name="descripcionExp[]"
-                        id="descripcionExp[]"></textarea>
+                        id="descripcionExp[]" required></textarea>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <label class="bmd-label-floating">
                     Institución
                 </label>
-                <input type="text" class="form-control" id="institucionExpA[]" name="institucionExpA[]">
+                <input type="text" class="form-control" id="institucionExpA[]" name="institucionExpA[]" required>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                     Año de inicio
                 </label>
                 <input type="number" class="form-control" min="1970" max="3000" step="1" value="2016"
-                    onchange="maximoAño(this)" id="añoExpAcademica[]" name="añoExpAcademica[]" />
+                    onchange="maximoAño(this)" id="añoExpAcademica[]" name="añoExpAcademica[]" required>
             </div>
         </div>
     </div>

@@ -89,8 +89,7 @@ $manejoVacante = new ManejoVacante($conexion);
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label class="bmd-label-floating">Titulo</label>
-                                                                <input type="text" class="form-control" id="titulo"
-                                                                    name="titulo" required>
+                                                                <input type="text" class="form-control" id="titulo" name="titulo" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -222,7 +221,7 @@ $manejoVacante = new ManejoVacante($conexion);
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <select class="form-control" id="dataCiudad"
-                                                                    name="dataCiudad">
+                                                                    name="dataCiudad" required>
                                                                     <?php
 
                                                                     $listaCiudades = $manejoVacante->listarCiudades();
@@ -253,7 +252,7 @@ $manejoVacante = new ManejoVacante($conexion);
                                                         <div class="col-md-6">
 
                                                             <select class="form-control" id="disponibilidadViaje"
-                                                                name="disponibilidadViaje">
+                                                                name="disponibilidadViaje" required>
                                                                 <option value="Si">Si</option>
                                                                 <option value="No" selected>No</option>
 

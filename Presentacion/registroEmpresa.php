@@ -103,7 +103,7 @@ $conexion = $c->conectarBD();
                                                                     <label class="bmd-label-floating">Razón
                                                                         social</label>
                                                                     <input type="text" class="form-control"
-                                                                        id="razonSocial" name="razonSocial">
+                                                                        id="razonSocial" name="razonSocial" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -164,7 +164,7 @@ $conexion = $c->conectarBD();
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="file" style="width: 140px;"
-                                                                    id="camaraComercio" name="camaraComercio" riquired>
+                                                                    id="camaraComercio" name="camaraComercio" required>
                                                             </div>
                                                         </div>
 
@@ -177,7 +177,7 @@ $conexion = $c->conectarBD();
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="file" style="width: 140px;" id="user_image"
-                                                                    name="user_image" riquired>
+                                                                    name="user_image" required>
                                                             </div>
                                                         </div>
 

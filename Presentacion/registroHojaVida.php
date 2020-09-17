@@ -158,7 +158,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                         100, "hide" : 100 } data-toggle="tooltip"
                                                                         data-placement="right"
                                                                         title="Recuerda que una hoja de vida deberia tener una estructura, es muy importante."
-                                                                        id="perfilProfesionalArea" rows="8"></textarea>
+                                                                        id="perfilProfesionalArea" rows="8" required></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
