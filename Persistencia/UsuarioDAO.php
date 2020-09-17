@@ -243,7 +243,7 @@ class UsuarioDAO implements DAO
 	 */
 	public function cambiarContraseñaUsuario($pCodigo, $pContraseña)
 	{
-		$sql = "UPDATE usuario SET password_usuario= '" . $pContraseña . "' , estado_usuario='A' WHERE id_usuario = " . $pCodigo;
+		$sql = "UPDATE usuario SET password_usuario= '" . $pContraseña . "' , estado_usuario='Activo' WHERE id_usuario = " . $pCodigo;
 
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 	}

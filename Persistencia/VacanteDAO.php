@@ -413,6 +413,9 @@ class VacanteDAO implements DAO
 	{
 		$sql = "INSERT INTO vacante_estudiante VALUES( " . $pVacante . "," . $pIdEstudiante . ", 'Activo (Sin verificar)', NULL)";
 		mysqli_query($this->conexion, $sql);
+
+		$sql = "UPDATE estudiante SET estado_estudiante='Activo (Con postulación)' WHERE numero_documento=" . $pIdEstudiante;
+		mysqli_query($this->conexion, $sql);
 	}
 
 	/**

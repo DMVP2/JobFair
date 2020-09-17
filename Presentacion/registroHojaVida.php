@@ -158,7 +158,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                         100, "hide" : 100 } data-toggle="tooltip"
                                                                         data-placement="right"
                                                                         title="Recuerda que una hoja de vida deberia tener una estructura, es muy importante."
-                                                                        id="perfilProfesionalArea" rows="8" required></textarea>
+                                                                        id="perfilProfesionalArea" rows="8"
+                                                                        required></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -499,7 +500,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
             object.disabled = true;
 
             $("<div>").load(
-                "<?php echo $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_CAMPOS . '/hojaVida/listaEstudio.php?op=a' ?>",
+                "<?php echo CARPETA_RAIZ . RUTA_CAMPOS . '/hojaVida/listaEstudio.php?op=a' ?>",
                 function() {
                     comp = object.parentNode.parentNode.parentNode.parentNode;
                     var jComp = $(comp);
