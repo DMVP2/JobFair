@@ -63,7 +63,8 @@ $next = $page + 1;
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- CSS Files -->
@@ -95,9 +96,11 @@ $next = $page + 1;
                             <select name="records-limit" id="records-limit" class="custom-select">
                                 <option disabled selected>Límite</option>
                                 <?php foreach ([5, 10, 15, 20] as $limit) : ?>
-                                    <option <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?> value="<?= $limit; ?>">
-                                        <?= $limit; ?>
-                                    </option>
+                                <option
+                                    <?php if (isset($_SESSION['records-limit']) && $_SESSION['records-limit'] == $limit) echo 'selected'; ?>
+                                    value="<?= $limit; ?>">
+                                    <?= $limit; ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                         </form>
@@ -109,7 +112,8 @@ $next = $page + 1;
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title ">Postulados</h4>
-                                    <p class="card-category"> Listado de estudiantes que postulan su hoja de vida a esta empresa </p>
+                                    <p class="card-category"> Listado de estudiantes que postulan su hoja de vida a esta
+                                        empresa </p>
                                 </div>
                                 <div class="card-body">
 
@@ -141,34 +145,42 @@ $next = $page + 1;
                                                 <?php
                                                 foreach ($estudiantes as $estudiante) {
                                                 ?>
-                                                    <thead class=" text-primary">
-                                                        <th>
-                                                            <?php echo $estudiante->getNumeroDocumento() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getNombre() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getCorreo() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getProgramaAcademico() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getSemestreActual() ?>
-                                                        </th>
-                                                        <th>
-                                                            <form action=" <?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php" ?>" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="">
-                                                                    <i class="material-icons">visibility</i>
-                                                                </button>
-                                                            </form>
-                                                                <button class="btn btn-warning" type="submit" id="submit" name="estudiante" value="" data-toggle="modal" data-target="#exampleModal">
-                                                                    <i class="material-icons">pan_tool</i>
-                                                                </button>
-                                                        </th>
-                                                    </thead>
+                                                <thead class=" text-primary">
+                                                    <th>
+                                                        <?php echo $estudiante->getNumeroDocumento() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getNombre() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getCorreo() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getProgramaAcademico() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getSemestreActual() ?>
+                                                    </th>
+                                                    <th>
+                                                        <form
+                                                            action=" <?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php" ?>"
+                                                            method="post">
+                                                            <input class="btn btn-primary" type="hidden"
+                                                                id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>
+                                                                name="idEstudiante"
+                                                                value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                                            <button class="btn btn-success" type="submit" id="submit"
+                                                                name="estudiante" value="">
+                                                                <i class="material-icons">visibility</i>
+                                                            </button>
+                                                        </form>
+                                                        <button class="btn btn-warning" type="submit" id="submit"
+                                                            name="estudiante" value="" data-toggle="modal"
+                                                            data-target="#exampleModal">
+                                                            <i class="material-icons">pan_tool</i>
+                                                        </button>
+                                                    </th>
+                                                </thead>
 
                                                 <?php
                                                 }
@@ -200,11 +212,11 @@ $next = $page + 1;
                             </li>
 
                             <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                                <li class="page-item <?php if ($page == $i) {
+                            <li class="page-item <?php if ($page == $i) {
                                                             echo 'active';
                                                         } ?>">
-                                    <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
-                                </li>
+                                <a class="page-link" href="<?php echo $nombrePagina ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+                            </li>
                             <?php endfor; ?>
 
                             <li class="page-item <?php if ($page >= $totalPages) {
@@ -225,54 +237,88 @@ $next = $page + 1;
 
             <!-- Footer -->
             <?php
-            
-include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
+
+            include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
             ?>
             <!-- Footer -->
 
             <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>¿El estudiante será aceptado o rechazado?</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <button type="button" class="btn btn-outline-primary" style="width: 132px;" data-toggle="modal" data-target="#aceptarModal" >Aceptado</button>
-                    &nbsp;o&nbsp;
-                    <button type="button" class="btn btn-outline-primary" style="width: 132px;" data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>¿El estudiante será aceptado o
+                                    rechazado?</strong>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <form action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . "respuestaVacante.php?a=1" ?>"
+                                method="POST">
+                                <button type="submit" class="btn btn-outline-primary" style="width: 132px;"
+                                    data-toggle="modal" data-target="#aceptarModal">Aceptado</button>
+                                &nbsp;o&nbsp;
+                                <input type="hidden" id="docEstudiante1" name="docEstudiante1">
+                                <input type="hidden" id="idEmpresa" name="idEmpresa" value="<?php echo $idUsuario ?>">
+                                <button type="button" class="btn btn-outline-primary" style="width: 132px;"
+                                    data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
+        <!-- Modal -->
 
-                <!-- Modal -->
-    <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del estudiante?</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <!-- Modal -->
+        <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del
+                                estudiante?</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'respuestaVacante.php?a=0'  ?>"
+                            method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="bmd-label-floating">
+                                        Razón</label>
+                                    <br>
+                                    <textarea class="form-control" maxlength="950" name="razon" id="razon"
+                                        rows="8"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <input type="hidden" id="docEstudiante2" name="docEstudiante2">
+                                    <input type="hidden" id="idEmpresa" name="idEmpresa"
+                                        value="<?php echo $idUsuario ?>">
+                                    <center><button type="submit" class="btn btn-outline-primary"
+                                            style="width: 132px;">Finalizar</button></center>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
-                <div class="modal-body text-center">
-                    <input type="text" class="form-control" placeholder="Razón">
-                    <button type="button" class="btn btn-outline-primary" style="width: 132px;">Finalizar</button>
-               </div>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
+        <!-- Modal -->
 
-        </div>
+    </div>
     </div>
 
 
@@ -300,219 +346,220 @@ include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.ph
     <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/plugins/bootstrap-notify.js" ?>"></script>
     <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> <script>
-        $(document).ready(function() {
-            $().ready(function() {
-                $sidebar = $(".sidebar");
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script>
+    $(document).ready(function() {
+        $().ready(function() {
+            $sidebar = $(".sidebar");
 
-                $sidebar_img_container = $sidebar.find(".sidebar-background");
+            $sidebar_img_container = $sidebar.find(".sidebar-background");
 
-                $full_page = $(".full-page");
+            $full_page = $(".full-page");
 
-                $sidebar_responsive = $("body > .navbar-collapse");
+            $sidebar_responsive = $("body > .navbar-collapse");
 
-                window_width = $(window).width();
+            window_width = $(window).width();
 
 
-                fixed_plugin_open = $(
-                    ".sidebar .sidebar-wrapper .nav li.active a p"
-                ).html();
+            fixed_plugin_open = $(
+                ".sidebar .sidebar-wrapper .nav li.active a p"
+            ).html();
 
-                if (window_width > 767 && fixed_plugin_open == "Dashboard") {
-                    if ($(".fixed-plugin .dropdown").hasClass("show-dropdown")) {
-                        $(".fixed-plugin .dropdown").addClass("open");
+            if (window_width > 767 && fixed_plugin_open == "Dashboard") {
+                if ($(".fixed-plugin .dropdown").hasClass("show-dropdown")) {
+                    $(".fixed-plugin .dropdown").addClass("open");
+                }
+            }
+
+            $(".fixed-plugin a").click(function(event) {
+                if ($(this).hasClass("switch-trigger")) {
+                    if (event.stopPropagation) {
+                        event.stopPropagation();
+                    } else if (window.event) {
+                        window.event.cancelBubble = true;
                     }
                 }
+            });
 
-                $(".fixed-plugin a").click(function(event) {
-                    if ($(this).hasClass("switch-trigger")) {
-                        if (event.stopPropagation) {
-                            event.stopPropagation();
-                        } else if (window.event) {
-                            window.event.cancelBubble = true;
-                        }
-                    }
-                });
+            $(".fixed-plugin .active-color span").click(function() {
+                $full_page_background = $(".full-page-background");
 
-                $(".fixed-plugin .active-color span").click(function() {
-                    $full_page_background = $(".full-page-background");
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
 
-                    $(this).siblings().removeClass("active");
-                    $(this).addClass("active");
+                var new_color = $(this).data("color");
 
-                    var new_color = $(this).data("color");
+                if ($sidebar.length != 0) {
+                    $sidebar.attr("data-color", new_color);
+                }
 
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr("data-color", new_color);
-                    }
+                if ($full_page.length != 0) {
+                    $full_page.attr("filter-color", new_color);
+                }
 
-                    if ($full_page.length != 0) {
-                        $full_page.attr("filter-color", new_color);
-                    }
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.attr("data-color", new_color);
+                }
+            });
 
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.attr("data-color", new_color);
-                    }
-                });
+            $(".fixed-plugin .background-color .badge").click(function() {
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
 
-                $(".fixed-plugin .background-color .badge").click(function() {
-                    $(this).siblings().removeClass("active");
-                    $(this).addClass("active");
+                var new_color = $(this).data("background-color");
 
-                    var new_color = $(this).data("background-color");
+                if ($sidebar.length != 0) {
+                    $sidebar.attr("data-background-color", new_color);
+                }
+            });
 
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr("data-background-color", new_color);
-                    }
-                });
+            $(".fixed-plugin .img-holder").click(function() {
+                $full_page_background = $(".full-page-background");
 
-                $(".fixed-plugin .img-holder").click(function() {
-                    $full_page_background = $(".full-page-background");
+                $(this).parent("li").siblings().removeClass("active");
+                $(this).parent("li").addClass("active");
 
-                    $(this).parent("li").siblings().removeClass("active");
-                    $(this).parent("li").addClass("active");
+                var new_image = $(this).find("img").attr("src");
 
-                    var new_image = $(this).find("img").attr("src");
-
-                    if (
-                        $sidebar_img_container.length != 0 &&
-                        $(".switch-sidebar-image input:checked").length != 0
-                    ) {
-                        $sidebar_img_container.fadeOut("fast", function() {
-                            $sidebar_img_container.css(
-                                "background-image",
-                                'url("' + new_image + '")'
-                            );
-                            $sidebar_img_container.fadeIn("fast");
-                        });
-                    }
-
-                    if (
-                        $full_page_background.length != 0 &&
-                        $(".switch-sidebar-image input:checked").length != 0
-                    ) {
-                        var new_image_full_page = $(".fixed-plugin li.active .img-holder")
-                            .find("img")
-                            .data("src");
-
-                        $full_page_background.fadeOut("fast", function() {
-                            $full_page_background.css(
-                                "background-image",
-                                'url("' + new_image_full_page + '")'
-                            );
-                            $full_page_background.fadeIn("fast");
-                        });
-                    }
-
-                    if ($(".switch-sidebar-image input:checked").length == 0) {
-                        var new_image = $(".fixed-plugin li.active .img-holder")
-                            .find("img")
-                            .attr("src");
-                        var new_image_full_page = $(".fixed-plugin li.active .img-holder")
-                            .find("img")
-                            .data("src");
-
+                if (
+                    $sidebar_img_container.length != 0 &&
+                    $(".switch-sidebar-image input:checked").length != 0
+                ) {
+                    $sidebar_img_container.fadeOut("fast", function() {
                         $sidebar_img_container.css(
                             "background-image",
                             'url("' + new_image + '")'
                         );
+                        $sidebar_img_container.fadeIn("fast");
+                    });
+                }
+
+                if (
+                    $full_page_background.length != 0 &&
+                    $(".switch-sidebar-image input:checked").length != 0
+                ) {
+                    var new_image_full_page = $(".fixed-plugin li.active .img-holder")
+                        .find("img")
+                        .data("src");
+
+                    $full_page_background.fadeOut("fast", function() {
                         $full_page_background.css(
                             "background-image",
                             'url("' + new_image_full_page + '")'
                         );
+                        $full_page_background.fadeIn("fast");
+                    });
+                }
+
+                if ($(".switch-sidebar-image input:checked").length == 0) {
+                    var new_image = $(".fixed-plugin li.active .img-holder")
+                        .find("img")
+                        .attr("src");
+                    var new_image_full_page = $(".fixed-plugin li.active .img-holder")
+                        .find("img")
+                        .data("src");
+
+                    $sidebar_img_container.css(
+                        "background-image",
+                        'url("' + new_image + '")'
+                    );
+                    $full_page_background.css(
+                        "background-image",
+                        'url("' + new_image_full_page + '")'
+                    );
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.css(
+                        "background-image",
+                        'url("' + new_image + '")'
+                    );
+                }
+            });
+
+            $(".switch-sidebar-image input").change(function() {
+                $full_page_background = $(".full-page-background");
+
+                $input = $(this);
+
+                if ($input.is(":checked")) {
+                    if ($sidebar_img_container.length != 0) {
+                        $sidebar_img_container.fadeIn("fast");
+                        $sidebar.attr("data-image", "#");
                     }
 
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.css(
-                            "background-image",
-                            'url("' + new_image + '")'
-                        );
-                    }
-                });
-
-                $(".switch-sidebar-image input").change(function() {
-                    $full_page_background = $(".full-page-background");
-
-                    $input = $(this);
-
-                    if ($input.is(":checked")) {
-                        if ($sidebar_img_container.length != 0) {
-                            $sidebar_img_container.fadeIn("fast");
-                            $sidebar.attr("data-image", "#");
-                        }
-
-                        if ($full_page_background.length != 0) {
-                            $full_page_background.fadeIn("fast");
-                            $full_page.attr("data-image", "#");
-                        }
-
-                        background_image = true;
-                    } else {
-                        if ($sidebar_img_container.length != 0) {
-                            $sidebar.removeAttr("data-image");
-                            $sidebar_img_container.fadeOut("fast");
-                        }
-
-                        if ($full_page_background.length != 0) {
-                            $full_page.removeAttr("data-image", "#");
-                            $full_page_background.fadeOut("fast");
-                        }
-
-                        background_image = false;
-                    }
-                });
-
-                $(".switch-sidebar-mini input").change(function() {
-                    $body = $("body");
-
-                    $input = $(this);
-
-                    if (md.misc.sidebar_mini_active == true) {
-                        $("body").removeClass("sidebar-mini");
-                        md.misc.sidebar_mini_active = false;
-
-                        $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar();
-                    } else {
-                        $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar(
-                            "destroy"
-                        );
-
-                        setTimeout(function() {
-                            $("body").addClass("sidebar-mini");
-
-                            md.misc.sidebar_mini_active = true;
-                        }, 300);
+                    if ($full_page_background.length != 0) {
+                        $full_page_background.fadeIn("fast");
+                        $full_page.attr("data-image", "#");
                     }
 
-                    // We simulate the window Resize so the charts will get updated in realtime.
+                    background_image = true;
+                } else {
+                    if ($sidebar_img_container.length != 0) {
+                        $sidebar.removeAttr("data-image");
+                        $sidebar_img_container.fadeOut("fast");
+                    }
 
-                    var simulateWindowResize = setInterval(function() {
-                        window.dispatchEvent(new Event("resize"));
-                    }, 180);
+                    if ($full_page_background.length != 0) {
+                        $full_page.removeAttr("data-image", "#");
+                        $full_page_background.fadeOut("fast");
+                    }
 
-                    // We stop the simulation of Window Resize after the animations are completed
+                    background_image = false;
+                }
+            });
+
+            $(".switch-sidebar-mini input").change(function() {
+                $body = $("body");
+
+                $input = $(this);
+
+                if (md.misc.sidebar_mini_active == true) {
+                    $("body").removeClass("sidebar-mini");
+                    md.misc.sidebar_mini_active = false;
+
+                    $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar();
+                } else {
+                    $(".sidebar .sidebar-wrapper, .main-panel").perfectScrollbar(
+                        "destroy"
+                    );
 
                     setTimeout(function() {
-                        clearInterval(simulateWindowResize);
-                    }, 1000);
-                });
+                        $("body").addClass("sidebar-mini");
+
+                        md.misc.sidebar_mini_active = true;
+                    }, 300);
+                }
+
+                // We simulate the window Resize so the charts will get updated in realtime.
+
+                var simulateWindowResize = setInterval(function() {
+                    window.dispatchEvent(new Event("resize"));
+                }, 180);
+
+                // We stop the simulation of Window Resize after the animations are completed
+
+                setTimeout(function() {
+                    clearInterval(simulateWindowResize);
+                }, 1000);
             });
         });
+    });
     </script>
     <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
 
-            // Javascript method's body can be found in assets/js/demos.js
+        // Javascript method's body can be found in assets/js/demos.js
 
-            md.initDashboardPageCharts();
-        });
+        md.initDashboardPageCharts();
+    });
     </script>
     <script>
-        $(document).ready(function() {
-            $('#records-limit').change(function() {
-                $('form').submit();
-            })
-        });
+    $(document).ready(function() {
+        $('#records-limit').change(function() {
+            $('form').submit();
+        })
+    });
     </script>
 </body>
 
