@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 // Importación de clases
 
