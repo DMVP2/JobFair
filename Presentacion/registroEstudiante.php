@@ -41,9 +41,8 @@ $conexion = $c->conectarBD();
                 <br><br>
                 <div>
                     <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-6">
+
+                        <div class="col-md-6" style=" margin-left: auto; margin-right: auto;">
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <p class="card-category">Registro de estudiantes
@@ -59,9 +58,8 @@ $conexion = $c->conectarBD();
                                                 <br>
                                                 <br>
                                                 <div class="row">
-                                                    <div class="col-md-2"></div>
-
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-7"
+                                                        style=" margin-left: auto; margin-right: auto;">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <select class="form-group form-control"

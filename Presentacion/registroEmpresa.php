@@ -48,34 +48,25 @@ $conexion = $c->conectarBD();
 
                 <div>
                     <div class="row">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-6">
+
+                        <div class="col-md-6" style=" margin-left: auto; margin-right: auto;">
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <p class="card-category">Registro de empresas
                                     </p>
-
                                     <h4 class="card-title">Registrate en la plataforma de la ¡Feria de oportunidades!
                                     </h4>
-
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-1">
-
-                                        </div>
-                                        <div class="col-lg-9">
-
-
+                                        <div class="col-md-9" style=" margin-left: auto; margin-right: auto;">
                                             <form id="formRegistroEmpresa" enctype="multipart/form-data" method="POST"
                                                 action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'registrarEmpresa.php' ?>">
                                                 <br><br>
 
                                                 <div class="row">
-                                                    <div class="col-md-2"></div>
-
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-10"
+                                                        style=" margin-left: auto; margin-right: auto;">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
@@ -167,26 +158,26 @@ $conexion = $c->conectarBD();
                                                         <br><br>
 
                                                         <div class="row">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="bmd-label-floating">
                                                                     Camara de comercio:</label>
                                                             </div>
-                                                            <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;" id="camaraComercio"
-                                                                    name="camaraComercio" riquired>
+                                                            <div class="col-md-6">
+                                                                <input type="file" style="width: 140px;"
+                                                                    id="camaraComercio" name="camaraComercio" riquired>
                                                             </div>
                                                         </div>
 
                                                         <br><br>
 
                                                         <div class="row">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="bmd-label-floating">
                                                                     Tu logo:</label>
                                                             </div>
-                                                            <div class="col-md-7">
-                                                                <input type="file" style="width: 140px;"
-                                                                    id="user_image" name="user_image" riquired>
+                                                            <div class="col-md-6">
+                                                                <input type="file" style="width: 140px;" id="user_image"
+                                                                    name="user_image" riquired>
                                                             </div>
                                                         </div>
 

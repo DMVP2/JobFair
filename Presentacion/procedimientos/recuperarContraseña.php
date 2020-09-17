@@ -27,6 +27,7 @@ $contraseñaCifrada = md5($contraseña);
 
 $us->setUsuario($usuario);
 $us->setPassword($contraseñaCifrada);
+$us->setEstado("Activo (Sin verificar)");
 
 $manejoUsuario->modificarUsuarioContraseña($us);
 

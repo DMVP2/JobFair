@@ -66,9 +66,8 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                     <div>
                         <div class="row">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-7">
+
+                            <div class="col-md-7" style=" margin-left: auto; margin-right: auto;">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
                                         <p class="card-category">Hoja de vida
@@ -79,18 +78,14 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3">
 
-                                            </div>
-                                            <div class="col-lg-7">
-
-
+                                            <div class="col-md-8" style=" margin-left: auto; margin-right: auto;">
                                                 <form id="formularioHojaVida" method="POST"
                                                     action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'agregarHojaVida.php' ?>">
                                                     <br>
 
                                                     <div class="row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label class="bmd-label-floating">
                                                                     <?php echo $estudiante->getTipoDeDocumento() ?>
@@ -98,7 +93,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                 <input type="text" class="form-control" disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-8">
                                                             <div class="form-group">
                                                                 <label
                                                                     class="bmd-label-floating"><?php echo $estudiante->getNumeroDocumento() ?></label>
@@ -108,7 +103,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label
                                                                     class="bmd-label-floating"><?php echo $estudiante->getNombre() ?></label>
@@ -118,7 +113,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label
                                                                     class="bmd-label-floating"><?php echo $estudiante->getCorreo() ?></label>
@@ -128,7 +123,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-7">
                                                             <div class="form-group">
                                                                 <label class="bmd-label-floating">
                                                                     <?php echo $estudiante->getProgramaAcademico() ?>
@@ -136,7 +131,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                                 <input type="text" class="form-control" disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <label class="bmd-label-floating">Semestre
                                                                     <?php echo $estudiante->getSemestreActual() ?></label>
@@ -198,10 +193,13 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <br><br><br>
 
-                                                    <input class="btn btn-warning" type="button" value="Agregar idioma"
-                                                        onclick="agregarCampoListaIdioma()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar idioma"
-                                                        onclick="eliminarCampoListaIdioma()">
+                                                    <div class="text-center">
+
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Agregar idioma" onclick="agregarCampoListaIdioma()">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Borrar idioma" onclick="eliminarCampoListaIdioma()">
+                                                    </div>
 
                                                     <br><br><br>
 
@@ -218,10 +216,15 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
 
                                                     <br><br><br>
 
-                                                    <input class="btn btn-warning" type="button" value="Agregar estudio"
-                                                        onclick="agregarCampoListaEstudio()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar estudio"
-                                                        onclick="eliminarCampoListaEstudio()">
+                                                    <div class="text-center">
+
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Agregar estudio"
+                                                            onclick="agregarCampoListaEstudio()">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Borrar estudio"
+                                                            onclick="eliminarCampoListaEstudio()">
+                                                    </div>
 
                                                     <br><br><br>
 
@@ -234,12 +237,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     </div>
 
                                                     <br><br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoListaExpA()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoListaExpA()">
-
+                                                    <div class="text-center">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Agregar campo" onclick="agregarCampoListaExpA()">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Borrar campo" onclick="eliminarCampoListaExpA()">
+                                                    </div>
                                                     <br><br><br>
 
 
@@ -269,12 +272,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     </div>
 
                                                     <br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoExperiencia()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoExperiencia()">
-
+                                                    <div class="text-center">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Agregar campo" onclick="agregarCampoExperiencia()">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Borrar campo" onclick="eliminarCampoExperiencia()">
+                                                    </div>
 
                                                     <br><br><br>
 
@@ -289,12 +292,12 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     </div>
 
                                                     <br><br><br>
-
-                                                    <input class="btn btn-warning" type="button" value="Agregar campo"
-                                                        onclick="agregarCampoReferencia()">
-                                                    <input class="btn btn-warning" type="button" value="Borrar campo"
-                                                        onclick="eliminarCampoReferencia()">
-
+                                                    <div class="text-center">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Agregar campo" onclick="agregarCampoReferencia()">
+                                                        <input class="btn btn-warning" type="button"
+                                                            value="Borrar campo" onclick="eliminarCampoReferencia()">
+                                                    </div>
                                                     <br><br><br>
 
                                                     <div class="row">
@@ -318,10 +321,14 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($documentoEstudiante);
                                                     <br><br><br>
 
                                                     <div class="row">
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12 text-center">
                                                             <input type="button" class="btn btn-primary pull-center"
                                                                 value="Crear hoja de vida" onclick="enviarFormulario()">
+
+                                                            <br><br>
+
+                                                            <a
+                                                                href="<?php echo CARPETA_RAIZ . RUTA_PORTALES . 'PortalEstudiante.php'  ?>">Volver</a>
                                                         </div>
 
                                                     </div>
