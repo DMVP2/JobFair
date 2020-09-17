@@ -384,7 +384,7 @@ class VacanteDAO implements DAO
 	 */
 	public function aplicarVacanteEstudiante($pVacante, $pIdEstudiante)
 	{
-		$sql = "INSERT INTO vacante_estudiante VALUES( " . $pVacante . "," . $pIdEstudiante . ", 'Activo (Sin verificar)')";
+		$sql = "INSERT INTO vacante_estudiante VALUES( " . $pVacante . "," . $pIdEstudiante . ", 'Activo (Sin verificar)', NULL)";
 		mysqli_query($this->conexion, $sql);
 	}
 
@@ -570,7 +570,7 @@ class VacanteDAO implements DAO
 	public function listaFiltrada($pagInicio, $limit, $filtro)
 	{
 		$sql = $filtro;
-		
+
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$vacanteArray = array();

@@ -41,26 +41,24 @@ $conexion = $c->conectarBD();
         <div class="content">
             <div class="container-fluid">
                 <!-- CONTENIDO PAGINA -->
-                <br><br>
+                <br><br><br>
                 <div>
                     <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-4" style=" margin-left: auto; margin-right: auto;">
                             <div class="card">
                                 <div class="card-header card-header-primary">
                                     <p class="card-category text-center">INICIAR SESIÓN</p>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-2">
-                                        </div>
-                                        <div class="col-lg-9">
+
+                                        <div class="col-md-9" style=" margin-left: auto; margin-right: auto;">
                                             <form id="formRegistroEstudiante" method="post"
                                                 action="../Sesion/iniciarSesion.php">
                                                 <br>
                                                 <div class="row">
-                                                    <div class="col-md-2"></div>
+
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -90,7 +88,7 @@ $conexion = $c->conectarBD();
 
                                                                 <?php
                                                                 if (isset($_GET["captcha"]) && $_GET["captcha"] == 'true') {
-                                                                    echo "<div style='color:red' align='center'>Catcha inválido ¡Eres un Robot!</div>";
+                                                                    echo "<center><div class='text-center' style='color:red' >Catcha inválido ¡Eres un Robot!</div></center>";
                                                                 }
                                                                 ?>
                                                                 <div class="g-recaptcha" name="captcha" id="captcha"

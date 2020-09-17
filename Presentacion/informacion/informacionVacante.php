@@ -167,8 +167,7 @@ if (strcasecmp($rolUsuario, "Estudiante") == 0) {
                                     ?>
                                 <form action="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaPostulaciones.php'  ?>"
                                     method="post">
-                                    <input class="btn btn-primary" type="hidden"
-                                        id=<?php echo "'" . $vacante->getId() . "'"; ?> name="idVacante"
+                                    <input class="btn btn-primary" type="hidden" id="idVacante" name="idVacante"
                                         value=<?php echo "'" . $vacante->getId() . "'"; ?>>
                                     <button type="submit" class="btn btn-primary"> Aspirantes a esta vacante </button>
                                 </form>
