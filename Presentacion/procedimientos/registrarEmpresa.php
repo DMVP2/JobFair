@@ -44,7 +44,7 @@ if (empty($docFile)) {
 
     if (in_array($documentExt, $valid_extensions)) {
         //Verificar tamaño del archivo '1 MB'
-        if ($docSize < 1000000) {
+        if ($docSize < 3000000) {
             move_uploaded_file($tmp_dir, $upload_dir . $document);
         } else {
             //Si no se puede
