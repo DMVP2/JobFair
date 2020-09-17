@@ -134,7 +134,6 @@ class manejoVacante
         $VacanteDAO->editarCiudadVacante($pVacante, $pCiudad);
     }
 
-
     /**
      * Aplicar estudiante a una vacante
      *
@@ -145,6 +144,25 @@ class manejoVacante
         $VacanteDAO->aplicarVacanteEstudiante($pVacante, $pIdEstudiante);
     }
 
+    /**
+     * Aprobar estudiante en la vacante
+     *
+     */
+    public function aprobarEstudiante($pIdVacante, $pIdEstudiante)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->aprobarEstudiante($pIdVacante, $pIdEstudiante);
+    }
+
+    /**
+     * Rechazar estudiante de una vacante
+     *
+     */
+    public function rechazarEstudiante($pIdVacante, $pIdEstudiante, $pRazon)
+    {
+        $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
+        $VacanteDAO->rechazarEstudiante($pIdVacante, $pIdEstudiante, $pRazon);
+    }
 
 
 
@@ -333,24 +351,23 @@ class manejoVacante
         return $vacantes;
     }
 
-	/**
-	 * Método para obtener la lista de todas las vacantes que posean una categoria que corresponda con el filtro
-	 *
-	 * @return 
-	 */
+    /**
+     * Método para obtener la lista de todas las vacantes que posean una categoria que corresponda con el filtro
+     *
+     * @return 
+     */
     public function listaFiltrada($pagInicio, $limit, $categoria, $empresa)
     {
 
         $filtro = "SELECT * FROM VACANTE, CATEGORIA_VACANTE, CATEGORIA, EMPRESA WHERE";
 
-        if($categoria != null) {
+        if ($categoria != null) {
 
             $filtro .= "CATEGORIA.nombre_categoria LIKE '%$categoria%' AND VACANTE.id_vacante = CATEGORIA_VACANTE.id_vacante AND CATEGORIA.id_categoria = CATEGORIA_VACANTE.id_categoria";
         }
-        if($empresa != null) {
+        if ($empresa != null) {
 
-            if($categoria != null)
-            {
+            if ($categoria != null) {
                 $filtro .= "AND";
             }
 

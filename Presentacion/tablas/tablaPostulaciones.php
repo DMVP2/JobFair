@@ -183,7 +183,8 @@ $next = $page + 1;
 
                                                         <button class="btn btn-warning" type="submit" id="submit"
                                                             name="estudiante" value="" data-toggle="modal"
-                                                            data-target="#exampleModal">
+                                                            data-target="#exampleModal"
+                                                            onclick="actualizarIdEstudiante(<?php echo $estudiante->getNumeroDocumento() ?>)">
                                                             <i class="material-icons">pan_tool</i>
                                                         </button>
                                                     </th>
@@ -262,14 +263,14 @@ $next = $page + 1;
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body ">
-                            <form action="">
-                                <button type="button" class="btn btn-outline-primary" style="width: 132px;"
+                        <div class="modal-body text-center">
+                            <form action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . "respuestaVacante.php?a=1" ?>"
+                                method="POST">
+                                <button type="submit" class="btn btn-outline-primary" style="width: 132px;"
                                     data-toggle="modal" data-target="#aceptarModal">Aceptado</button>
-                            </form>
-
-                            &nbsp;o&nbsp;
-                            <form action="">
+                                &nbsp;o&nbsp;
+                                <input type="hidden" id="docEstudiante1" name="docEstudiante1">
+                                <input type="hidden" id="idVacante1" name="idVacante1" value="<?php echo $idVacante ?>">
                                 <button type="button" class="btn btn-outline-primary" style="width: 132px;"
                                     data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
                             </form>
@@ -277,22 +278,25 @@ $next = $page + 1;
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
+        </div>
+        <!-- Modal -->
 
-            <!-- Modal -->
-            <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del
-                                    estudiante?</strong>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+        <!-- Modal -->
+        <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del
+                                estudiante?</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?php echo CARPETA_RAIZ . RUTA_PROCEDIMIENTOS . 'respuestaVacante.php?a=0'  ?>"
+                            method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="bmd-label-floating">
@@ -306,19 +310,23 @@ $next = $page + 1;
                             <div class="row">
                                 <div class="col-md-12">
                                     <br>
-                                    <center><button type="button" class="btn btn-outline-primary"
+                                    <input type="hidden" id="docEstudiante2" name="docEstudiante2">
+                                    <input type="hidden" id="idVacante2" name="idVacante2"
+                                        value="<?php echo $idVacante ?>">
+                                    <center><button type="submit" class="btn btn-outline-primary"
                                             style="width: 132px;">Finalizar</button></center>
                                 </div>
 
                             </div>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-
         </div>
+        <!-- Modal -->
+
+    </div>
     </div>
 
 
@@ -347,9 +355,20 @@ $next = $page + 1;
     <script src="<?php echo CARPETA_RAIZ . RUTA_ASSETS . "js/material-dashboard.js?v=2.1.2" ?> type=" text/javascript">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+    <script>
+    function actualizarIdEstudiante(id, idVacante) {
+        document.getElementById("docEstudiante1").value = id;
+        document.getElementById("docEstudiante2").value = id;
+
+    }
+    </script>
+
     <script>
     $(document).ready(function() {
         $().ready(function() {
+
+
             $sidebar = $(".sidebar");
 
             $sidebar_img_container = $sidebar.find(".sidebar-background");

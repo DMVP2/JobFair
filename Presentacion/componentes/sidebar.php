@@ -10,7 +10,7 @@ $rolUsuario = $_SESSION['rol'];
 
     <div class="logo">
         <a href="#" class="simple-text logo-mini">
-            Modulo de <?php echo $rolUsuario ?>
+            Módulo de <?php echo $rolUsuario ?>
         </a>
     </div>
     <div class="sidebar-wrapper">

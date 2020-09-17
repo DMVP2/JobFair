@@ -89,6 +89,7 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                                     </h2>
                                     <h5> Correo electrónico: <?php echo $estudiante->getCorreo() ?></h5>
                                     <h5> Semestre: <?php echo $estudiante->getSemestreActual() ?></h5>
+                                    <h5> Celular: <?php echo $estudiante->getTelefono() ?></h5>
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6">

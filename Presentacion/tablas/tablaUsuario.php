@@ -125,7 +125,7 @@ $next = $page + 1;
                                                     ID
                                                 </th>
                                                 <th>
-                                                    Nickname (Usuario)
+                                                    Usuario
                                                 </th>
                                                 <th>
                                                     Rol

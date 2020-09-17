@@ -284,6 +284,33 @@ class VacanteDAO implements DAO
 	}
 
 	/**
+	 * Método para seleccionar un estudiatne en una vacante
+	 *
+	 * @param int $pIdVacante
+	 * @param int $pIdEstudiante
+	 * @return void
+	 */
+	public function aprobarEstudiante($pIdVacante, $pIdEstudiante)
+	{
+		$sql = "UPDATE vacante_Estudiante SET estado_aplicacion='Seleccionado', razon_rechazo_aceptacion='Aceptado' where id_vacante=" . $pIdVacante . " AND numero_documento = " . $pIdEstudiante;
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
+	 * Método para rechazar un estudiatne en una vacante
+	 *
+	 * @param int $pIdVacante
+	 * @param int $pIdEstudiante
+	 * @param String $pRazon
+	 * @return void
+	 */
+	public function rechazarEstudiante($pIdVacante, $pIdEstudiante, $pRazon)
+	{
+		$sql = "UPDATE vacante_Estudiante SET estado_aplicacion='Rechazado', razon_rechazo_aceptacion='" . $pRazon . "' where id_vacante=" . $pIdVacante . " AND numero_documento = " . $pIdEstudiante;
+		mysqli_query($this->conexion, $sql);
+	}
+
+	/**
 	 * Método para obtener una lista de las ciudades de la vacantes
 	 *
 	 * @param int $codigo

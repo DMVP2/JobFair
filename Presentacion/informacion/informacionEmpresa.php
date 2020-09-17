@@ -108,6 +108,8 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
 
                                 if (isset($_GET['u'])) {
                                     echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' . "'>Volver</a>";
+                                } else if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+                                    echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'listadoEmpresas.php' . "'>Volver</a>";
                                 } else {
                                     echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php' . "'>Volver</a>";
                                 }
