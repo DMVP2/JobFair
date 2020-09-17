@@ -140,9 +140,12 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
 
                                     echo "<br>";
 
-                                    if (strnatcasecmp($_SESSION['rol'], "Administrador") == 0) {
+                                    if (isset($_GET['u'])) {
+                                        echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' . "'>Volver</a>";
+                                    } else if (strnatcasecmp($_SESSION['rol'], "Administrador") == 0) {
                                         echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaEstudiante.php' . "'>Volver</a>";
                                     } else {
+                                        echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaPostulados.php' . "'>Volver</a>";
                                     }
 
                                     ?>

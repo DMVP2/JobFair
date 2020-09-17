@@ -171,6 +171,7 @@ $next = $page + 1;
                                                                 $ruta = CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php";
                                                                 $tipoId = "idEstudiante";
                                                             }
+                                                            $ruta = $ruta . "?u=1";
 
                                                             ?>
 
@@ -179,8 +180,8 @@ $next = $page + 1;
                                                             ?>
                                                         <!-- BOTON VER USUARIO (EMPRESA/ESTUDIANTE) -->
                                                         <form action="<?php echo $ruta ?>" method="post">
-                                                            <input class="btn btn-primary" type="hidden"
-                                                                id=<?php echo "'" . $usuario->getId() . "'"; ?>
+                                                            <input class="btn btn-primary" type="hidden" id=.
+                                                                <?php $usuario->getId() . "'"; ?>
                                                                 name="<?php echo $tipoId ?>"
                                                                 value=<?php echo "'" . $usuario->getId() . "'"; ?>>
                                                             <button class="btn btn-success" type="submit" id="submit"

@@ -104,7 +104,15 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
                                 ?>
 
                                 <br>
-                                <a href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php'  ?>">Volver</a>
+                                <?php
+
+                                if (isset($_GET['u'])) {
+                                    echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' . "'>Volver</a>";
+                                } else {
+                                    echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php' . "'>Volver</a>";
+                                }
+
+                                ?>
                                 <br><br>
                             </div>
                         </div>

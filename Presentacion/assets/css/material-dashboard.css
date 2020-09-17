@@ -50,8 +50,6 @@ body {
   outline: 0 !important;
 }
 
-
-
 h1,
 h2,
 h3,
@@ -9883,16 +9881,16 @@ a.text-dark:focus {
 
 .btn.btn-warning:hover {
   color: #fff;
-  background-color: #E17400;
-  border-color: #E17400;
+  background-color: #e17400;
+  border-color: #e17400;
 }
 
 .btn.btn-warning:focus,
 .btn.btn-warning.focus,
 .btn.btn-warning:hover {
   color: #fff;
-  background-color: #E17400;
-  border-color: #E17400;
+  background-color: #e17400;
+  border-color: #e17400;
 }
 
 .btn.btn-warning:active,
@@ -15011,8 +15009,8 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-primary {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  box-shadow: 0 2px 2px 0 rgb(0, 94, 110), 0 3px 1px -2px rgb(0, 94, 110),
+    0 1px 5px 0 rgb(0, 94, 110);
 }
 
 .alert.alert-primary i {
