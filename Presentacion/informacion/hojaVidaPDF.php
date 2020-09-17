@@ -17,6 +17,8 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
+$idUsuario = $_SESSION['usuario'];
+$rolUsuario = $_SESSION['rol'];
 $idEstudiante = "";
 
 if (strcasecmp($rolUsuario, "Estudiante") == 0) {
@@ -31,7 +33,7 @@ $estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
 
 if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
-    $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
+  $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
 }
 
 // Variables procedentes del estudiante
@@ -138,7 +140,7 @@ foreach ($estudios as $estudio) {
   $nombre = $estudio->getNombre();
   $area = $estudio->getArea();
   $intitucion = $estudio->getInstitucion();
-  $nivel = $estudio->NivelEstudio();
+  $nivel = $estudio->getNivelEstudio();
   $fecha = $estudio->getFecha();
 
   $pdf->SetFillColor(132, 174, 64);
@@ -150,10 +152,10 @@ foreach ($estudios as $estudio) {
   $pdf->Ln(10);
 }
 
-// Experiencia laboral
+// Experiencia académica
 
 $pdf->SetFillColor(245, 132, 31);
-$pdf->Cell(190, 10, "Experiencia" . utf8_decode("académica"), 0, 1, 'C', true);
+$pdf->Cell(190, 10, "Experiencia " . utf8_decode("académica"), 0, 1, 'C', true);
 $pdf->Ln(14);
 
 foreach ($academia as $experienciaAcademica) {
@@ -180,10 +182,10 @@ $pdf->Ln(14);
 
 foreach ($experiencias as $experiencia) {
 
-  $cargo = $experienciaAcademica->getCargo();
-  $descripcion = $experienciaAcademica->getDescripcion();
-  $empresa = $experienciaAcademica->getEmpresa();
-  $fecha = $experienciaAcademica->getFecha();
+  $cargo = $experiencia->getCargo();
+  $descripcion = $experiencia->getDescripcion();
+  $empresa = $experiencia->getEmpresa();
+  $fecha = $experiencia->getFecha();
 
   $pdf->SetFillColor(132, 174, 64);
   $pdf->Multicell(190, 10, utf8_decode($fecha), 0, 1, 'L', true);
