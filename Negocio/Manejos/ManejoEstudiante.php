@@ -153,6 +153,20 @@ class ManejoEstudiante
     }
 
     /**
+     * Método para listar los estudiantes que aplicaron a determinada vacante
+     *
+     * @param int $idVacante
+     * @param int $idEstudiante
+     * @return Estudiante[]
+     */
+    public function listarPostulacionesAceptadasVacante(int $idVacante, $pagInicio, $limit)
+    {
+        $estudianteDAO = EstudianteDAO::obtenerEstudianteDAO($this->conexion);
+        $estudiantes = $estudianteDAO->listarPostulacionesAceptadasVacante($idVacante, $pagInicio, $limit);
+        return $estudiantes;
+    }
+
+    /**
      * Obtiene la cantidad de estudiantes registradas en la base de datos
      *
      * @return int $cantidadEstudiantes

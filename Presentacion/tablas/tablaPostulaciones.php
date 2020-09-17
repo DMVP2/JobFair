@@ -42,6 +42,7 @@ $paginationStart = ($page - 1) * $limit;
 // RETORNA EL ARREGLO DE LA BD
 
 $estudiantes = $manejoEstudiantes->listarPostulacionesVacante($idVacante, $paginationStart, $limit);
+$estudiantesAceptados = $manejoEstudiantes->listarPostulacionesAceptadasVacante($idVacante, $paginationStart, $limit);
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
@@ -192,7 +193,43 @@ $next = $page + 1;
 
                                                 <?php
                                                 }
+                                                foreach ($estudiantesAceptados as $estudiante) {
+                                                ?>
+                                                <thead class=" text-primary">
+                                                    <th>
+                                                        <?php echo $estudiante->getNumeroDocumento() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getNombre() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getCorreo() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getProgramaAcademico() ?>
+                                                    </th>
+                                                    <th>
+                                                        <?php echo $estudiante->getSemestreActual() ?>
+                                                    </th>
+                                                    <th>
+                                                        <form
+                                                            action="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php"; ?>"
+                                                            method="post">
+                                                            <input class="btn btn-primary" type="hidden"
+                                                                id="idEstudiante" name="idEstudiante"
+                                                                value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                                            <button class="btn btn-success" type="submit" id="submit"
+                                                                name="estudiante" value="">
+                                                                <i class="material-icons">visibility</i>
+                                                            </button>
+                                                        </form>
 
+
+                                                    </th>
+                                                </thead>
+
+                                                <?php
+                                                }
                                                 ?>
 
                                             </tbody>

@@ -63,7 +63,7 @@ if ($opcion == 1) {
     $cuerpo = CUERPO_RECHAZO_VACANTE . "<br><br>Razón: " . $razon;
 }
 
-$cuerpo = $cuerpo . "<br><br>Vacante: " . $vacante->getNombre() . ".<br><br>Empresa: " . $empresa->getRazonSocial() . "<br><br>.Gracias por usar la plataforma.";
+$cuerpo = $cuerpo . "<br><br>Vacante: " . $vacante->getNombre() . ".<br><br>Empresa: " . $empresa->getRazonSocial() . ".<br><br>Gracias por usar la plataforma.";
 
 $envioCorreo = new EnvioCorreo();
 $envioCorreo->prepararCorreo($correo, $asunto, $cuerpo);

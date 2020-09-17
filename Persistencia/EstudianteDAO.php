@@ -238,7 +238,42 @@ class EstudianteDAO implements DAO
      */
     public function listarPostulacionesVacante(int $idVacante, $pagInicio, $limit)
     {
-        $sql = "SELECT * FROM ESTUDIANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.id_vacante = $idVacante AND VACANTE_ESTUDIANTE.numero_documento = ESTUDIANTE.numero_documento  LIMIT " . $pagInicio . " , " . $limit;
+        $sql = "SELECT * FROM ESTUDIANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.id_vacante = $idVacante AND VACANTE_ESTUDIANTE.numero_documento = ESTUDIANTE.numero_documento AND  estado_aplicacion = 'Activo (Sin verificar)'  LIMIT " . $pagInicio . " , " . $limit;
+
+        if (!$result = mysqli_query($this->conexion, $sql)) die();
+
+        $estudianteArray = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $estudiante = new Estudiante();
+            $estudiante->setNumeroDocumento($row[0]);
+            $estudiante->setNombre($row[1]);
+            $estudiante->setCorreo($row[2]);
+            $estudiante->setTelefono($row[3]);
+            $estudiante->setTipoDeDocumento($row[4]);
+            $estudiante->setSemestreActual($row[5]);
+            $estudiante->setProgramaAcademico($row[6]);
+            $estudiante->setExperiencia($row[7]);
+            $estudiante->setEstado($row[8]);
+            $estudiante->setRutaFoto($row[9]);
+            $edad = $estudiante->calcularEdad($row[11]);
+            $estudiante->setEdad($edad);
+
+            $estudianteArray[] = $estudiante;
+        }
+
+        return $estudianteArray;
+    }
+
+    /**
+     * Método para listar los estudiantes que aplicaron a determinada vacante
+     *
+     * @param int $idVacante
+     * @return String
+     */
+    public function listarPostulacionesAceptadasVacante(int $idVacante, $pagInicio, $limit)
+    {
+        $sql = "SELECT * FROM ESTUDIANTE, VACANTE_ESTUDIANTE WHERE VACANTE_ESTUDIANTE.id_vacante = $idVacante AND VACANTE_ESTUDIANTE.numero_documento = ESTUDIANTE.numero_documento AND  estado_aplicacion = 'Seleccionado'  LIMIT " . $pagInicio . " , " . $limit;
 
         if (!$result = mysqli_query($this->conexion, $sql)) die();
 
