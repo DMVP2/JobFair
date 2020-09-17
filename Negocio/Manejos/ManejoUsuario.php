@@ -83,7 +83,7 @@ class ManejoUsuario
     /**
      * Cambia la contraseña de un usuario
      *
-     * @param String pCodigo
+     * @param int pCodigo
      * @param String pContraseña
      */
     public function cambiarContraseñaUsuario($pCodigo, $pContraseña)
@@ -107,9 +107,9 @@ class ManejoUsuario
 
 
     /**
-     * Busca un usuario estudiante en la base de datos por su usuario
+     * Busca un usuario en la base de datos por su usuario
      *
-     * @param int $pUsuario
+     * @param String $pUsuario
      * @return boolean existe
      */
     public function existeEstudianteUsuario($pUsuario)
@@ -118,9 +118,6 @@ class ManejoUsuario
         $usuario = $usuarioDAO->existeEstudianteUsuario($pUsuario);
         return $usuario;
     }
-
-
-
 
     /**
      * Actualiza un usuario

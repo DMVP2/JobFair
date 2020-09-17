@@ -48,7 +48,7 @@ class Empresa
 	/**
 	 * Estado de la empresa
 	 * 
-	 * @var Char
+	 * @var String
 	 */
 	private $estadoEmpresa;
 

@@ -41,35 +41,30 @@ class HojaDeVida
     /**
      * Idiomas que habla el estudiante
      * 
-     * @var ArregloDeDosDimensiones
      */
     private $idiomas;
 
     /**
      * Estudios que posee el estudiante
      * 
-     * @var ArregloDeDosDimensiones
      */
     private $estudios;
 
     /**
      * Referencias personales del estudiante
      * 
-     * @var ArregloDeDosDimensiones
      */
     private $referencias;
 
     /**
      * Experiencia laboral que posea el estudiante
      * 
-     * @var ArregloDeDosDimensiones
      */
     private $experienciaLaboral;
 
     /**
      * Experiencia académica que posea el estudiante
-     * 
-     * @var ArregloDeDosDimensiones
+     *  
      */
     private $experienciaAcademica;
 
@@ -211,7 +206,6 @@ class HojaDeVida
     /**
      * Método que obtiene los estudios que ha realizado el estudiante
      * 
-     * @return ArregloDeDosDimensiones
      */
     public function getEstudios()
     {

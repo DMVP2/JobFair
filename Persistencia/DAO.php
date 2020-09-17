@@ -30,7 +30,7 @@ interface DAO
      */
     public function actualizar($elemento);
 
-        /**
+    /**
      * Elimina un elemento de una tabla a partir de su código
      *
      * @param int $codigo

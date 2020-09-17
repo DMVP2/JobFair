@@ -87,10 +87,10 @@ class ManejoEmpresa
      * Aplciar estudiante empresa
      *
      */
-    public function aplicarEstudianteEmpresa($pNiEmpresa, $pIdEstudiante)
+    public function aplicarEstudianteEmpresa($pNitEmpresa, $pIdEstudiante)
     {
         $empresaDAO = EmpresaDAO::obtenerEmpresaDAO($this->conexion);
-        $empresaDAO->aplicarEstudianteEmpresa($pNiEmpresa, $pIdEstudiante);
+        $empresaDAO->aplicarEstudianteEmpresa($pNitEmpresa, $pIdEstudiante);
     }
 
     /**

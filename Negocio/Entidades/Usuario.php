@@ -13,7 +13,7 @@ class Usuario
 	/**
 	 * ID del usuario
 	 * 
-	 * @var Int
+	 * @var int
 	 */
 	private  $id;
 
@@ -27,7 +27,7 @@ class Usuario
     /**
 	 * Estado del usuario
 	 * 
-	 * @var Char
+	 * @var String
 	 */
     private  $estado;
     

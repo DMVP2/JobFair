@@ -17,12 +17,22 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-$idUsuario = $_GET['idEstudiante'];
+$idEstudiante = "";
+
+if (strcasecmp($rolUsuario, "Estudiante") == 0) {
+  $idEstudiante = $idUsuario;
+} else {
+  $idEstudiante = $_GET['idEstudiante'];
+}
+
 $manejoEstudiantes = new ManejoEstudiante($conexion);
-$estudiante = $manejoEstudiantes->buscarEstudiante($idUsuario);
+$estudiante = $manejoEstudiantes->buscarEstudiante($idEstudiante);
 
 $manejoHojaVida = new ManejoHojaDeVida($conexion);
-$hojaVida = $manejoHojaVida->buscarHojaVida($idUsuario);
+
+if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
+    $hojaVida = $manejoHojaVida->buscarHojaVida($idEstudiante);
+}
 
 // Variables procedentes del estudiante
 
@@ -41,6 +51,7 @@ $idiomas = $hojaVida->getIdiomas();
 $experiencias = $hojaVida->getExperienciaLaboral();
 $estudios = $hojaVida->getEstudios();
 $referencias = $hojaVida->getReferenciasPersonales();
+$academia = $hojaVida->getExperienciaAcademica();
 
 require_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_PRESENTACION_LIB . "/fpdf/fpdf.php");
 $pdf = new FPDF();
@@ -88,9 +99,9 @@ $pdf->Ln(14);
 $pdf->Multicell(185, 10, utf8_decode($perfilProfesional));
 $pdf->Ln(14);
 $pdf->SetFillColor(245, 132, 31);
-$pdf->Cell(190, 10, "Certificaciones", 0, 1, 'C', true);
-$pdf->Ln(14);
-$pdf->Multicell(185, 10, utf8_decode($certificaciones));
+//$pdf->Cell(190, 10, "Certificaciones", 0, 1, 'C', true);
+//$pdf->Ln(14);
+//$pdf->Multicell(185, 10, utf8_decode($certificaciones));
 
 $pdf->Ln(14);
 
@@ -115,28 +126,6 @@ foreach ($idiomas as $idioma) {
 
 $pdf->Ln(14);
 
-// Experiencia laboral
-
-$pdf->SetFillColor(245, 132, 31);
-$pdf->Cell(190, 10, "Experiencia laboral", 0, 1, 'C', true);
-$pdf->Ln(14);
-
-foreach ($experiencias as $experiencia) {
-
-  $cargo = $experiencia[0];
-  $descripcion = $experiencia[1];
-  $empresa = $experiencia[2];
-  $fecha = $experiencia[3];
-
-  $pdf->SetFillColor(132, 174, 64);
-  $pdf->Multicell(190, 10, utf8_decode($fecha), 0, 1, 'L', true);
-  $pdf->SetFillColor(255, 255, 255);
-  $pdf->Multicell(190, 10, utf8_decode($cargo), 0, 1, 'L', true);
-  $pdf->Multicell(190, 10, utf8_decode($descripcion), 0, 1, 'L', true);
-  $pdf->Multicell(190, 10, utf8_decode($empresa), 0, 1, 'L', true);
-  $pdf->Ln(10);
-}
-
 // Estudios
 
 $pdf->SetFillColor(245, 132, 31);
@@ -145,11 +134,12 @@ $pdf->Ln(14);
 
 foreach ($estudios as $estudio) {
 
-  $nombre = $estudio[0];
-  $area = $estudio[1];
-  $intitucion = $estudio[2];
-  $nivel = $estudio[3];
-  $fecha = $estudio[4];
+
+  $nombre = $estudio->getNombre();
+  $area = $estudio->getArea();
+  $intitucion = $estudio->getInstitucion();
+  $nivel = $estudio->NivelEstudio();
+  $fecha = $estudio->getFecha();
 
   $pdf->SetFillColor(132, 174, 64);
   $pdf->Multicell(190, 10, utf8_decode($fecha), 0, 1, 'L', true);
@@ -160,17 +150,61 @@ foreach ($estudios as $estudio) {
   $pdf->Ln(10);
 }
 
+// Experiencia laboral
+
+$pdf->SetFillColor(245, 132, 31);
+$pdf->Cell(190, 10, "Experiencia" . utf8_decode("académica"), 0, 1, 'C', true);
+$pdf->Ln(14);
+
+foreach ($academia as $experienciaAcademica) {
+
+  $cargo = $experienciaAcademica->getNombre();
+  $descripcion = $experienciaAcademica->getDescripcion();
+  $empresa = $experienciaAcademica->getInstitucion();
+  $fecha = $experienciaAcademica->getFecha();
+
+  $pdf->SetFillColor(132, 174, 64);
+  $pdf->Multicell(190, 10, utf8_decode($fecha), 0, 1, 'L', true);
+  $pdf->SetFillColor(255, 255, 255);
+  $pdf->Multicell(190, 10, utf8_decode($cargo), 0, 1, 'L', true);
+  $pdf->Multicell(190, 10, utf8_decode($descripcion), 0, 1, 'L', true);
+  $pdf->Multicell(190, 10, utf8_decode($empresa), 0, 1, 'L', true);
+  $pdf->Ln(10);
+}
+
+// Experiencia laboral
+
+$pdf->SetFillColor(245, 132, 31);
+$pdf->Cell(190, 10, "Experiencia laboral", 0, 1, 'C', true);
+$pdf->Ln(14);
+
+foreach ($experiencias as $experiencia) {
+
+  $cargo = $experienciaAcademica->getCargo();
+  $descripcion = $experienciaAcademica->getDescripcion();
+  $empresa = $experienciaAcademica->getEmpresa();
+  $fecha = $experienciaAcademica->getFecha();
+
+  $pdf->SetFillColor(132, 174, 64);
+  $pdf->Multicell(190, 10, utf8_decode($fecha), 0, 1, 'L', true);
+  $pdf->SetFillColor(255, 255, 255);
+  $pdf->Multicell(190, 10, utf8_decode($cargo), 0, 1, 'L', true);
+  $pdf->Multicell(190, 10, utf8_decode($descripcion), 0, 1, 'L', true);
+  $pdf->Multicell(190, 10, utf8_decode($empresa), 0, 1, 'L', true);
+  $pdf->Ln(10);
+}
+
 // Referencias personales
 
 $pdf->SetFillColor(245, 132, 31);
-$pdf->Cell(190, 10, "Referencias personales", 0, 1, 'C', true);
+$pdf->Cell(190, 10, "Referencia", 0, 1, 'C', true);
 $pdf->Ln(14);
 
 foreach ($referencias as $referencia) {
 
-  $nombre = $referencia[0];
-  $telefono = $referencia[1];
-  $parentesco = $referencia[2];
+  $nombre = $referencia->getNombre();
+  $telefono = $referencia->getTelefono();
+  $parentesco = $referencia->getParentesco();
 
   $pdf->SetFillColor(132, 174, 64);
   $pdf->Multicell(190, 10, utf8_decode($nombre), 0, 1, 'L', true);
