@@ -137,12 +137,18 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                                         hoja de vida</div>
                                     <?php
                                     }
+
+                                    echo "<br>";
+
+                                    if (strnatcasecmp($_SESSION['rol'], "Administrador") == 0) {
+                                        echo "<a href='" . CARPETA_RAIZ . RUTA_TABLAS . 'tablaEstudiante.php' . "'>Volver</a>";
+                                    } else {
+                                    }
+
                                     ?>
 
-                                    <br>
 
-                                    <a
-                                        href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaPostulaciones.php'  ?>">Volver</a>
+
 
 
 

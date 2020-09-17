@@ -262,12 +262,17 @@ $next = $page + 1;
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body text-center">
-                            <button type="button" class="btn btn-outline-primary" style="width: 132px;"
-                                data-toggle="modal" data-target="#aceptarModal">Aceptado</button>
+                        <div class="modal-body ">
+                            <form action="">
+                                <button type="button" class="btn btn-outline-primary" style="width: 132px;"
+                                    data-toggle="modal" data-target="#aceptarModal">Aceptado</button>
+                            </form>
+
                             &nbsp;o&nbsp;
-                            <button type="button" class="btn btn-outline-primary" style="width: 132px;"
-                                data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+                            <form action="">
+                                <button type="button" class="btn btn-outline-primary" style="width: 132px;"
+                                    data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -287,10 +292,26 @@ $next = $page + 1;
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body text-center">
-                            <input type="text" class="form-control" placeholder="Razón">
-                            <button type="button" class="btn btn-outline-primary"
-                                style="width: 132px;">Finalizar</button>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="bmd-label-floating">
+                                        Razón</label>
+                                    <br>
+                                    <textarea class="form-control" maxlength="950" name="razon" id="razon"
+                                        rows="8"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <center><button type="button" class="btn btn-outline-primary"
+                                            style="width: 132px;">Finalizar</button></center>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>

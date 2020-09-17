@@ -27,7 +27,8 @@ class Conexion
 		$server = "feriadeoportunidadesueb.mysql.database.azure.com";
 		$user = "adminueb@feriadeoportunidadesueb";
 		$pass = "Uelbosque1234";
-		$bd = "feriadeoportunidades";
+		//$bd = "feriadeoportunidades";
+		$bd = "test";
 		$port = "3306";
 
 		$conexion = mysqli_connect($server, $user, $pass, $bd, $port)
