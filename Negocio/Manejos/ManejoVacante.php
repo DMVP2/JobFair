@@ -264,8 +264,6 @@ class manejoVacante
     }
 
 
-
-
     /**
      * Obtiene el nit de una empresa por el codigo de una vacante postulada
      *
