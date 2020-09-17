@@ -201,7 +201,7 @@ if ($hojaVida->getEstudios() != null) {
                                     <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
                                         <div class="card-body cc-education-header">
                                             <p> <?php echo $estudio->getFecha() ?> </p>
-                                            <div class="h5"><?php echo $estudio->getNivelEstudio() ?>ahgasfdhasdfh </div>
+                                            <div class="h5"><?php echo $estudio->getNivelEstudio() ?></div>
                                         </div>
                                     </div>
                                     <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
@@ -232,7 +232,7 @@ if ($hojaVida->getEstudios() != null) {
     ?>
         <div class="section" id="experience">
             <div class="container cc-experience">
-                <div class="h4 text-center mb-4 title">Experiencia laboral</div>
+                <div class="h4 text-center mb-4 title">Experiencia académica</div>
 
                 <?php
 
