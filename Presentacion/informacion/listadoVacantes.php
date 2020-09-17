@@ -34,15 +34,15 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
+$categoria = null;
+$empresa = null;
+
 if (isset($_POST['categoria'])) {
-    $_SESSION['categoria'] = $_POST['categoria'];
+    $categoria = $_POST['categoria'];
 }
+if ($categoria != null OR $empresa != null) {
 
-$categoria = "";
-
-if ($categoria != null) {
-
-    $vacantes = $manejoVacante->listaFiltrada($paginationStart, $limit, $categoria);
+    $vacantes = $manejoVacante->listaFiltrada($paginationStart, $limit, $categoria, $empresa);
 } else {
     $vacantes = $manejoVacante->listarVacantesActivasPaginacion($paginationStart, $limit);
 }
@@ -98,24 +98,16 @@ $next = $page + 1;
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
-
                     <form class="user" method="post">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <div class="col-md-3">
-                                    <label class="bmd-label-floating">Categoria:</label>
-
-                                    <select class="form-control" id="categoria" name="categoria">
-                                        <?php
-
-                                        foreach ($categorias as $categoria) {
-                                            echo "<option value=" . $categoria[0] . ">" . $categoria[1] . "</option>";
-                                        }
-
-                                        ?>
-                                    </select>
-
-                                </div>
+                                <label class="bmd-label-floating">Filtrar por categoria</label>
+                                <input type="text" class="form-control" id="categoria" name="categoria">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Filtrar por empresa que la ofrece</label>
+                                <input type="text" class="form-control" id="empresa" name="empresa">
                             </div>
                         </div>
                     </form>
@@ -469,9 +461,6 @@ $next = $page + 1;
     <script>
         $(document).ready(function() {
             $('#records-limit').change(function() {
-                $('form').submit();
-            });
-            $('#categoria').change(function() {
                 $('form').submit();
             })
         });
