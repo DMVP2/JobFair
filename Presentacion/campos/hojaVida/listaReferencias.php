@@ -10,7 +10,7 @@
                 <label class="bmd-label-floating">
                     Nombre
                 </label>
-                <input type="text" class="form-control" id="nombreReferencia[]" name="nombreReferencia[]">
+                <input type="text" class="form-control" id="nombreReferencia[]" name="nombreReferencia[]" required>
             </div>
         </div>
     </div>
@@ -24,7 +24,8 @@
                 <label class="bmd-label-floating">
                     Teléfono
                 </label>
-                <input type="number" class="form-control" id="telefonoReferencia[]" name="telefonoReferencia[]" />
+                <input type="number" class="form-control" id="telefonoReferencia[]" name="telefonoReferencia[]" pattern="(\+57|0057|57)?[ -]*(3)[ -]*([0-9][ -]*){10}"
+                                                                        title="Solo se permite el número del teléfono celular. Opcionalmente puede incluir el código de país en diferentes formatos si asi lo desea." required>
             </div>
         </div>
         <div class="col-md-5">
@@ -32,7 +33,7 @@
                 <label class="bmd-label-floating">
                     Cargo / Profesión
                 </label>
-                <input type="text" class="form-control" id="parentescoReferencia[]" name="parentescoReferencia[]" />
+                <input type="text" class="form-control" id="parentescoReferencia[]" name="parentescoReferencia[]" required>
             </div>
         </div>
     </div>

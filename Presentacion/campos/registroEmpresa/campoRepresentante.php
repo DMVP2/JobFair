@@ -10,7 +10,7 @@
                 <label class="bmd-label-floating">
                     Nombre
                 </label>
-                <input type="text" class="form-control" id="nombreRepresentante[]" name="nombreRepresentante[]">
+                <input type="text" class="form-control" id="nombreRepresentante[]" name="nombreRepresentante[]" required>
             </div>
         </div>
     </div>
@@ -21,7 +21,8 @@
                 <label class="bmd-label-floating">
                     Correo
                 </label>
-                <input type="text" class="form-control" id="correoRepresentante[]" name="correoRepresentante[]" require>
+                <input type="text" class="form-control" id="correoRepresentante[]" name="correoRepresentante[]" pattern="^[a-zA-Z]+$"
+                                                                        title="Debe incluir un correo electrónico valido" required>
             </div>
         </div>
     </div>
@@ -35,7 +36,7 @@
                 <label class="bmd-label-floating">
                     Cargo
                 </label>
-                <input type="text" class="form-control" id="cargoRepresentante[]" name="cargoRepresentante[]" require />
+                <input type="text" class="form-control" id="cargoRepresentante[]" name="cargoRepresentante[]" required />
             </div>
         </div>
         <div class="col-md-6">
@@ -44,7 +45,7 @@
                     Teléfono
                 </label>
                 <input type="number" class="form-control" id="telefonoRepresentante[]" name="telefonoRepresentante[]"
-                    pattern="(\+57|0057|57)?[ -]*(3)[ -]*([0-9][ -]*){10}" require />
+                    pattern="(\+57|0057|57)?[ -]*(3)[ -]*([0-9][ -]*){10}" required />
             </div>
         </div>
     </div>
