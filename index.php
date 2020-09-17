@@ -118,7 +118,6 @@ if ($numero <= 3) {
     </div>
     <!-- Modal -->
 
-
 </body>
 
 </html>

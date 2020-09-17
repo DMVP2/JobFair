@@ -182,6 +182,34 @@ $next = $page + 1;
                                                         </form>
                                                     </th>
                                                 </thead>
+                                                    <thead class=" text-primary">
+                                                        <th>
+                                                            <?php echo $estudiante->getNumeroDocumento() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $estudiante->getNombre() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $estudiante->getCorreo() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $estudiante->getProgramaAcademico() ?>
+                                                        </th>
+                                                        <th>
+                                                            <?php echo $estudiante->getSemestreActual() ?>
+                                                        </th>
+                                                        <th>
+                                                            <form action="informacionEstudiante.php" method="post">
+                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                                                <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="">
+                                                                    <i class="material-icons">visibility</i>
+                                                                </button>
+                                                            </form>
+                                                            <button class="btn btn-warning" type="submit" id="submit" name="estudiante" value="" data-toggle="modal" data-target="#exampleModal">
+                                                                    <i class="material-icons">pan_tool</i>
+                                                                </button>
+                                                        </th>
+                                                    </thead>
 
                                                 <?php
                                                 }
@@ -242,6 +270,48 @@ $next = $page + 1;
             include $_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_COMPONENTES . "footer.php";
             ?>
             <!-- Footer -->
+
+            <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>¿El estudiante será aceptado o rechazado?</strong>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-outline-primary" style="width: 132px;" data-toggle="modal" data-target="#aceptarModal" >Aceptado</button>
+                    &nbsp;o&nbsp;
+                    <button type="button" class="btn btn-outline-primary" style="width: 132px;" data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+                <!-- Modal -->
+    <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del estudiante?</strong>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <input type="text" class="form-control" placeholder="Razón">
+                    <button type="button" class="btn btn-outline-primary" style="width: 132px;">Finalizar</button>
+               </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
 
         </div>
     </div>

@@ -569,10 +569,8 @@ class VacanteDAO implements DAO
 	 */
 	public function listaFiltrada($pagInicio, $limit, $filtro)
 	{
-		$sql = "SELECT * FROM VACANTE, CATEGORIA_VACANTE WHERE CATEGORIA_VACANTE.id_categoria = $filtro AND VACANTE.id_vacante = CATEGORIA_VACANTE.id_vacante" . " LIMIT " . $pagInicio . " , " . $limit;
-
-		echo $sql;
-
+		$sql = $filtro;
+		
 		if (!$result = mysqli_query($this->conexion, $sql)) die();
 
 		$vacanteArray = array();
