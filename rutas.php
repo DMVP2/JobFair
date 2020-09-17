@@ -21,7 +21,7 @@ define('RUTA_TABLAS', 'Presentacion/tablas/');
 define('RUTA_EDITAR', 'Presentacion/editar/');
 define('RUTA_CAMPOS', 'Presentacion/campos/');
 define('RUTA_PRESENTACION_LIB', 'Presentacion/lib/');
-
+define('RUTA_REPORTES', 'Presentacion/reportes/');
 
 define('RUTA_IMAGENES', 'Presentacion/imagenes/');
 define('RUTA_IMAGENES_WEB', 'Presentacion/imagenes/banner/');

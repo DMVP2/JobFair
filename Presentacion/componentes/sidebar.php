@@ -61,19 +61,19 @@ $rolUsuario = $_SESSION['rol'];
                     <p>Reportes</p>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaVacante.php' ?>">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteEstudiantes.php' ?>">
                         <i class="material-icons">analytics</i>
                         <p>Estudiantes X Programa</p>
                     </a>    
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php' ?>">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteCantidadAplicacionesEmpresa.php' ?>">
                         <i class="material-icons">analytics</i>
                         <p>Aplicaciones X Empresa</p>
                     </a>
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEstudiante.php' ?>">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteEstadoAplicacionEstudaintes.php' ?>">
                         <i class="material-icons">analytics</i>
                         <p>Aplicación de Estudiantes</p>
                     </a>
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaUsuario.php' ?>">
+                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteMasMenosAplicaciones.php' ?>">
                         <i class="material-icons">analytics</i>
                         <p>Mas o menos aplicaciones</p>
                     </a>
