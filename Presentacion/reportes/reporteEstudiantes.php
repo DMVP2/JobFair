@@ -57,7 +57,7 @@ $cantidadEstudiantesPorPrograma = $manejoEstudiantes->cantidadEstudiantesPorProg
                     <!-- CONTENIDO PAGINA -->
 
                     <div class="row">
-                        <div class="col-lg-12 col-md-6 col-sm-6">
+                        <div class="col-md-10" style=" margin-left: auto; margin-right: auto;">
                             <div class="card card-stats">
                                 <br>
                                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
@@ -99,7 +99,7 @@ $cantidadEstudiantesPorPrograma = $manejoEstudiantes->cantidadEstudiantesPorProg
                 startAngle: 240,
                 yValueFormatString: "#",
                 indexLabel: "{label} {y}",
-                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                dataPoints: < ? php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ? >
             }]
         });
         chart.render();

@@ -16,7 +16,12 @@ $conexion = $c->conectarBD();
 
 // Ejecución de métodos (Manejos)
 
-$idEmpresa = $_POST['idEmpresa'];
+if (isset($_POST['idEmpresa'])) {
+    $idEmpresa = $_POST['idEmpresa'];
+    $_SESSION['idEmpresa'] = $_POST['idEmpresa'];
+} else {
+    $idEmpresa = $_SESSION['idEmpresa'];
+}
 
 $manejoEmpresas = new ManejoEmpresa($conexion);
 $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
@@ -60,8 +65,10 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
-
-                    <embed  src= <?php echo "../documentos/" . $empresa->getNit() . ".pdf"?>  type="application/pdf" width="100%" height="600px" />
+                    <a href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'informacionEmpresa.php'  ?>">Volver</a>
+                    <br>
+                    <embed src=<?php echo "../documentos/" . $empresa->getNit() . ".pdf" ?> type="application/pdf"
+                        width="100%" height="600px" />
 
                     <!-- CONTENIDO PAGINA -->
 

@@ -18,8 +18,15 @@ $manejoEmpresas = new ManejoEmpresa($conexion);
 $cantidadEmpresas = $manejoEmpresas->cantidadEmpresas();
 
 $idUsuario = $_SESSION['usuario'];
-$idEmpresa = $_POST['idEmpresa'];
 $rolUsuario = $_SESSION['rol'];
+
+if (isset($_POST['idEmpresa'])) {
+    $idEmpresa = $_POST['idEmpresa'];
+    $_SESSION['idEmpresa'] = $_POST['idEmpresa'];
+} else {
+    $idEmpresa = $_SESSION['idEmpresa'];
+}
+
 
 $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
 ?>
@@ -96,7 +103,9 @@ $empresa = $manejoEmpresas->buscarEmpresa($idEmpresa);
                                 }
                                 ?>
 
-
+                                <br>
+                                <a href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaEmpresa.php'  ?>">Volver</a>
+                                <br><br>
                             </div>
                         </div>
                     </div>

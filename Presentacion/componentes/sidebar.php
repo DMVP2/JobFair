@@ -61,21 +61,22 @@ $rolUsuario = $_SESSION['rol'];
                     <p>Reportes</p>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteEstudiantes.php' ?>">
-                        <i class="material-icons">analytics</i>
-                        <p>Estudiantes X Programa</p>
-                    </a>    
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteCantidadAplicacionesEmpresa.php' ?>">
-                        <i class="material-icons">analytics</i>
-                        <p>Aplicaciones X Empresa</p>
+                    <a class="dropdown-item"
+                        href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteEstudiantes.php' ?>">
+                        <p>Estudiantes por Programa</p>
                     </a>
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteEstadoAplicacionEstudaintes.php' ?>">
-                        <i class="material-icons">analytics</i>
+                    <a class="dropdown-item"
+                        href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteCantidadAplicacionesEmpresa.php' ?>">
+                        <p>Aplicaciones por Empresa</p>
+                    </a>
+                    <a class="dropdown-item"
+                        href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteEstadoAplicacionEstudiantes.php' ?>">
                         <p>Aplicación de Estudiantes</p>
                     </a>
-                    <a class="dropdown-item" href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteMasMenosAplicaciones.php' ?>">
-                        <i class="material-icons">analytics</i>
-                        <p>Mas o menos aplicaciones</p>
+                    <a class="dropdown-item"
+                        href="<?php echo CARPETA_RAIZ . RUTA_REPORTES . 'reporteMasMenosAplicaciones.php' ?>">
+
+                        <p>Mas - menos aplicaciones</p>
                     </a>
                 </div>
             </li>
