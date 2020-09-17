@@ -1,6 +1,5 @@
 <?php
 
-
 // Importación de clases
 
 include_once('../../rutas.php');
@@ -98,7 +97,7 @@ $next = $page + 1;
                     <!-- CONTENIDO PAGINA -->
 
 
-                    <a href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'informacionVacante.php'  ?>">Volver</a>
+                    <a href="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . 'informacionVacante.php' ?>">Volver</a>
                     <!-- Select dropdown -->
                     <div class="d-flex flex-row-reverse bd-highlight mb-3">
                         <form action="<?php echo $nombrePagina ?>" method="post">
@@ -170,46 +169,25 @@ $next = $page + 1;
                                                         <?php echo $estudiante->getSemestreActual() ?>
                                                     </th>
                                                     <th>
-                                                        <form action="informacionEstudiante.php" method="post">
+                                                        <form
+                                                            action="<?php echo CARPETA_RAIZ . RUTA_INFORMACION . "informacionEstudiante.php"; ?>"
+                                                            method="post">
                                                             <input class="btn btn-primary" type="hidden"
-                                                                id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>
-                                                                name="idEstudiante"
+                                                                id="idEstudiante" name="idEstudiante"
                                                                 value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
                                                             <button class="btn btn-success" type="submit" id="submit"
                                                                 name="estudiante" value="">
                                                                 <i class="material-icons">visibility</i>
                                                             </button>
                                                         </form>
+
+                                                        <button class="btn btn-warning" type="submit" id="submit"
+                                                            name="estudiante" value="" data-toggle="modal"
+                                                            data-target="#exampleModal">
+                                                            <i class="material-icons">pan_tool</i>
+                                                        </button>
                                                     </th>
                                                 </thead>
-                                                    <thead class=" text-primary">
-                                                        <th>
-                                                            <?php echo $estudiante->getNumeroDocumento() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getNombre() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getCorreo() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getProgramaAcademico() ?>
-                                                        </th>
-                                                        <th>
-                                                            <?php echo $estudiante->getSemestreActual() ?>
-                                                        </th>
-                                                        <th>
-                                                            <form action="informacionEstudiante.php" method="post">
-                                                                <input class="btn btn-primary" type="hidden" id=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?> name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                                                <button class="btn btn-success" type="submit" id="submit" name="estudiante" value="">
-                                                                    <i class="material-icons">visibility</i>
-                                                                </button>
-                                                            </form>
-                                                            <button class="btn btn-warning" type="submit" id="submit" name="estudiante" value="" data-toggle="modal" data-target="#exampleModal">
-                                                                    <i class="material-icons">pan_tool</i>
-                                                                </button>
-                                                        </th>
-                                                    </thead>
 
                                                 <?php
                                                 }
@@ -272,46 +250,52 @@ $next = $page + 1;
             <!-- Footer -->
 
             <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>¿El estudiante será aceptado o rechazado?</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <button type="button" class="btn btn-outline-primary" style="width: 132px;" data-toggle="modal" data-target="#aceptarModal" >Aceptado</button>
-                    &nbsp;o&nbsp;
-                    <button type="button" class="btn btn-outline-primary" style="width: 132px;" data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>¿El estudiante será aceptado o
+                                    rechazado?</strong>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <button type="button" class="btn btn-outline-primary" style="width: 132px;"
+                                data-toggle="modal" data-target="#aceptarModal">Aceptado</button>
+                            &nbsp;o&nbsp;
+                            <button type="button" class="btn btn-outline-primary" style="width: 132px;"
+                                data-toggle="modal" data-target="#rechazarModal">Rechazado</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Modal -->
+            <!-- Modal -->
 
-                <!-- Modal -->
-    <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del estudiante?</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <!-- Modal -->
+            <div class="modal fade" id="rechazarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>¿Cual es la razón del rechazo del
+                                    estudiante?</strong>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <input type="text" class="form-control" placeholder="Razón">
+                            <button type="button" class="btn btn-outline-primary"
+                                style="width: 132px;">Finalizar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body text-center">
-                    <input type="text" class="form-control" placeholder="Razón">
-                    <button type="button" class="btn btn-outline-primary" style="width: 132px;">Finalizar</button>
-               </div>
             </div>
-        </div>
-    </div>
-    <!-- Modal -->
+            <!-- Modal -->
 
         </div>
     </div>

@@ -71,11 +71,9 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                     <!-- CONTENIDO PAGINA -->
 
                     <div class="row">
-
-
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-10" style=" margin-left: auto; margin-right: auto;">
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <img class="img"
@@ -125,21 +123,31 @@ if ($manejoHojaVida->buscarHojaVida($idEstudiante) != null) {
                                     if (strcasecmp($hojaVida, "Si") == 0) {
                                     ?>
                                     <form action="hojaVida.php" method="post">
-                                        <input class="btn btn-primary" type="hidden" id="idEstudiante" name="idEstudiante" value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
-                                        <input class="btn btn-primary" type="submit" id="submit" name="estudiante" value="Ver hoja de vida">
+                                        <input class="btn btn-primary" type="hidden" id="idEstudiante"
+                                            name="idEstudiante"
+                                            value=<?php echo "'" . $estudiante->getNumeroDocumento() . "'"; ?>>
+                                        <input class="btn btn-primary" type="submit" id="submit" name="estudiante"
+                                            value="Ver hoja de vida">
                                         <br><br>
                                     </form>
                                     <?php
                                     } else {
                                     ?>
-                                    <div class="alert alert-primary" style="text-align: center"> El estudiante no tiene hoja de vida</div>
+                                    <div class="alert alert-primary" style="text-align: center"> El estudiante no tiene
+                                        hoja de vida</div>
                                     <?php
                                     }
                                     ?>
 
+                                    <br>
+
+                                    <a
+                                        href="<?php echo CARPETA_RAIZ . RUTA_TABLAS . 'tablaPostulaciones.php'  ?>">Volver</a>
+
+
+
 
                             </div>
-
                         </div>
                     </div>
 
