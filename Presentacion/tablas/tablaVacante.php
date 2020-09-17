@@ -19,7 +19,7 @@ $conexion = $c->conectarBD();
 // Ejecución de métodos (Manejos)
 
 
-$manejoVacantes = new ManejoVacante($conexion);
+$manejoVacante = new ManejoVacante($conexion);
 $manejoEmpresas = new ManejoEmpresa($conexion);
 
 // Paginación
@@ -34,11 +34,21 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
-$vacantes = $manejoVacantes->listarVacantesActivasPaginacion($paginationStart, $limit);
+$categoria = "";
+
+if (isset($_POST['categoria'])) {
+    $categoria = $_POST['categoria'];
+}
+if ($categoria != null) {
+
+    $vacantes = $manejoVacante->listaFiltrada($paginationStart, $limit, $categoria);
+} else {
+    $vacantes = $manejoVacante->listarVacantesActivasPaginacion($paginationStart, $limit);
+}
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
-$allRecords = $manejoVacantes->cantidadVacantesActivas();
+$allRecords = $manejoVacante->cantidadVacantesActivas();
 
 // Total de las paginas
 
@@ -88,6 +98,15 @@ $next = $page + 1;
             <div class="content">
                 <div class="container-fluid">
                     <!-- CONTENIDO PAGINA -->
+
+                    <form class="user" method="post">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Filtrar por categoria</label>
+                                <input type="text" class="form-control" id="categoria" name="categoria">
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Select dropdown -->
                     <div class="d-flex flex-row-reverse bd-highlight mb-3">
@@ -145,7 +164,7 @@ $next = $page + 1;
                                             <tbody>
                                                 <?php
                                                 foreach ($vacantes as $vacante) {
-                                                    $nitEmpresa = $manejoVacantes->consultarNitEmpresa($vacante->getId());
+                                                    $nitEmpresa = $manejoVacante->consultarNitEmpresa($vacante->getId());
                                                     $empresa = $manejoEmpresas->buscarEmpresa($nitEmpresa);
 
                                                 ?>

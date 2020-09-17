@@ -356,24 +356,9 @@ class manejoVacante
      *
      * @return 
      */
-    public function listaFiltrada($pagInicio, $limit, $categoria, $empresa)
+    public function listaFiltrada($pagInicio, $limit, $filtro)
     {
-
-        $filtro = "SELECT * FROM VACANTE, CATEGORIA_VACANTE, CATEGORIA, EMPRESA WHERE";
-
-        if ($categoria != null) {
-
-            $filtro .= "CATEGORIA.nombre_categoria LIKE '%$categoria%' AND VACANTE.id_vacante = CATEGORIA_VACANTE.id_vacante AND CATEGORIA.id_categoria = CATEGORIA_VACANTE.id_categoria";
-        }
-        if ($empresa != null) {
-
-            if ($categoria != null) {
-                $filtro .= "AND";
-            }
-
-            $filtro .= "EMPRESA.razon_comercial LIKE '%$empresa%' AND VACANTE.id_vacante = EMPRESA_VACANTE.id_vacante AND EMPRESA.nit_empresa = EMPRESA_VACANTE.nit_empresa";
-        }
-
+        
         $VacanteDAO = VacanteDAO::obtenerVacanteDAO($this->conexion);
         $vacantes = $VacanteDAO->listaFiltrada($pagInicio, $limit, $filtro);
         return $vacantes;

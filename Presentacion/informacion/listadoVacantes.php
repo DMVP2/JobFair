@@ -34,20 +34,17 @@ $paginationStart = ($page - 1) * $limit;
 
 // RETORNA EL ARREGLO DE LA BD
 
-$categoria = null;
-$empresa = null;
+$categoria = "";
 
 if (isset($_POST['categoria'])) {
     $categoria = $_POST['categoria'];
 }
-if ($categoria != null OR $empresa != null) {
+if ($categoria != null) {
 
-    $vacantes = $manejoVacante->listaFiltrada($paginationStart, $limit, $categoria, $empresa);
+    $vacantes = $manejoVacante->listaFiltrada($paginationStart, $limit, $categoria);
 } else {
     $vacantes = $manejoVacante->listarVacantesActivasPaginacion($paginationStart, $limit);
 }
-
-$categorias = $manejoVacante->listarCategorias();
 
 // CANTIDAD TOTAL A CARGAR - COUNT BD
 
@@ -103,11 +100,6 @@ $next = $page + 1;
                             <div class="form-group">
                                 <label class="bmd-label-floating">Filtrar por categoria</label>
                                 <input type="text" class="form-control" id="categoria" name="categoria">
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Filtrar por empresa que la ofrece</label>
-                                <input type="text" class="form-control" id="empresa" name="empresa">
                             </div>
                         </div>
                     </form>
