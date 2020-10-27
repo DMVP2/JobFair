@@ -189,7 +189,7 @@ $conexion = $c->conectarBD();
 
                                                         <div id="divListRepresentantes">
 
-                                                            <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/' . CARPETA_RAIZ . RUTA_CAMPOS . 'registroEmpresa/campoRepresentante.php'); ?>
+                                                            <?php include_once($_SERVER['DOCUMENT_ROOT'] . CARPETA_RAIZ . RUTA_CAMPOS . 'registroEmpresa/campoRepresentante.php'); ?>
 
                                                         </div>
 

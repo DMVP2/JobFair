@@ -21,8 +21,7 @@
                 <label class="bmd-label-floating">
                     Correo
                 </label>
-                <input type="text" class="form-control" id="correoRepresentante[]" name="correoRepresentante[]" pattern="^[a-zA-Z]+$"
-                                                                        title="Debe incluir un correo electrónico valido" required>
+                <input type="text" class="form-control" id="correoRepresentante[]" name="correoRepresentante[]" required>
             </div>
         </div>
     </div>
