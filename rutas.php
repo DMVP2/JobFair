@@ -33,6 +33,6 @@ define('ARCHIVO_PARAMETRIZACION_CORREO', '/Persistencia/parametrizacionCorreos.p
 
 
 header('Cache-Control: no cache'); //no cache
-session_cache_limiter('public'); // works too
+session_cache_limiter('private_no_expire'); // works
 
 session_start();
